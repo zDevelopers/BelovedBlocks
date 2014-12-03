@@ -18,20 +18,18 @@ public class BBListener implements Listener {
 	public void onPlayerInteract(PlayerInteractEvent ev) {
 		if(!ev.hasBlock() || !ev.hasItem()) return;
 		
-		p.getLogger().info(ev.getClickedBlock().getType().toString());
-		
-		if(ev.getClickedBlock() != null && ev.getItem().getType() == Material.DIAMOND_HOE) {
+		if(ev.getItem().getType() == Material.DIAMOND_HOE
+				&& ev.getItem().getItemMeta().getDisplayName().equals(p.getConfig().getString("tool.name"))) {
 			switch(ev.getClickedBlock().getType()) {
 				case DOUBLE_STEP:
 				//case DOUBLE_STONE_SLAB2:
-				p.getLogger().info("ok");
 				ev.getClickedBlock().setData((byte) (ev.getClickedBlock().getData() + 8));
 				break;
 			default:
-				break;	
+				break;
 			}
+			
+			ev.setCancelled(true);
 		}
-		
-		p.getLogger().info("" + ev.getClickedBlock().getData());
 	}
 }

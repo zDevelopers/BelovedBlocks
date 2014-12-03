@@ -6,3 +6,6 @@
 
 # Available languages: en_US, fr_FR.
 lang: en_US
+
+tool:
+    name: "Magic tool"
