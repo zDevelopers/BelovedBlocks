@@ -1,0 +1,14 @@
+name: BelovedBlocks
+description: The return of these beautiful smooth double slabs
+main: eu.carrade.amaury.BelovedBlocks.BelovedBlocks
+version: 0.1
+author: "Amaury Carrade"
+
+awareness:
+  - !@UTF8
+
+
+commands:
+
+permissions:
+    
