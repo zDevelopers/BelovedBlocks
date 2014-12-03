@@ -16,7 +16,7 @@
  *  along with this program.  If not, see [http://www.gnu.org/licenses/].
  */
 
-package me.azenet.UHPlugin.i18n;
+package eu.carrade.amaury.BelovedBlocks.i18n;
 
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -36,6 +36,8 @@ public final class BelovedBlocks extends JavaPlugin {
 		else {
 			i18n = new I18n(this, getConfig().getString("lang"));
 		}
+		
+		getServer().getPluginManager().registerEvents(new BBListener(this), this);
 	}
 	
 	/**
