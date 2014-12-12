@@ -29,15 +29,15 @@ public class BBListener implements Listener {
 				&& item.getItemMeta().getDisplayName().equals(p.getConfig().getString("tool.name"))) {
 			switch(ev.getClickedBlock().getType()) {
 				case DOUBLE_STEP:
-				//case DOUBLE_STONE_SLAB2:
-				block.setData((byte) (ev.getClickedBlock().getData() + 8));
-				
-				if(player.getGameMode() != GameMode.CREATIVE) {
-					item.setDurability((short) (item.getDurability() + 1));
-					player.getInventory().setItemInHand(item);
-					player.updateInventory();
-				}
-				break;
+				case DOUBLE_STONE_SLAB2:
+					block.setData((byte) (ev.getClickedBlock().getData() + 8));
+					
+					if(player.getGameMode() != GameMode.CREATIVE) {
+						item.setDurability((short) (item.getDurability() + 1));
+						player.getInventory().setItemInHand(item);
+						player.updateInventory();
+					}
+					break;
 			default:
 				break;
 			}
