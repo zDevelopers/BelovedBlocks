@@ -1,8 +1,11 @@
 package eu.carrade.amaury.BelovedBlocks;
 
+import java.util.Random;
+
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -33,10 +36,22 @@ public class BBListener implements Listener {
 					block.setData((byte) (ev.getClickedBlock().getData() + 8));
 					
 					if(player.getGameMode() != GameMode.CREATIVE) {
-						item.setDurability((short) (item.getDurability() + 1));
+						short newDurability = item.getDurability();
+						if(!item.containsEnchantment(Enchantment.DURABILITY)) {
+							newDurability++;
+						}
+						else {
+							int level = item.getEnchantmentLevel(Enchantment.DURABILITY);
+							if(new Random().nextInt(100) <= (100/(level + 1))) {
+								newDurability++;
+							}
+						}
+						
+						item.setDurability(newDurability);
 						player.getInventory().setItemInHand(item);
 						player.updateInventory();
 					}
+					
 					break;
 			default:
 				break;
