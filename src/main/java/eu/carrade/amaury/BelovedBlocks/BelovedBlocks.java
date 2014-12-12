@@ -34,6 +34,9 @@ public final class BelovedBlocks extends JavaPlugin {
 	private I18n i18n = null;
 	
 	private String toolName;
+	private String smoothStoneName;
+	private String smoothSandstoneName;
+	private String smoothRedSandstoneName;
 
 	@Override
 	public void onEnable() {
@@ -50,6 +53,10 @@ public final class BelovedBlocks extends JavaPlugin {
 		
 		toolName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("tool.name"));
 		
+		smoothStoneName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.slabs.stone.name"));
+		smoothSandstoneName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.slabs.sandstone.name"));
+		smoothRedSandstoneName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.slabs.red_sandstone.name"));
+		
 		registerTool();
 		registerStone();
 		registerSand();
@@ -65,6 +72,45 @@ public final class BelovedBlocks extends JavaPlugin {
 		return i18n;
 	}
 	
+	
+	public ItemStack getSmoothStoneItem(int amount) {
+		ItemStack smoothStone = new ItemStack(Material.STEP, amount);
+		smoothStone.setDurability((short) 0);
+		
+		ItemMeta itemMeta = smoothStone.getItemMeta();
+	    itemMeta.setDisplayName(smoothStoneName);
+	    smoothStone.setItemMeta(itemMeta);
+	    
+	    GlowEffect.addGlow(smoothStone);
+	    
+	    return smoothStone;
+	}
+	
+	public ItemStack getSmoothSandstoneItem(int amount) {
+		ItemStack smoothSandstone = new ItemStack(Material.STEP, amount);
+		smoothSandstone.setDurability((short) 1);
+		
+		ItemMeta itemMeta = smoothSandstone.getItemMeta();
+	    itemMeta.setDisplayName(smoothSandstoneName);
+	    smoothSandstone.setItemMeta(itemMeta);
+	    
+	    GlowEffect.addGlow(smoothSandstone);
+	    
+	    return smoothSandstone;
+	}
+	
+	public ItemStack getSmoothRedSandstoneItem(int amount) {
+		ItemStack smoothRedSandstone = new ItemStack(Material.STONE_SLAB2, amount);
+		smoothRedSandstone.setDurability((short) 0);
+		
+		ItemMeta itemMeta = smoothRedSandstone.getItemMeta();
+	    itemMeta.setDisplayName(smoothRedSandstoneName);
+	    smoothRedSandstone.setItemMeta(itemMeta);
+	    
+	    GlowEffect.addGlow(smoothRedSandstone);
+	    
+	    return smoothRedSandstone;
+	}
 	
 	
 	/**
@@ -107,12 +153,7 @@ public final class BelovedBlocks extends JavaPlugin {
 	}
 	
 	public void registerStone() {
-		ItemStack stoneStep = new ItemStack(Material.STEP, 2);
-		stoneStep.setDurability((short) 0);
-		ItemMeta itemMeta = stoneStep.getItemMeta();
-	    itemMeta.setDisplayName(ChatColor.RESET + getConfig().getString("blocks.slabs.stone.name"));
-	    stoneStep.setItemMeta(itemMeta);
-		ShapedRecipe StepCraft = new ShapedRecipe(stoneStep);
+		ShapedRecipe StepCraft = new ShapedRecipe(getSmoothStoneItem(2));
 		
 		StepCraft.shape("SS ", "SS ", "   ");
 		StepCraft.setIngredient('S', Material.STEP, 0);
@@ -126,12 +167,7 @@ public final class BelovedBlocks extends JavaPlugin {
 	}
 	
 	public void registerSand() {
-		ItemStack sandStep = new ItemStack(Material.STEP, 2);
-		sandStep.setDurability((short) 1);
-		ItemMeta itemMeta = sandStep.getItemMeta();
-		itemMeta.setDisplayName(ChatColor.RESET + getConfig().getString("blocks.slabs.sandstone.name"));
-		sandStep.setItemMeta(itemMeta);
-		ShapedRecipe SandCraft = new ShapedRecipe(sandStep);
+		ShapedRecipe SandCraft = new ShapedRecipe(getSmoothSandstoneItem(2));
 		
 		SandCraft.shape("SS ", "SS ", "   ");
 		SandCraft.setIngredient('S', Material.STEP, 1);
@@ -145,12 +181,7 @@ public final class BelovedBlocks extends JavaPlugin {
 	}
 	
 	public void registerRedsand() {
-		ItemStack redsandStep = new ItemStack(Material.STONE_SLAB2, 2);
-		redsandStep.setDurability((short) 0);
-		ItemMeta itemMeta = redsandStep.getItemMeta();
-		itemMeta.setDisplayName(ChatColor.RESET + getConfig().getString("blocks.slabs.red_sandstone.name"));
-		redsandStep.setItemMeta(itemMeta);
-		ShapedRecipe RedSandCraft = new ShapedRecipe(redsandStep);
+		ShapedRecipe RedSandCraft = new ShapedRecipe(getSmoothRedSandstoneItem(2));
 
 		RedSandCraft.shape("SS ", "SS ", "   ");
 		RedSandCraft.setIngredient('S', Material.STONE_SLAB2, 0);
@@ -187,5 +218,21 @@ public final class BelovedBlocks extends JavaPlugin {
 		}
 		
 		return 0;
+	}
+
+	public String getToolName() {
+		return toolName;
+	}
+
+	public String getSmoothStoneName() {
+		return smoothStoneName;
+	}
+
+	public String getSmoothSandstoneName() {
+		return smoothSandstoneName;
+	}
+
+	public String getSmoothRedSandstoneName() {
+		return smoothRedSandstoneName;
 	}
 }

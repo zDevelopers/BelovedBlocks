@@ -2,6 +2,7 @@ package eu.carrade.amaury.BelovedBlocks;
 
 import java.lang.reflect.Field;
 
+import org.bukkit.Bukkit;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.enchantments.EnchantmentWrapper;
@@ -17,6 +18,7 @@ public class GlowEffect extends EnchantmentWrapper {
 	
 	private static Enchantment glow;
 	private final static int ENCHANTMENT_ID = 254;
+	private final static String ENCHANTMENT_NAME = "GlowEffect";
 	
 	public GlowEffect(int id) {
 		super(id);
@@ -44,7 +46,7 @@ public class GlowEffect extends EnchantmentWrapper {
 
 	@Override
 	public String getName() {
-		return "GlowEnchantment";
+		return ENCHANTMENT_NAME;
 	}
 
 	@Override
@@ -53,9 +55,13 @@ public class GlowEffect extends EnchantmentWrapper {
 	}
 
 	public static Enchantment getGlow() {
+		Bukkit.getLogger().info("getGlow call");
 		if (glow != null) {
+			Bukkit.getLogger().info("Already registered");
 			return glow;
 		}
+
+		Bukkit.getLogger().info("Registering enchantment");
 		
 		try {
 			// We change this to force Bukkit to accept a new enchantment.
@@ -67,15 +73,21 @@ public class GlowEffect extends EnchantmentWrapper {
 			e.printStackTrace();
 		}
 
-		glow = new GlowEffect(ENCHANTMENT_ID);
-		Enchantment.registerEnchantment(glow);
+		try {
+			glow = new GlowEffect(ENCHANTMENT_ID);
+			Enchantment.registerEnchantment(glow);
+		} catch(IllegalArgumentException e) {
+			// If the enchantment is already registered - happens on server reload
+			glow = Enchantment.getById(ENCHANTMENT_ID); // getByID required - by name it doesn't work (returns null).
+		}
 		
 		return glow;
 	}
 
 	public static void addGlow(ItemStack item) {
+		if(item == null) return;
+		
 		Enchantment glow = getGlow();
-
-		item.addEnchantment(glow, 1);
+		if(glow != null) item.addEnchantment(glow, 1);
 	}
 }

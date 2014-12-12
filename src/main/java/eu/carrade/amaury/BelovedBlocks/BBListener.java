@@ -1,6 +1,5 @@
 package eu.carrade.amaury.BelovedBlocks;
 
-import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -75,32 +74,26 @@ public class BBListener implements Listener {
 	
 	@EventHandler
 	public void onBlockPlace(BlockPlaceEvent e) throws InterruptedException {
-		if(e.getBlockPlaced().getType() == Material.STEP){
-			if(e.getItemInHand().getDurability() == 0){
-				String str = ChatColor.RESET + p.getConfig().getString("blocks.slabs.stone.name");
-				if(str.equals(e.getItemInHand().getItemMeta().getDisplayName())){
-					e.getBlockPlaced().setType(Material.DOUBLE_STEP);
-					e.getBlockPlaced().setData((byte) 8);
-				}
+		Material blockType = e.getBlockPlaced().getType();
+		ItemStack item = e.getItemInHand();
+		String name = item.getItemMeta().getDisplayName();
+		
+		if(blockType == Material.STEP){
+			if(item.getDurability() == 0 && name.equals(p.getSmoothStoneName())) {
+				e.getBlockPlaced().setType(Material.DOUBLE_STEP);
+				e.getBlockPlaced().setData((byte) 8);
 			}
-			if(e.getItemInHand().getDurability() == 1){
-				String str = ChatColor.RESET + p.getConfig().getString("blocks.slabs.sandstone.name");
-				int INT = str.hashCode();
-				if(e.getItemInHand().getItemMeta().getDisplayName().hashCode() == INT){
-					e.getBlockPlaced().setType(Material.DOUBLE_STEP);
-					e.getBlockPlaced().setData((byte) 9);
-				}
+			
+			else if(e.getItemInHand().getDurability() == 1 && name.equals(p.getSmoothSandstoneName())) {
+				e.getBlockPlaced().setType(Material.DOUBLE_STEP);
+				e.getBlockPlaced().setData((byte) 9);
 			}
 		}
 		
-		if(e.getBlockPlaced().getType() == Material.STONE_SLAB2){
-			if(e.getItemInHand().getDurability() == 0){
-				String str = ChatColor.RESET + p.getConfig().getString("blocks.slabs.red_sandstone.name");
-				int INT = str.hashCode();
-				if(e.getItemInHand().getItemMeta().getDisplayName().hashCode() == INT){
-					e.getBlockPlaced().setType(Material.DOUBLE_STONE_SLAB2);
-					e.getBlockPlaced().setData((byte) 8);
-				}
+		else if(e.getBlockPlaced().getType() == Material.STONE_SLAB2){
+			if(e.getItemInHand().getDurability() == 0 && name.equals(p.getSmoothRedSandstoneName())) {
+				e.getBlockPlaced().setType(Material.DOUBLE_STONE_SLAB2);
+				e.getBlockPlaced().setData((byte) 8);
 			}
 		}
 	}
