@@ -70,18 +70,38 @@ public final class BelovedBlocks extends JavaPlugin {
 	 */
 	public void registerTool() {
 		if(getConfig().getBoolean("tool.craftable")) {
-			ItemStack item = new ItemStack(Material.DIAMOND_HOE);
+			ItemStack item = new ItemStack(Material.SHEARS);
 			ItemMeta meta = item.getItemMeta();
 				meta.setDisplayName(toolName);
 			item.setItemMeta(meta);
 			
+			getLogger().info("Recipe tool");
+			
 			ShapedRecipe recipe = new ShapedRecipe(item);
-			recipe.shape("DS ", "DS ", " S ");
+			
+			recipe.shape("D  ", " D ", "   ");
 			recipe.setIngredient('D', Material.DIAMOND);
-			recipe.setIngredient('S', Material.STICK);
 			getServer().addRecipe(recipe);
 			
-			recipe.shape(" DS", " DS", "  S");
+			recipe.shape(" D ", "  D", "   ");
+			getServer().addRecipe(recipe);
+			
+			recipe.shape(" D ", "D  ", "   ");
+			getServer().addRecipe(recipe);
+			
+			recipe.shape("  D", " D ", "   ");
+			getServer().addRecipe(recipe);
+			
+			recipe.shape("   ", "D  ", " D ");
+			getServer().addRecipe(recipe);
+			
+			recipe.shape("   ", " D ", "  D");
+			getServer().addRecipe(recipe);
+			
+			recipe.shape("   ", " D ", "D  ");
+			getServer().addRecipe(recipe);
+			
+			recipe.shape("   ", "  D", " D ");
 			getServer().addRecipe(recipe);
 		}
 	}
@@ -150,7 +170,7 @@ public final class BelovedBlocks extends JavaPlugin {
 	 * @return The result.
 	 */
 	public boolean isValidTool(ItemStack tool) {
-		return (tool.getType() == Material.DIAMOND_HOE
+		return (tool.getType() == Material.SHEARS
 				&& tool.getItemMeta().getDisplayName().equals(toolName));
 	}
 	
