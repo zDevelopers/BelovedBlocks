@@ -74,9 +74,7 @@ public final class BelovedBlocks extends JavaPlugin {
 			ItemMeta meta = item.getItemMeta();
 				meta.setDisplayName(toolName);
 			item.setItemMeta(meta);
-			
-			getLogger().info("Recipe tool");
-			
+			²²
 			ShapedRecipe recipe = new ShapedRecipe(item);
 			
 			recipe.shape("D  ", " D ", "   ");
