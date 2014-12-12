@@ -18,6 +18,8 @@
 
 package eu.carrade.amaury.BelovedBlocks;
 
+import java.util.Random;
+
 import org.bukkit.plugin.java.JavaPlugin;
 
 import eu.carrade.amaury.BelovedBlocks.i18n.I18n;
@@ -47,5 +49,19 @@ public final class BelovedBlocks extends JavaPlugin {
 	 */
 	public I18n getI18n() {
 		return i18n;
+	}
+	
+	/**
+	 * Calculates the new durability, taking into account the unbreaking enchantment.
+	 * 
+	 * @param unbreakingLevel The Unbreaking level (0 if not enchanted with that).
+	 * @return The durability to add.
+	 */
+	public short increaseDurability(int unbreakingLevel) {
+		if(new Random().nextInt(100) <= (100/(unbreakingLevel + 1))) {
+			return 1;
+		}
+		
+		return 0;
 	}
 }

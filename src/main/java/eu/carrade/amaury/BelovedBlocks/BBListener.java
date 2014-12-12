@@ -1,7 +1,5 @@
 package eu.carrade.amaury.BelovedBlocks;
 
-import java.util.Random;
-
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -9,6 +7,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -30,34 +29,34 @@ public class BBListener implements Listener {
 		
 		if(item.getType() == Material.DIAMOND_HOE
 				&& item.getItemMeta().getDisplayName().equals(p.getConfig().getString("tool.name"))) {
+			
+			short newDurability = item.getDurability();
+			
 			switch(ev.getClickedBlock().getType()) {
 				case DOUBLE_STEP:
 				case DOUBLE_STONE_SLAB2:
 					block.setData((byte) (ev.getClickedBlock().getData() + 8));
-					
-					if(player.getGameMode() != GameMode.CREATIVE) {
-						short newDurability = item.getDurability();
-						if(!item.containsEnchantment(Enchantment.DURABILITY)) {
-							newDurability++;
-						}
-						else {
-							int level = item.getEnchantmentLevel(Enchantment.DURABILITY);
-							if(new Random().nextInt(100) <= (100/(level + 1))) {
-								newDurability++;
-							}
-						}
-						
-						item.setDurability(newDurability);
-						player.getInventory().setItemInHand(item);
-						player.updateInventory();
-					}
-					
+					ev.setCancelled(true);
 					break;
-			default:
-				break;
+				
+				case DIRT:
+				case GRASS:
+					if(ev.getAction() == Action.LEFT_CLICK_BLOCK) {
+						ev.setCancelled(true);
+					}
+					return;
+				
+				default:
+					return;
 			}
 			
-			ev.setCancelled(true);
+			newDurability += p.increaseDurability(item.getEnchantmentLevel(Enchantment.DURABILITY));
+			
+			if(player.getGameMode() != GameMode.CREATIVE) {
+				item.setDurability(newDurability);
+				player.getInventory().setItemInHand(item);
+				player.updateInventory();
+			}
 		}
 	}
 }
