@@ -65,6 +65,8 @@ public final class BelovedBlocks extends JavaPlugin {
 		return i18n;
 	}
 	
+	
+	
 	/**
 	 * Registers the recipes used by this plugin.
 	 */
@@ -74,7 +76,7 @@ public final class BelovedBlocks extends JavaPlugin {
 			ItemMeta meta = item.getItemMeta();
 				meta.setDisplayName(toolName);
 			item.setItemMeta(meta);
-			²²
+			
 			ShapedRecipe recipe = new ShapedRecipe(item);
 			
 			recipe.shape("D  ", " D ", "   ");
@@ -104,11 +106,11 @@ public final class BelovedBlocks extends JavaPlugin {
 		}
 	}
 	
-	public void registerStone(){
+	public void registerStone() {
 		ItemStack stoneStep = new ItemStack(Material.STEP, 2);
 		stoneStep.setDurability((short) 0);
 		ItemMeta itemMeta = stoneStep.getItemMeta();
-	    itemMeta.setDisplayName(ChatColor.RESET + "Smooth Stone Slab");
+	    itemMeta.setDisplayName(ChatColor.RESET + getConfig().getString("blocks.slabs.stone.name"));
 	    stoneStep.setItemMeta(itemMeta);
 		ShapedRecipe StepCraft = new ShapedRecipe(stoneStep);
 		
@@ -123,11 +125,11 @@ public final class BelovedBlocks extends JavaPlugin {
 		getServer().addRecipe(StepCraft);
 	}
 	
-	public void registerSand(){
+	public void registerSand() {
 		ItemStack sandStep = new ItemStack(Material.STEP, 2);
 		sandStep.setDurability((short) 1);
 		ItemMeta itemMeta = sandStep.getItemMeta();
-		itemMeta.setDisplayName(ChatColor.RESET + "Smooth Sandstone Slab");
+		itemMeta.setDisplayName(ChatColor.RESET + getConfig().getString("blocks.slabs.sandstone.name"));
 		sandStep.setItemMeta(itemMeta);
 		ShapedRecipe SandCraft = new ShapedRecipe(sandStep);
 		
@@ -142,11 +144,11 @@ public final class BelovedBlocks extends JavaPlugin {
 		getServer().addRecipe(SandCraft);
 	}
 	
-	public void registerRedsand(){
+	public void registerRedsand() {
 		ItemStack redsandStep = new ItemStack(Material.STONE_SLAB2, 2);
 		redsandStep.setDurability((short) 0);
 		ItemMeta itemMeta = redsandStep.getItemMeta();
-		itemMeta.setDisplayName(ChatColor.RESET + "Smooth Red Sandstone Slab");
+		itemMeta.setDisplayName(ChatColor.RESET + getConfig().getString("blocks.slabs.red_sandstone.name"));
 		redsandStep.setItemMeta(itemMeta);
 		ShapedRecipe RedSandCraft = new ShapedRecipe(redsandStep);
 
