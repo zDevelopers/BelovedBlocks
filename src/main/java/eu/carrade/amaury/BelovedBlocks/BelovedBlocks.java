@@ -84,6 +84,17 @@ public final class BelovedBlocks extends JavaPlugin {
 	}
 	
 	/**
+	 * Checks if the given tool is a valid tool.
+	 * 
+	 * @param tool The tool to check.
+	 * @return The result.
+	 */
+	public boolean isValidTool(ItemStack tool) {
+		return (tool.getType() == Material.DIAMOND_HOE
+				&& tool.getItemMeta().getDisplayName().equals(toolName));
+	}
+	
+	/**
 	 * Calculates the new durability, taking into account the unbreaking enchantment.
 	 * 
 	 * @param unbreakingLevel The Unbreaking level (0 if not enchanted with that).

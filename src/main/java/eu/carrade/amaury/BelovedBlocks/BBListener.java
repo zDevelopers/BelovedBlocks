@@ -28,8 +28,7 @@ public class BBListener implements Listener {
 		Block block = ev.getClickedBlock();
 		Player player = ev.getPlayer();
 		
-		if(item.getType() == Material.DIAMOND_HOE
-				&& item.getItemMeta().getDisplayName().equals(p.getConfig().getString("tool.name"))) {
+		if(p.isValidTool(item)) {
 			
 			switch(ev.getClickedBlock().getType()) {
 				case DOUBLE_STEP:
@@ -58,10 +57,5 @@ public class BBListener implements Listener {
 				player.updateInventory();
 			}
 		}
-	}
-	
-	@EventHandler
-	public void onBlockBreaks(BlockBreakEvent ev) {
-		
 	}
 }
