@@ -78,6 +78,9 @@ public class BBListener implements Listener {
 		ItemStack item = e.getItemInHand();
 		String name = item.getItemMeta().getDisplayName();
 		
+		// If the display name is null, this is a vanilla block, not handled here.
+		if(name == null) return;
+		
 		if(blockType == Material.STEP){
 			if(item.getDurability() == 0 && name.equals(p.getSmoothStoneName())) {
 				e.getBlockPlaced().setType(Material.DOUBLE_STEP);
