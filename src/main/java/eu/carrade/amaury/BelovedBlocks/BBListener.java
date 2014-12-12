@@ -1,15 +1,16 @@
 package eu.carrade.amaury.BelovedBlocks;
 
 import org.bukkit.GameMode;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
 
 public class BBListener implements Listener {
@@ -56,6 +57,24 @@ public class BBListener implements Listener {
 				player.getInventory().setItemInHand(item);
 				player.updateInventory();
 			}
+		}
+	}
+	
+	@EventHandler
+	public void onInventoryClick(final InventoryClickEvent ev) {
+		if(ev.getInventory() instanceof CraftingInventory && ev.getSlot() == 0) {
+			p.getServer().getScheduler().runTaskLater(p, new Runnable() {
+
+				@Override
+				public void run() {
+					for(HumanEntity viewer : ev.getViewers()) {
+						if(viewer instanceof Player) {
+							((Player) viewer).updateInventory();
+						}
+					}
+				}
+					
+			}, 1l);
 		}
 	}
 }
