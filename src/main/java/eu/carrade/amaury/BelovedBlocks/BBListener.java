@@ -1,6 +1,7 @@
 package eu.carrade.amaury.BelovedBlocks;
 
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.HumanEntity;
@@ -27,28 +28,40 @@ public class BBListener implements Listener {
 		
 		ItemStack item = ev.getItem();
 		Block block = ev.getClickedBlock();
+		Material type = block.getType();
 		Player player = ev.getPlayer();
 		
 		if(p.isValidTool(item)) {
 			
-			switch(ev.getClickedBlock().getType()) {
-				case DOUBLE_STEP:
-				case DOUBLE_STONE_SLAB2:
-					block.setData((byte) (ev.getClickedBlock().getData() + 8));
-					ev.setCancelled(true);
-					break;
-				
-				case DIRT:
-				case GRASS:
-					if(ev.getAction() == Action.RIGHT_CLICK_BLOCK) {
-						ev.setCancelled(true);
-					}
-					return;
-				
-				default:
-					return;
+			if((type == Material.DOUBLE_STEP || type == Material.DOUBLE_STONE_SLAB2)
+					&& !ev.getPlayer().isSneaking()
+					&& ev.getAction() == Action.RIGHT_CLICK_BLOCK) {
+				block.setData((byte) (ev.getClickedBlock().getData() + 8));
+				ev.setCancelled(true);
 			}
 			
+			else if(p.getConfig().getBoolean("tool.placeBlockWithTool")
+					&& ev.getAction() == Action.RIGHT_CLICK_BLOCK) {
+				// Place a block where the clicked block is
+				Block addedBlock = ev.getClickedBlock().getRelative(ev.getBlockFace());
+				
+				if(addedBlock.getType() == Material.AIR
+						&& !addedBlock.getLocation().equals(ev.getPlayer().getLocation())) {
+					addedBlock.setType(Material.DOUBLE_STEP);
+					addedBlock.setData((byte) 8);
+				}
+			}
+			
+			else {
+				if((ev.getClickedBlock().getType() == Material.DIRT
+					|| ev.getClickedBlock().getType() == Material.GRASS)
+					&& ev.getAction() == Action.RIGHT_CLICK_BLOCK) {
+					ev.setCancelled(true);
+				}
+				return;
+			}
+			
+			// Durability
 			if(player.getGameMode() != GameMode.CREATIVE) {
 				short newDurability = (short) (item.getDurability()
 						+ p.increaseDurability(item.getEnchantmentLevel(Enchantment.DURABILITY)));
