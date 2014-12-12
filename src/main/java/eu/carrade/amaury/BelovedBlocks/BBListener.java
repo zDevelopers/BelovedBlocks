@@ -36,41 +36,21 @@ public class BBListener implements Listener {
 		if(p.isValidTool(item)) {
 			
 			if((type == Material.DOUBLE_STEP || type == Material.DOUBLE_STONE_SLAB2)
-					&& !ev.getPlayer().isSneaking()
 					&& ev.getAction() == Action.RIGHT_CLICK_BLOCK) {
+				
 				block.setData((byte) (ev.getClickedBlock().getData() + 8));
+				
+				// Durability
+				if(player.getGameMode() != GameMode.CREATIVE) {
+					short newDurability = (short) (item.getDurability()
+							+ p.increaseDurability(item.getEnchantmentLevel(Enchantment.DURABILITY)));
+					
+					item.setDurability(newDurability);
+					player.getInventory().setItemInHand(item);
+					player.updateInventory();
+				}
+				
 				ev.setCancelled(true);
-			}
-			
-			else if(p.getConfig().getBoolean("tool.placeBlockWithTool")
-					&& ev.getAction() == Action.RIGHT_CLICK_BLOCK) {
-				// Place a block where the clicked block is
-				Block addedBlock = ev.getClickedBlock().getRelative(ev.getBlockFace());
-				
-				if(addedBlock.getType() == Material.AIR
-						&& !addedBlock.getLocation().equals(ev.getPlayer().getLocation())) {
-					addedBlock.setType(Material.DOUBLE_STEP);
-					addedBlock.setData((byte) 8);
-				}
-			}
-			
-			else {
-				if((ev.getClickedBlock().getType() == Material.DIRT
-					|| ev.getClickedBlock().getType() == Material.GRASS)
-					&& ev.getAction() == Action.RIGHT_CLICK_BLOCK) {
-					ev.setCancelled(true);
-				}
-				return;
-			}
-			
-			// Durability
-			if(player.getGameMode() != GameMode.CREATIVE) {
-				short newDurability = (short) (item.getDurability()
-						+ p.increaseDurability(item.getEnchantmentLevel(Enchantment.DURABILITY)));
-				
-				item.setDurability(newDurability);
-				player.getInventory().setItemInHand(item);
-				player.updateInventory();
 			}
 		}
 	}
