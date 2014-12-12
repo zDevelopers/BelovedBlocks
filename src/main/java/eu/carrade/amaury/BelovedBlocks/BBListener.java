@@ -77,14 +77,14 @@ public class BBListener implements Listener {
 	public void onBlockPlace(BlockPlaceEvent e) throws InterruptedException {
 		if(e.getBlockPlaced().getType() == Material.STEP){
 			if(e.getItemInHand().getDurability() == 0){
-				String str = ChatColor.RESET + "Smooth Stone Slab";
+				String str = ChatColor.RESET + getConfig().getString("blocks.slabs.stone.name");
 				if(str.equals(e.getItemInHand().getItemMeta().getDisplayName())){
 					e.getBlockPlaced().setType(Material.DOUBLE_STEP);
 					e.getBlockPlaced().setData((byte) 8);
 				}
 			}
 			if(e.getItemInHand().getDurability() == 1){
-				String str = ChatColor.RESET + "Smooth Sandstone Slab";
+				String str = ChatColor.RESET + getConfig().getString("blocks.slabs.sandstone.name");
 				int INT = str.hashCode();
 				if(e.getItemInHand().getItemMeta().getDisplayName().hashCode() == INT){
 					e.getBlockPlaced().setType(Material.DOUBLE_STEP);
@@ -95,7 +95,7 @@ public class BBListener implements Listener {
 		
 		if(e.getBlockPlaced().getType() == Material.STONE_SLAB2){
 			if(e.getItemInHand().getDurability() == 0){
-				String str = ChatColor.RESET + "Smooth Red Sandstone Slab";
+				String str = ChatColor.RESET + getConfig().getString("blocks.slabs.red_sandstone.name");
 				int INT = str.hashCode();
 				if(e.getItemInHand().getItemMeta().getDisplayName().hashCode() == INT){
 					e.getBlockPlaced().setType(Material.DOUBLE_STONE_SLAB2);

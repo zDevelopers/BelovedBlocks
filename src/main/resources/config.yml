@@ -11,3 +11,15 @@ tool:
     name: "Magic tool"
     craftable: true
     placeBlockWithTool: true
+
+blocks:
+    slabs:
+        stone:
+            name: "Smooth Stone Slab"
+            craftable: true
+        sandstone:
+            name: "Smooth Sandstone Slab"
+            craftable: true
+        red_sandstone:
+            name: "Smooth Red Sandstone Slab"
+            craftable: true
