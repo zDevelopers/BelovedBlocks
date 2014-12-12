@@ -100,7 +100,7 @@ public class BBListener implements Listener {
 				String str = ChatColor.RESET + "Smooth Stone Slab";
 				if(str.equals(e.getItemInHand().getItemMeta().getDisplayName())){
 					e.getBlockPlaced().setType(Material.DOUBLE_STEP);
-					e.getBlockPlaced().setData((byte) (e.getBlockPlaced().getData() + 8));
+					e.getBlockPlaced().setData((byte) 8);
 				}
 			}
 			if(e.getItemInHand().getDurability() == 1){
@@ -108,7 +108,7 @@ public class BBListener implements Listener {
 				int INT = str.hashCode();
 				if(e.getItemInHand().getItemMeta().getDisplayName().hashCode() == INT){
 					e.getBlockPlaced().setType(Material.DOUBLE_STEP);
-					e.getBlockPlaced().setData((byte) (e.getBlockPlaced().getData() + 8));
+					e.getBlockPlaced().setData((byte) 9);
 				}
 			}
 		}
@@ -119,7 +119,7 @@ public class BBListener implements Listener {
 				int INT = str.hashCode();
 				if(e.getItemInHand().getItemMeta().getDisplayName().hashCode() == INT){
 					e.getBlockPlaced().setType(Material.DOUBLE_STONE_SLAB2);
-					e.getBlockPlaced().setData((byte) (e.getBlockPlaced().getData() + 8));
+					e.getBlockPlaced().setData((byte) 8);
 				}
 			}
 		}
