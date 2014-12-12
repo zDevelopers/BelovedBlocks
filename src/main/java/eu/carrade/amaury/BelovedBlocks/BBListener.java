@@ -77,4 +77,40 @@ public class BBListener implements Listener {
 			}, 1l);
 		}
 	}
+	@EventHandler
+	public void onBlockPlace(BlockPlaceEvent e) throws InterruptedException {
+		if(e.getBlockPlaced().getType() == Material.STEP){
+		
+		if(e.getItemInHand().getDurability() == 0){
+			String str = ChatColor.RESET + "Smooth Stone Slab";
+				if(str.equals(e.getItemInHand().getItemMeta().getDisplayName())){
+					e.getBlockPlaced().setType(Material.DOUBLE_STEP);
+					e.getBlockPlaced().setData((byte) (e.getBlockPlaced().getData() + 8));
+		}
+		}
+		if(e.getItemInHand().getDurability() == 1){
+			String str = ChatColor.RESET + "Smooth Sandstone Slab";
+			int INT = str.hashCode();
+				if(e.getItemInHand().getItemMeta().getDisplayName().hashCode() == INT){
+					e.getBlockPlaced().setType(Material.DOUBLE_STEP);
+					e.getBlockPlaced().setData((byte) (e.getBlockPlaced().getData() + 8));
+		}
+		}
+		
+		
+		}
+		if(e.getBlockPlaced().getType() == Material.STONE_SLAB2){
+			if(e.getItemInHand().getDurability() == 0){
+				String str = ChatColor.RESET + "Smooth Red Sandstone Slab";
+				int INT = str.hashCode();
+					if(e.getItemInHand().getItemMeta().getDisplayName().hashCode() == INT){
+						e.getBlockPlaced().setType(Material.DOUBLE_STONE_SLAB2);
+						e.getBlockPlaced().setData((byte) (e.getBlockPlaced().getData() + 8));
+			}
+			}
+				
+			
+		}
+		
+	}
 }
