@@ -1,5 +1,6 @@
 package eu.carrade.amaury.BelovedBlocks;
 
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -9,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.CraftingInventory;
@@ -90,40 +92,36 @@ public class BBListener implements Listener {
 			}, 1l);
 		}
 	}
+	
 	@EventHandler
 	public void onBlockPlace(BlockPlaceEvent e) throws InterruptedException {
 		if(e.getBlockPlaced().getType() == Material.STEP){
-		
-		if(e.getItemInHand().getDurability() == 0){
-			String str = ChatColor.RESET + "Smooth Stone Slab";
+			if(e.getItemInHand().getDurability() == 0){
+				String str = ChatColor.RESET + "Smooth Stone Slab";
 				if(str.equals(e.getItemInHand().getItemMeta().getDisplayName())){
 					e.getBlockPlaced().setType(Material.DOUBLE_STEP);
 					e.getBlockPlaced().setData((byte) (e.getBlockPlaced().getData() + 8));
-		}
-		}
-		if(e.getItemInHand().getDurability() == 1){
-			String str = ChatColor.RESET + "Smooth Sandstone Slab";
-			int INT = str.hashCode();
+				}
+			}
+			if(e.getItemInHand().getDurability() == 1){
+				String str = ChatColor.RESET + "Smooth Sandstone Slab";
+				int INT = str.hashCode();
 				if(e.getItemInHand().getItemMeta().getDisplayName().hashCode() == INT){
 					e.getBlockPlaced().setType(Material.DOUBLE_STEP);
 					e.getBlockPlaced().setData((byte) (e.getBlockPlaced().getData() + 8));
-		}
+				}
+			}
 		}
 		
-		
-		}
 		if(e.getBlockPlaced().getType() == Material.STONE_SLAB2){
 			if(e.getItemInHand().getDurability() == 0){
 				String str = ChatColor.RESET + "Smooth Red Sandstone Slab";
 				int INT = str.hashCode();
-					if(e.getItemInHand().getItemMeta().getDisplayName().hashCode() == INT){
-						e.getBlockPlaced().setType(Material.DOUBLE_STONE_SLAB2);
-						e.getBlockPlaced().setData((byte) (e.getBlockPlaced().getData() + 8));
+				if(e.getItemInHand().getItemMeta().getDisplayName().hashCode() == INT){
+					e.getBlockPlaced().setType(Material.DOUBLE_STONE_SLAB2);
+					e.getBlockPlaced().setData((byte) (e.getBlockPlaced().getData() + 8));
+				}
 			}
-			}
-				
-			
 		}
-		
 	}
 }
