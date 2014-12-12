@@ -50,7 +50,10 @@ public final class BelovedBlocks extends JavaPlugin {
 		
 		toolName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("tool.name"));
 		
-		registerRecipes();
+		registerTool();
+		registerStone();
+		registerSand();
+		registerRedsand();
 	}
 	
 	/**
@@ -65,7 +68,7 @@ public final class BelovedBlocks extends JavaPlugin {
 	/**
 	 * Registers the recipes used by this plugin.
 	 */
-	public void registerRecipes() {
+	public void registerTool() {
 		if(getConfig().getBoolean("tool.craftable")) {
 			ItemStack item = new ItemStack(Material.DIAMOND_HOE);
 			ItemMeta meta = item.getItemMeta();
@@ -81,6 +84,63 @@ public final class BelovedBlocks extends JavaPlugin {
 			recipe.shape(" DS", " DS", "  S");
 			getServer().addRecipe(recipe);
 		}
+	}
+	
+	public void registerStone(){
+		ItemStack stoneStep = new ItemStack(Material.STEP, 2);
+		stoneStep.setDurability((short) 0);
+		ItemMeta itemMeta = stoneStep.getItemMeta();
+	    itemMeta.setDisplayName(ChatColor.RESET + "Smooth Stone Slab");
+	    stoneStep.setItemMeta(itemMeta);
+		ShapedRecipe StepCraft = new ShapedRecipe(stoneStep);
+		
+		StepCraft.shape("SS ", "SS ", "   ");
+		StepCraft.setIngredient('S', Material.STEP, 0);
+		getServer().addRecipe(StepCraft);
+		StepCraft.shape(" SS", " SS", "   ");
+		getServer().addRecipe(StepCraft);
+		StepCraft.shape("   ", " SS", " SS");
+		getServer().addRecipe(StepCraft);
+		StepCraft.shape("   ", "SS ", "SS ");
+		getServer().addRecipe(StepCraft);
+	}
+	
+	public void registerSand(){
+		ItemStack sandStep = new ItemStack(Material.STEP, 2);
+		sandStep.setDurability((short) 1);
+		ItemMeta itemMeta = sandStep.getItemMeta();
+		itemMeta.setDisplayName(ChatColor.RESET + "Smooth Sandstone Slab");
+		sandStep.setItemMeta(itemMeta);
+		ShapedRecipe SandCraft = new ShapedRecipe(sandStep);
+		
+		SandCraft.shape("SS ", "SS ", "   ");
+		SandCraft.setIngredient('S', Material.STEP, 1);
+		getServer().addRecipe(SandCraft);
+		SandCraft.shape(" SS", " SS", "   ");
+		getServer().addRecipe(SandCraft);
+		SandCraft.shape("   ", " SS", " SS");
+		getServer().addRecipe(SandCraft);
+		SandCraft.shape("   ", "SS ", "SS ");
+		getServer().addRecipe(SandCraft);
+	}
+	
+	public void registerRedsand(){
+		ItemStack redsandStep = new ItemStack(Material.STONE_SLAB2, 2);
+		redsandStep.setDurability((short) 0);
+		ItemMeta itemMeta = redsandStep.getItemMeta();
+		itemMeta.setDisplayName(ChatColor.RESET + "Smooth Red Sandstone Slab");
+		redsandStep.setItemMeta(itemMeta);
+		ShapedRecipe RedSandCraft = new ShapedRecipe(redsandStep);
+
+		RedSandCraft.shape("SS ", "SS ", "   ");
+		RedSandCraft.setIngredient('S', Material.STONE_SLAB2, 0);
+		getServer().addRecipe(RedSandCraft);
+		RedSandCraft.shape(" SS", " SS", "   ");
+		getServer().addRecipe(RedSandCraft);
+		RedSandCraft.shape("   ", " SS", " SS");
+		getServer().addRecipe(RedSandCraft);
+		RedSandCraft.shape("   ", "SS ", "SS ");
+		getServer().addRecipe(RedSandCraft);
 	}
 	
 	/**
