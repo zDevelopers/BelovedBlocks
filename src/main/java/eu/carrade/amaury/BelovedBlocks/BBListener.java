@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -30,8 +31,6 @@ public class BBListener implements Listener {
 		if(item.getType() == Material.DIAMOND_HOE
 				&& item.getItemMeta().getDisplayName().equals(p.getConfig().getString("tool.name"))) {
 			
-			short newDurability = item.getDurability();
-			
 			switch(ev.getClickedBlock().getType()) {
 				case DOUBLE_STEP:
 				case DOUBLE_STONE_SLAB2:
@@ -41,7 +40,7 @@ public class BBListener implements Listener {
 				
 				case DIRT:
 				case GRASS:
-					if(ev.getAction() == Action.LEFT_CLICK_BLOCK) {
+					if(ev.getAction() == Action.RIGHT_CLICK_BLOCK) {
 						ev.setCancelled(true);
 					}
 					return;
@@ -50,13 +49,19 @@ public class BBListener implements Listener {
 					return;
 			}
 			
-			newDurability += p.increaseDurability(item.getEnchantmentLevel(Enchantment.DURABILITY));
-			
 			if(player.getGameMode() != GameMode.CREATIVE) {
+				short newDurability = (short) (item.getDurability()
+						+ p.increaseDurability(item.getEnchantmentLevel(Enchantment.DURABILITY)));
+				
 				item.setDurability(newDurability);
 				player.getInventory().setItemInHand(item);
 				player.updateInventory();
 			}
 		}
+	}
+	
+	@EventHandler
+	public void onBlockBreaks(BlockBreakEvent ev) {
+		
 	}
 }

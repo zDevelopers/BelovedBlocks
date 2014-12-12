@@ -20,6 +20,11 @@ package eu.carrade.amaury.BelovedBlocks;
 
 import java.util.Random;
 
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import eu.carrade.amaury.BelovedBlocks.i18n.I18n;
@@ -27,6 +32,8 @@ import eu.carrade.amaury.BelovedBlocks.i18n.I18n;
 public final class BelovedBlocks extends JavaPlugin {
 	
 	private I18n i18n = null;
+	
+	private String toolName;
 
 	@Override
 	public void onEnable() {
@@ -40,6 +47,10 @@ public final class BelovedBlocks extends JavaPlugin {
 		}
 		
 		getServer().getPluginManager().registerEvents(new BBListener(this), this);
+		
+		toolName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("tool.name"));
+		
+		registerRecipes();
 	}
 	
 	/**
@@ -49,6 +60,27 @@ public final class BelovedBlocks extends JavaPlugin {
 	 */
 	public I18n getI18n() {
 		return i18n;
+	}
+	
+	/**
+	 * Registers the recipes used by this plugin.
+	 */
+	public void registerRecipes() {
+		if(getConfig().getBoolean("tool.craftable")) {
+			ItemStack item = new ItemStack(Material.DIAMOND_HOE);
+			ItemMeta meta = item.getItemMeta();
+				meta.setDisplayName(toolName);
+			item.setItemMeta(meta);
+			
+			ShapedRecipe recipe = new ShapedRecipe(item);
+			recipe.shape("DS ", "DS ", " S ");
+			recipe.setIngredient('D', Material.DIAMOND);
+			recipe.setIngredient('S', Material.STICK);
+			getServer().addRecipe(recipe);
+			
+			recipe.shape(" DS", " DS", "  S");
+			getServer().addRecipe(recipe);
+		}
 	}
 	
 	/**
