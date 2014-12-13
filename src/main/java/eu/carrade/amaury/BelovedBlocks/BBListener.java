@@ -18,13 +18,15 @@
 
 package eu.carrade.amaury.BelovedBlocks;
 
-import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.HumanEntity;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.MushroomCow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -33,9 +35,9 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerShearEntityEvent;
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 public class BBListener implements Listener {
 	
@@ -138,7 +140,12 @@ public class BBListener implements Listener {
 	public void onBlockBreaks(BlockBreakEvent ev) {
 		// The tool don't drop leave blocks.
 		if(p.isValidTool(ev.getPlayer().getItemInHand())) {
-			if(ev.getBlock().getType() == Material.LEAVES || ev.getBlock().getType() == Material.LEAVES_2) {
+			if(ev.getBlock().getType() == Material.LEAVES
+					|| ev.getBlock().getType() == Material.LEAVES_2
+					|| ev.getBlock().getType() == Material.DEAD_BUSH
+					|| ev.getBlock().getType() == Material.DOUBLE_PLANT
+					|| ev.getBlock().getType() == Material.LONG_GRASS
+					|| ev.getBlock().getType() == Material.VINE) {
 				ev.setCancelled(true);
 				ev.getBlock().setType(Material.AIR);
 			}
@@ -172,6 +179,20 @@ public class BBListener implements Listener {
 					ev.getBlock().setType(Material.AIR);
 				}
 			}
+		}
+	}
+	
+	/**
+	 * Used to prevent our tool from shearing sheeps or mushroom cows.
+	 * <p>
+	 * The cow seems to disappear, a relog fix that. Cannot be fixed on our side (Minecraft or CBukkit bug).
+	 * 
+	 * @param ev
+	 */
+	@EventHandler
+	public void onPlayerShearEntity(PlayerShearEntityEvent ev) {
+		if(p.isValidTool(ev.getPlayer().getItemInHand())) {
+			ev.setCancelled(true);
 		}
 	}
 	
