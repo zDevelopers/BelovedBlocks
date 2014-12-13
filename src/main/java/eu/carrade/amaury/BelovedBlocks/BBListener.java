@@ -169,7 +169,7 @@ public class BBListener implements Listener {
 	
 	@EventHandler
 	public void onBlockBreakEvent(BlockBreakEvent e){
-		
+		if(e.getPlayer().getGameMode() == GameMode.SURVIVAL && (e.getPlayer().getItemInHand().getType() == Material.WOOD_PICKAXE || e.getPlayer().getItemInHand().getType() == Material.GOLD_PICKAXE || e.getPlayer().getItemInHand().getType() == Material.STONE_PICKAXE || e.getPlayer().getItemInHand().getType() == Material.IRON_PICKAXE || e.getPlayer().getItemInHand().getType() == Material.DIAMOND_PICKAXE)){
 		ItemStack item = new ItemStack(Material.STEP, 1);
 		ItemMeta itemMeta = item.getItemMeta();
 		
@@ -194,6 +194,7 @@ public class BBListener implements Listener {
 			e.getPlayer().getWorld().dropItemNaturally(e.getBlock().getLocation(), item);
 			e.getBlock().setType(Material.AIR);
 			}
+		}
 		}
 	}
 }
