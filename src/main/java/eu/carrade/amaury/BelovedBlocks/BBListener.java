@@ -2,6 +2,7 @@ package eu.carrade.amaury.BelovedBlocks;
 
 import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.HumanEntity;
@@ -45,8 +46,15 @@ public class BBListener implements Listener {
 					short newDurability = (short) (item.getDurability()
 							+ p.increaseDurability(item.getEnchantmentLevel(Enchantment.DURABILITY)));
 					
-					item.setDurability(newDurability);
-					player.getInventory().setItemInHand(item);
+					if(newDurability > item.getType().getMaxDurability()) {
+						player.getInventory().setItemInHand(new ItemStack(Material.AIR));
+						player.playSound(player.getLocation(), Sound.ITEM_BREAK, 0.8f, 1);
+					}
+					else {
+						item.setDurability(newDurability);
+						player.getInventory().setItemInHand(item);
+					}
+					
 					player.updateInventory();
 				}
 				
