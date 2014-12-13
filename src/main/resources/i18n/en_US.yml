@@ -15,7 +15,7 @@ keys:
             unknownPlayer: "{ce}This player is not logged in."
             playerRequiredFromConsole: "{ce}From the console, a receiver is required."
             
-            given: "{gray}Given {0}×{1} to {2}"
+            given: "{gray}Given [{0}] × {1} to {2}"
     
     nan: "{ce}“{0}” is not a number!"
     

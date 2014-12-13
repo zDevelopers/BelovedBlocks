@@ -15,7 +15,7 @@ keys:
             unknownPlayer: "{ce}Ce joueur n'est pas connecté."
             playerRequiredFromConsole: "{ce}Depuis la console, vous devez spécifier un destinataire."
             
-            given: "{gray}{0}×{1} donné à {2}"
+            given: "{gray}[{0}] × {1} donné à {2}"
     
     nan: "{ce}“{0}” n'est pas un nombre !"
 
