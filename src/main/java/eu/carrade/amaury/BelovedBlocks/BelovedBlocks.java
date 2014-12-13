@@ -72,6 +72,18 @@ public final class BelovedBlocks extends JavaPlugin {
 		return i18n;
 	}
 	
+	public ItemStack getToolItem(int amount) {
+		ItemStack tool = new ItemStack(Material.SHEARS);
+		ItemMeta meta = tool.getItemMeta();
+			meta.setDisplayName(toolName);
+		tool.setItemMeta(meta);
+		
+		if(getConfig().getBoolean("tool.itemGlow")) {
+			GlowEffect.addGlow(tool);
+		}
+		
+		return tool;
+	}
 	
 	public ItemStack getSmoothStoneItem(int amount) {
 		ItemStack smoothStone = new ItemStack(Material.STEP, amount);
@@ -124,12 +136,7 @@ public final class BelovedBlocks extends JavaPlugin {
 	 */
 	public void registerTool() {
 		if(getConfig().getBoolean("tool.craftable")) {
-			ItemStack item = new ItemStack(Material.SHEARS);
-			ItemMeta meta = item.getItemMeta();
-				meta.setDisplayName(toolName);
-			item.setItemMeta(meta);
-			
-			ShapedRecipe recipe = new ShapedRecipe(item);
+			ShapedRecipe recipe = new ShapedRecipe(getToolItem(1));
 			
 			recipe.shape("D  ", " D ", "   ");
 			recipe.setIngredient('D', Material.DIAMOND);
