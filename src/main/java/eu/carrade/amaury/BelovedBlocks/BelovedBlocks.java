@@ -222,6 +222,7 @@ public final class BelovedBlocks extends JavaPlugin {
 	public boolean isValidTool(ItemStack tool) {
 		return (tool != null
 				&& tool.getType() == Material.SHEARS
+				&& tool.getItemMeta().getDisplayName() != null
 				&& tool.getItemMeta().getDisplayName().equals(toolName));
 	}
 	
