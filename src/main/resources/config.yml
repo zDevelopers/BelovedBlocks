@@ -16,9 +16,14 @@ blocks:
         stone:
             name: "Smooth Stone Slab"
             craftable: true
+            itemGlow: true
+        
         sandstone:
             name: "Smooth Sandstone Slab"
             craftable: true
+            itemGlow: true
+        
         red_sandstone:
             name: "Smooth Red Sandstone Slab"
             craftable: true
+            itemGlow: true

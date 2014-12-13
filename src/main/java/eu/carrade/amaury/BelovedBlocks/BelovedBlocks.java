@@ -81,7 +81,9 @@ public final class BelovedBlocks extends JavaPlugin {
 	    itemMeta.setDisplayName(smoothStoneName);
 	    smoothStone.setItemMeta(itemMeta);
 	    
-	    GlowEffect.addGlow(smoothStone);
+	    if(getConfig().getBoolean("blocks.slabs.stone.itemGlow")) {
+	    	GlowEffect.addGlow(smoothStone);
+	    }
 	    
 	    return smoothStone;
 	}
@@ -94,7 +96,9 @@ public final class BelovedBlocks extends JavaPlugin {
 	    itemMeta.setDisplayName(smoothSandstoneName);
 	    smoothSandstone.setItemMeta(itemMeta);
 	    
-	    GlowEffect.addGlow(smoothSandstone);
+	    if(getConfig().getBoolean("blocks.slabs.sandstone.itemGlow")) {
+	    	GlowEffect.addGlow(smoothSandstone);
+	    }
 	    
 	    return smoothSandstone;
 	}
@@ -107,7 +111,9 @@ public final class BelovedBlocks extends JavaPlugin {
 	    itemMeta.setDisplayName(smoothRedSandstoneName);
 	    smoothRedSandstone.setItemMeta(itemMeta);
 	    
-	    GlowEffect.addGlow(smoothRedSandstone);
+	    if(getConfig().getBoolean("blocks.slabs.red_sandstone.itemGlow")) {
+	    	GlowEffect.addGlow(smoothRedSandstone);
+	    }
 	    
 	    return smoothRedSandstone;
 	}
