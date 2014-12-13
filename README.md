@@ -8,7 +8,7 @@ Please note, this README reflects the last development version. Some features li
 
 1. [Features](#features)
    1. [New items](#items)
-   2. [Magic Tool](#magic-tool)
+   2. [Stone Cutter](#stone-cutter)
 1. [Commands](#commands)
 2. [Configuration](#configuration)
 3. [License](#license)
@@ -20,16 +20,32 @@ The 1.8 version of minecraft has removed the items that corresponds to some unob
 
 This plugin instances new items that transforms themselves into the desired special block when placed by a player.
 
-![](http://amaury.carrade.eu/files/2014-12-13_14.43.03.png)
+![](http://amaury.carrade.eu/files/banner.png)
+
 *The three seamless blocks featured by the plugin*
 
 ### Items
 
+Each seamless block is represented by a similar item with a glowing enchantement effect (that can be disabled for each block in the [configuration](#configuration)). They also have a custom name (also configurable). The crafts are the same for the three block :
+
+![](http://amaury.carrade.eu//files/BB_stone.png)
+
+*Smooth Stone Slab*
+
+![](http://amaury.carrade.eu//files/BB_sandstone.png)
+
+*Smooth Sandstone Slab*
+
+![](http://amaury.carrade.eu//files/BB_redsandstone.png)
+
+*Smooth Red Sandstone Slab*
+
+The crafts can be disabled (no permission yet).
+
+### Stone Cutter
 
 
-### Magic Tool
-
-
+![](http://amaury.carrade.eu//files/BB_shears.png)
 
 ## Commands
 
