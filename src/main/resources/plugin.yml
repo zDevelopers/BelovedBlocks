@@ -2,7 +2,7 @@ name: BelovedBlocks
 description: The return of these beautiful smooth double slabs
 main: eu.carrade.amaury.BelovedBlocks.BelovedBlocks
 version: 0.1
-authors: ["Amaury Carrade", "6infinity8"]
+authors: ["Amaury Carrade", "Florian Cassayre"]
 
 awareness:
   - !@UTF8
