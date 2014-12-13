@@ -73,13 +73,9 @@ public class GlowEffect extends EnchantmentWrapper {
 	}
 
 	public static Enchantment getGlow() {
-		Bukkit.getLogger().info("getGlow call");
 		if (glow != null) {
-			Bukkit.getLogger().info("Already registered");
 			return glow;
 		}
-
-		Bukkit.getLogger().info("Registering enchantment");
 		
 		try {
 			// We change this to force Bukkit to accept a new enchantment.
