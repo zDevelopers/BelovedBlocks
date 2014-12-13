@@ -1,5 +1,6 @@
 package eu.carrade.amaury.BelovedBlocks;
 
+import org.bukkit.Effect;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -25,6 +26,11 @@ public class BBListener implements Listener {
 		p = plugin;
 	}
 	
+	/**
+	 * Used to convert the blocks from/to the seamless state with our tool.
+	 * 
+	 * @param ev
+	 */
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent ev) {
 		if(!ev.hasBlock() || !ev.hasItem()) return;
@@ -63,26 +69,14 @@ public class BBListener implements Listener {
 		}
 	}
 	
+	/**
+	 * Used to place a real smooth block when our "smooth slabs" used as items are
+	 * placed.
+	 * 
+	 * @param e
+	 */
 	@EventHandler
-	public void onInventoryClick(final InventoryClickEvent ev) {
-		if(ev.getInventory() instanceof CraftingInventory && ev.getSlot() == 0) {
-			p.getServer().getScheduler().runTaskLater(p, new Runnable() {
-
-				@Override
-				public void run() {
-					for(HumanEntity viewer : ev.getViewers()) {
-						if(viewer instanceof Player) {
-							((Player) viewer).updateInventory();
-						}
-					}
-				}
-					
-			}, 1l);
-		}
-	}
-	
-	@EventHandler
-	public void onBlockPlace(BlockPlaceEvent e) throws InterruptedException {
+	public void onBlockPlace(BlockPlaceEvent e) {
 		Material blockType = e.getBlockPlaced().getType();
 		ItemStack item = e.getItemInHand();
 		String name = item.getItemMeta().getDisplayName();
@@ -112,6 +106,7 @@ public class BBListener implements Listener {
 	
 	/**
 	 * Used to prevent our tool (shears) to get leaves like a normal shear.
+	 * 
 	 * @param ev
 	 */
 	@EventHandler
@@ -121,6 +116,30 @@ public class BBListener implements Listener {
 				ev.setCancelled(true);
 				ev.getBlock().setType(Material.AIR);
 			}
+		}
+	}
+	
+	/**
+	 * Workaround to fix the crafting grid being not updated when the item is taken
+	 * from the grid.
+	 * 
+	 * @param ev
+	 */
+	@EventHandler
+	public void onInventoryClick(final InventoryClickEvent ev) {
+		if(ev.getInventory() instanceof CraftingInventory && ev.getSlot() == 0) {
+			p.getServer().getScheduler().runTaskLater(p, new Runnable() {
+
+				@Override
+				public void run() {
+					for(HumanEntity viewer : ev.getViewers()) {
+						if(viewer instanceof Player) {
+							((Player) viewer).updateInventory();
+						}
+					}
+				}
+					
+			}, 1l);
 		}
 	}
 }
