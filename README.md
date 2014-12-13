@@ -8,7 +8,7 @@ Please note, this README reflects the last development version. Some features li
 
 1. [Features](#features)
    1. [New items](#items)
-   2. [Stone Cutter](#stone-cutter)
+   2. [Stonecutter](#stonecutter)
 1. [Commands](#commands)
 2. [Configuration](#configuration)
 3. [License](#license)
@@ -42,10 +42,15 @@ Each seamless block is represented by a similar item with a glowing enchantement
 
 The crafts can be disabled (no permission yet).
 
-### Stone Cutter
+### Stonecutter
 
+The stonecutter is a tool that can smooth any of the three double slabs blocks. To use it, simply right click with this tool on the wished block and it will permute to a smooth block. Each use will decrease the item's durability by 1. The unbreaking enchantement does work when applied. The stonecutter can be crafted like shears in exceptions that the iron is replaced by diamonds :
 
 ![](http://amaury.carrade.eu//files/BB_shears.png)
+
+*Stonecutter*
+
+The craft can be disabled (no permission yet).
 
 ## Commands
 
