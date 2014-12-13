@@ -129,16 +129,48 @@ public class BBListener implements Listener {
 	}
 	
 	/**
-	 * Used to prevent our tool (shears) to get leaves like a normal shear.
+	 * Used to prevent our tool (shears) to get leaves like a normal shear, 
+	 * and to make the smooth double slabs to drop our smooth blocks.
 	 * 
 	 * @param ev
 	 */
 	@EventHandler
 	public void onBlockBreaks(BlockBreakEvent ev) {
+		// The tool don't drop leave blocks.
 		if(p.isValidTool(ev.getPlayer().getItemInHand())) {
 			if(ev.getBlock().getType() == Material.LEAVES || ev.getBlock().getType() == Material.LEAVES_2) {
 				ev.setCancelled(true);
 				ev.getBlock().setType(Material.AIR);
+			}
+		}
+		
+		// When you break a smooth double slab, our item is dropped.
+		else if(ev.getPlayer().getGameMode() != GameMode.CREATIVE) {
+			
+			Material itemInHandType = ev.getPlayer().getItemInHand().getType();
+			
+			if(itemInHandType == Material.WOOD_PICKAXE
+					|| itemInHandType == Material.STONE_PICKAXE
+					|| itemInHandType == Material.IRON_PICKAXE
+					|| itemInHandType == Material.GOLD_PICKAXE
+					|| itemInHandType == Material.DIAMOND_PICKAXE) {
+				
+				Block block = ev.getBlock();
+				
+				if(block.getType() == Material.DOUBLE_STEP) {
+					if(block.getData() == 8) {
+						ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothStoneItem(1));
+						ev.getBlock().setType(Material.AIR);
+					}
+					else if(block.getData() == 9) {
+						ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothSandstoneItem(1));
+						ev.getBlock().setType(Material.AIR);
+					}
+				}
+				else if(block.getType() == Material.DOUBLE_STONE_SLAB2 && block.getData() == 8) {
+					ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothRedSandstoneItem(1));
+					ev.getBlock().setType(Material.AIR);
+				}
 			}
 		}
 	}
@@ -164,37 +196,6 @@ public class BBListener implements Listener {
 				}
 					
 			}, 1l);
-		}
-	}
-	
-	@EventHandler
-	public void onBlockBreakEvent(BlockBreakEvent e){
-		if(e.getPlayer().getGameMode() == GameMode.SURVIVAL && (e.getPlayer().getItemInHand().getType() == Material.WOOD_PICKAXE || e.getPlayer().getItemInHand().getType() == Material.GOLD_PICKAXE || e.getPlayer().getItemInHand().getType() == Material.STONE_PICKAXE || e.getPlayer().getItemInHand().getType() == Material.IRON_PICKAXE || e.getPlayer().getItemInHand().getType() == Material.DIAMOND_PICKAXE)){
-		ItemStack item = new ItemStack(Material.STEP, 1);
-		ItemMeta itemMeta = item.getItemMeta();
-		
-		if(e.getBlock().getType() == Material.DOUBLE_STEP){
-			if(e.getBlock().getData() == 8){
-			itemMeta.setDisplayName(ChatColor.RESET + p.getConfig().getString("blocks.slabs.stone.name"));
-			item.setItemMeta(itemMeta);
-			e.getPlayer().getWorld().dropItemNaturally(e.getBlock().getLocation(), item);
-			e.getBlock().setType(Material.AIR);
-			}else if(e.getBlock().getData() == 9){
-				item.setDurability((short) 1);
-				itemMeta.setDisplayName(ChatColor.RESET + p.getConfig().getString("blocks.slabs.sandstone.name"));
-				item.setItemMeta(itemMeta);
-				e.getPlayer().getWorld().dropItemNaturally(e.getBlock().getLocation(), item);
-				e.getBlock().setType(Material.AIR);
-			}
-		}else if(e.getBlock().getType() == Material.DOUBLE_STONE_SLAB2){
-			if(e.getBlock().getData() == 8){
-			item.setType(Material.STONE_SLAB2);
-			itemMeta.setDisplayName(ChatColor.RESET + p.getConfig().getString("blocks.slabs.red_sandstone.name"));
-			item.setItemMeta(itemMeta);
-			e.getPlayer().getWorld().dropItemNaturally(e.getBlock().getLocation(), item);
-			e.getBlock().setType(Material.AIR);
-			}
-		}
 		}
 	}
 }
