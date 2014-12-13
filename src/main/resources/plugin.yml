@@ -7,12 +7,85 @@ authors: ["Amaury Carrade", "Florian Cassayre"]
 awareness:
   - !@UTF8
 
-
 commands:
     belovedblocks:
         description: Get the blocks and tools added by BelovedBlocks
         aliases: [bb]
-        usage: "Usage: see /<command>."
+        usage: "See /<command>."
 
 permissions:
+    belovedblocks.*:
+        description: "Gives access to all BelovedBlocks commands"
+        children:
+         - belovedblocks.give
     
+    belovedblocks.give.*:
+        description: "Allows someone to give all tools and blocks of BelovedBlocks"
+        children:
+         - belovedblocks.give.tool
+         - belovedblocks.give.blocks
+    
+    belovedblocks.give.blocks.*:
+        description: "Allows someone to give all blocks of BelovedBlocks"
+        children:
+         - belovedblocks.give.blocks.stone
+         - belovedblocks.give.blocks.sandstone
+         - belovedblocks.give.blocks.red-sandstone
+    
+    belovedblocks.give.tool.*:
+        description: "Allow someone to give the stonecutter of BelovedBlocks."
+        children:
+         - belovedblocks.give.tool.self
+         - belovedblocks.give.tool.other
+    
+    belovedblocks.give.blocks.stone.*:
+        description: "Allow someone to give the smooth stone block of BelovedBlocks."
+        children:
+         - belovedblocks.give.blocks.stone.self
+         - belovedblocks.give.blocks.stone.other
+    
+    belovedblocks.give.blocks.sandstone.*:
+        description: "Allow someone to give the smooth sandstone block of BelovedBlocks."
+        children:
+         - belovedblocks.give.blocks.sandstone.self
+         - belovedblocks.give.blocks.sandstone.other
+    
+    belovedblocks.give.blocks.red-sandstone.*:
+        description: "Allow someone to give the smooth red sandstone block of BelovedBlocks."
+        children:
+         - belovedblocks.give.blocks.red-sandstone.self
+         - belovedblocks.give.blocks.red-sandstone.other
+
+
+    belovedblocks.give.tool.self:
+        description: "Allow someone to give the stonecutter of BelovedBlocks to themselves."
+        default: op
+    
+    belovedblocks.give.blocks.stone.self:
+        description: "Allow someone to give the smooth stone block of BelovedBlocks to themselves."
+        default: op
+    
+    belovedblocks.give.blocks.sandstone.self:
+        description: "Allow someone to give the smooth sandstone block of BelovedBlocks to themselves."
+        default: op
+    
+    belovedblocks.give.blocks.red-sandstone.self:
+        description: "Allow someone to give the smooth red sandstone block of BelovedBlocks to themselves."
+        default: op
+
+
+    belovedblocks.give.tool.other:
+        description: "Allow someone to give the stonecutter of BelovedBlocks to anyone other than themselves."
+        default: op
+    
+    belovedblocks.give.blocks.stone.other:
+        description: "Allow someone to give the smooth stone block of BelovedBlocks to anyone other than themselves."
+        default: op
+    
+    belovedblocks.give.blocks.sandstone.other:
+        description: "Allow someone to give the smooth sandstone block of BelovedBlocks to anyone other than themselves."
+        default: op
+    
+    belovedblocks.give.blocks.red-sandstone.other:
+        description: "Allow someone to give the smooth red sandstone block of BelovedBlocks to anyone other than themselves."
+        default: op

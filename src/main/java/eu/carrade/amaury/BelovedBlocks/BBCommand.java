@@ -25,13 +25,13 @@ import java.util.Collections;
 import java.util.List;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Server;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.permissions.Permissible;
 
 import eu.carrade.amaury.BelovedBlocks.i18n.I18n;
 
@@ -43,6 +43,26 @@ public class BBCommand implements TabExecutor {
 	public BBCommand(BelovedBlocks plugin) {
 		p = plugin;
 		i = p.getI18n();
+	}
+	
+	/**
+	 * Checks if a BelovedBlocks permission is granted to someone.
+	 * 
+	 * @param permissible The one.
+	 * @param permission The permission.
+	 * @return True if granted.
+	 */
+	private Boolean checkPermission(Permissible permissible, String permission) {
+		return permissible.hasPermission("belovedblocks." + permission);
+	}
+	
+	/**
+	 * Sends a message to someone saying he is not allowed to do something.
+	 * 
+	 * @param sender This person.
+	 */
+	private void disallowed(CommandSender sender) {
+		sender.sendMessage(i.t("cmd.disallowed"));
 	}
 	
 	@Override
@@ -61,12 +81,16 @@ public class BBCommand implements TabExecutor {
 			ItemStack toGive = null;
 			Player target = null;
 			
+			String itemName = null;;
+			
 			if(sender instanceof Player) {
 				target = (Player) sender;
 			}
 			
 			if(args[1].equalsIgnoreCase("tool")) { // /bb give tool [target]
 				toGive = p.getToolItem();
+				
+				itemName = "tool";
 				
 				if(args.length >= 3) {
 					target = p.getServer().getPlayer(args[2]);
@@ -92,15 +116,18 @@ public class BBCommand implements TabExecutor {
 					switch(args[2]) {
 						case "stone":
 							toGive = p.getSmoothStoneItem(amount);
+							itemName = "blocks.stone";
 							break;
 						case "sandstone":
 							toGive = p.getSmoothSandstoneItem(amount);
+							itemName = "blocks.sandstone";
 							break;
 						case "red-sandstone":
 							toGive = p.getSmoothRedSandstoneItem(amount);
 							break;
 						default:
 							sender.sendMessage(i.t("cmd.give.invalidBlock"));
+							itemName = "blocks.red-sandstone";
 							return true;
 					}
 					
@@ -121,6 +148,20 @@ public class BBCommand implements TabExecutor {
 				return true;
 			}
 			
+			String permission = "give." + itemName;
+			
+			if(sender.equals(target)) {
+				permission += ".self";
+			}
+			else {
+				permission += ".other";
+			}
+			
+			if(!checkPermission(sender, permission)) {
+				disallowed(sender);
+				return true;
+			}
+			
 			if(target.getInventory().addItem(toGive).size() != 0) {
 				// Inventory was full
 				target.getWorld().dropItem(target.getLocation(), toGive);
@@ -130,7 +171,7 @@ public class BBCommand implements TabExecutor {
 			}
 			
 			sender.sendMessage(i.t("cmd.give.given",
-						toGive.getItemMeta().getDisplayName(),
+						ChatColor.stripColor(toGive.getItemMeta().getDisplayName()),
 						String.valueOf(toGive.getAmount()),
 						target.getName()));
 			

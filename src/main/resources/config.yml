@@ -5,7 +5,8 @@
 
 
 # Available languages: en_US, fr_FR.
-lang: en_US
+# If empty, system language.
+lang: 
 
 tool:
     name: "Stonecutter"
