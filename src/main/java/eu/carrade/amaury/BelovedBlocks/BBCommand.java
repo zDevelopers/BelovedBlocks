@@ -18,6 +18,10 @@
 
 package eu.carrade.amaury.BelovedBlocks;
 
+import java.text.Collator;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.bukkit.ChatColor;
@@ -138,7 +142,45 @@ public class BBCommand implements TabExecutor {
 	
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-		// TODO Auto-generated method stub
+		
+		if(args.length == 1) { // /bb <?>
+			return getAutocompleteSuggestions(args[0], Arrays.asList("give"));
+		}
+		else if(args.length == 2) { // /bb give <?>
+			return getAutocompleteSuggestions(args[1], Arrays.asList("tool", "block"));
+		}
+		else if(args.length == 3 && args[1].equalsIgnoreCase("block")) { // /bb give <> <?>
+			return getAutocompleteSuggestions(args[2], Arrays.asList("stone", "sandstone", "red-sandstone"));
+		}
+		else if(args.length == 4 && args[1].equalsIgnoreCase("block")) { // /bb give <> <> <?>
+			return new ArrayList<String>(); // No autocomplete for item count
+		}
+		
 		return null;
+	}
+	
+	
+	/**
+	 * Returns a list of autocompletion suggestions based on what the user typed and on a list of
+	 * available commands.
+	 * 
+	 * @param typed What the user typed. This string needs to include <em>all</em> the words typed.
+	 * @param suggestionsList The list of the suggestions.
+	 * @param numberOfWordsToIgnore If non-zero, this number of words will be ignored at the beginning of the string. This is used to handle multiple-words autocompletion.
+	 * 
+	 * @return The list of matching suggestions.
+	 */
+	private List<String> getAutocompleteSuggestions(String typed, List<String> suggestionsList) {
+		List<String> list = new ArrayList<String>();
+		
+		for(String suggestion : suggestionsList) {			
+			if(suggestion.toLowerCase().startsWith(typed.toLowerCase())) {
+				list.add(suggestion);
+			}
+		}
+		
+		Collections.sort(list, Collator.getInstance());
+		
+		return list;
 	}
 }
