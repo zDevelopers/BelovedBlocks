@@ -1,5 +1,6 @@
 package eu.carrade.amaury.BelovedBlocks;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Effect;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -17,6 +18,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class BBListener implements Listener {
 	
@@ -25,8 +27,6 @@ public class BBListener implements Listener {
 	public BBListener(BelovedBlocks plugin) {
 		p = plugin;
 	}
-	
-	//TEST
 	
 	/**
 	 * Used to convert the blocks from/to the seamless state with our tool.
@@ -142,6 +142,36 @@ public class BBListener implements Listener {
 				}
 					
 			}, 1l);
+		}
+	}
+	
+	@EventHandler
+	public void onBlockBreakEvent(BlockBreakEvent e){
+		
+		ItemStack item = new ItemStack(Material.STEP, 1);
+		ItemMeta itemMeta = item.getItemMeta();
+		
+		if(e.getBlock().getType() == Material.DOUBLE_STEP){
+			if(e.getBlock().getData() == 8){
+			itemMeta.setDisplayName(ChatColor.RESET + p.getConfig().getString("blocks.slabs.stone.name"));
+			item.setItemMeta(itemMeta);
+			e.getPlayer().getWorld().dropItemNaturally(e.getBlock().getLocation(), item);
+			e.getBlock().setType(Material.AIR);
+			}else if(e.getBlock().getData() == 9){
+				item.setDurability((short) 1);
+				itemMeta.setDisplayName(ChatColor.RESET + p.getConfig().getString("blocks.slabs.sandstone.name"));
+				item.setItemMeta(itemMeta);
+				e.getPlayer().getWorld().dropItemNaturally(e.getBlock().getLocation(), item);
+				e.getBlock().setType(Material.AIR);
+			}
+		}else if(e.getBlock().getType() == Material.DOUBLE_STONE_SLAB2){
+			if(e.getBlock().getData() == 8){
+			item.setType(Material.STONE_SLAB2);
+			itemMeta.setDisplayName(ChatColor.RESET + p.getConfig().getString("blocks.slabs.red_sandstone.name"));
+			item.setItemMeta(itemMeta);
+			e.getPlayer().getWorld().dropItemNaturally(e.getBlock().getLocation(), item);
+			e.getBlock().setType(Material.AIR);
+			}
 		}
 	}
 }
