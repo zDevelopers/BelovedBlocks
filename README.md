@@ -30,7 +30,7 @@ This plugin instances new items that transforms themselves into the desired spec
 
 ### Items
 
-Each seamless block is represented by a similar item with a glowing enchantement effect (that can be disabled for each block in the [configuration](#configuration)). They also have a custom name (also configurable). The crafts are the same for the three block:
+Each seamless block is represented by a similar item with a glowing enchantement effect (that can be disabled for each block in the [configuration](#configuration)). They also have a custom name (also configurable). The crafts are the same for the three blocks:
 
 ![](http://amaury.carrade.eu//files/output_K6fg1T.gif)
 
