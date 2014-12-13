@@ -97,8 +97,8 @@ public final class BelovedBlocks extends JavaPlugin {
 	 * @return the item.
 	 */
 	public ItemStack getSmoothStoneItem(int amount) {
-		ItemStack smoothStone = new ItemStack(Material.STEP, amount);
-		smoothStone.setDurability((short) 0);
+		ItemStack smoothStone = new ItemStack(Material.STONE, amount);
+		smoothStone.setDurability((short) 6);
 		
 		ItemMeta itemMeta = smoothStone.getItemMeta();
 	    itemMeta.setDisplayName(smoothStoneName);
@@ -118,8 +118,8 @@ public final class BelovedBlocks extends JavaPlugin {
 	 * @return the item.
 	 */
 	public ItemStack getSmoothSandstoneItem(int amount) {
-		ItemStack smoothSandstone = new ItemStack(Material.STEP, amount);
-		smoothSandstone.setDurability((short) 1);
+		ItemStack smoothSandstone = new ItemStack(Material.SANDSTONE, amount);
+		smoothSandstone.setDurability((short) 2);
 		
 		ItemMeta itemMeta = smoothSandstone.getItemMeta();
 	    itemMeta.setDisplayName(smoothSandstoneName);
@@ -139,8 +139,8 @@ public final class BelovedBlocks extends JavaPlugin {
 	 * @return the item.
 	 */
 	public ItemStack getSmoothRedSandstoneItem(int amount) {
-		ItemStack smoothRedSandstone = new ItemStack(Material.STONE_SLAB2, amount);
-		smoothRedSandstone.setDurability((short) 0);
+		ItemStack smoothRedSandstone = new ItemStack(Material.RED_SANDSTONE, amount);
+		smoothRedSandstone.setDurability((short) 2);
 		
 		ItemMeta itemMeta = smoothRedSandstone.getItemMeta();
 	    itemMeta.setDisplayName(smoothRedSandstoneName);

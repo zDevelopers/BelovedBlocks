@@ -86,23 +86,28 @@ public class BBListener implements Listener {
 		// If the display name is null, this is a vanilla block, not handled here.
 		if(name == null) return;
 		
-		if(blockType == Material.STEP){
-			if(item.getDurability() == 0 && name.equals(p.getSmoothStoneName())) {
-				e.getBlockPlaced().setType(Material.DOUBLE_STEP);
-				e.getBlockPlaced().setData((byte) 8);
-			}
+		if(blockType == Material.STONE
+				&& item.getDurability() == 6
+				&& name.equals(p.getSmoothStoneName())) {
 			
-			else if(e.getItemInHand().getDurability() == 1 && name.equals(p.getSmoothSandstoneName())) {
-				e.getBlockPlaced().setType(Material.DOUBLE_STEP);
-				e.getBlockPlaced().setData((byte) 9);
-			}
+			e.getBlockPlaced().setType(Material.DOUBLE_STEP);
+			e.getBlockPlaced().setData((byte) 8);
 		}
 		
-		else if(e.getBlockPlaced().getType() == Material.STONE_SLAB2){
-			if(e.getItemInHand().getDurability() == 0 && name.equals(p.getSmoothRedSandstoneName())) {
-				e.getBlockPlaced().setType(Material.DOUBLE_STONE_SLAB2);
-				e.getBlockPlaced().setData((byte) 8);
-			}
+		else if(blockType == Material.SANDSTONE
+				&& e.getItemInHand().getDurability() == 2
+				&& name.equals(p.getSmoothSandstoneName())) {
+			
+			e.getBlockPlaced().setType(Material.DOUBLE_STEP);
+			e.getBlockPlaced().setData((byte) 9);
+		}
+		
+		else if(e.getBlockPlaced().getType() == Material.RED_SANDSTONE
+				&& e.getItemInHand().getDurability() == 2
+				&& name.equals(p.getSmoothRedSandstoneName())) {
+			
+			e.getBlockPlaced().setType(Material.DOUBLE_STONE_SLAB2);
+			e.getBlockPlaced().setData((byte) 8);
 		}
 	}
 	
