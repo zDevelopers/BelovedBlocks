@@ -1,3 +1,20 @@
 author: "Amaury Carrade"
 keys:
+    cmd:
+        version: "{yellow}{0} - version {1}"
+        
+        help:
+            giveTool: "{cc}/bb give tool [destinataire] {ci}: donne le tailleur de pierre de BelovedBlocks à vous ou au destinataire."
+            giveBlock: "{cc}/bb give block <stone|sandstone|red-sandstone> [quantité] [destinataire] {ci}: donne les blocs de BelovedBlocks à vous ou au destinataire."
+        
+        give:
+            invalidBlock: "{ce}Ce bloc n'est pas un bloc valide de BelovedBlocks."
+            
+            unknownPlayer: "{ce}Ce joueur n'est pas connecté."
+            playerRequiredFromConsole: "{ce}Depuis la console, vous devez spécifier un destinataire."
+            
+            given: "{cst}{0}×{1} donné à {2}"
+    
+    nan: "{ce}“{0}” n'est pas un nombre !"
+    
     

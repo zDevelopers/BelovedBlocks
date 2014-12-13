@@ -9,6 +9,10 @@ awareness:
 
 
 commands:
+    belovedblocks:
+        description: Get the blocks and tools added by BelovedBlocks
+        aliases: [bb]
+        usage: "Usage: see /<command>."
 
 permissions:
     

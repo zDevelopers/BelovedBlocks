@@ -51,6 +51,10 @@ public final class BelovedBlocks extends JavaPlugin {
 		
 		getServer().getPluginManager().registerEvents(new BBListener(this), this);
 		
+		BBCommand commandExecutor = new BBCommand(this);
+		getCommand("belovedblocks").setExecutor(commandExecutor);
+		getCommand("belovedblocks").setTabCompleter(commandExecutor);
+		
 		toolName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("tool.name"));
 		
 		smoothStoneName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.slabs.stone.name"));
