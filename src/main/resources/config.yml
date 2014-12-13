@@ -15,16 +15,16 @@ tool:
 blocks:
     slabs:
         stone:
-            name: "Smooth Stone Slab"
+            name: "Smooth Stone Double Slab"
             craftable: true
             itemGlow: true
         
         sandstone:
-            name: "Smooth Sandstone Slab"
+            name: "Smooth Sandstone Double Slab"
             craftable: true
             itemGlow: true
         
         red_sandstone:
-            name: "Smooth Red Sandstone Slab"
+            name: "Smooth Red Sandstone Double Slab"
             craftable: true
             itemGlow: true
