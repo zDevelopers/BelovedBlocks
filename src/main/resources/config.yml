@@ -10,7 +10,6 @@ lang: en_US
 tool:
     name: "Magic tool"
     craftable: true
-    placeBlockWithTool: true
 
 blocks:
     slabs:

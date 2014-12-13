@@ -153,45 +153,51 @@ public final class BelovedBlocks extends JavaPlugin {
 	}
 	
 	public void registerStone() {
-		ShapedRecipe StepCraft = new ShapedRecipe(getSmoothStoneItem(2));
-		
-		StepCraft.shape("SS ", "SS ", "   ");
-		StepCraft.setIngredient('S', Material.STEP, 0);
-		getServer().addRecipe(StepCraft);
-		StepCraft.shape(" SS", " SS", "   ");
-		getServer().addRecipe(StepCraft);
-		StepCraft.shape("   ", " SS", " SS");
-		getServer().addRecipe(StepCraft);
-		StepCraft.shape("   ", "SS ", "SS ");
-		getServer().addRecipe(StepCraft);
+		if(getConfig().getBoolean("blocks.slabs.stone.craftable")) {
+			ShapedRecipe StepCraft = new ShapedRecipe(getSmoothStoneItem(2));
+			
+			StepCraft.shape("SS ", "SS ", "   ");
+			StepCraft.setIngredient('S', Material.STEP, 0);
+			getServer().addRecipe(StepCraft);
+			StepCraft.shape(" SS", " SS", "   ");
+			getServer().addRecipe(StepCraft);
+			StepCraft.shape("   ", " SS", " SS");
+			getServer().addRecipe(StepCraft);
+			StepCraft.shape("   ", "SS ", "SS ");
+			getServer().addRecipe(StepCraft);
+		}
 	}
 	
 	public void registerSand() {
-		ShapedRecipe SandCraft = new ShapedRecipe(getSmoothSandstoneItem(2));
-		
-		SandCraft.shape("SS ", "SS ", "   ");
-		SandCraft.setIngredient('S', Material.STEP, 1);
-		getServer().addRecipe(SandCraft);
-		SandCraft.shape(" SS", " SS", "   ");
-		getServer().addRecipe(SandCraft);
-		SandCraft.shape("   ", " SS", " SS");
-		getServer().addRecipe(SandCraft);
-		SandCraft.shape("   ", "SS ", "SS ");
-		getServer().addRecipe(SandCraft);
+		if(getConfig().getBoolean("blocks.slabs.sandstone.craftable")) {
+			ShapedRecipe SandCraft = new ShapedRecipe(getSmoothSandstoneItem(2));
+			
+			SandCraft.shape("SS ", "SS ", "   ");
+			SandCraft.setIngredient('S', Material.STEP, 1);
+			getServer().addRecipe(SandCraft);
+			SandCraft.shape(" SS", " SS", "   ");
+			getServer().addRecipe(SandCraft);
+			SandCraft.shape("   ", " SS", " SS");
+			getServer().addRecipe(SandCraft);
+			SandCraft.shape("   ", "SS ", "SS ");
+			getServer().addRecipe(SandCraft);
+		}
 	}
 	
 	public void registerRedsand() {
-		ShapedRecipe RedSandCraft = new ShapedRecipe(getSmoothRedSandstoneItem(2));
-
-		RedSandCraft.shape("SS ", "SS ", "   ");
-		RedSandCraft.setIngredient('S', Material.STONE_SLAB2, 0);
-		getServer().addRecipe(RedSandCraft);
-		RedSandCraft.shape(" SS", " SS", "   ");
-		getServer().addRecipe(RedSandCraft);
-		RedSandCraft.shape("   ", " SS", " SS");
-		getServer().addRecipe(RedSandCraft);
-		RedSandCraft.shape("   ", "SS ", "SS ");
-		getServer().addRecipe(RedSandCraft);
+		if(getConfig().getBoolean("blocks.slabs.red_sandstone.craftable")) {
+			ShapedRecipe RedSandCraft = new ShapedRecipe(getSmoothRedSandstoneItem(2));
+	
+			RedSandCraft.shape("SS ", "SS ", "   ");
+			RedSandCraft.setIngredient('S', Material.STONE_SLAB2, 0);
+			getServer().addRecipe(RedSandCraft);
+			RedSandCraft.shape(" SS", " SS", "   ");
+			getServer().addRecipe(RedSandCraft);
+			RedSandCraft.shape("   ", " SS", " SS");
+			getServer().addRecipe(RedSandCraft);
+			RedSandCraft.shape("   ", "SS ", "SS ");
+			getServer().addRecipe(RedSandCraft);
+		}
 	}
 	
 	/**

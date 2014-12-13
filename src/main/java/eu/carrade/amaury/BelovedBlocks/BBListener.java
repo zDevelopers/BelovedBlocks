@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -97,6 +98,20 @@ public class BBListener implements Listener {
 			if(e.getItemInHand().getDurability() == 0 && name.equals(p.getSmoothRedSandstoneName())) {
 				e.getBlockPlaced().setType(Material.DOUBLE_STONE_SLAB2);
 				e.getBlockPlaced().setData((byte) 8);
+			}
+		}
+	}
+	
+	/**
+	 * Used to prevent our tool (shears) to get leaves like a normal shear.
+	 * @param ev
+	 */
+	@EventHandler
+	public void onBlockBreaks(BlockBreakEvent ev) {
+		if(p.isValidTool(ev.getPlayer().getItemInHand())) {
+			if(ev.getBlock().getType() == Material.LEAVES || ev.getBlock().getType() == Material.LEAVES_2) {
+				ev.setCancelled(true);
+				ev.getBlock().setType(Material.AIR);
 			}
 		}
 	}
