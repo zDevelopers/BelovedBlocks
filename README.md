@@ -26,25 +26,19 @@ This plugin instances new items that transforms themselves into the desired spec
 
 ### Items
 
-Each seamless block is represented by a similar item with a glowing enchantement effect (that can be disabled for each block in the [configuration](#configuration)). They also have a custom name (also configurable). The crafts are the same for the three block :
+Each seamless block is represented by a similar item with a glowing enchantement effect (that can be disabled for each block in the [configuration](#configuration)). They also have a custom name (also configurable). The crafts are the same for the three block:
 
-![](http://amaury.carrade.eu//files/BB_stone.png)
-
-*Smooth Stone Slab*
-
-![](http://amaury.carrade.eu//files/BB_sandstone.png)
-
-*Smooth Sandstone Slab*
-
-![](http://amaury.carrade.eu//files/BB_redsandstone.png)
-
-*Smooth Red Sandstone Slab*
+![](http://gifmaker.me/files/download/home/20141213/02/z1HltpW0ynkrqb2NNuybUu/output_K6fg1T.gif)
 
 The crafts can be disabled (no permission yet).
 
+The blocks as items in the inventory and their corresponding textures when being placed:
+
+![](http://amaury.carrade.eu//files/blocks_transforms_small.png)
+
 ### Stonecutter
 
-The stonecutter is a tool that can smooth any of the three double slabs blocks. To use it, simply right click with this tool on the wished block and it will permute to a smooth block. Each use will decrease the item's durability by 1. The unbreaking enchantement does work when applied. The stonecutter can be crafted like shears in exceptions that the iron is replaced by diamonds :
+The stonecutter is a tool that can smooth any of the three double slabs blocks. To use it, simply right click with this tool on the wished block and it will permute to a smooth block. Each use will decrease the item's durability by 1. The unbreaking enchantement does work when applied. The stonecutter can be crafted like shears in exceptions that the iron is replaced by diamonds:
 
 ![](http://amaury.carrade.eu//files/BB_shears.png)
 
