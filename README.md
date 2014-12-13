@@ -9,7 +9,9 @@ Please note, this README reflects the last development version. Some features li
 1. [Features](#features)
    1. [New items](#items)
    2. [Stonecutter](#stonecutter)
-1. [Commands](#commands)
+1. [Commands & permissions](#commands--permissions)
+   1. [Commands](#commands)
+   2. [Permissions](#permissions)
 2. [Configuration](#configuration)
 3. [License](#license)
 
@@ -47,13 +49,44 @@ The basic double slabs block → the seamless version of this block:
 
 The process can be reverted (using the tool on a smooth block will turn it back into the original block).
 
-## Commands
+## Commands & permissions
 
-No commands avaible yet.
+### Commands
+
+A few commands allow you to get the tools and blocks added by this plugin.
+
+The main command is `/belovedblocks`, or `/bb` (an alias).
+
+ * `/bb give tool [receiver]`: gives the stonecutter to you, or to the receiver.
+ * `/bb give block <stone|sandstone|red-sandstone> [amount] [receiver]`: gives the blocks of BelovedBlocks to you (or to the receiver).
+
+### Permissions
+
+The permissions tree is the following one:
+
+ * `belovedblocks.give`
+    * `tool`
+       * `self`
+       * `other`
+    * `blocks`
+       * `stone`
+          * `self`
+          * `other`
+       * `sandstone`
+          * `self`
+          * `other`
+       * `red-sandstone`
+          * `self`
+          * `other`
+
+As example:
+ * to allow someone to give to himself only some smooth red sandstone, use the permission `belovedblocks.give.blocks.red-sandstone.self`;
+ * to allow someone to give any block to anyone, use `belovedblocks.give.blocks`.
+
 
 ## Configuration
 
-The plugin can be configured using the `config.yml` file (it can be found at `/plugins/BelovedBlocks/config.yml` in your server's folder or [here on git](https://github.com/AmauryCarrade/BelovedBlocks/blob/master/src/main/resources/config.yml)).
+The plugin can be configured using the `config.yml` file (it can be found at `/plugins/BelovedBlocks/config.yml` in your server's folder or [here on GitHub](https://github.com/AmauryCarrade/BelovedBlocks/blob/master/src/main/resources/config.yml)).
 
 ## License
 
