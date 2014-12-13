@@ -18,3 +18,8 @@ keys:
             given: "{gray}Given {0}×{1} to {2}"
     
     nan: "{ce}“{0}” is not a number!"
+    
+    tool:
+        howto:
+            line1: "{gray}Right-click on a double slab"
+            line2: "{gray}to smooth or carve the block"

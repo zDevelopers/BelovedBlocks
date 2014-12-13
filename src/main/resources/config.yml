@@ -19,8 +19,9 @@ lang:
 # Configuration for the stonecutter.
 tool:
     name: "Stonecutter"
-    craftable: true   # Crafted like the shears, with diamonds.
+    craftable: true      # Crafted like the shears, with diamonds.
     itemGlow: true
+    usageInLore: true    # Display infos on how to use in the tooltip of the tool
 
 # Configuration for the blocks
 blocks:

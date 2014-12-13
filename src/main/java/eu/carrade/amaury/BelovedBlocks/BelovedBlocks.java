@@ -18,6 +18,7 @@
 
 package eu.carrade.amaury.BelovedBlocks;
 
+import java.util.Arrays;
 import java.util.Random;
 
 import org.bukkit.ChatColor;
@@ -31,7 +32,7 @@ import eu.carrade.amaury.BelovedBlocks.i18n.I18n;
 
 public final class BelovedBlocks extends JavaPlugin {
 	
-	private I18n i18n = null;
+	private I18n i = null;
 	
 	private String toolName;
 	private String smoothStoneName;
@@ -43,10 +44,10 @@ public final class BelovedBlocks extends JavaPlugin {
 		this.saveDefaultConfig();
 		
 		if(getConfig().getString("lang") == null) {
-			i18n = new I18n(this);
+			i = new I18n(this);
 		}
 		else {
-			i18n = new I18n(this, getConfig().getString("lang"));
+			i = new I18n(this, getConfig().getString("lang"));
 		}
 		
 		getServer().getPluginManager().registerEvents(new BBListener(this), this);
@@ -73,7 +74,7 @@ public final class BelovedBlocks extends JavaPlugin {
 	 * @return
 	 */
 	public I18n getI18n() {
-		return i18n;
+		return i;
 	}
 	
 	/**
@@ -83,8 +84,14 @@ public final class BelovedBlocks extends JavaPlugin {
 	 */
 	public ItemStack getToolItem() {
 		ItemStack tool = new ItemStack(Material.SHEARS);
+		
 		ItemMeta meta = tool.getItemMeta();
-			meta.setDisplayName(toolName);
+		meta.setDisplayName(toolName);
+		
+		if(getConfig().getBoolean("tool.usageInLore")) {
+			meta.setLore(Arrays.asList(i.t("tool.howto.line1"), i.t("tool.howto.line2")));
+		}
+		
 		tool.setItemMeta(meta);
 		
 		if(getConfig().getBoolean("tool.itemGlow")) {
