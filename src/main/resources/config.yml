@@ -8,24 +8,34 @@
 # If empty, system language.
 lang: 
 
+
+# WARNING
+# If you change the names of the tools/blocks, all already-existing items/blocs will become unusable
+# as a smooth block!
+
+# The “itemGlow” key enables or disables the enchantment effect on the item.
+
+
+# Configuration for the stonecutter.
 tool:
     name: "Stonecutter"
-    craftable: true
+    craftable: true   # Crafted like the shears, with diamonds.
     itemGlow: true
 
+# Configuration for the blocks
 blocks:
     slabs:
         stone:
             name: "Smooth Stone Double Slab"
-            craftable: true
+            craftable: true   # Crafted with four slabs in a square.
             itemGlow: true
         
         sandstone:
             name: "Smooth Sandstone Double Slab"
-            craftable: true
+            craftable: true   # Crafted with four slabs in a square.
             itemGlow: true
         
         red_sandstone:
             name: "Smooth Red Sandstone Double Slab"
-            craftable: true
+            craftable: true   # Crafted with four slabs in a square.
             itemGlow: true
