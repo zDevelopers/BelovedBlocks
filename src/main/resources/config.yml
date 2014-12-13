@@ -8,7 +8,7 @@
 lang: en_US
 
 tool:
-    name: "Magic tool"
+    name: "Stonecutter"
     craftable: true
     itemGlow: true
 
