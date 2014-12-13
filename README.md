@@ -8,7 +8,7 @@ Please note, this README reflects the last development version. Some features li
 
 1. [Features](#features)
    1. [New items](#items)
-   2. [Stone Cutter](#stone-cutter)
+   2. [Stonecutter](#stonecutter)
 1. [Commands](#commands)
 2. [Configuration](#configuration)
 3. [License](#license)
@@ -26,26 +26,26 @@ This plugin instances new items that transforms themselves into the desired spec
 
 ### Items
 
-Each seamless block is represented by a similar item with a glowing enchantement effect (that can be disabled for each block in the [configuration](#configuration)). They also have a custom name (also configurable). The crafts are the same for the three block :
+Each seamless block is represented by a similar item with a glowing enchantement effect (that can be disabled for each block in the [configuration](#configuration)). They also have a custom name (also configurable). The crafts are the same for the three block:
 
-![](http://amaury.carrade.eu//files/BB_stone.png)
-
-*Smooth Stone Slab*
-
-![](http://amaury.carrade.eu//files/BB_sandstone.png)
-
-*Smooth Sandstone Slab*
-
-![](http://amaury.carrade.eu//files/BB_redsandstone.png)
-
-*Smooth Red Sandstone Slab*
+![](http://amaury.carrade.eu//files/output_K6fg1T.gif)
 
 The crafts can be disabled (no permission yet).
 
-### Stone Cutter
+### Stonecutter
 
+The stonecutter is a tool that can smooth any of the three double slabs blocks. To use it, simply right click with this tool on the wished block and it will permute to a smooth block. Each use will decrease the item's durability by 1. The unbreaking enchantement does work when applied. The stonecutter can be crafted like shears in exceptions that the iron is replaced by diamonds:
 
 ![](http://amaury.carrade.eu//files/BB_shears.png)
+
+
+The craft can be disabled (no permission yet).
+
+The basic double slabs block → the seamless version of this block:
+
+![](http://amaury.carrade.eu//files/blocks_transforms_small.png)
+
+The process can be reverted (using the tool on a smooth block will turn it back into the original block).
 
 ## Commands
 
@@ -53,7 +53,7 @@ No commands avaible yet.
 
 ## Configuration
 
-The plugin can be configured using the `config.yml` file (it can be found here `/tree/master/src/main/resources`).
+The plugin can be configured using the `config.yml` file (it can be found at `/plugins/BelovedBlocks/config.yml` in your server's folder or [here on git](https://github.com/AmauryCarrade/BelovedBlocks/blob/master/src/main/resources/config.yml)).
 
 ## License
 
