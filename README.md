@@ -28,13 +28,9 @@ This plugin instances new items that transforms themselves into the desired spec
 
 Each seamless block is represented by a similar item with a glowing enchantement effect (that can be disabled for each block in the [configuration](#configuration)). They also have a custom name (also configurable). The crafts are the same for the three block:
 
-![](http://gifmaker.me/files/download/home/20141213/02/z1HltpW0ynkrqb2NNuybUu/output_K6fg1T.gif)
+![](http://amaury.carrade.eu//files/output_K6fg1T.gif)
 
 The crafts can be disabled (no permission yet).
-
-The blocks as items in the inventory and their corresponding textures when being placed:
-
-![](http://amaury.carrade.eu//files/blocks_transforms_small.png)
 
 ### Stonecutter
 
@@ -42,9 +38,14 @@ The stonecutter is a tool that can smooth any of the three double slabs blocks. 
 
 ![](http://amaury.carrade.eu//files/BB_shears.png)
 
-*Stonecutter*
 
 The craft can be disabled (no permission yet).
+
+The basic double slabs block → the seamless version of this block:
+
+![](http://amaury.carrade.eu//files/blocks_transforms_small.png)
+
+The process can be reverted (using the tool on a smooth block will turn it back into the original block).
 
 ## Commands
 
@@ -52,7 +53,7 @@ No commands avaible yet.
 
 ## Configuration
 
-The plugin can be configured using the `config.yml` file (it can be found here `/tree/master/src/main/resources`).
+The plugin can be configured using the `config.yml` file (it can be found at `/plugins/BelovedBlocks/config.yml` in your server's folder or [here on git](https://github.com/AmauryCarrade/BelovedBlocks/blob/master/src/main/resources/config.yml)).
 
 ## License
 
