@@ -2,14 +2,19 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>eu.carrade.amaury</groupId>
   <artifactId>BelovedBlocks</artifactId>
-  <version>0.1-SNAPSHOT</version>
+  <version>1.0</version>
   <name>BelovedBlocks</name>
   <description>BelovedBlocks plugin: The return of these beautiful smooth double slabs</description>
   <url>https://github.com/AmauryCarrade/BelovedBlocks/</url>
+  
   <issueManagement>
   	<system>GitHub</system>
   	<url>https://github.com/AmauryCarrade/BelovedBlocks/issues</url>
   </issueManagement>
+  <ciManagement>
+  	<system>Jenkins</system>
+  	<url>http://jenkins.carrade.eu/job/BelovedBlocks/</url>
+  </ciManagement>
   
   <build>
    <plugins>
