@@ -26,6 +26,8 @@ public class BBListener implements Listener {
 		p = plugin;
 	}
 	
+	//TEST
+	
 	/**
 	 * Used to convert the blocks from/to the seamless state with our tool.
 	 * 
