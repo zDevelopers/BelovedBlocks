@@ -81,7 +81,8 @@ public class BBCommand implements TabExecutor {
 			ItemStack toGive = null;
 			Player target = null;
 			
-			String itemName = null;;
+			String itemName = null;
+			Boolean targetGiven = false;
 			
 			if(sender instanceof Player) {
 				target = (Player) sender;
@@ -94,6 +95,7 @@ public class BBCommand implements TabExecutor {
 				
 				if(args.length >= 3) {
 					target = p.getServer().getPlayer(args[2]);
+					targetGiven = true;
 				}
 			}
 			
@@ -133,12 +135,13 @@ public class BBCommand implements TabExecutor {
 					
 					if(args.length >= 5) {
 						target = p.getServer().getPlayer(args[4]);
+						targetGiven = true;
 					}
 				}
 			}
 			
 			if(target == null) {
-				if(sender instanceof Player) {
+				if(targetGiven) {
 					sender.sendMessage(i.t("cmd.give.unknownPlayer"));
 				}
 				else {
