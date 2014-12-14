@@ -4,7 +4,7 @@
 # 
 
 
-# Available languages: en_US, fr_FR.
+# Available languages: en_US, fr_FR, de_DE.
 # If empty, system language.
 lang: 
 
