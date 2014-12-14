@@ -5,7 +5,7 @@
 
 
 # Available languages: en_US, fr_FR, de_DE.
-# If empty, system language.
+# If empty, system language.
 lang: 
 
 
@@ -13,13 +13,13 @@ lang:
 # If you change the names of the tools/blocks, all already-existing items/blocs will become unusable
 # as a smooth block!
 
-# The “itemGlow” key enables or disables the enchantment effect on the item.
+# The "itemGlow" key enables or disables the enchantment effect on the item.
 
 
 # Configuration for the stonecutter.
 tool:
     name: "Stonecutter"
-    craftable: true      # Crafted like the shears, with diamonds.
+    craftable: true      # Crafted like the shears, with diamonds.
     itemGlow: true
     usageInLore: true    # Display infos on how to use in the tooltip of the tool
 
