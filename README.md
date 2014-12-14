@@ -5,7 +5,7 @@ Development builds available for each commit [on our Jenkins server](http://jenk
 This plugin will be soon avaible on BukkitDev.
 Please note, this README reflects the last development version. Some features listed here may not be in the version published on BukkitDev.
 
-This plugin was made by Amaury Carrade and Florian Cassayre; it is currently translated in English and French.
+This plugin was made by Amaury Carrade and Florian Cassayre; it is currently translated in English, French and German.
 
 
 1. [Features](#features)
