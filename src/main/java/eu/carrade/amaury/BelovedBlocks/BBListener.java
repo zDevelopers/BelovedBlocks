@@ -141,7 +141,7 @@ public class BBListener implements Listener {
 		Material itemInHandType = ev.getPlayer().getItemInHand().getType();
 		// This event only concerns players in survival game mode.
 		if(ev.getPlayer().getGameMode() != GameMode.CREATIVE) {
-			if(p.isValidTool(ev.getPlayer().getItemInHand())) {
+			if(p.isValidTool(itemInHandType)) {
 				// Those blocks don't drop as items.
 				if(ev.getBlock().getType() == Material.DEAD_BUSH
 						|| ev.getBlock().getType() == Material.DOUBLE_PLANT
@@ -155,13 +155,22 @@ public class BBListener implements Listener {
 						|| ev.getBlock().getType() == Material.WOOL
 						|| ev.getBlock().getType() == Material.WEB
 						|| ev.getBlock().getType() == Material.STRING){
+							
 						// The tool loses 2 durability points.
-						// The unbreaking enchantement doesn't apply for this.
-						// (considered as an inappropriate usage)
-					ev.getPlayer().getItemInHand().setDurability((short) (ev.getPlayer().getItemInHand().getDurability() + 2));
+					short newDurability = (short) (itemInHandType.getDurability()
+							+ 2 * p.increaseDurability(itemInHandType.getEnchantmentLevel(Enchantment.DURABILITY)));
+					if(newDurability > itemInHandType.getType().getMaxDurability()) {
+						ev.getPlayer().getInventory().setItemInHand(new ItemStack(Material.AIR));
+						ev.getPlayer().playSound(player.getLocation(), Sound.ITEM_BREAK, 0.8f, 1);
+					}
+					else {
+						itemInHandType.setDurability(newDurability);
+					}
+					ev.getPlayer().updateInventory();
 					ev.setCancelled(true);
 					ev.getBlock().setType(Material.AIR);
 				}
+				
 				// When you break a smooth double slab, our item is dropped.
 			}else if(itemInHandType == Material.WOOD_PICKAXE
 						|| itemInHandType == Material.STONE_PICKAXE
