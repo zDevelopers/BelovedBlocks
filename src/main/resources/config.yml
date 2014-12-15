@@ -1,13 +1,6 @@
-# 
-# ## Welcome in the Beloved Blocks configuration file ##
-# 
-# 
-
-
+lang: 
 # Available languages: en_US, fr_FR, de_DE.
 # If empty, system language.
-lang: 
-
 
 # WARNING
 # If you change the names of the tools/blocks, all already-existing items/blocs will become unusable
