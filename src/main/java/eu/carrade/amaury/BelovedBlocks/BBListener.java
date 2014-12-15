@@ -141,7 +141,7 @@ public class BBListener implements Listener {
 		Material itemInHandType = ev.getPlayer().getItemInHand().getType();
 		// This event only concerns players in survival game mode.
 		if(ev.getPlayer().getGameMode() != GameMode.CREATIVE) {
-			if(p.isValidTool(itemInHandType)) {
+			if(p.isValidTool(ev.getPlayer().getItemInHand())) {
 				// Those blocks don't drop as items.
 				if(ev.getBlock().getType() == Material.DEAD_BUSH
 						|| ev.getBlock().getType() == Material.DOUBLE_PLANT
@@ -157,14 +157,14 @@ public class BBListener implements Listener {
 						|| ev.getBlock().getType() == Material.STRING){
 							
 						// The tool loses 2 durability points.
-					short newDurability = (short) (itemInHandType.getDurability()
-							+ 2 * p.increaseDurability(itemInHandType.getEnchantmentLevel(Enchantment.DURABILITY)));
-					if(newDurability > itemInHandType.getType().getMaxDurability()) {
+					short newDurability = (short) (ev.getPlayer().getItemInHand().getDurability()
+							+ 2 * p.increaseDurability(ev.getPlayer().getItemInHand().getEnchantmentLevel(Enchantment.DURABILITY)));
+					if(newDurability > ev.getPlayer().getItemInHand().getMaxDurability()) {
 						ev.getPlayer().getInventory().setItemInHand(new ItemStack(Material.AIR));
 						ev.getPlayer().playSound(player.getLocation(), Sound.ITEM_BREAK, 0.8f, 1);
 					}
 					else {
-						itemInHandType.setDurability(newDurability);
+						ev.getPlayer().getItemInHand().setDurability(newDurability);
 					}
 					ev.getPlayer().updateInventory();
 					ev.setCancelled(true);
