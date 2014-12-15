@@ -138,60 +138,59 @@ public class BBListener implements Listener {
 	 */
 	@EventHandler
 	public void onBlockBreaks(BlockBreakEvent ev) {
-		// Those blocks don't drop as items.
-		if(p.isValidTool(ev.getPlayer().getItemInHand())) {
-			if(ev.getBlock().getType() == Material.DEAD_BUSH
-					|| ev.getBlock().getType() == Material.DOUBLE_PLANT
-					|| ev.getBlock().getType() == Material.LONG_GRASS
-					|| ev.getBlock().getType() == Material.VINE
-					|| ev.getBlock().getType() == Material.STRING) {
-					//The tool doesn't loose any durability though.
-				ev.setCancelled(true);
-				ev.getBlock().setType(Material.AIR);
-			}else if(ev.getBlock().getType() == Material.LEAVES
-					|| ev.getBlock().getType() == Material.LEAVES_2
-					|| ev.getBlock().getType() == Material.WOOL
-					|| ev.getBlock().getType() == Material.WEB){
-					//The tool loses 2 durability points.
-					//The unbreaking enchantement doesn't apply for this.
-					//(considered as an inappropriate usage)
-				ev.getPlayer().getItemInHand().setDurability((short) (ev.getPlayer().getItemInHand().getDurability() + 2));
-				ev.setCancelled(true);
-				ev.getBlock().setType(Material.AIR);
-			}
-		}
-		
-		// When you break a smooth double slab, our item is dropped.
-		else if(ev.getPlayer().getGameMode() != GameMode.CREATIVE) {
-			
-			Material itemInHandType = ev.getPlayer().getItemInHand().getType();
-			
-			if(itemInHandType == Material.WOOD_PICKAXE
-					|| itemInHandType == Material.STONE_PICKAXE
-					|| itemInHandType == Material.IRON_PICKAXE
-					|| itemInHandType == Material.GOLD_PICKAXE
-					|| itemInHandType == Material.DIAMOND_PICKAXE) {
-				
-				Block block = ev.getBlock();
-				
-				if(block.getType() == Material.DOUBLE_STEP) {
-					if(block.getData() == 8) {
-						ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothStoneItem(1));
-						ev.getBlock().setType(Material.AIR);
-					}
-					else if(block.getData() == 9) {
-						ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothSandstoneItem(1));
-						ev.getBlock().setType(Material.AIR);
-					}
-				}
-				else if(block.getType() == Material.DOUBLE_STONE_SLAB2 && block.getData() == 8) {
-					ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothRedSandstoneItem(1));
+		Material itemInHandType = ev.getPlayer().getItemInHand().getType();
+		// This event only concerns players in survival game mode.
+		if(ev.getPlayer().getGameMode() != GameMode.CREATIVE){
+			if(p.isValidTool(ev.getPlayer().getItemInHand())) {
+				// Those blocks don't drop as items.
+				if(ev.getBlock().getType() == Material.DEAD_BUSH
+						|| ev.getBlock().getType() == Material.DOUBLE_PLANT
+						|| ev.getBlock().getType() == Material.LONG_GRASS
+						|| ev.getBlock().getType() == Material.VINE) {
+						// The tool doesn't loose any durability though.
+					ev.setCancelled(true);
 					ev.getBlock().setType(Material.AIR);
+				}else if(ev.getBlock().getType() == Material.LEAVES
+						|| ev.getBlock().getType() == Material.LEAVES_2
+						|| ev.getBlock().getType() == Material.WOOL
+						|| ev.getBlock().getType() == Material.WEB
+						|| ev.getBlock().getType() == Material.STRING){
+						// The tool loses 2 durability points.
+						// The unbreaking enchantement doesn't apply for this.
+						// (considered as an inappropriate usage)
+					ev.getPlayer().getItemInHand().setDurability((short) (ev.getPlayer().getItemInHand().getDurability() + 2));
+					ev.setCancelled(true);
+					ev.getBlock().setType(Material.AIR);
+				}
+			}
+		
+			// When you break a smooth double slab, our item is dropped.
+			else if(itemInHandType == Material.WOOD_PICKAXE
+						|| itemInHandType == Material.STONE_PICKAXE
+						|| itemInHandType == Material.IRON_PICKAXE
+						|| itemInHandType == Material.GOLD_PICKAXE
+						|| itemInHandType == Material.DIAMOND_PICKAXE) {
+					
+					Block block = ev.getBlock();
+				
+					if(block.getType() == Material.DOUBLE_STEP) {
+						if(block.getData() == 8) {
+							ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothStoneItem(1));
+							ev.getBlock().setType(Material.AIR);
+						}
+						else if(block.getData() == 9) {
+							ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothSandstoneItem(1));
+							ev.getBlock().setType(Material.AIR);
+						}
+					}
+					else if(block.getType() == Material.DOUBLE_STONE_SLAB2 && block.getData() == 8) {
+						ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothRedSandstoneItem(1));
+						ev.getBlock().setType(Material.AIR);
+					}
 				}
 			}
 		}
 	}
-	
 	/**
 	 * Used to prevent our tool from shearing sheeps or mushroom cows.
 	 * <p>
