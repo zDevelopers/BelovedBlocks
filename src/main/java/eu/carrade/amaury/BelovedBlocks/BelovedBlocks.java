@@ -38,6 +38,8 @@ public final class BelovedBlocks extends JavaPlugin {
 	private String smoothStoneName;
 	private String smoothSandstoneName;
 	private String smoothRedSandstoneName;
+	
+	private BBRecipes recipes;
 
 	@Override
 	public void onEnable() {
@@ -62,10 +64,7 @@ public final class BelovedBlocks extends JavaPlugin {
 		smoothSandstoneName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.slabs.sandstone.name"));
 		smoothRedSandstoneName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.slabs.red_sandstone.name"));
 		
-		registerTool();
-		registerStone();
-		registerSand();
-		registerRedsand();
+	recipes = new BBRecipes(this);
 	}
 	
 	/**
@@ -162,107 +161,6 @@ public final class BelovedBlocks extends JavaPlugin {
 	    }
 	    
 	    return smoothRedSandstone;
-	}
-	
-	
-	/**
-	 * Registers the recipes for the tool.
-	 */
-	public void registerTool() {
-		if(getConfig().getBoolean("tool.craftable")) {
-			ShapedRecipe toolRecipe = new ShapedRecipe(getToolItem());
-			
-			toolRecipe.shape("D  ", " D ", "   ");
-			toolRecipe.setIngredient('D', Material.DIAMOND);
-			getServer().addRecipe(toolRecipe);
-			
-			toolRecipe.shape(" D ", "  D", "   ");
-			getServer().addRecipe(toolRecipe);
-			
-			toolRecipe.shape(" D ", "D  ", "   ");
-			getServer().addRecipe(toolRecipe);
-			
-			toolRecipe.shape("  D", " D ", "   ");
-			getServer().addRecipe(toolRecipe);
-			
-			toolRecipe.shape("   ", "D  ", " D ");
-			getServer().addRecipe(toolRecipe);
-			
-			toolRecipe.shape("   ", " D ", "  D");
-			getServer().addRecipe(toolRecipe);
-			
-			toolRecipe.shape("   ", " D ", "D  ");
-			getServer().addRecipe(toolRecipe);
-			
-			toolRecipe.shape("   ", "  D", " D ");
-			getServer().addRecipe(toolRecipe);
-		}
-	}
-	
-	/**
-	 * Registers the recipes for the smooth stone double-slab item.
-	 */
-	public void registerStone() {
-		if(getConfig().getBoolean("blocks.slabs.stone.craftable")) {
-			ShapedRecipe smoothStoneSlabRecipe = new ShapedRecipe(getSmoothStoneItem(2));
-			
-			smoothStoneSlabRecipe.shape("SS ", "SS ", "   ");
-			smoothStoneSlabRecipe.setIngredient('S', Material.STEP, 0);
-			getServer().addRecipe(smoothStoneSlabRecipe);
-			
-			smoothStoneSlabRecipe.shape(" SS", " SS", "   ");
-			getServer().addRecipe(smoothStoneSlabRecipe);
-			
-			smoothStoneSlabRecipe.shape("   ", " SS", " SS");
-			getServer().addRecipe(smoothStoneSlabRecipe);
-			
-			smoothStoneSlabRecipe.shape("   ", "SS ", "SS ");
-			getServer().addRecipe(smoothStoneSlabRecipe);
-		}
-	}
-	
-	/**
-	 * Registers the recipes for the smooth sandstone double-slab item.
-	 */
-	public void registerSand() {
-		if(getConfig().getBoolean("blocks.slabs.sandstone.craftable")) {
-			ShapedRecipe smoothSandstoneSlabRecipe = new ShapedRecipe(getSmoothSandstoneItem(2));
-			
-			smoothSandstoneSlabRecipe.shape("SS ", "SS ", "   ");
-			smoothSandstoneSlabRecipe.setIngredient('S', Material.STEP, 1);
-			getServer().addRecipe(smoothSandstoneSlabRecipe);
-			
-			smoothSandstoneSlabRecipe.shape(" SS", " SS", "   ");
-			getServer().addRecipe(smoothSandstoneSlabRecipe);
-			
-			smoothSandstoneSlabRecipe.shape("   ", " SS", " SS");
-			getServer().addRecipe(smoothSandstoneSlabRecipe);
-			
-			smoothSandstoneSlabRecipe.shape("   ", "SS ", "SS ");
-			getServer().addRecipe(smoothSandstoneSlabRecipe);
-		}
-	}
-	
-	/**
-	 * Registers the recipes for the smooth red sandstone double-slab item.
-	 */
-	public void registerRedsand() {
-		if(getConfig().getBoolean("blocks.slabs.red_sandstone.craftable")) {
-			ShapedRecipe smoothRedSandstoneSlabRecipe = new ShapedRecipe(getSmoothRedSandstoneItem(2));
-	
-			smoothRedSandstoneSlabRecipe.shape("SS ", "SS ", "   ");
-			smoothRedSandstoneSlabRecipe.setIngredient('S', Material.STONE_SLAB2, 0);
-			getServer().addRecipe(smoothRedSandstoneSlabRecipe);
-			
-			smoothRedSandstoneSlabRecipe.shape(" SS", " SS", "   ");
-			getServer().addRecipe(smoothRedSandstoneSlabRecipe);
-			
-			smoothRedSandstoneSlabRecipe.shape("   ", " SS", " SS");
-			getServer().addRecipe(smoothRedSandstoneSlabRecipe);
-			
-			smoothRedSandstoneSlabRecipe.shape("   ", "SS ", "SS ");
-			getServer().addRecipe(smoothRedSandstoneSlabRecipe);
-		}
 	}
 	
 	/**
