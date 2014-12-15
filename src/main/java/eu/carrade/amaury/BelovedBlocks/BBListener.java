@@ -138,14 +138,24 @@ public class BBListener implements Listener {
 	 */
 	@EventHandler
 	public void onBlockBreaks(BlockBreakEvent ev) {
-		// The tool don't drop leave blocks.
+		// Those blocks don't drop as items.
 		if(p.isValidTool(ev.getPlayer().getItemInHand())) {
-			if(ev.getBlock().getType() == Material.LEAVES
-					|| ev.getBlock().getType() == Material.LEAVES_2
-					|| ev.getBlock().getType() == Material.DEAD_BUSH
+			if(ev.getBlock().getType() == Material.DEAD_BUSH
 					|| ev.getBlock().getType() == Material.DOUBLE_PLANT
 					|| ev.getBlock().getType() == Material.LONG_GRASS
-					|| ev.getBlock().getType() == Material.VINE) {
+					|| ev.getBlock().getType() == Material.VINE
+					|| ev.getBlock().getType() == Material.STRING) {
+					//The tool doesn't loose any durability though.
+				ev.setCancelled(true);
+				ev.getBlock().setType(Material.AIR);
+			}else if(ev.getBlock().getType() == Material.LEAVES
+					|| ev.getBlock().getType() == Material.LEAVES_2
+					|| ev.getBlock().getType() == Material.WOOL
+					|| ev.getBlock().getType() == Material.WEB){
+					//The tool loses 2 durability points.
+					//The unbreaking enchantement doesn't apply for this.
+					//(considered as an inappropriate usage)
+				ev.getPlayer().getItemInHand().setDurability((short) (ev.getPlayer().getItemInHand().getDurability() + 2));
 				ev.setCancelled(true);
 				ev.getBlock().setType(Material.AIR);
 			}
