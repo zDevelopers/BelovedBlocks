@@ -1,4 +1,4 @@
-lang: 
+﻿lang: 
 # Available languages: en_US, fr_FR, de_DE.
 # If empty, system language.
 
@@ -14,7 +14,7 @@ tool:
     name: "Stonecutter"
     craftable: true      # Crafted like the shears, with diamonds.
     itemGlow: true
-    usageInLore: true    # Display infos on how to use in the tooltip of the tool
+    usageInLore: true    # Display infos on how to use in the tooltip of the tool. Warning, they will stay on already crafted items.
 
 # Configuration for the blocks
 blocks:
@@ -32,4 +32,33 @@ blocks:
         red_sandstone:
             name: "Smooth Red Sandstone Double Slab"
             craftable: true   # Crafted with four slabs in a square.
+            itemGlow: true
+    logs:
+        oak:
+            name: "Smooth Oak Wood"
+            craftable: true   # Crafted with four logs in a square.
+            itemGlow: true
+        
+        spruce:
+            name: "Smooth Spruce Wood"
+            craftable: true   # Crafted with four logs in a square.
+            itemGlow: true
+        
+        birch:
+            name: "Smooth Birch Wood"
+            craftable: true   # Crafted with four logs in a square.
+            itemGlow: true
+        jungle:
+            name: "Smooth Jungle Wood"
+            craftable: true   # Crafted with four logs in a square.
+            itemGlow: true
+        
+        acacia:
+            name: "Smooth Acacia Wood"
+            craftable: true   # Crafted with four logs in a square.
+            itemGlow: true
+        
+        dark_oak:
+            name: "Smooth Dark Oak Wood"
+            craftable: true   # Crafted with four logs in a square.
             itemGlow: true

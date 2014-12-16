@@ -33,13 +33,18 @@ import eu.carrade.amaury.BelovedBlocks.i18n.I18n;
 public final class BelovedBlocks extends JavaPlugin {
 	
 	private I18n i = null;
+	private BBRecipes recipes;
 	
 	private String toolName;
 	private String smoothStoneName;
 	private String smoothSandstoneName;
 	private String smoothRedSandstoneName;
-	
-	private BBRecipes recipes;
+	private String smoothOakName;
+	private String smoothSpruceName;
+	private String smoothBirchName;
+	private String smoothJungleName;
+	private String smoothAcaciaName;
+	private String smoothDarkOakName;
 
 	@Override
 	public void onEnable() {
@@ -63,6 +68,12 @@ public final class BelovedBlocks extends JavaPlugin {
 		smoothStoneName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.slabs.stone.name"));
 		smoothSandstoneName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.slabs.sandstone.name"));
 		smoothRedSandstoneName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.slabs.red_sandstone.name"));
+		smoothOakName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.logs.oak.name"));
+		smoothSpruceName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.logs.spruce.name"));
+		smoothBirchName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.logs.birch.name"));
+		smoothJungleName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.logs.jungle.name"));
+		smoothAcaciaName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.logs.acacia.name"));
+		smoothDarkOakName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.logs.dark_oak.name"));
 		
 	recipes = new BBRecipes(this);
 	}
@@ -163,6 +174,96 @@ public final class BelovedBlocks extends JavaPlugin {
 	    return smoothRedSandstone;
 	}
 	
+	public ItemStack getSmoothOakItem(int amount) {
+		ItemStack smoothOak = new ItemStack(Material.LOG, amount);
+		smoothOak.setDurability((short) 0);
+		
+		ItemMeta itemMeta = smoothOak.getItemMeta();
+	    itemMeta.setDisplayName(smoothOakName);
+	    smoothOak.setItemMeta(itemMeta);
+	    
+	    if(getConfig().getBoolean("blocks.logs.oak.itemGlow")) {
+	    	GlowEffect.addGlow(smoothOak);
+	    }
+	    
+	    return smoothOak;
+	}
+	
+	public ItemStack getSmoothSpruceItem(int amount) {
+		ItemStack smoothSpruce = new ItemStack(Material.LOG, amount);
+		smoothSpruce.setDurability((short) 1);
+		
+		ItemMeta itemMeta = smoothSpruce.getItemMeta();
+	    itemMeta.setDisplayName(smoothSpruceName);
+	    smoothSpruce.setItemMeta(itemMeta);
+	    
+	    if(getConfig().getBoolean("blocks.logs.spruce.itemGlow")) {
+	    	GlowEffect.addGlow(smoothSpruce);
+	    }
+	    
+	    return smoothSpruce;
+	}
+	
+	public ItemStack getSmoothBirchItem(int amount) {
+		ItemStack smoothBirch = new ItemStack(Material.LOG, amount);
+		smoothBirch.setDurability((short) 2);
+		
+		ItemMeta itemMeta = smoothBirch.getItemMeta();
+	    itemMeta.setDisplayName(smoothBirchName);
+	    smoothBirch.setItemMeta(itemMeta);
+	    
+	    if(getConfig().getBoolean("blocks.logs.birch.itemGlow")) {
+	    	GlowEffect.addGlow(smoothBirch);
+	    }
+	    
+	    return smoothBirch;
+	}
+	
+	public ItemStack getSmoothJungleItem(int amount) {
+		ItemStack smoothJungle = new ItemStack(Material.LOG, amount);
+		smoothJungle.setDurability((short) 3);
+		
+		ItemMeta itemMeta = smoothJungle.getItemMeta();
+	    itemMeta.setDisplayName(smoothJungleName);
+	    smoothJungle.setItemMeta(itemMeta);
+	    
+	    if(getConfig().getBoolean("blocks.logs.jungle.itemGlow")) {
+	    	GlowEffect.addGlow(smoothJungle);
+	    }
+	    
+	    return smoothJungle;
+	}
+	
+	public ItemStack getSmoothAcaciaItem(int amount) {
+		ItemStack smoothAcacia = new ItemStack(Material.LOG_2, amount);
+		smoothAcacia.setDurability((short) 0);
+		
+		ItemMeta itemMeta = smoothAcacia.getItemMeta();
+	    itemMeta.setDisplayName(smoothAcaciaName);
+	    smoothAcacia.setItemMeta(itemMeta);
+	    
+	    if(getConfig().getBoolean("blocks.logs.acacia.itemGlow")) {
+	    	GlowEffect.addGlow(smoothAcacia);
+	    }
+	    
+	    return smoothAcacia;
+	}
+	
+	public ItemStack getSmoothDarkOakItem(int amount) {
+		ItemStack smoothDarkOak = new ItemStack(Material.LOG_2, amount);
+		smoothDarkOak.setDurability((short) 1);
+		
+		ItemMeta itemMeta = smoothDarkOak.getItemMeta();
+	    itemMeta.setDisplayName(smoothDarkOakName);
+	    smoothDarkOak.setItemMeta(itemMeta);
+	    
+	    if(getConfig().getBoolean("blocks.logs.dark_oak.itemGlow")) {
+	    	GlowEffect.addGlow(smoothDarkOak);
+	    }
+	    
+	    return smoothDarkOak;
+	}
+	
 	/**
 	 * Checks if the given tool is a valid tool.
 	 * 
@@ -204,5 +305,29 @@ public final class BelovedBlocks extends JavaPlugin {
 
 	public String getSmoothRedSandstoneName() {
 		return smoothRedSandstoneName;
+	}
+	
+	public String getSmoothOakName() {
+		return smoothOakName;
+	}
+
+	public String getSmoothSpruceName() {
+		return smoothSpruceName;
+	}
+	
+	public String getSmoothBirchName() {
+		return smoothBirchName;
+	}
+	
+	public String getSmoothJungleName() {
+		return smoothJungleName;
+	}
+	
+	public String getSmoothAcaciaName() {
+		return smoothAcaciaName;
+	}
+	
+	public String getSmoothDarkOakName() {
+		return smoothDarkOakName;
 	}
 }

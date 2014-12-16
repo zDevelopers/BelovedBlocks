@@ -128,6 +128,54 @@ public class BBListener implements Listener {
 			e.getBlockPlaced().setType(Material.DOUBLE_STONE_SLAB2);
 			e.getBlockPlaced().setData((byte) 8);
 		}
+		
+		else if(blockType == Material.LOG
+				&& e.getItemInHand().getDurability() == 0
+				&& name.equals(p.getSmoothOakName())) {
+			
+			e.getBlockPlaced().setType(Material.LOG);
+			e.getBlockPlaced().setData((byte) 12);
+		}
+		
+		else if(blockType == Material.LOG
+				&& e.getItemInHand().getDurability() == 1
+				&& name.equals(p.getSmoothSpruceName())) {
+			
+			e.getBlockPlaced().setType(Material.LOG);
+			e.getBlockPlaced().setData((byte) 13);
+		}
+		
+		else if(blockType == Material.LOG
+				&& e.getItemInHand().getDurability() == 2
+				&& name.equals(p.getSmoothBirchName())) {
+			
+			e.getBlockPlaced().setType(Material.LOG);
+			e.getBlockPlaced().setData((byte) 14);
+		}
+		
+		else if(blockType == Material.LOG
+				&& e.getItemInHand().getDurability() == 3
+				&& name.equals(p.getSmoothJungleName())) {
+			
+			e.getBlockPlaced().setType(Material.LOG);
+			e.getBlockPlaced().setData((byte) 15);
+		}
+		
+		else if(blockType == Material.LOG_2
+				&& e.getItemInHand().getDurability() == 0
+				&& name.equals(p.getSmoothAcaciaName())) {
+			
+			e.getBlockPlaced().setType(Material.LOG_2);
+			e.getBlockPlaced().setData((byte) 12);
+		}
+		
+		else if(blockType == Material.LOG_2
+				&& e.getItemInHand().getDurability() == 1
+				&& name.equals(p.getSmoothDarkOakName())) {
+			
+			e.getBlockPlaced().setType(Material.LOG_2);
+			e.getBlockPlaced().setData((byte) 13);
+		}
 	}
 	
 	/**
@@ -139,6 +187,7 @@ public class BBListener implements Listener {
 	@EventHandler
 	public void onBlockBreaks(BlockBreakEvent ev) {
 		Material itemInHandType = ev.getPlayer().getItemInHand().getType();
+		Block block = ev.getBlock();
 		// This event only concerns players in survival game mode.
 		if(ev.getPlayer().getGameMode() != GameMode.CREATIVE) {
 			if(p.isValidTool(ev.getPlayer().getItemInHand())) {
@@ -177,8 +226,6 @@ public class BBListener implements Listener {
 						|| itemInHandType == Material.IRON_PICKAXE
 						|| itemInHandType == Material.GOLD_PICKAXE
 						|| itemInHandType == Material.DIAMOND_PICKAXE) {
-					
-					Block block = ev.getBlock();
 				
 					if(block.getType() == Material.DOUBLE_STEP) {
 						if(block.getData() == 8) {
@@ -194,7 +241,36 @@ public class BBListener implements Listener {
 						ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothRedSandstoneItem(1));
 						ev.getBlock().setType(Material.AIR);
 					}
+
 				}
+			else if(block.getType() == Material.LOG) {
+				if(block.getData() == 12){
+				ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothOakItem(1));
+				ev.getBlock().setType(Material.AIR);
+				}
+				else if(block.getData() == 13){
+					ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothSpruceItem(1));
+					ev.getBlock().setType(Material.AIR);
+					}
+				else if(block.getData() == 14){
+					ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothBirchItem(1));
+					ev.getBlock().setType(Material.AIR);
+					}
+				else if(block.getData() == 15){
+					ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothJungleItem(1));
+					ev.getBlock().setType(Material.AIR);
+					}
+			}
+			else if(block.getType() == Material.LOG_2){
+				if(block.getData() == 12){
+					ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothAcaciaItem(1));
+					ev.getBlock().setType(Material.AIR);
+				}else if(block.getData() == 13){
+					ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothDarkOakItem(1));
+					ev.getBlock().setType(Material.AIR);
+				}
+				
+			}
 			}
 		}
 	/**
