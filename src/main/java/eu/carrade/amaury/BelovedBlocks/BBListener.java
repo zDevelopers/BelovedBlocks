@@ -243,7 +243,7 @@ public class BBListener implements Listener {
 					}
 
 				}
-			else if(block.getType() == Material.LOG) {
+			if(block.getType() == Material.LOG) {
 				if(block.getData() == 12){
 				ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothOakItem(1));
 				ev.getBlock().setType(Material.AIR);
