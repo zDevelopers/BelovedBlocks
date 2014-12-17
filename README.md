@@ -34,7 +34,9 @@ Each seamless block is represented by a similar item with a glowing enchantement
 
 ![](http://amaury.carrade.eu//files/output_K6fg1T.gif)
 
-The crafts can be disabled (no permission yet).
+The smooth log blocks can also be crafted using the same process, except with wooden logs. You get 4 smooth log items. (to be completed)
+
+The crafts can be disabled.
 
 ### Stonecutter
 
@@ -43,7 +45,7 @@ The stonecutter is a tool that can smooth any of the three double slabs blocks. 
 ![](http://amaury.carrade.eu//files/BB_shears.png)
 
 
-The craft can be disabled (no permission yet).
+The craft can be disabled.
 
 The basic double slabs block → the seamless version of this block:
 
