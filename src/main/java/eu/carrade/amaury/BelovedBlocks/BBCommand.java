@@ -99,7 +99,7 @@ public class BBCommand implements TabExecutor {
 				}
 			}
 			
-			else if(args[1].equalsIgnoreCase("block")) { // /bb give block <stone|sandstone|red-sandstone> [amount] [target]
+			else if(args[1].equalsIgnoreCase("block")) { // /bb give block <stone|sandstone|red-sandstone|oak|spruce|birch|jungle|acacia|dark-oak> [amount] [target]
 				if(args.length < 3) {
 					sender.sendMessage(i.t("cmd.help.giveBlock"));
 					return true;
@@ -127,6 +127,26 @@ public class BBCommand implements TabExecutor {
 						case "red-sandstone":
 							toGive = p.getSmoothRedSandstoneItem(amount);
 							break;
+						
+						case "oak":
+							toGive = p.getSmoothOakItem(amount);
+							break;
+						case "spruce":
+							toGive = p.getSmoothSpruceItem(amount);
+							break;
+						case "birch":
+							toGive = p.getSmoothBirchItem(amount);
+							break;
+						case "jungle":
+							toGive = p.getSmoothJungleItem(amount);
+							break;
+						case "acacia":
+							toGive = p.getSmoothAcaciaItem(amount);
+							break;
+						case "dark-oak":
+							toGive = p.getSmoothDarkOakItem(amount);
+							break;
+						
 						default:
 							sender.sendMessage(i.t("cmd.give.invalidBlock"));
 							itemName = "blocks.red-sandstone";
@@ -190,12 +210,17 @@ public class BBCommand implements TabExecutor {
 		if(args.length == 1) { // /bb <?>
 			return getAutocompleteSuggestions(args[0], Arrays.asList("give"));
 		}
+		
 		else if(args.length == 2) { // /bb give <?>
 			return getAutocompleteSuggestions(args[1], Arrays.asList("tool", "block"));
 		}
+		
 		else if(args.length == 3 && args[1].equalsIgnoreCase("block")) { // /bb give <> <?>
-			return getAutocompleteSuggestions(args[2], Arrays.asList("stone", "sandstone", "red-sandstone"));
+			return getAutocompleteSuggestions(args[2], Arrays.asList("stone", "sandstone", "red-sandstone",
+			                                                         "oak", "spruce", "birch", "jungle",
+			                                                         "acacia", "dark-oak"));
 		}
+		
 		else if(args.length == 4 && args[1].equalsIgnoreCase("block")) { // /bb give <> <> <?>
 			return new ArrayList<String>(); // No autocomplete for item count
 		}
