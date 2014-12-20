@@ -75,7 +75,7 @@ public final class BelovedBlocks extends JavaPlugin {
 		smoothAcaciaName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.logs.acacia.name"));
 		smoothDarkOakName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.logs.dark_oak.name"));
 		
-	recipes = new BBRecipes(this);
+		recipes = new BBRecipes(this);
 	}
 	
 	/**

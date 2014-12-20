@@ -62,7 +62,7 @@ public class BBRecipes {
 	/**
 	 * Registers the recipes for the tool.
 	 */
-	public void registerTool() {
+	private void registerTool() {
 		if(p.getConfig().getBoolean("tool.craftable")) {
 			ShapedRecipe toolRecipe = new ShapedRecipe(p.getToolItem());
 			
@@ -101,7 +101,7 @@ public class BBRecipes {
 	 * @param materialDataValue The ingredient (data value).
 	 * @param result The result.
 	 */
-	public void registerSquaredRecipe(Material ingredientMaterial, int ingredientDataValue, ItemStack result) {
+	private void registerSquaredRecipe(Material ingredientMaterial, int ingredientDataValue, ItemStack result) {
 		ShapedRecipe recipe = new ShapedRecipe(result);
 		
 		recipe.shape("II ", "II ", "   ");
