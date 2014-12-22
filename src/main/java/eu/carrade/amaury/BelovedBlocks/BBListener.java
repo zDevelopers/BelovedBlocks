@@ -23,10 +23,7 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.HumanEntity;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.MushroomCow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -34,9 +31,11 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerShearEntityEvent;
 import org.bukkit.inventory.CraftingInventory;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class BBListener implements Listener {
@@ -310,4 +309,55 @@ public class BBListener implements Listener {
 			}, 1l);
 		}
 	}
+	
+private ItemStack getItemStack(Inventory i) {
+	for(int t = 1 ; t < i.getSize() ; t++) {
+		if(i.getItem(t) != null && i.getItem(t).getType() != Material.AIR) {
+		return i.getItem(t);	
+		}
+	}
+	return null;
 }
+	
+private int getCount(Inventory i) {
+	int amount = 0;
+	for(int t = 1 ; t < i.getSize() ; t++) {
+		if(i.getItem(t) != null && i.getItem(t).getType() != Material.AIR) {
+	if(i.getItem(t).getAmount() != 0) {
+		amount ++;
+			}
+		}
+	}
+return amount;
+}
+	
+	@EventHandler
+	public void onPreCraftEvent(PrepareItemCraftEvent e) {
+		ItemStack item = getItemStack(e.getInventory());
+		if(getCount(e.getInventory()) == 1 && item != null && item.getType() != Material.AIR) {
+			if(item.getType() == Material.STONE || item.getType() == Material.SANDSTONE || item.getType() == Material.RED_SANDSTONE) {
+				// Handles the smooth stone items.
+				if(item.hasItemMeta() && (item.equals(p.getSmoothStoneItem(item.getAmount())) || item.equals(p.getSmoothSandstoneItem(item.getAmount())) || item.equals(p.getSmoothRedSandstoneItem(item.getAmount())))) {
+					}else{
+						e.getInventory().setResult(new ItemStack(Material.AIR, 1));
+		}
+	}
+	else if(item.getType() == Material.LOG || item.getType() == Material.LOG_2){
+		// Handles the log items.
+			if(item.hasItemMeta() && (item.equals(p.getSmoothOakItem(item.getAmount()))
+					|| item.equals(p.getSmoothSpruceItem(item.getAmount()))
+					|| item.equals(p.getSmoothBirchItem(item.getAmount()))
+					|| item.equals(p.getSmoothJungleItem(item.getAmount()))
+					|| item.equals(p.getSmoothAcaciaItem(item.getAmount()))
+					|| item.equals(p.getSmoothDarkOakItem(item.getAmount())))) {
+				ItemStack result = new ItemStack(item.getType(), item.getDurability());
+				result.setAmount(1);
+				e.getInventory().setResult(result);
+			
+			
+				}
+			}
+		}
+	}	
+}
+	
