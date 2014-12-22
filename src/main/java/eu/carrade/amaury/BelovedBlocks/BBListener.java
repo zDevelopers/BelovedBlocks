@@ -346,16 +346,16 @@ public class BBListener implements Listener {
 					
 			}, 1l);
 		}
+		
 		else if(ev.getInventory() instanceof AnvilInventory) {
 			// Avoid players to rename the slab items.
 			ItemStack item = ev.getInventory().getItem(0);
 			if(item != null) {
-			if(item.equals(p.getSmoothStoneItem(item.getAmount()))
-					|| item.equals(p.getSmoothSandstoneItem(item.getAmount()))
-					|| item.equals(p.getSmoothRedSandstoneItem(item.getAmount()))
-					) {
-				ev.getInventory().setItem(2, new ItemStack(Material.AIR,0));
-			}
+				if(item.equals(p.getSmoothStoneItem(item.getAmount()))
+						|| item.equals(p.getSmoothSandstoneItem(item.getAmount()))
+						|| item.equals(p.getSmoothRedSandstoneItem(item.getAmount()))) {
+					ev.getInventory().setItem(2, new ItemStack(Material.AIR,0));
+				}
 			}	
 		}
 	}
