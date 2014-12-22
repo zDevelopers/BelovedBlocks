@@ -245,7 +245,8 @@ public class BBListener implements Listener {
 							
 						// The tool loses 2 durability points.
 					short newDurability = (short) (ev.getPlayer().getItemInHand().getDurability()
-							+ 2 * p.increaseDurability(ev.getPlayer().getItemInHand().getEnchantmentLevel(Enchantment.DURABILITY)));
+							+ p.increaseDurability(ev.getPlayer().getItemInHand().getEnchantmentLevel(Enchantment.DURABILITY))
+							+ p.increaseDurability(ev.getPlayer().getItemInHand().getEnchantmentLevel(Enchantment.DURABILITY)));
 					
 					if(newDurability > ev.getPlayer().getItemInHand().getType().getMaxDurability()) {
 						ev.getPlayer().getInventory().setItemInHand(new ItemStack(Material.AIR));
