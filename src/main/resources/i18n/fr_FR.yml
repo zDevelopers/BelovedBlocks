@@ -6,11 +6,12 @@ keys:
         disallowed: "{ce}Vous n'avez pas le droit d'utiliser ceci."
         
         help:
-            giveTool: "{cc}/bb give tool [destinataire] {ci}: donne le tailleur de pierre de BelovedBlocks à vous ou au destinataire."
-            giveBlock: "{cc}/bb give block <stone|sandstone|red-sandstone|oak|spruce|birch|jungle|acacia|dark-oak> [quantité] [destinataire] {ci}: donne les blocs de BelovedBlocks à vous ou au destinataire."
+            giveTool: "{cc}/bb give tool <stonecutter|saw> [destinataire] {ci}: donne l'outil voulu à vous ou au destinataire."
+            giveBlock: "{cc}/bb give block <stone|sandstone|red-sandstone|quartz|oak|spruce|birch|jungle|acacia|dark-oak> [quantité] [destinataire] {ci}: donne les blocs de BelovedBlocks à vous ou au destinataire."
         
         give:
             invalidBlock: "{ce}Ce bloc n'est pas un bloc valide de BelovedBlocks."
+            invalidTool: "{ce}Cet outil n'est pas un outil valide de BelovedBlocks."
             
             unknownPlayer: "{ce}Ce joueur n'est pas connecté."
             playerRequiredFromConsole: "{ce}Depuis la console, vous devez spécifier un destinataire."

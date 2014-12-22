@@ -364,7 +364,7 @@ public class BBListener implements Listener {
 			ItemStack tool = p.getToolSawItem();
 			ItemStack result = ev.getInventory().getItem(2);
 			if(item != null){
-			tool.setDurability(item.getDurability());
+				tool.setDurability(item.getDurability());
 			}
 			
 			if(item != null) {

@@ -88,14 +88,31 @@ public class BBCommand implements TabExecutor {
 				target = (Player) sender;
 			}
 			
-			if(args[1].equalsIgnoreCase("tool")) { // /bb give tool [target]
-				toGive = p.getToolStonecutterItem();
-				
-				itemName = "tool";
-				
-				if(args.length >= 3) {
-					target = p.getServer().getPlayer(args[2]);
-					targetGiven = true;
+			if(args[1].equalsIgnoreCase("tool")) { // /bb give tool <stonecutter|saw> [target]
+				if(args.length < 3) {
+					sender.sendMessage(i.t("cmd.help.giveTool"));
+					return true;
+				}
+				else {
+					switch(args[2]) {
+						case "stonecutter":
+							toGive = p.getToolStonecutterItem();
+							itemName = "tools.stonecutter";
+							break;
+						case "saw":
+							toGive = p.getToolSawItem();
+							itemName = "tools.saw";
+							break;
+						
+						default:
+							sender.sendMessage(i.t("cmd.give.invalidTool"));
+							return true;
+					}
+					
+					if(args.length >= 4) {
+						target = p.getServer().getPlayer(args[4]);
+						targetGiven = true;
+					}
 				}
 			}
 			
@@ -225,10 +242,15 @@ public class BBCommand implements TabExecutor {
 			return getAutocompleteSuggestions(args[1], Arrays.asList("tool", "block"));
 		}
 		
-		else if(args.length == 3 && args[1].equalsIgnoreCase("block")) { // /bb give <> <?>
-			return getAutocompleteSuggestions(args[2], Arrays.asList("stone", "sandstone", "red-sandstone",
-			                                                         "quartz",  "oak", "spruce", "birch",
-			                                                         "jungle", "acacia", "dark-oak"));
+		else if(args.length == 3) { // /bb give <> <?>
+			if(args[1].equalsIgnoreCase("block")) {
+				return getAutocompleteSuggestions(args[2], Arrays.asList("stone", "sandstone", "red-sandstone",
+				                                                         "quartz",  "oak", "spruce", "birch",
+				                                                         "jungle", "acacia", "dark-oak"));
+			}
+			else if(args[1].equalsIgnoreCase("tool")) {
+				return getAutocompleteSuggestions(args[2], Arrays.asList("stonecutter", "saw"));
+			}
 		}
 		
 		else if(args.length == 4 && args[1].equalsIgnoreCase("block")) { // /bb give <> <> <?>

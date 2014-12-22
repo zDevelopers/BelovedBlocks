@@ -6,11 +6,12 @@ keys:
         disallowed: "{ce}You are not allowed to use this."
         
         help:
-            giveTool: "{cc}/bb give tool [receiver] {ci}: gives the stonecutter to you, or to the receiver."
-            giveBlock: "{cc}/bb give block <stone|sandstone|red-sandstone|oak|spruce|birch|jungle|acacia|dark-oak> [amount] [receiver] {ci}: gives the BelovedBlocks' blocks to you, or to the receiver."
+            giveTool: "{cc}/bb give tool <stonecutter|saw> [receiver] {ci}: gives the wanted tool to you, or to the receiver."
+            giveBlock: "{cc}/bb give block <stone|sandstone|red-sandstone|quartz|oak|spruce|birch|jungle|acacia|dark-oak> [amount] [receiver] {ci}: gives the BelovedBlocks' blocks to you, or to the receiver."
         
         give:
             invalidBlock: "{ce}This block is not a valid BelovedBlocks' block."
+            invalidTool: "{ce}This tool is not a valid BelovedBlocks' tool."
             
             unknownPlayer: "{ce}This player is not logged in."
             playerRequiredFromConsole: "{ce}From the console, a receiver is required."
