@@ -60,7 +60,7 @@ public class BBListener implements Listener {
 		Material type = block.getType();
 		Player player = ev.getPlayer();
 		
-		if(p.isValidTool(item)) {
+		if(p.isValidStonecutterTool(item)) {
 			
 			if((type == Material.DOUBLE_STEP || type == Material.DOUBLE_STONE_SLAB2)
 					&& ev.getAction() == Action.RIGHT_CLICK_BLOCK) {
@@ -190,7 +190,7 @@ public class BBListener implements Listener {
 		
 		// This event only concerns players in survival game mode.
 		if(ev.getPlayer().getGameMode() != GameMode.CREATIVE) {
-			if(p.isValidTool(ev.getPlayer().getItemInHand())) {
+			if(p.isValidStonecutterTool(ev.getPlayer().getItemInHand())) {
 				// Those blocks don't drop as items.
 				if(ev.getBlock().getType() == Material.DEAD_BUSH
 						|| ev.getBlock().getType() == Material.DOUBLE_PLANT
@@ -290,7 +290,7 @@ public class BBListener implements Listener {
 	 */
 	@EventHandler
 	public void onPlayerShearEntity(PlayerShearEntityEvent ev) {
-		if(p.isValidTool(ev.getPlayer().getItemInHand())) {
+		if(p.isValidStonecutterTool(ev.getPlayer().getItemInHand())) {
 			ev.setCancelled(true);
 		}
 	}

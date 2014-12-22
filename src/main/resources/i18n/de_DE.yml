@@ -20,6 +20,7 @@ keys:
     nan: "{ce}“{0}” ist nicht eine Zahl !"
 
     tool:
-        howto:
-            line1: "{gray}Klicken Sie auf eine Doppelte Stufe"
-            line2: "{gray}um es zu schnitten"
+        stonecutter:
+            howto:
+                line1: "{gray}Klicken Sie auf eine Doppelte Stufe"
+                line2: "{gray}um es zu schnitten"

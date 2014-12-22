@@ -20,6 +20,7 @@ keys:
     nan: "{ce}“{0}” n'est pas un nombre !"
 
     tool:
-        howto:
-            line1: "{gray}Cliquez sur une double dalle"
-            line2: "{gray}pour la lisser ou la tailler"
+        stonecutter:
+            howto:
+                line1: "{gray}Cliquez sur une double dalle"
+                line2: "{gray}pour la lisser ou la tailler"

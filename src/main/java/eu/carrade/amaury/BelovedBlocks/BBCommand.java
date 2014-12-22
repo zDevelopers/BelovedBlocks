@@ -89,7 +89,7 @@ public class BBCommand implements TabExecutor {
 			}
 			
 			if(args[1].equalsIgnoreCase("tool")) { // /bb give tool [target]
-				toGive = p.getToolItem();
+				toGive = p.getToolStonecutterItem();
 				
 				itemName = "tool";
 				

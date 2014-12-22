@@ -35,7 +35,7 @@ public final class BelovedBlocks extends JavaPlugin {
 	private I18n i = null;
 	private BBRecipes recipes;
 	
-	private String toolName;
+	private String toolStonecutterName;
 	private String smoothStoneName;
 	private String smoothSandstoneName;
 	private String smoothRedSandstoneName;
@@ -63,7 +63,7 @@ public final class BelovedBlocks extends JavaPlugin {
 		getCommand("belovedblocks").setExecutor(commandExecutor);
 		getCommand("belovedblocks").setTabCompleter(commandExecutor);
 		
-		toolName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("tool.name"));
+		toolStonecutterName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("tool.stonecutter.name"));
 		
 		smoothStoneName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.slabs.stone.name"));
 		smoothSandstoneName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.slabs.sandstone.name"));
@@ -92,19 +92,19 @@ public final class BelovedBlocks extends JavaPlugin {
 	 * 
 	 * @return the item.
 	 */
-	public ItemStack getToolItem() {
+	public ItemStack getToolStonecutterItem() {
 		ItemStack tool = new ItemStack(Material.SHEARS);
 		
 		ItemMeta meta = tool.getItemMeta();
-		meta.setDisplayName(toolName);
+		meta.setDisplayName(toolStonecutterName);
 		
 		if(getConfig().getBoolean("tool.usageInLore")) {
-			meta.setLore(Arrays.asList(i.t("tool.howto.line1"), i.t("tool.howto.line2")));
+			meta.setLore(Arrays.asList(i.t("tool.stonecutter.howto.line1"), i.t("tool.stonecutter.howto.line2")));
 		}
 		
 		tool.setItemMeta(meta);
 		
-		if(getConfig().getBoolean("tool.itemGlow")) {
+		if(getConfig().getBoolean("tool.stonecutter.itemGlow")) {
 			GlowEffect.addGlow(tool);
 		}
 		
@@ -270,11 +270,11 @@ public final class BelovedBlocks extends JavaPlugin {
 	 * @param tool The tool to check.
 	 * @return The result.
 	 */
-	public boolean isValidTool(ItemStack tool) {
+	public boolean isValidStonecutterTool(ItemStack tool) {
 		return (tool != null
 				&& tool.getType() == Material.SHEARS
 				&& tool.getItemMeta().getDisplayName() != null
-				&& tool.getItemMeta().getDisplayName().equals(toolName));
+				&& tool.getItemMeta().getDisplayName().equals(toolStonecutterName));
 	}
 	
 	/**
@@ -291,8 +291,8 @@ public final class BelovedBlocks extends JavaPlugin {
 		return 0;
 	}
 
-	public String getToolName() {
-		return toolName;
+	public String getToolStonecutterName() {
+		return toolStonecutterName;
 	}
 
 	public String getSmoothStoneName() {

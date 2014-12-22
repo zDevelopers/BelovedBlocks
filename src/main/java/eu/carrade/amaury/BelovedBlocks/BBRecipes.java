@@ -92,7 +92,7 @@ public class BBRecipes {
 	 */
 	private void registerTool() {
 		if(p.getConfig().getBoolean("tool.craftable")) {
-			ShapedRecipe toolRecipe = new ShapedRecipe(p.getToolItem());
+			ShapedRecipe toolRecipe = new ShapedRecipe(p.getToolStonecutterItem());
 			
 			toolRecipe.shape("D  ", " D ", "   ");
 			toolRecipe.setIngredient('D', Material.DIAMOND);
