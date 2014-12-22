@@ -34,6 +34,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerShearEntityEvent;
+import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -344,6 +345,18 @@ public class BBListener implements Listener {
 				}
 					
 			}, 1l);
+		}
+		else if(ev.getInventory() instanceof AnvilInventory) {
+			// Avoid players to rename the slab items.
+			ItemStack item = ev.getInventory().getItem(0);
+			if(item != null) {
+			if(item.equals(p.getSmoothStoneItem(item.getAmount()))
+					|| item.equals(p.getSmoothSandstoneItem(item.getAmount()))
+					|| item.equals(p.getSmoothRedSandstoneItem(item.getAmount()))
+					) {
+				ev.getInventory().setItem(2, new ItemStack(Material.AIR,0));
+			}
+			}	
 		}
 	}
 	
