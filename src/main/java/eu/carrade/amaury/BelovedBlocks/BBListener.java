@@ -38,6 +38,7 @@ import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class BBListener implements Listener {
 	
@@ -348,13 +349,25 @@ public class BBListener implements Listener {
 		}
 		
 		else if(ev.getInventory() instanceof AnvilInventory) {
-			// Avoid players to rename the slab items.
 			ItemStack item = ev.getInventory().getItem(0);
+			ItemStack tool = p.getToolSawItem();
+			ItemStack result = ev.getInventory().getItem(2);
+			if(item != null){
+			tool.setDurability(item.getDurability());
+			}
+			
 			if(item != null) {
 				if(item.equals(p.getSmoothStoneItem(item.getAmount()))
 						|| item.equals(p.getSmoothSandstoneItem(item.getAmount()))
 						|| item.equals(p.getSmoothRedSandstoneItem(item.getAmount()))) {
+					// Avoid players to rename the slab items.
 					ev.getInventory().setItem(2, new ItemStack(Material.AIR,0));
+				}else if(item.getItemMeta().getDisplayName().equals(tool.getItemMeta().getDisplayName())){
+					// Players can add enchantments to the saw.
+					ev.getInventory().getItem(2).setDurability(item.getDurability());
+					ItemMeta itemMeta = result.getItemMeta();
+					itemMeta.setDisplayName(p.getToolSawName());
+					ev.getInventory().getItem(2).setItemMeta(itemMeta);
 				}
 			}	
 		}
