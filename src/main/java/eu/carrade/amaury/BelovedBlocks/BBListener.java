@@ -383,8 +383,8 @@ public class BBListener implements Listener {
 						|| item.equals(p.getSmoothAcaciaItem(item.getAmount()))
 						|| item.equals(p.getSmoothDarkOakItem(item.getAmount())))) {
 					
-					ItemStack result = new ItemStack(item.getType(), item.getDurability());
-					result.setAmount(1);
+					ItemStack result = new ItemStack(item.getType(), 1);
+					result.setDurability(item.getDurability());
 					e.getInventory().setResult(result);
 				}
 			}
