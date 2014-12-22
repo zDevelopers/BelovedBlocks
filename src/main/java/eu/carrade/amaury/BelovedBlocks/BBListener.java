@@ -361,24 +361,36 @@ public class BBListener implements Listener {
 		
 		else if(ev.getInventory() instanceof AnvilInventory) {
 			ItemStack item = ev.getInventory().getItem(0);
-			ItemStack tool = p.getToolSawItem();
+			ItemStack toolSaw = p.getToolSawItem();
 			ItemStack result = ev.getInventory().getItem(2);
 			if(item != null){
-				tool.setDurability(item.getDurability());
+				toolSaw.setDurability(item.getDurability());
 			}
 			
 			if(item != null) {
+				// Items cannot be renamed
 				if(item.equals(p.getSmoothStoneItem(item.getAmount()))
 						|| item.equals(p.getSmoothSandstoneItem(item.getAmount()))
 						|| item.equals(p.getSmoothRedSandstoneItem(item.getAmount()))
 						|| item.equals(p.getSmoothQuartzItem(item.getAmount()))) {
 					// Avoid players to rename the slab items.
 					ev.getInventory().setItem(2, new ItemStack(Material.AIR,0));
-				} else if(item.getItemMeta().getDisplayName().equals(tool.getItemMeta().getDisplayName())){
+				
+				// Saw
+				} else if(item.getItemMeta().getDisplayName().equals(p.getToolSawName())){
 					// Players can add enchantments to the saw.
 					ev.getInventory().getItem(2).setDurability(item.getDurability());
 					ItemMeta itemMeta = result.getItemMeta();
 					itemMeta.setDisplayName(p.getToolSawName());
+					ev.getInventory().getItem(2).setItemMeta(itemMeta);
+				}
+				
+				// Stonecutter
+				else if(item.getItemMeta().getDisplayName().equals(p.getToolStonecutterName())) {
+					// Same for the stonecutter
+					ev.getInventory().getItem(2).setDurability(item.getDurability());
+					ItemMeta itemMeta = result.getItemMeta();
+					itemMeta.setDisplayName(p.getToolStonecutterName());
 					ev.getInventory().getItem(2).setItemMeta(itemMeta);
 				}
 			}	
