@@ -140,6 +140,15 @@ public class BBRecipes {
 			
 			toolRecipe.shape("   ", "   ", "IIS");
 			p.getServer().addRecipe(toolRecipe);
+			
+			toolRecipe.shape("SII", "   ", "   ");
+			p.getServer().addRecipe(toolRecipe);
+			
+			toolRecipe.shape("   ", "SII", "   ");
+			p.getServer().addRecipe(toolRecipe);
+			
+			toolRecipe.shape("   ", "   ", "SII");
+			p.getServer().addRecipe(toolRecipe);
 		}
 	}
 	
