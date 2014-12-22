@@ -24,3 +24,8 @@ keys:
             howto:
                 line1: "{gray}Klicken Sie auf eine Doppelte Stufe"
                 line2: "{gray}um es zu schnitten"
+        saw:
+            howto:
+                line1: "{gray}Klicken Sie auf eine Holzblock"
+                line2: "{gray}um die Rinde zu drehen"
+
