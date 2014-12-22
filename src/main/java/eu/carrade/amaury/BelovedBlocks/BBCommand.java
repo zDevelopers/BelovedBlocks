@@ -99,7 +99,7 @@ public class BBCommand implements TabExecutor {
 				}
 			}
 			
-			else if(args[1].equalsIgnoreCase("block")) { // /bb give block <stone|sandstone|red-sandstone|oak|spruce|birch|jungle|acacia|dark-oak> [amount] [target]
+			else if(args[1].equalsIgnoreCase("block")) { // /bb give block <stone|sandstone|red-sandstone|quartz|oak|spruce|birch|jungle|acacia|dark-oak> [amount] [target]
 				if(args.length < 3) {
 					sender.sendMessage(i.t("cmd.help.giveBlock"));
 					return true;
@@ -126,30 +126,40 @@ public class BBCommand implements TabExecutor {
 							break;
 						case "red-sandstone":
 							toGive = p.getSmoothRedSandstoneItem(amount);
+							itemName = "blocks.red-sandstone";
+							break;
+						case "quartz":
+							toGive = p.getSmoothQuartzItem(amount);
+							itemName = "blocks.quartz";
 							break;
 						
 						case "oak":
 							toGive = p.getSmoothOakItem(amount);
+							itemName = "blocks.oak";
 							break;
 						case "spruce":
 							toGive = p.getSmoothSpruceItem(amount);
+							itemName = "blocks.spruce";
 							break;
 						case "birch":
 							toGive = p.getSmoothBirchItem(amount);
+							itemName = "blocks.birch";
 							break;
 						case "jungle":
 							toGive = p.getSmoothJungleItem(amount);
+							itemName = "blocks.jungle";
 							break;
 						case "acacia":
 							toGive = p.getSmoothAcaciaItem(amount);
+							itemName = "blocks.acacia";
 							break;
 						case "dark-oak":
 							toGive = p.getSmoothDarkOakItem(amount);
+							itemName = "blocks.dark-oak";
 							break;
 						
 						default:
 							sender.sendMessage(i.t("cmd.give.invalidBlock"));
-							itemName = "blocks.red-sandstone";
 							return true;
 					}
 					
@@ -217,8 +227,8 @@ public class BBCommand implements TabExecutor {
 		
 		else if(args.length == 3 && args[1].equalsIgnoreCase("block")) { // /bb give <> <?>
 			return getAutocompleteSuggestions(args[2], Arrays.asList("stone", "sandstone", "red-sandstone",
-			                                                         "oak", "spruce", "birch", "jungle",
-			                                                         "acacia", "dark-oak"));
+			                                                         "quartz",  "oak", "spruce", "birch",
+			                                                         "jungle", "acacia", "dark-oak"));
 		}
 		
 		else if(args.length == 4 && args[1].equalsIgnoreCase("block")) { // /bb give <> <> <?>
