@@ -34,9 +34,13 @@ Each seamless block is represented by a similar item with a glowing enchantement
 
 ![](http://amaury.carrade.eu//files/output_K6fg1T.gif)
 
-The smooth log blocks can also be crafted using the same process, except with wooden logs. You get 4 smooth log items. (to be completed)
+The smooth log blocks can also be crafted using the same process, except with wooden logs:
 
-The crafts can be disabled.
+![](http://amaury.carrade.eu//files/logs.gif)
+
+Those crafts can be disabled.
+
+All those items can be salvaged to get the materials back ; simply place an item in a crafting grid.
 
 ### Stonecutter
 
