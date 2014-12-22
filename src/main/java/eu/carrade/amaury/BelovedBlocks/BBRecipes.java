@@ -49,6 +49,10 @@ public class BBRecipes {
 			registerSquaredRecipe(Material.STONE_SLAB2, 0, p.getSmoothRedSandstoneItem(2));
 		}
 		
+		if(p.getConfig().getBoolean("blocks.slabs.quartz.craftable")) {
+			registerSquaredRecipe(Material.STEP, 7, p.getSmoothQuartzItem(2));
+		}
+		
 		// Slab's uncrafting recipes
 		
 		registerUncraft(Material.STONE, 6, new ItemStack(Material.STEP, 2), 0);
@@ -56,6 +60,8 @@ public class BBRecipes {
 		registerUncraft(Material.SANDSTONE, 2, new ItemStack(Material.STEP, 2), 1);
 		
 		registerUncraft(Material.RED_SANDSTONE, 2, new ItemStack(Material.STONE_SLAB2, 2), 0);
+		
+		registerUncraft(Material.QUARTZ_BLOCK, 0, new ItemStack(Material.STEP, 2), 7);
 		
 		
 		/** Logs **/

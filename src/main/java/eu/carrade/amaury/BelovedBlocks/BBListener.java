@@ -157,6 +157,13 @@ public class BBListener implements Listener {
 			e.getBlockPlaced().setData((byte) 8);
 		}
 		
+		else if(blockType == Material.QUARTZ_BLOCK
+				&& name.equals(p.getSmoothQuartzName())) {
+			
+			e.getBlockPlaced().setType(Material.DOUBLE_STEP);
+			e.getBlockPlaced().setData((byte) 7);
+		}
+		
 		else if(blockType == Material.LOG
 				&& e.getItemInHand().getDurability() == 0
 				&& name.equals(p.getSmoothOakName())) {
@@ -261,7 +268,11 @@ public class BBListener implements Listener {
 						|| itemInHandType == Material.DIAMOND_PICKAXE) {
 				
 				if(block.getType() == Material.DOUBLE_STEP) {
-					if(block.getData() == 8) {
+					if(block.getData() == 7) {
+						ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothQuartzItem(1));
+						ev.getBlock().setType(Material.AIR);
+					}
+					else if(block.getData() == 8) {
 						ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothStoneItem(1));
 						ev.getBlock().setType(Material.AIR);
 					}
@@ -353,7 +364,8 @@ public class BBListener implements Listener {
 			if(item != null) {
 				if(item.equals(p.getSmoothStoneItem(item.getAmount()))
 						|| item.equals(p.getSmoothSandstoneItem(item.getAmount()))
-						|| item.equals(p.getSmoothRedSandstoneItem(item.getAmount()))) {
+						|| item.equals(p.getSmoothRedSandstoneItem(item.getAmount()))
+						|| item.equals(p.getSmoothQuartzItem(item.getAmount()))) {
 					ev.getInventory().setItem(2, new ItemStack(Material.AIR,0));
 				}
 			}	
@@ -406,9 +418,16 @@ public class BBListener implements Listener {
 		
 		if(getCount(e.getInventory()) == 1 && item != null && item.getType() != Material.AIR) {
 			// Handles the smooth stone items.
-			if(item.getType() == Material.STONE || item.getType() == Material.SANDSTONE || item.getType() == Material.RED_SANDSTONE) {
-				if(item.hasItemMeta() && (item.equals(p.getSmoothStoneItem(item.getAmount())) || item.equals(p.getSmoothSandstoneItem(item.getAmount())) || item.equals(p.getSmoothRedSandstoneItem(item.getAmount())))) {
-				
+			if(item.getType() == Material.STONE
+					|| item.getType() == Material.SANDSTONE
+					|| item.getType() == Material.RED_SANDSTONE
+					|| item.getType() == Material.QUARTZ_BLOCK) {
+				if(item.hasItemMeta()
+						&& (item.equals(p.getSmoothStoneItem(item.getAmount()))
+								|| item.equals(p.getSmoothSandstoneItem(item.getAmount()))
+								|| item.equals(p.getSmoothRedSandstoneItem(item.getAmount()))
+								|| item.equals(p.getSmoothQuartzItem(item.getAmount())))) {
+					// ok
 				}
 				else {
 					e.getInventory().setResult(new ItemStack(Material.AIR, 1));

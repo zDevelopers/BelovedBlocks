@@ -41,6 +41,12 @@ blocks:
             name: "Smooth Red Sandstone Double Slab"
             craftable: true   # Crafted with four slabs in a square.
             itemGlow: true
+        
+        quartz:
+            name: "Smooth Quartz Double Slab"
+            craftable: true   # Crafted with four slabs in a square.
+            itemGlow: true
+    
     logs:
         oak:
             name: "Smooth Oak Wood"

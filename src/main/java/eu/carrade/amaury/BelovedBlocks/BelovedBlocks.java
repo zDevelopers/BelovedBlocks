@@ -40,6 +40,7 @@ public final class BelovedBlocks extends JavaPlugin {
 	private String smoothStoneName;
 	private String smoothSandstoneName;
 	private String smoothRedSandstoneName;
+	private String smoothQuartzName;
 	private String smoothOakName;
 	private String smoothSpruceName;
 	private String smoothBirchName;
@@ -70,6 +71,8 @@ public final class BelovedBlocks extends JavaPlugin {
 		smoothStoneName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.slabs.stone.name"));
 		smoothSandstoneName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.slabs.sandstone.name"));
 		smoothRedSandstoneName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.slabs.red_sandstone.name"));
+		smoothQuartzName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.slabs.quartz.name"));
+		
 		smoothOakName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.logs.oak.name"));
 		smoothSpruceName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.logs.spruce.name"));
 		smoothBirchName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.logs.birch.name"));
@@ -198,6 +201,26 @@ public final class BelovedBlocks extends JavaPlugin {
 	    }
 	    
 	    return smoothRedSandstone;
+	}
+	
+	/**
+	 * Returns the item used as a replacement for the smooth quartz double-slab.
+	 * 
+	 * @param amount The amount of items in the stack.
+	 * @return the item.
+	 */
+	public ItemStack getSmoothQuartzItem(int amount) {
+		ItemStack smoothQuartz = new ItemStack(Material.QUARTZ_BLOCK, amount);
+		
+		ItemMeta itemMeta = smoothQuartz.getItemMeta();
+	    itemMeta.setDisplayName(smoothQuartzName);
+	    smoothQuartz.setItemMeta(itemMeta);
+	    
+	    if(getConfig().getBoolean("blocks.slabs.quartz.itemGlow")) {
+	    	GlowEffect.addGlow(smoothQuartz);
+	    }
+	    
+	    return smoothQuartz;
 	}
 	
 	public ItemStack getSmoothOakItem(int amount) {
@@ -348,6 +371,10 @@ public final class BelovedBlocks extends JavaPlugin {
 
 	public String getSmoothRedSandstoneName() {
 		return smoothRedSandstoneName;
+	}
+	
+	public String getSmoothQuartzName() {
+		return smoothQuartzName;
 	}
 	
 	public String getSmoothOakName() {
