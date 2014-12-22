@@ -31,12 +31,19 @@ permissions:
          - belovedblocks.give.blocks.stone
          - belovedblocks.give.blocks.sandstone
          - belovedblocks.give.blocks.red-sandstone
+         - belovedblocks.give.blocks.quartz
+         - belovedblocks.give.blocks.oak
+         - belovedblocks.give.blocks.spruce
+         - belovedblocks.give.blocks.birch
+         - belovedblocks.give.blocks.jungle
+         - belovedblocks.give.blocks.acacia
+         - belovedblocks.give.blocks.dark-oak
     
     belovedblocks.give.tool.*:
         description: "Allow someone to give the stonecutter of BelovedBlocks."
         children:
-         - belovedblocks.give.tool.self
-         - belovedblocks.give.tool.other
+         - belovedblocks.give.tool.stonecutter
+         - belovedblocks.give.tool.saw
     
     belovedblocks.give.blocks.stone.*:
         description: "Allow someone to give the smooth stone block of BelovedBlocks."
@@ -55,37 +62,57 @@ permissions:
         children:
          - belovedblocks.give.blocks.red-sandstone.self
          - belovedblocks.give.blocks.red-sandstone.other
-
-
-    belovedblocks.give.tool.self:
-        description: "Allow someone to give the stonecutter of BelovedBlocks to themselves."
-        default: op
     
-    belovedblocks.give.blocks.stone.self:
-        description: "Allow someone to give the smooth stone block of BelovedBlocks to themselves."
-        default: op
+    belovedblocks.give.blocks.quartz.*:
+        description: "Allow someone to give the smooth quartz block of BelovedBlocks."
+        children:
+         - belovedblocks.give.blocks.quartz.self
+         - belovedblocks.give.blocks.quartz.other
     
-    belovedblocks.give.blocks.sandstone.self:
-        description: "Allow someone to give the smooth sandstone block of BelovedBlocks to themselves."
-        default: op
+    belovedblocks.give.blocks.oak.*:
+        description: "Allow someone to give the smooth oak block of BelovedBlocks."
+        children:
+         - belovedblocks.give.blocks.oak.self
+         - belovedblocks.give.blocks.oak.other
     
-    belovedblocks.give.blocks.red-sandstone.self:
-        description: "Allow someone to give the smooth red sandstone block of BelovedBlocks to themselves."
-        default: op
-
-
-    belovedblocks.give.tool.other:
-        description: "Allow someone to give the stonecutter of BelovedBlocks to anyone other than themselves."
-        default: op
+    belovedblocks.give.blocks.spruce.*:
+        description: "Allow someone to give the smooth spruce block of BelovedBlocks."
+        children:
+         - belovedblocks.give.blocks.spruce.self
+         - belovedblocks.give.blocks.spruce.other
     
-    belovedblocks.give.blocks.stone.other:
-        description: "Allow someone to give the smooth stone block of BelovedBlocks to anyone other than themselves."
-        default: op
+    belovedblocks.give.blocks.birch.*:
+        description: "Allow someone to give the smooth birch block of BelovedBlocks."
+        children:
+         - belovedblocks.give.blocks.birch.self
+         - belovedblocks.give.blocks.birch.other
     
-    belovedblocks.give.blocks.sandstone.other:
-        description: "Allow someone to give the smooth sandstone block of BelovedBlocks to anyone other than themselves."
-        default: op
+    belovedblocks.give.blocks.jungle.*:
+        description: "Allow someone to give the smooth jungle block of BelovedBlocks."
+        children:
+         - belovedblocks.give.blocks.jungle.self
+         - belovedblocks.give.blocks.jungle.other
     
-    belovedblocks.give.blocks.red-sandstone.other:
-        description: "Allow someone to give the smooth red sandstone block of BelovedBlocks to anyone other than themselves."
-        default: op
+    belovedblocks.give.blocks.acacia.*:
+        description: "Allow someone to give the smooth acacia block of BelovedBlocks."
+        children:
+         - belovedblocks.give.blocks.acacia.self
+         - belovedblocks.give.blocks.acacia.other
+    
+    belovedblocks.give.blocks.dark-oak.*:
+        description: "Allow someone to give the smooth dark oak block of BelovedBlocks."
+        children:
+         - belovedblocks.give.blocks.dark-oak.self
+         - belovedblocks.give.blocks.dark-oak.other
+   
+    belovedblocks.give.tool.stonecutter.*:
+        description: "Allow someone to give the stonecutter of BelovedBlocks."
+        children:
+         - belovedblocks.give.tool.stonecutter.self
+         - belovedblocks.give.tool.stonecutter.other
+   
+    belovedblocks.give.tool.saw.*:
+        description: "Allow someone to give the saw of BelovedBlocks."
+        children:
+         - belovedblocks.give.tool.saw.self
+         - belovedblocks.give.tool.saw.other
