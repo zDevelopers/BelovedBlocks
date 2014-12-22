@@ -6,11 +6,12 @@ keys:
         disallowed: "{ce}Sie haben nicht das Recht um das zu verwenden."
         
         help:
-            giveTool: "{cc}/bb give tool [Empfänger] {ci}: gibt der BelovedBlocks Steinmetz zun ihnen oder zu der Empfänger."
+            giveTool: "{cc}/bb give tool <stonecutter|saw> [Empfänger] {ci}: gibt der BelovedBlocks Werkzeug zu ihnen oder zu der Empfänger."
             giveBlock: "{cc}/bb give block <stone|sandstone|red-sandstone|oak|spruce|birch|jungle|acacia|dark-oak> [Menge] [Empfänger] {ci}: gibt die BelovedBlocks Blocks zu ihnen oder zu der Empfänger."
         
         give:
             invalidBlock: "{ce}Diesen Block ist nicht ein gültiges BelovedBlocks Block."
+            invalidTool: "{ce}Dieses Werkzeug ist nicht ein gültiges BelovedBlocks Werkzeug."
             
             unknownPlayer: "{ce}Dieses Spieler ist nicht online."
             playerRequiredFromConsole: "{ce}Sie müssen ein Empfänger durch die Konsole angeben."
