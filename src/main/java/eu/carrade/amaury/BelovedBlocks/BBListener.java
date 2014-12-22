@@ -87,6 +87,34 @@ public class BBListener implements Listener {
 				ev.setCancelled(true);
 			}
 		}
+		
+		else if(p.isValidSawTool(item)) {
+			
+			if((type == Material.LOG || type == Material.LOG_2)
+					&& ev.getAction() == Action.RIGHT_CLICK_BLOCK) {
+				
+				block.setData((byte) (ev.getClickedBlock().getData() + 4));
+				
+				// Durability
+				if(player.getGameMode() != GameMode.CREATIVE) {
+					short newDurability = (short) (item.getDurability()
+							+ p.increaseDurability(item.getEnchantmentLevel(Enchantment.DURABILITY)));
+					
+					if(newDurability > item.getType().getMaxDurability()) {
+						player.getInventory().setItemInHand(new ItemStack(Material.AIR));
+						player.playSound(player.getLocation(), Sound.ITEM_BREAK, 0.8f, 1);
+					}
+					else {
+						item.setDurability(newDurability);
+						player.getInventory().setItemInHand(item);
+					}
+					
+					player.updateInventory();
+				}
+				
+				ev.setCancelled(true);
+			}
+		}
 	}
 	
 	/**

@@ -24,3 +24,7 @@ keys:
             howto:
                 line1: "{gray}Right-click on a double slab"
                 line2: "{gray}to smooth or carve the block"
+        saw:
+            howto:
+                line1: "{gray}Right-click a log to move"
+                line2: "{gray}the bark around the block"

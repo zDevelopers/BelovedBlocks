@@ -17,6 +17,13 @@ tool:
         itemGlow: true
         usageInLore: true    # Display infos on how to use in the tooltip of the tool. Warning, they will stay on already crafted items.
 
+    saw:
+        name: "Saw"
+        craftable: true
+        itemGlow: true
+        usageInLore: true    # Display infos on how to use in the tooltip of the tool. Warning, they will stay on already crafted items.
+
+
 # Configuration for the blocks
 blocks:
     slabs:

@@ -32,7 +32,7 @@ public class BBRecipes {
 		
 		/** Tools **/
 		
-		registerTool();
+		registerTools();
 		
 		
 		/** Slabs **/
@@ -90,8 +90,8 @@ public class BBRecipes {
 	/**
 	 * Registers the recipes for the tool.
 	 */
-	private void registerTool() {
-		if(p.getConfig().getBoolean("tool.craftable")) {
+	private void registerTools() {
+		if(p.getConfig().getBoolean("tool.stonecutter.craftable")) {
 			ShapedRecipe toolRecipe = new ShapedRecipe(p.getToolStonecutterItem());
 			
 			toolRecipe.shape("D  ", " D ", "   ");
@@ -117,6 +117,22 @@ public class BBRecipes {
 			p.getServer().addRecipe(toolRecipe);
 			
 			toolRecipe.shape("   ", "  D", " D ");
+			p.getServer().addRecipe(toolRecipe);
+		}
+		
+		if(p.getConfig().getBoolean("tool.saw.craftable")) {
+			ShapedRecipe toolRecipe = new ShapedRecipe(p.getToolSawItem());
+			
+			toolRecipe.shape("IIS", "   ", "   ");
+			toolRecipe.setIngredient('I', Material.IRON_INGOT);
+			toolRecipe.setIngredient('S', Material.STICK);
+			
+			p.getServer().addRecipe(toolRecipe);
+			
+			toolRecipe.shape("   ", "IIS", "   ");
+			p.getServer().addRecipe(toolRecipe);
+			
+			toolRecipe.shape("   ", "   ", "IIS");
 			p.getServer().addRecipe(toolRecipe);
 		}
 	}

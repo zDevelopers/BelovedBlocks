@@ -36,6 +36,7 @@ public final class BelovedBlocks extends JavaPlugin {
 	private BBRecipes recipes;
 	
 	private String toolStonecutterName;
+	private String toolSawName;
 	private String smoothStoneName;
 	private String smoothSandstoneName;
 	private String smoothRedSandstoneName;
@@ -64,6 +65,7 @@ public final class BelovedBlocks extends JavaPlugin {
 		getCommand("belovedblocks").setTabCompleter(commandExecutor);
 		
 		toolStonecutterName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("tool.stonecutter.name"));
+		toolSawName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("tool.saw.name"));
 		
 		smoothStoneName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.slabs.stone.name"));
 		smoothSandstoneName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.slabs.sandstone.name"));
@@ -88,7 +90,7 @@ public final class BelovedBlocks extends JavaPlugin {
 	}
 	
 	/**
-	 * Returns the item used as the tool.
+	 * Returns the item used as the stonecutter.
 	 * 
 	 * @return the item.
 	 */
@@ -98,13 +100,37 @@ public final class BelovedBlocks extends JavaPlugin {
 		ItemMeta meta = tool.getItemMeta();
 		meta.setDisplayName(toolStonecutterName);
 		
-		if(getConfig().getBoolean("tool.usageInLore")) {
+		if(getConfig().getBoolean("tool.stonecutter.usageInLore")) {
 			meta.setLore(Arrays.asList(i.t("tool.stonecutter.howto.line1"), i.t("tool.stonecutter.howto.line2")));
 		}
 		
 		tool.setItemMeta(meta);
 		
 		if(getConfig().getBoolean("tool.stonecutter.itemGlow")) {
+			GlowEffect.addGlow(tool);
+		}
+		
+		return tool;
+	}
+	
+	/**
+	 * Returns the item used as the saw.
+	 * 
+	 * @return the item.
+	 */
+	public ItemStack getToolSawItem() {
+		ItemStack tool = new ItemStack(Material.IRON_AXE);
+		
+		ItemMeta meta = tool.getItemMeta();
+		meta.setDisplayName(toolSawName);
+		
+		if(getConfig().getBoolean("tool.saw.usageInLore")) {
+			meta.setLore(Arrays.asList(i.t("tool.saw.howto.line1"), i.t("tool.saw.howto.line2")));
+		}
+		
+		tool.setItemMeta(meta);
+		
+		if(getConfig().getBoolean("tool.saw.itemGlow")) {
 			GlowEffect.addGlow(tool);
 		}
 		
@@ -265,7 +291,7 @@ public final class BelovedBlocks extends JavaPlugin {
 	}
 	
 	/**
-	 * Checks if the given tool is a valid tool.
+	 * Checks if the given tool is a valid stonecutter.
 	 * 
 	 * @param tool The tool to check.
 	 * @return The result.
@@ -275,6 +301,19 @@ public final class BelovedBlocks extends JavaPlugin {
 				&& tool.getType() == Material.SHEARS
 				&& tool.getItemMeta().getDisplayName() != null
 				&& tool.getItemMeta().getDisplayName().equals(toolStonecutterName));
+	}
+	
+	/**
+	 * Checks if the given tool is a valid saw.
+	 * 
+	 * @param tool The tool to check.
+	 * @return The result.
+	 */
+	public boolean isValidSawTool(ItemStack tool) {
+		return (tool != null
+				&& tool.getType() == Material.IRON_AXE
+				&& tool.getItemMeta().getDisplayName() != null
+				&& tool.getItemMeta().getDisplayName().equals(toolSawName));
 	}
 	
 	/**
@@ -293,6 +332,10 @@ public final class BelovedBlocks extends JavaPlugin {
 
 	public String getToolStonecutterName() {
 		return toolStonecutterName;
+	}
+	
+	public String getToolSawName() {
+		return toolSawName;
 	}
 
 	public String getSmoothStoneName() {
