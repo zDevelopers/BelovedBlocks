@@ -339,8 +339,12 @@ public class BBListener implements Listener {
 	}
 	
 	/**
-	 * Workaround to fix the crafting grid being not updated when the item is taken
-	 * from the grid.
+	 *  - Workaround to fix the crafting grid being not updated when the item is taken
+	 *    from the grid.
+	 *    <p>
+	 *  - Used to prevent our blocks to be renamed using an anvil.
+	 *    <p>
+	 *  - Used to allow our tools to be enchanted (ensure the name is kept).
 	 * 
 	 * @param ev
 	 */
@@ -363,23 +367,22 @@ public class BBListener implements Listener {
 		
 		else if(ev.getInventory() instanceof AnvilInventory) {
 			ItemStack item = ev.getInventory().getItem(0);
-			ItemStack toolSaw = p.getToolSawItem();
 			ItemStack result = ev.getInventory().getItem(2);
-			if(item != null){
-				toolSaw.setDurability(item.getDurability());
-			}
 			
 			if(item != null) {
+				
 				// Items cannot be renamed
-				if(item.equals(p.getSmoothStoneItem(item.getAmount()))
-						|| item.equals(p.getSmoothSandstoneItem(item.getAmount()))
-						|| item.equals(p.getSmoothRedSandstoneItem(item.getAmount()))
-						|| item.equals(p.getSmoothQuartzItem(item.getAmount()))) {
+				if(item.hasItemMeta()
+						&& (   item.getItemMeta().getDisplayName().equals(p.getSmoothStoneName())
+							|| item.getItemMeta().getDisplayName().equals(p.getSmoothSandstoneName())
+							|| item.getItemMeta().getDisplayName().equals(p.getSmoothRedSandstoneName())
+							|| item.getItemMeta().getDisplayName().equals(p.getSmoothQuartzName()))) {
 					// Avoid players to rename the slab items.
 					ev.getInventory().setItem(2, new ItemStack(Material.AIR,0));
+				}
 				
 				// Saw
-				} else if(item.hasItemMeta() && item.getItemMeta().getDisplayName().equals(p.getToolSawName())){
+				else if(item.hasItemMeta() && item.getItemMeta().getDisplayName().equals(p.getToolSawName())) {
 					// Players can add enchantments to the saw.
 					ev.getInventory().getItem(2).setDurability(item.getDurability());
 					ItemMeta itemMeta = result.getItemMeta();
