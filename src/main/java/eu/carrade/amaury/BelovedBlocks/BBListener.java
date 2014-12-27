@@ -233,7 +233,8 @@ public class BBListener implements Listener {
 						|| ev.getBlock().getType() == Material.DOUBLE_PLANT
 						|| ev.getBlock().getType() == Material.LONG_GRASS
 						|| ev.getBlock().getType() == Material.VINE) {
-						// The tool doesn't loose any durability though.
+					
+					// The tool doesn't loose any durability though.
 					ev.setCancelled(true);
 					ev.getBlock().setType(Material.AIR);
 				}
@@ -242,8 +243,8 @@ public class BBListener implements Listener {
 						|| ev.getBlock().getType() == Material.WOOL
 						|| ev.getBlock().getType() == Material.WEB
 						|| ev.getBlock().getType() == Material.STRING) {
-							
-						// The tool loses 2 durability points.
+					
+					// The tool loses 2 durability points.
 					short newDurability = (short) (ev.getPlayer().getItemInHand().getDurability()
 							+ p.increaseDurability(ev.getPlayer().getItemInHand().getEnchantmentLevel(Enchantment.DURABILITY))
 							+ p.increaseDurability(ev.getPlayer().getItemInHand().getEnchantmentLevel(Enchantment.DURABILITY)));
@@ -378,7 +379,7 @@ public class BBListener implements Listener {
 					ev.getInventory().setItem(2, new ItemStack(Material.AIR,0));
 				
 				// Saw
-				} else if(item.getItemMeta().getDisplayName().equals(p.getToolSawName())){
+				} else if(item.hasItemMeta() && item.getItemMeta().getDisplayName().equals(p.getToolSawName())){
 					// Players can add enchantments to the saw.
 					ev.getInventory().getItem(2).setDurability(item.getDurability());
 					ItemMeta itemMeta = result.getItemMeta();
@@ -387,7 +388,7 @@ public class BBListener implements Listener {
 				}
 				
 				// Stonecutter
-				else if(item.getItemMeta().getDisplayName().equals(p.getToolStonecutterName())) {
+				else if(item.hasItemMeta() && item.getItemMeta().getDisplayName().equals(p.getToolStonecutterName())) {
 					// Same for the stonecutter
 					ev.getInventory().getItem(2).setDurability(item.getDurability());
 					ItemMeta itemMeta = result.getItemMeta();
