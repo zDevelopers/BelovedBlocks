@@ -13,15 +13,17 @@
 tool:
     stonecutter:
         name: "Stonecutter"
-        craftable: true      # Crafted like the shears, with diamonds.
+        craftable: true       # Crafted like the shears, with diamonds.
         itemGlow: true
-        usageInLore: true    # Display infos on how to use in the tooltip of the tool. Warning, they will stay on already crafted items.
+        usageInLore: true     # Display infos on how to use in the tooltip of the tool. Warning, they will stay on already crafted items.
 
     saw:
         name: "Saw"
         craftable: true
         itemGlow: true
-        usageInLore: true    # Display infos on how to use in the tooltip of the tool. Warning, they will stay on already crafted items.
+        usageInLore: true     # Display infos on how to use in the tooltip of the tool. Warning, they will stay on already crafted items.
+        percentageToBreak: 1  # Configures the probability the item will break to prevent players abusing it. Setting it to 0 will disable the effect.
+                              # Number between 0 and 100.
 
 
 # Configuration for the blocks

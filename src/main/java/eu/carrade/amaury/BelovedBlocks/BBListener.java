@@ -320,6 +320,15 @@ public class BBListener implements Listener {
 					ev.getBlock().setType(Material.AIR);
 				}
 			}
+			if(p.isValidSawTool(ev.getPlayer().getItemInHand())){
+				// Chance the saw to break.
+				float percent = (float) (p.getConfig().getInt("tool.saw.percentageToBreak") * 0.01);
+				if((float) Math.random() <= percent){
+					ev.getPlayer().getInventory().setItemInHand(new ItemStack(Material.AIR));
+					ev.getPlayer().playSound(ev.getPlayer().getLocation(), Sound.ITEM_BREAK, 0.8f, 1);
+				}
+				
+			}
 		}
 	}
 	

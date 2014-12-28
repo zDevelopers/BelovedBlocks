@@ -1,4 +1,4 @@
-author: "Amaury Carrade"
+﻿author: "Amaury Carrade"
 keys:
     cmd:
         version: "{yellow}{0} - version {1}"
@@ -29,3 +29,4 @@ keys:
             howto:
                 line1: "{gray}Cliquez sur un tronc pour"
                 line2: "{gray}déplacer l'écorce autour du bloc"
+                line3: "{red}Attention, la scie peut se casser en détruisant des blocs"

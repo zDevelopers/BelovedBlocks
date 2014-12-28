@@ -1,4 +1,4 @@
-author: "Amaury Carrade"
+﻿author: "Amaury Carrade"
 keys:
     cmd:
         version: "{yellow}{0} - version {1}"
@@ -29,3 +29,4 @@ keys:
             howto:
                 line1: "{gray}Right-click a log to move"
                 line2: "{gray}the bark around the block"
+                line3: "{red}Warning, the saw may break when breaking blocks"
