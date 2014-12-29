@@ -84,9 +84,13 @@ The main command is `/belovedblocks`, or `/bb` (an alias).
 The permissions tree is the following one:
 
  * `belovedblocks.give`
-    * `tool`
-       * `self`
-       * `other`
+    * `tools`
+       * `stonecutter`
+          * `self`
+          * `other`
+       * `saw`
+          * `self`
+          * `other`
     * `blocks`
        * `stone`
           * `self`
