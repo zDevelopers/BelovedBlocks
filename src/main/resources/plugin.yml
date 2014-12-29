@@ -39,11 +39,11 @@ permissions:
          - belovedblocks.give.blocks.acacia
          - belovedblocks.give.blocks.dark-oak
     
-    belovedblocks.give.tool.*:
+    belovedblocks.give.tools.*:
         description: "Allow someone to give the stonecutter of BelovedBlocks."
         children:
-         - belovedblocks.give.tool.stonecutter
-         - belovedblocks.give.tool.saw
+         - belovedblocks.give.tools.stonecutter
+         - belovedblocks.give.tools.saw
     
     belovedblocks.give.blocks.stone.*:
         description: "Allow someone to give the smooth stone block of BelovedBlocks."
@@ -105,13 +105,13 @@ permissions:
          - belovedblocks.give.blocks.dark-oak.self
          - belovedblocks.give.blocks.dark-oak.other
    
-    belovedblocks.give.tool.stonecutter.*:
+    belovedblocks.give.tools.stonecutter.*:
         description: "Allow someone to give the stonecutter of BelovedBlocks."
         children:
          - belovedblocks.give.tool.stonecutter.self
          - belovedblocks.give.tool.stonecutter.other
    
-    belovedblocks.give.tool.saw.*:
+    belovedblocks.give.tools.saw.*:
         description: "Allow someone to give the saw of BelovedBlocks."
         children:
          - belovedblocks.give.tool.saw.self

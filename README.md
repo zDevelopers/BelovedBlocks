@@ -101,6 +101,27 @@ The permissions tree is the following one:
        * `red-sandstone`
           * `self`
           * `other`
+       * `quartz`
+          * `self`
+          * `other`
+       * `oak`
+          * `self`
+          * `other`
+       * `spruce`
+          * `self`
+          * `other`
+       * `birch`
+          * `self`
+          * `other`
+       * `jungle`
+          * `self`
+          * `other`
+       * `acacia`
+          * `self`
+          * `other`
+       * `dark-oak`
+          * `self`
+          * `other`
 
 As example:
  * to allow someone to give to himself only some smooth red sandstone, use the permission `belovedblocks.give.blocks.red-sandstone.self`;
