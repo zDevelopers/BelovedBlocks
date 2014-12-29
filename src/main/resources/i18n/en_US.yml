@@ -29,4 +29,5 @@ keys:
             howto:
                 line1: "{gray}Right-click a log to move"
                 line2: "{gray}the bark around the block"
-                line3: "{red}Warning, the saw may break when breaking blocks"
+                line3: "{red}Warning, the saw may break"
+                line4: "{red}when breaking blocks"

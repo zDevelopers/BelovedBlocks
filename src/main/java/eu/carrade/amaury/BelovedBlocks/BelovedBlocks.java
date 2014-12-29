@@ -128,11 +128,12 @@ public final class BelovedBlocks extends JavaPlugin {
 		meta.setDisplayName(toolSawName);
 		
 		if(getConfig().getBoolean("tool.saw.usageInLore")) {
-			if(getConfig().getInt("tool.saw.percentageToBreak") != 0){
-			meta.setLore(Arrays.asList(i.t("tool.saw.howto.line1"), i.t("tool.saw.howto.line2"), i.t("tool.saw.howto.line3")));
-			}else{
+			if(getConfig().getInt("tool.saw.percentageToBreak") != 0) {
+				meta.setLore(Arrays.asList(i.t("tool.saw.howto.line1"), i.t("tool.saw.howto.line2"), " ", i.t("tool.saw.howto.line3"), i.t("tool.saw.howto.line4")));
+			}
+			else {
 				meta.setLore(Arrays.asList(i.t("tool.saw.howto.line1"), i.t("tool.saw.howto.line2")));	
-		}
+			}
 		}
 		
 		tool.setItemMeta(meta);

@@ -29,4 +29,5 @@ keys:
             howto:
                 line1: "{gray}Cliquez sur un tronc pour"
                 line2: "{gray}déplacer l'écorce autour du bloc"
-                line3: "{red}Attention, la scie peut se casser en détruisant des blocs"
+                line3: "{red}Attention, la scie peut se casser"
+                line4: "{red}en détruisant des blocs"

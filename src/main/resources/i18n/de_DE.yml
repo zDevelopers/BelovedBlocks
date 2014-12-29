@@ -29,5 +29,6 @@ keys:
             howto:
                 line1: "{gray}Klicken Sie auf eine Holzblock"
                 line2: "{gray}um die Rinde zu drehen"
-                line3: "{red}Achtung, die Säge kann sich brechen wenn Sie Blöcke vernichten"
+                line3: "{red}Achtung, die Säge kann sich brechen"
+                line4: "{red}wenn Sie Blöcke vernichten"
 
