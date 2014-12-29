@@ -11,6 +11,7 @@ This plugin was made by Amaury Carrade and Florian Cassayre; it is currently tra
 1. [Features](#features)
    1. [New items](#items)
    2. [Stonecutter](#stonecutter)
+   3. [Saw](#saw)
 1. [Commands & permissions](#commands--permissions)
    1. [Commands](#commands)
    2. [Permissions](#permissions)
@@ -56,6 +57,16 @@ The basic double slabs block → the seamless version of this block:
 ![](http://amaury.carrade.eu//files/blocks_transforms_small.png)
 
 The process can be reverted (using the tool on a smooth block will turn it back into the original block).
+
+### Saw
+
+The saw is a tool that can move the bark around any of the six log blocks. To use it, simply right click with this tool on the wished log block to move the bark. The bark can have 4 different positions (tree of them follows, the tree axes and one has bark all around the texture). Each use will decrease the item's durability by 1. The unbreaking enchantement does work when applied. The saw can be crafted like this (the symetric craft also work):
+
+![](http://amaury.carrade.eu//files/BB_saw.png)
+
+The craft can be disabled.
+
+Note: When breaking blocks with the saw, it has a small chance to break. This percentage can be modified in the configuration.
 
 ## Commands & permissions
 
