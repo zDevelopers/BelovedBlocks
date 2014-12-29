@@ -15,8 +15,8 @@ This plugin was made by Amaury Carrade and Florian Cassayre; it is currently tra
 1. [Commands & permissions](#commands--permissions)
    1. [Commands](#commands)
    2. [Permissions](#permissions)
-2. [Configuration](#configuration)
-3. [License](#license)
+1. [Configuration](#configuration)
+1. [License](#license)
 
 
 ## Features
@@ -27,17 +27,17 @@ This plugin instances new items that transforms themselves into the desired spec
 
 ![](http://amaury.carrade.eu/files/banner.png)
 
-*The three seamless blocks featured by the plugin*
+*Some of the seamless blocks featured by the plugin*
 
 ### Items
 
 Each seamless block is represented by a similar item with a glowing enchantement effect (that can be disabled for each block in the [configuration](#configuration)). They also have a custom name (also configurable). The crafts are the same for the three blocks:
 
-![](http://amaury.carrade.eu//files/output_K6fg1T.gif)
+![](http://amaury.carrade.eu/files/output_K6fg1T.gif)
 
 The smooth log blocks can also be crafted using the same process, except with wooden logs:
 
-![](http://amaury.carrade.eu//files/logs.gif)
+![](http://amaury.carrade.eu/files/logs.gif)
 
 Those crafts can be disabled.
 
@@ -47,14 +47,14 @@ All those items can be salvaged to get the materials back ; simply place an item
 
 The stonecutter is a tool that can smooth any of the three double slabs blocks. To use it, simply right click with this tool on the wished block and it will permute to a smooth block. Each use will decrease the item's durability by 1. The unbreaking enchantement does work when applied. The stonecutter can be crafted like shears in exceptions that the iron is replaced by diamonds:
 
-![](http://amaury.carrade.eu//files/BB_shears.png)
+![](http://amaury.carrade.eu/files/BB_shears.png)
 
 
 The craft can be disabled.
 
 The basic double slabs block → the seamless version of this block:
 
-![](http://amaury.carrade.eu//files/blocks_transforms_small.png)
+![](http://amaury.carrade.eu/files/blocks_transforms_small.png)
 
 The process can be reverted (using the tool on a smooth block will turn it back into the original block).
 
@@ -62,7 +62,7 @@ The process can be reverted (using the tool on a smooth block will turn it back 
 
 The saw is a tool that can move the bark around any of the six log blocks. To use it, simply right click with this tool on the wished log block to move the bark. The bark can have 4 different positions (tree of them follows, the tree axes and one has bark all around the texture). Each use will decrease the item's durability by 1. The unbreaking enchantement does work when applied. The saw can be crafted like this (the symetric craft also work):
 
-![](http://amaury.carrade.eu//files/BB_saw.png)
+![](http://amaury.carrade.eu/files/BB_saw.png)
 
 The craft can be disabled.
 
