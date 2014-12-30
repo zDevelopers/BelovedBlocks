@@ -2,7 +2,7 @@
 
 Development builds available for each commit [on our Jenkins server](http://jenkins.carrade.eu/job/BelovedBlocks/).
 
-This plugin will be soon avaible on BukkitDev.
+This plugin is [avaible on BukkitDev](http://dev.bukkit.org/bukkit-plugins/beloved-blocks/).  
 Please note, this README reflects the last development version. Some features listed here may not be in the version published on BukkitDev.
 
 This plugin was made by Amaury Carrade and Florian Cassayre; it is currently translated in English, French and German.
