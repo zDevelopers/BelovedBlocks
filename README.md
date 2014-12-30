@@ -31,7 +31,7 @@ This plugin instances new items that transforms themselves into the desired spec
 
 ### Items
 
-Each seamless block is represented by a similar item with a glowing enchantement effect (that can be disabled for each block in the [configuration](#configuration)). They also have a custom name (also configurable). The crafts are the same for the three blocks:
+Each seamless block is represented by a similar item with a glowing enchantment effect (that can be disabled for each block in the [configuration](#configuration)). They also have a custom name (also configurable). The crafts are the same for the three blocks:
 
 ![](http://amaury.carrade.eu/files/Minecraft/Plugins/BelovedBlocks/BB_Crafts_Stones.gif)
 
@@ -45,7 +45,7 @@ All those items can be salvaged to get the materials back ; simply place an item
 
 ### Stonecutter
 
-The stonecutter is a tool that can smooth any of the three double slabs blocks. To use it, simply right click with this tool on the wished block and it will permute to a smooth block. Each use will decrease the item's durability by 1. The unbreaking enchantement does work when applied. The stonecutter can be crafted like shears in exceptions that the iron is replaced by diamonds:
+The stonecutter is a tool that can smooth any of the three double slabs blocks. To use it, simply right click with this tool on the wished block and it will permute to a smooth block. Each use will decrease the item's durability by 1. The unbreaking enchantment does work when applied. The stonecutter can be crafted like shears in exceptions that the iron is replaced by diamonds:
 
 ![](http://amaury.carrade.eu/files/Minecraft/Plugins/BelovedBlocks/BB_Crafts_Stonecutter.png)
 
@@ -56,17 +56,17 @@ The basic double slabs block → the seamless version of this block:
 
 ![](http://amaury.carrade.eu/files/Minecraft/Plugins/BelovedBlocks/BB_Stones_DoubleSlabs_Transformations.png)
 
-The process can be reverted (using the tool on a smooth block will turn it back into the original block).
+The process can be reverted (use the tool on a smooth block to turn it back into the original block).
 
 ### Saw
 
-The saw is a tool that can move the bark around any of the six log blocks. To use it, simply right click with this tool on the wished log block to move the bark. The bark can have 4 different positions (tree of them follows, the tree axes and one has bark all around the texture). Each use will decrease the item's durability by 1. The unbreaking enchantement does work when applied. The saw can be crafted like this (the symetric craft also work):
+The saw is a tool that can move the bark around any of the six log blocks. To use it, simply right click with this tool on the wished log block to move the bark. The bark can have 4 different positions (tree of them follows, the tree axes and one has bark all around the texture). Each use will decrease the item's durability by 1. The unbreaking enchantment does work when applied. The saw can be crafted like this (the symmetric craft also works):
 
 ![](http://amaury.carrade.eu/files/Minecraft/Plugins/BelovedBlocks/BB_Crafts_Saw.png)
 
 The craft can be disabled.
 
-Note: When breaking blocks with the saw, it has a small chance to break. This percentage can be modified in the configuration.
+Note: when breaking blocks with the saw, it has a small chance to break. This percentage can be modified in the configuration.
 
 ## Commands & permissions
 
