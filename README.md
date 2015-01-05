@@ -68,6 +68,10 @@ The craft can be disabled.
 
 Note: when breaking blocks with the saw, it has a small chance to break. This percentage can be modified in the configuration.
 
+
+*LogBlock is supported: block changes with these tools are saved.*
+
+
 ## Commands & permissions
 
 ### Commands
