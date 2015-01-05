@@ -78,3 +78,11 @@ blocks:
             name: "Smooth Dark Oak Wood"
             craftable: true   # Crafted with four logs in a square.
             itemGlow: true
+
+
+# Enables or disables the block changes of our tool being saved with LogBlock (if installed)
+logs:
+    logBlock: true
+
+
+

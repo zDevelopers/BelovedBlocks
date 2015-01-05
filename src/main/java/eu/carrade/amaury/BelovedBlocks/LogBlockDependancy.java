@@ -8,9 +8,10 @@ import de.diddiz.LogBlock.LogBlock;
 
 public class LogBlockDependancy {
 	
+	private boolean enabled;
 	private Consumer lbconsumer = null;
 	
-	public LogBlockDependancy() {
+	public LogBlockDependancy(BelovedBlocks p) {
 		
 		// We try to load the plugin
 		Plugin lb = Bukkit.getServer().getPluginManager().getPlugin("LogBlock");
@@ -25,10 +26,12 @@ public class LogBlockDependancy {
 			Bukkit.getLogger().info("[BelovedBlocks] LogBlock is installed but cannot be loaded. Consider upgrading it.");
 			return;
 		}
+		
+		enabled = p.getConfig().getBoolean("logs.logBlock");
 	}
 	
 	public boolean isEnabled() {
-		return lbconsumer != null;
+		return enabled && lbconsumer != null;
 	}
 	
 	public Consumer getConsumer() {
