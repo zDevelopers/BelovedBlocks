@@ -34,12 +34,21 @@
       <id>spigot-repo</id>
       <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
     </repository>
+    <repository>
+      <id>md_5-snapshots</id>
+      <url>http://repo.md-5.net/content/repositories/snapshots/</url>
+    </repository>
   </repositories>
   <dependencies>
     <dependency>
       <groupId>org.bukkit</groupId>
       <artifactId>bukkit</artifactId>
       <version>1.8-R0.1-20141212.193312-29</version>
+    </dependency>
+    <dependency>
+      <groupId>de.diddiz</groupId>
+      <artifactId>logblock</artifactId>
+      <version>dev-SNAPSHOT</version>
     </dependency>
   </dependencies>
 </project>

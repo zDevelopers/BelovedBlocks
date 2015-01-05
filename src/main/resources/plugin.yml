@@ -7,6 +7,9 @@ authors: ["Amaury Carrade", "Florian Cassayre"]
 awareness:
   - !@UTF8
 
+softdepend:
+  - LogBlock
+
 commands:
     belovedblocks:
         description: Get the blocks and tools added by BelovedBlocks

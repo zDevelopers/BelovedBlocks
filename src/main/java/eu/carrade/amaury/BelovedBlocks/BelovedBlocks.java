@@ -34,6 +34,7 @@ public final class BelovedBlocks extends JavaPlugin {
 	
 	private I18n i = null;
 	private BBRecipes recipes;
+	private LogBlockDependancy lbd;
 	
 	private String toolStonecutterName;
 	private String toolSawName;
@@ -81,6 +82,8 @@ public final class BelovedBlocks extends JavaPlugin {
 		smoothDarkOakName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.logs.dark_oak.name"));
 		
 		recipes = new BBRecipes(this);
+		
+		lbd = new LogBlockDependancy();
 	}
 	
 	/**
@@ -90,6 +93,15 @@ public final class BelovedBlocks extends JavaPlugin {
 	 */
 	public I18n getI18n() {
 		return i;
+	}
+	
+	/**
+	 * Returns the interface between our plugin and LogBlock.
+	 * 
+	 * @return
+	 */
+	public LogBlockDependancy getLogBlock() {
+		return lbd;
 	}
 	
 	/**

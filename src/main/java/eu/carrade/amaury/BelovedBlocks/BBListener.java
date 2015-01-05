@@ -22,6 +22,7 @@ import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
@@ -67,7 +68,14 @@ public class BBListener implements Listener {
 			if((type == Material.DOUBLE_STEP || type == Material.DOUBLE_STONE_SLAB2)
 					&& ev.getAction() == Action.RIGHT_CLICK_BLOCK) {
 				
+				BlockState before = block.getState();
+				
 				block.setData((byte) (ev.getClickedBlock().getData() + 8));
+				
+				if(p.getLogBlock().isEnabled()) {
+					BlockState after = block.getState();
+					p.getLogBlock().getConsumer().queueBlockReplace(player.getName(), before, after);
+				}
 				
 				// Durability
 				if(player.getGameMode() != GameMode.CREATIVE) {
@@ -95,7 +103,14 @@ public class BBListener implements Listener {
 			if((type == Material.LOG || type == Material.LOG_2)
 					&& ev.getAction() == Action.RIGHT_CLICK_BLOCK) {
 				
+				BlockState before = block.getState();
+				
 				block.setData((byte) (ev.getClickedBlock().getData() + 4));
+				
+				if(p.getLogBlock().isEnabled()) {
+					BlockState after = block.getState();
+					p.getLogBlock().getConsumer().queueBlockReplace(player.getName(), before, after);
+				}
 				
 				// Durability
 				if(player.getGameMode() != GameMode.CREATIVE) {
@@ -382,6 +397,7 @@ public class BBListener implements Listener {
 				
 				// Items cannot be renamed
 				if(item.hasItemMeta()
+						&& item.getItemMeta().getDisplayName() != null
 						&& (   item.getItemMeta().getDisplayName().equals(p.getSmoothStoneName())
 							|| item.getItemMeta().getDisplayName().equals(p.getSmoothSandstoneName())
 							|| item.getItemMeta().getDisplayName().equals(p.getSmoothRedSandstoneName())
@@ -391,7 +407,9 @@ public class BBListener implements Listener {
 				}
 				
 				// Saw
-				else if(item.hasItemMeta() && item.getItemMeta().getDisplayName().equals(p.getToolSawName())) {
+				else if(item.hasItemMeta()
+						&& item.getItemMeta().getDisplayName() != null
+						&& item.getItemMeta().getDisplayName().equals(p.getToolSawName())) {
 					// Players can add enchantments to the saw.
 					ev.getInventory().getItem(2).setDurability(item.getDurability());
 					ItemMeta itemMeta = result.getItemMeta();
@@ -400,7 +418,9 @@ public class BBListener implements Listener {
 				}
 				
 				// Stonecutter
-				else if(item.hasItemMeta() && item.getItemMeta().getDisplayName().equals(p.getToolStonecutterName())) {
+				else if(item.hasItemMeta()
+						&& item.getItemMeta().getDisplayName() != null
+						&& item.getItemMeta().getDisplayName().equals(p.getToolStonecutterName())) {
 					// Same for the stonecutter
 					ev.getInventory().getItem(2).setDurability(item.getDurability());
 					ItemMeta itemMeta = result.getItemMeta();
