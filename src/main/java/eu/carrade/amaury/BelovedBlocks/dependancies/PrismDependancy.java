@@ -40,7 +40,6 @@ public class PrismDependancy {
 					new ActionType("bb-moved-bark", false, true, true, "BBHandler", "moved the bark of"));
 			
 		} catch (InvalidActionException e) {
-			// If something you register is incorrect, Prism will let you know in e.getMessage();
 			p.getLogger().warning("Prism is installed, but WE CANNOT REGISTER OUR ACTIONS.");
 			p.getLogger().info("Please check if BelovedBlock is allowed to access the Prism API in the Prism's configuration file located at plugins/Prism/config.yml .");
 			p.getLogger().info("The stack trace is displayed below.");
