@@ -71,10 +71,19 @@ public class BBListener implements Listener {
 				BlockState before = block.getState();
 				
 				block.setData((byte) (ev.getClickedBlock().getData() + 8));
+
+				BlockState after = block.getState();
 				
+				// Logging
 				if(p.getLogBlock().isEnabled()) {
-					BlockState after = block.getState();
 					p.getLogBlock().getConsumer().queueBlockReplace(player.getName(), before, after);
+				}
+				if(p.getPrism().isEnabled()) {
+					String action = null;
+					if(block.getData() >= 8) action = "bb-smooth-block";
+					else                     action = "bb-carve-block";
+					
+					p.getPrism().registerBlockChange(player, before, after, action);
 				}
 				
 				// Durability
@@ -107,9 +116,14 @@ public class BBListener implements Listener {
 				
 				block.setData((byte) (ev.getClickedBlock().getData() + 4));
 				
+				BlockState after = block.getState();
+				
+				// Logging
 				if(p.getLogBlock().isEnabled()) {
-					BlockState after = block.getState();
 					p.getLogBlock().getConsumer().queueBlockReplace(player.getName(), before, after);
+				}
+				if(p.getPrism().isEnabled()) {
+					p.getPrism().registerBlockChange(player, before, after, "bb-moved-bark");
 				}
 				
 				// Durability

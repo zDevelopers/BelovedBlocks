@@ -1,10 +1,11 @@
-package eu.carrade.amaury.BelovedBlocks;
+package eu.carrade.amaury.BelovedBlocks.dependancies;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
 import de.diddiz.LogBlock.Consumer;
 import de.diddiz.LogBlock.LogBlock;
+import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
 
 public class LogBlockDependancy {
 	

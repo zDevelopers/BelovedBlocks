@@ -24,17 +24,19 @@ import java.util.Random;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import eu.carrade.amaury.BelovedBlocks.dependancies.LogBlockDependancy;
+import eu.carrade.amaury.BelovedBlocks.dependancies.PrismDependancy;
 import eu.carrade.amaury.BelovedBlocks.i18n.I18n;
 
 public final class BelovedBlocks extends JavaPlugin {
 	
 	private I18n i = null;
 	private BBRecipes recipes;
-	private LogBlockDependancy lbd;
+	private LogBlockDependancy lbDependancy;
+	private PrismDependancy prismDependancy;
 	
 	private String toolStonecutterName;
 	private String toolSawName;
@@ -83,7 +85,8 @@ public final class BelovedBlocks extends JavaPlugin {
 		
 		recipes = new BBRecipes(this);
 		
-		lbd = new LogBlockDependancy();
+		lbDependancy = new LogBlockDependancy(this);
+		prismDependancy = new PrismDependancy(this);
 	}
 	
 	/**
@@ -101,7 +104,16 @@ public final class BelovedBlocks extends JavaPlugin {
 	 * @return
 	 */
 	public LogBlockDependancy getLogBlock() {
-		return lbd;
+		return lbDependancy;
+	}
+	
+	/**
+	 * Returns the interface between our plugin and Prism.
+	 * 
+	 * @return
+	 */
+	public PrismDependancy getPrism() {
+		return prismDependancy;
 	}
 	
 	/**

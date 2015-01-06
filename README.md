@@ -15,7 +15,7 @@ This plugin was made by Amaury Carrade and Florian Cassayre; it is currently tra
 1. [Commands & permissions](#commands--permissions)
    1. [Commands](#commands)
    2. [Permissions](#permissions)
-1. [Configuration](#configuration)
+1. [Installation & configuration](#installation--configuration)
 1. [License](#license)
 
 
@@ -69,7 +69,7 @@ The craft can be disabled.
 Note: when breaking blocks with the saw, it has a small chance to break. This percentage can be modified in the configuration.
 
 
-*LogBlock is supported: block changes with these tools are saved.*
+*LogBlock and Prism are supported: block changes with these tools are saved.*
 
 
 ## Commands & permissions
@@ -137,7 +137,24 @@ As example:
  * to allow someone to give any block to anyone, use `belovedblocks.give.blocks`.
 
 
-## Configuration
+## Installation & configuration
+
+To install this plugin, simply put the `.jar` file inside the `plugins` folder of your server.
+
+If you want to use it with [Prism](http://dev.bukkit.org/bukkit-plugins/prism/), you'll have to add this plugin in the list of plugins allowed to access Prism's API.  
+To do so, open the Prism's configuration file, located at `plugins/Prism/config.yml`, and in the `prism.tracking.api.allowed-plugins` section, add `BelovedBlocks`:
+
+```yml
+prism:
+  # A lot of things
+  tracking:
+    # ...
+    api:
+      enabled: true
+      allowed-plugins:
+      - # Some other plugins, maybe
+      - BelovedBlocks
+```
 
 The plugin can be configured using the `config.yml` file (it can be found at `/plugins/BelovedBlocks/config.yml` in your server's folder or [here on GitHub](https://github.com/AmauryCarrade/BelovedBlocks/blob/master/src/main/resources/config.yml)).
 

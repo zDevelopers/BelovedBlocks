@@ -29,6 +29,7 @@
      </plugin>
    </plugins>
   </build>
+  
   <repositories>
     <repository>
       <id>spigot-repo</id>
@@ -38,7 +39,12 @@
       <id>md_5-snapshots</id>
       <url>http://repo.md-5.net/content/repositories/snapshots/</url>
     </repository>
+    <repository>
+      <id>dhmc-repo</id>
+      <url>http://dhmc.us:8081/nexus/content/repositories/public/</url>
+    </repository>
   </repositories>
+  
   <dependencies>
     <dependency>
       <groupId>org.bukkit</groupId>
@@ -49,6 +55,11 @@
       <groupId>de.diddiz</groupId>
       <artifactId>logblock</artifactId>
       <version>dev-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>me.botsko</groupId>
+      <artifactId>prism</artifactId>
+      <version>2.0.3-SNAPSHOT</version>
     </dependency>
   </dependencies>
 </project>

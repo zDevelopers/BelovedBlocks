@@ -9,6 +9,7 @@ awareness:
 
 softdepend:
   - LogBlock
+  - Prism
 
 commands:
     belovedblocks:

@@ -80,9 +80,9 @@ blocks:
             itemGlow: true
 
 
-# Enables or disables the block changes of our tool being saved with LogBlock (if installed)
+# Enables or disables the block changes of our tool being saved with LogBlock or Prism (if installed)
 logs:
     logBlock: true
-
+    prism: true
 
 
