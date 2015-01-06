@@ -15,7 +15,7 @@ import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
 
 public class PrismDependancy {
 	
-	private boolean enabled;
+	private boolean enabled = false;
 	private Prism prism = null;
 	
 	public PrismDependancy(BelovedBlocks p) {
