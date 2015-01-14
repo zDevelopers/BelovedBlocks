@@ -491,7 +491,7 @@ public class BBListener implements Listener {
 		
 		if(getCount(e.getInventory()) == 1 && item != null && item.getType() != Material.AIR) {
 			// Handles the smooth stone items.
-			if(item.getType() == Material.STONE
+			if((item.getType() == Material.STONE && item.getDurability() == 6)
 					|| item.getType() == Material.SANDSTONE
 					|| item.getType() == Material.RED_SANDSTONE
 					|| item.getType() == Material.QUARTZ_BLOCK) {
