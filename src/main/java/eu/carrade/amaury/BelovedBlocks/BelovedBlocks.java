@@ -86,7 +86,14 @@ public final class BelovedBlocks extends JavaPlugin {
 		recipes = new BBRecipes(this);
 		
 		lbDependancy = new LogBlockDependancy(this);
-		prismDependancy = new PrismDependancy(this);
+		
+		// If Prism is not present a NoClassDefFoundError is thrown, and the plugin
+		// cannot be loaded.
+		try {
+			prismDependancy = new PrismDependancy(this);
+		} catch(NoClassDefFoundError ignored) {
+			// Prism cannot be loaded.
+		}
 	}
 	
 	/**
