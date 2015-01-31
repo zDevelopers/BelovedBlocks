@@ -78,7 +78,7 @@ public class BBListener implements Listener {
 				if(p.getLogBlock().isEnabled()) {
 					p.getLogBlock().getConsumer().queueBlockReplace(player.getName(), before, after);
 				}
-				if(p.getPrism().isEnabled()) {
+				if(p.getPrism() != null && p.getPrism().isEnabled()) {
 					String action = null;
 					if(block.getData() >= 8) action = "bb-smooth-block";
 					else                     action = "bb-carve-block";
@@ -122,7 +122,7 @@ public class BBListener implements Listener {
 				if(p.getLogBlock().isEnabled()) {
 					p.getLogBlock().getConsumer().queueBlockReplace(player.getName(), before, after);
 				}
-				if(p.getPrism().isEnabled()) {
+				if(p.getPrism() != null && p.getPrism().isEnabled()) {
 					p.getPrism().registerBlockChange(player, before, after, "bb-moved-bark");
 				}
 				
