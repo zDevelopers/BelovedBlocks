@@ -18,6 +18,9 @@
 
 package eu.carrade.amaury.BelovedBlocks.blocks;
 
+import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothQuartzBlock;
+import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothRedSandstoneBlock;
+import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothSandstoneBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothStoneBlock;
 
 import java.util.HashSet;
@@ -31,6 +34,9 @@ public class BelovedBlocksManager
 	public BelovedBlocksManager()
 	{
 		registerBelovedBlock(new SmoothStoneBlock());
+		registerBelovedBlock(new SmoothSandstoneBlock());
+		registerBelovedBlock(new SmoothRedSandstoneBlock());
+		registerBelovedBlock(new SmoothQuartzBlock());
 	}
 
 	public void registerBelovedBlock(BelovedBlock block)
