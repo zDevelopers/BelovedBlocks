@@ -18,6 +18,7 @@
 
 package eu.carrade.amaury.BelovedBlocks;
 
+import de.diddiz.LogBlock.Actor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -76,7 +77,7 @@ public class BBListener implements Listener {
 				
 				// Logging
 				if(p.getLogBlock().isEnabled()) {
-					p.getLogBlock().getConsumer().queueBlockReplace(player.getName(), before, after);
+					p.getLogBlock().getConsumer().queueBlockReplace(new Actor(player.getName(), player.getUniqueId()), before, after);
 				}
 				if(p.getPrism() != null && p.getPrism().isEnabled()) {
 					String action = null;
@@ -120,7 +121,7 @@ public class BBListener implements Listener {
 				
 				// Logging
 				if(p.getLogBlock().isEnabled()) {
-					p.getLogBlock().getConsumer().queueBlockReplace(player.getName(), before, after);
+					p.getLogBlock().getConsumer().queueBlockReplace(new Actor(player.getName(), player.getUniqueId()), before, after);
 				}
 				if(p.getPrism() != null && p.getPrism().isEnabled()) {
 					p.getPrism().registerBlockChange(player, before, after, "bb-moved-bark");
