@@ -64,6 +64,7 @@ blocks:
             name: "Smooth Birch Wood"
             craftable: true   # Crafted with four logs in a square.
             itemGlow: true
+
         jungle:
             name: "Smooth Jungle Wood"
             craftable: true   # Crafted with four logs in a square.

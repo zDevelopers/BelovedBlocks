@@ -18,6 +18,7 @@
 
 package eu.carrade.amaury.BelovedBlocks.blocks;
 
+import eu.carrade.amaury.BelovedBlocks.blocks.logs.*;
 import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothQuartzBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothRedSandstoneBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothSandstoneBlock;
@@ -37,6 +38,13 @@ public class BelovedBlocksManager
 		registerBelovedBlock(new SmoothSandstoneBlock());
 		registerBelovedBlock(new SmoothRedSandstoneBlock());
 		registerBelovedBlock(new SmoothQuartzBlock());
+
+		registerBelovedBlock(new CompleteOakLog());
+		registerBelovedBlock(new CompleteSpruceLog());
+		registerBelovedBlock(new CompleteBirchLog());
+		registerBelovedBlock(new CompleteJungleLog());
+		registerBelovedBlock(new CompleteAcaciaLog());
+		registerBelovedBlock(new CompleteDarkOakLog());
 	}
 
 	public void registerBelovedBlock(BelovedBlock block)
