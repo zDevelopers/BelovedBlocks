@@ -28,6 +28,8 @@ public class CompleteOakLog extends CompleteLog
 	{
 		super("blocks.logs.oak");
 
+		setInternalName("oak");
+
 		setLogMaterial(Material.LOG);
 		setLogEssenceDurability((short) 0);
 	}

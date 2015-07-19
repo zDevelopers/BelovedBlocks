@@ -28,6 +28,8 @@ public class CompleteSpruceLog extends CompleteLog
 	{
 		super("blocks.logs.spruce");
 
+		setInternalName("spruce");
+
 		setLogMaterial(Material.LOG);
 		setLogEssenceDurability((short) 1);
 	}

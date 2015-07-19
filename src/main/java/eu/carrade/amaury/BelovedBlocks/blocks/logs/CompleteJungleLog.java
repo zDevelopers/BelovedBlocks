@@ -28,6 +28,8 @@ public class CompleteJungleLog extends CompleteLog
 	{
 		super("blocks.logs.jungle");
 
+		setInternalName("jungle");
+
 		setLogMaterial(Material.LOG);
 		setLogEssenceDurability((short) 3);
 	}

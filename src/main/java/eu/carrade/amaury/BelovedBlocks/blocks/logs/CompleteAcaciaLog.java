@@ -28,6 +28,8 @@ public class CompleteAcaciaLog extends CompleteLog
 	{
 		super("blocks.logs.acacia");
 
+		setInternalName("acacia");
+
 		setLogMaterial(Material.LOG_2);
 		setLogEssenceDurability((short) 0);
 	}

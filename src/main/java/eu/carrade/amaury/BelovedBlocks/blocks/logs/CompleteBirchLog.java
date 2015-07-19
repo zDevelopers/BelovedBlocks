@@ -28,6 +28,8 @@ public class CompleteBirchLog extends CompleteLog
 	{
 		super("blocks.logs.birch");
 
+		setInternalName("birch");
+
 		setLogMaterial(Material.LOG);
 		setLogEssenceDurability((short) 2);
 	}

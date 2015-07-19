@@ -28,6 +28,8 @@ public class CompleteDarkOakLog extends CompleteLog
 	{
 		super("blocks.logs.dark_oak");
 
+		setInternalName("dark-oak");
+
 		setLogMaterial(Material.LOG_2);
 		setLogEssenceDurability((short) 1);
 	}

@@ -35,6 +35,8 @@ public class SmoothSandstoneBlock extends BelovedBlock
 	public SmoothSandstoneBlock()
 	{
 		super("blocks.slabs.sandstone");
+
+		setInternalName("sandstone");
 	}
 
 	@Override

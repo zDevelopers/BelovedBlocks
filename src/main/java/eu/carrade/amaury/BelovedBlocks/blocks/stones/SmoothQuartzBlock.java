@@ -36,6 +36,8 @@ public class SmoothQuartzBlock extends BelovedBlock
 	public SmoothQuartzBlock()
 	{
 		super("blocks.slabs.quartz");
+
+		setInternalName("quartz");
 	}
 
 	@Override
