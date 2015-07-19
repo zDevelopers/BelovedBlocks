@@ -20,6 +20,7 @@ package eu.carrade.amaury.BelovedBlocks.blocks;
 
 import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
 import eu.carrade.amaury.BelovedBlocks.utils.GlowEffect;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
@@ -68,7 +69,7 @@ public abstract class BelovedBlock
 	private ItemStack constructedItemStack = null;
 
 
-	public BelovedBlock(String displayName, String internalName, Boolean isCraftable, Boolean isUncraftable, Boolean glowOnItem)
+	public BelovedBlock(final String displayName, final String internalName, final Boolean isCraftable, final Boolean isUncraftable, final Boolean glowOnItem)
 	{
 		this.displayName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', displayName);
 
@@ -78,11 +79,18 @@ public abstract class BelovedBlock
 		this.glowOnItem = glowOnItem;
 
 		// Crafting recipes registration
-		if(isCraftable)
-			registerRecipes(getCraftingRecipes());
+		Bukkit.getScheduler().runTaskLater(BelovedBlocks.get(), new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				if(isCraftable)
+					registerRecipes(getCraftingRecipes());
 
-		if(isUncraftable)
-			registerRecipes(getReversedCraftingRecipes());
+				if(isUncraftable)
+					registerRecipes(getReversedCraftingRecipes());
+			}
+		}, 1l);
 	}
 
 	public BelovedBlock(String displayName, Boolean isCraftable, Boolean glowOnItem)

@@ -19,9 +19,7 @@
 package eu.carrade.amaury.BelovedBlocks;
 
 import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.ShapelessRecipe;
 
 public class BBRecipes {
 
@@ -34,64 +32,7 @@ public class BBRecipes {
 		
 		registerTools();
 		
-		
-		/** Slabs **/
-		
-		if(p.getConfig().getBoolean("blocks.slabs.stone.craftable")) {
-			registerSquaredRecipe(Material.STEP, 0, p.getSmoothStoneItem(2));
-		}
-		
-		if(p.getConfig().getBoolean("blocks.slabs.sandstone.craftable")) {
-			registerSquaredRecipe(Material.STEP, 1, p.getSmoothSandstoneItem(2));
-		}
-		
-		if(p.getConfig().getBoolean("blocks.slabs.red_sandstone.craftable")) {
-			registerSquaredRecipe(Material.STONE_SLAB2, 0, p.getSmoothRedSandstoneItem(2));
-		}
-		
-		if(p.getConfig().getBoolean("blocks.slabs.quartz.craftable")) {
-			registerSquaredRecipe(Material.STEP, 7, p.getSmoothQuartzItem(2));
-		}
-		
-		// Slab's uncrafting recipes
-		
-		registerUncraft(Material.STONE, 6, new ItemStack(Material.STEP, 2), 0);
-		
-		registerUncraft(Material.SANDSTONE, 2, new ItemStack(Material.STEP, 2), 1);
-		
-		registerUncraft(Material.RED_SANDSTONE, 2, new ItemStack(Material.STONE_SLAB2, 2), 0);
-		
-		registerUncraft(Material.QUARTZ_BLOCK, 0, new ItemStack(Material.STEP, 2), 7);
-		
-		
-		/** Logs **/
-		
-		if(p.getConfig().getBoolean("blocks.logs.oak.craftable")) {
-			registerSquaredRecipe(Material.LOG, 0, p.getSmoothOakItem(4));
-		}
-		
-		if(p.getConfig().getBoolean("blocks.logs.spruce.craftable")) {
-			registerSquaredRecipe(Material.LOG, 1, p.getSmoothSpruceItem(4));
-		}
-		
-		if(p.getConfig().getBoolean("blocks.logs.birch.craftable")) {
-			registerSquaredRecipe(Material.LOG, 2, p.getSmoothBirchItem(4));
-		}
-		
-		if(p.getConfig().getBoolean("blocks.logs.jungle.craftable")) {
-			registerSquaredRecipe(Material.LOG, 3, p.getSmoothJungleItem(4));
-		}
-		
-		if(p.getConfig().getBoolean("blocks.logs.acacia.craftable")) {
-			registerSquaredRecipe(Material.LOG_2, 0, p.getSmoothAcaciaItem(4));
-		}
-		
-		if(p.getConfig().getBoolean("blocks.logs.dark_oak.craftable")) {
-			registerSquaredRecipe(Material.LOG_2, 1, p.getSmoothDarkOakItem(4));
-		}		
-		
 	}
-	
 	
 	/**
 	 * Registers the recipes for the tool.
@@ -150,37 +91,5 @@ public class BBRecipes {
 			toolRecipe.shape("   ", "   ", "SII");
 			p.getServer().addRecipe(toolRecipe);
 		}
-	}
-	
-	/**
-	 * Registers a recipe to craft {@code result} from the given ingredient
-	 * placed in a 4*4 grid.
-	 * 
-	 * @param ingredientMaterial The ingredient (material).
-	 * @param ingredientDataValue The ingredient (data value).
-	 * @param result The result.
-	 */
-	private void registerSquaredRecipe(Material ingredientMaterial, int ingredientDataValue, ItemStack result) {
-		ShapedRecipe recipe = new ShapedRecipe(result);
-		
-		recipe.shape("II ", "II ", "   ");
-		recipe.setIngredient('I', ingredientMaterial, ingredientDataValue);
-		p.getServer().addRecipe(recipe);
-		
-		recipe.shape(" II", " II", "   ");
-		p.getServer().addRecipe(recipe);
-		
-		recipe.shape("   ", " II", " II");
-		p.getServer().addRecipe(recipe);
-		
-		recipe.shape("   ", "II ", "II ");
-		p.getServer().addRecipe(recipe);
-	}
-	
-	private void registerUncraft(Material ingredientMaterial, int ingredientDataValue, ItemStack result, int resultData){
-		result.setDurability((short) resultData);
-		ShapelessRecipe recipe = new ShapelessRecipe(result);
-		recipe.addIngredient(ingredientMaterial, ingredientDataValue);
-		p.getServer().addRecipe(recipe);
 	}
 }
