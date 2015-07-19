@@ -16,11 +16,10 @@
  *  along with this program.  If not, see [http://www.gnu.org/licenses/].
  */
 
-package eu.carrade.amaury.BelovedBlocks;
+package eu.carrade.amaury.BelovedBlocks.utils;
 
 import java.lang.reflect.Field;
 
-import org.bukkit.Bukkit;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.enchantments.EnchantmentWrapper;

@@ -21,6 +21,7 @@ package eu.carrade.amaury.BelovedBlocks;
 import java.util.Arrays;
 import java.util.Random;
 
+import eu.carrade.amaury.BelovedBlocks.utils.GlowEffect;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
