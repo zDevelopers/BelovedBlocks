@@ -23,7 +23,9 @@ import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothQuartzBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothRedSandstoneBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothSandstoneBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothStoneBlock;
+import org.bukkit.inventory.ItemStack;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -47,9 +49,82 @@ public class BelovedBlocksManager
 		registerBelovedBlock(new CompleteDarkOakLog());
 	}
 
+	/**
+	 * Registers a new block in the BelovedBlock plugin.
+	 *
+	 * This will silently reject any block already registered (with the same internal ID as a
+	 * block already registered).
+	 *
+	 * @param block The block.
+	 */
 	public void registerBelovedBlock(BelovedBlock block)
 	{
 		if(!blocks.contains(block))
 			blocks.add(block);
+	}
+
+
+	/**
+	 * Returns the beloved block represented by this item stack.
+	 *
+	 * @param item The item.
+	 *
+	 * @return The {@link BelovedBlock}; {@code null} if this does not represents a beloved block.
+	 */
+	public BelovedBlock stackToBelovedBlock(final ItemStack item)
+	{
+		if(!item.hasItemMeta()) return null; // Not a beloved block.
+
+		return getBlockFromDisplayName(item.getItemMeta().getDisplayName());
+	}
+
+	/**
+	 * Returns the beloved block with the given display name.
+	 *
+	 * @param displayName The display name.
+	 *
+	 * @return The {@link BelovedBlock}; {@code null} if there isn't any
+	 *         beloved block with this display name.
+	 */
+	public BelovedBlock getBlockFromDisplayName(String displayName)
+	{
+		for(BelovedBlock block : blocks)
+		{
+			if(block.getDisplayName().equals(displayName))
+				return block;
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the beloved block with the given internal name.
+	 *
+	 * @param internalName The internal name.
+	 *
+	 * @return The {@link BelovedBlock}; {@code null} if there isn't any
+	 *         beloved block with this internal name.
+	 */
+	public BelovedBlock getBlockFromInternalName(String internalName)
+	{
+		for(BelovedBlock block : blocks)
+		{
+			if(block.getInternalName().equals(internalName))
+				return block;
+		}
+
+		return null;
+	}
+
+
+	/**
+	 * Returns an {@link Collections.UnmodifiableSet unmodifiable set} containing the
+	 * registered {@link BelovedBlock}s.
+	 *
+	 * @return A {@link Collections.UnmodifiableSet set} with the registered {@link BelovedBlock}s.
+	 */
+	public Set<BelovedBlock> getBelovedBlocks()
+	{
+		return Collections.unmodifiableSet(blocks);
 	}
 }
