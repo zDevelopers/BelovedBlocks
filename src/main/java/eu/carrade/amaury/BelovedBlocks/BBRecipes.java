@@ -157,7 +157,7 @@ public class BBRecipes {
 	 * placed in a 4*4 grid.
 	 * 
 	 * @param ingredientMaterial The ingredient (material).
-	 * @param materialDataValue The ingredient (data value).
+	 * @param ingredientDataValue The ingredient (data value).
 	 * @param result The result.
 	 */
 	private void registerSquaredRecipe(Material ingredientMaterial, int ingredientDataValue, ItemStack result) {
