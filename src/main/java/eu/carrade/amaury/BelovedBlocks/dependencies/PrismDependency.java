@@ -1,4 +1,4 @@
-package eu.carrade.amaury.BelovedBlocks.dependancies;
+package eu.carrade.amaury.BelovedBlocks.dependencies;
 
 import me.botsko.prism.Prism;
 import me.botsko.prism.actionlibs.ActionType;
@@ -13,12 +13,12 @@ import org.bukkit.plugin.Plugin;
 
 import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
 
-public class PrismDependancy {
+public class PrismDependency {
 	
 	private boolean enabled = false;
 	private Prism prism = null;
 	
-	public PrismDependancy(BelovedBlocks p) {
+	public PrismDependency(BelovedBlocks p) {
 		
 		// We try to load the plugin
 		Plugin prismTest = Bukkit.getServer().getPluginManager().getPlugin("Prism");

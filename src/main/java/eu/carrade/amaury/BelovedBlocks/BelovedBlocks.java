@@ -18,9 +18,9 @@
 
 package eu.carrade.amaury.BelovedBlocks;
 
-import java.util.Arrays;
-import java.util.Random;
-
+import eu.carrade.amaury.BelovedBlocks.dependencies.LogBlockDependency;
+import eu.carrade.amaury.BelovedBlocks.dependencies.PrismDependency;
+import eu.carrade.amaury.BelovedBlocks.i18n.I18n;
 import eu.carrade.amaury.BelovedBlocks.utils.GlowEffect;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -28,16 +28,15 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import eu.carrade.amaury.BelovedBlocks.dependancies.LogBlockDependancy;
-import eu.carrade.amaury.BelovedBlocks.dependancies.PrismDependancy;
-import eu.carrade.amaury.BelovedBlocks.i18n.I18n;
+import java.util.Arrays;
+import java.util.Random;
 
 public final class BelovedBlocks extends JavaPlugin {
 	
 	private I18n i = null;
 	private BBRecipes recipes;
-	private LogBlockDependancy lbDependancy;
-	private PrismDependancy prismDependancy;
+	private LogBlockDependency lbDependency;
+	private PrismDependency prismDependency;
 	
 	private String toolStonecutterName;
 	private String toolSawName;
@@ -86,12 +85,12 @@ public final class BelovedBlocks extends JavaPlugin {
 		
 		recipes = new BBRecipes(this);
 		
-		lbDependancy = new LogBlockDependancy(this);
+		lbDependency = new LogBlockDependency(this);
 		
 		// If Prism is not present a NoClassDefFoundError is thrown, and the plugin
 		// cannot be loaded.
 		try {
-			prismDependancy = new PrismDependancy(this);
+			prismDependency = new PrismDependency(this);
 		} catch(NoClassDefFoundError ignored) {
 			// Prism cannot be loaded.
 		}
@@ -111,8 +110,8 @@ public final class BelovedBlocks extends JavaPlugin {
 	 * 
 	 * @return
 	 */
-	public LogBlockDependancy getLogBlock() {
-		return lbDependancy;
+	public LogBlockDependency getLogBlock() {
+		return lbDependency;
 	}
 	
 	/**
@@ -120,8 +119,8 @@ public final class BelovedBlocks extends JavaPlugin {
 	 * 
 	 * @return
 	 */
-	public PrismDependancy getPrism() {
-		return prismDependancy;
+	public PrismDependency getPrism() {
+		return prismDependency;
 	}
 	
 	/**
