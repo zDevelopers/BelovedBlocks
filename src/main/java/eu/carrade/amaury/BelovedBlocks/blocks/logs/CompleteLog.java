@@ -100,7 +100,7 @@ public abstract class CompleteLog extends BelovedBlock
 	}
 
 	@Override
-	protected void onBlockPlace(Block placedBlock)
+	public void onBlockPlace(Block placedBlock)
 	{
 		placedBlock.setType(logMaterial);
 		placedBlock.setData(placedBlockDurability);

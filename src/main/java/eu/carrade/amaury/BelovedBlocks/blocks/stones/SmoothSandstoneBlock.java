@@ -61,7 +61,7 @@ public class SmoothSandstoneBlock extends BelovedBlock
 	}
 
 	@Override
-	protected void onBlockPlace(Block placedBlock)
+	public void onBlockPlace(Block placedBlock)
 	{
 		placedBlock.setType(Material.DOUBLE_STEP);
 		placedBlock.setData((byte) 9);

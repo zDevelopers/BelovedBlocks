@@ -19,6 +19,7 @@
 package eu.carrade.amaury.BelovedBlocks;
 
 import de.diddiz.LogBlock.Actor;
+import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -153,95 +154,21 @@ public class BBListener implements Listener {
 	 * Used to place a real smooth block when our "smooth slabs" used as items are
 	 * placed.
 	 * 
-	 * @param e
+	 * @param ev The event.
 	 */
-	@EventHandler
-	public void onBlockPlace(BlockPlaceEvent e) {
-		Material blockType = e.getBlockPlaced().getType();
-		ItemStack item = e.getItemInHand();
-		String name = item.getItemMeta().getDisplayName();
-		
-		// If the display name is null, this is a vanilla block, not handled here.
-		if(name == null) return;
-		
-		if(blockType == Material.STONE
-				&& item.getDurability() == 6
-				&& name.equals(p.getSmoothStoneName())) {
-			
-			e.getBlockPlaced().setType(Material.DOUBLE_STEP);
-			e.getBlockPlaced().setData((byte) 8);
+	@EventHandler(ignoreCancelled = true)
+	public void onBlockPlace(BlockPlaceEvent ev)
+	{
+		BelovedBlock belovedBlock = BelovedBlocks.get().getBelovedBlocksManager().stackToBelovedBlock(ev.getItemInHand());
+
+		if(belovedBlock != null)
+		{
+			if(belovedBlock.canUse(ev.getPlayer().getUniqueId()))
+				belovedBlock.onBlockPlace(ev.getBlockPlaced());
+			else
+				ev.setCancelled(true);
 		}
-		
-		else if(blockType == Material.SANDSTONE
-				&& e.getItemInHand().getDurability() == 2
-				&& name.equals(p.getSmoothSandstoneName())) {
-			
-			e.getBlockPlaced().setType(Material.DOUBLE_STEP);
-			e.getBlockPlaced().setData((byte) 9);
-		}
-		
-		else if(e.getBlockPlaced().getType() == Material.RED_SANDSTONE
-				&& e.getItemInHand().getDurability() == 2
-				&& name.equals(p.getSmoothRedSandstoneName())) {
-			
-			e.getBlockPlaced().setType(Material.DOUBLE_STONE_SLAB2);
-			e.getBlockPlaced().setData((byte) 8);
-		}
-		
-		else if(blockType == Material.QUARTZ_BLOCK
-				&& name.equals(p.getSmoothQuartzName())) {
-			
-			e.getBlockPlaced().setType(Material.DOUBLE_STEP);
-			e.getBlockPlaced().setData((byte) 7);
-		}
-		
-		else if(blockType == Material.LOG
-				&& e.getItemInHand().getDurability() == 0
-				&& name.equals(p.getSmoothOakName())) {
-			
-			e.getBlockPlaced().setType(Material.LOG);
-			e.getBlockPlaced().setData((byte) 12);
-		}
-		
-		else if(blockType == Material.LOG
-				&& e.getItemInHand().getDurability() == 1
-				&& name.equals(p.getSmoothSpruceName())) {
-			
-			e.getBlockPlaced().setType(Material.LOG);
-			e.getBlockPlaced().setData((byte) 13);
-		}
-		
-		else if(blockType == Material.LOG
-				&& e.getItemInHand().getDurability() == 2
-				&& name.equals(p.getSmoothBirchName())) {
-			
-			e.getBlockPlaced().setType(Material.LOG);
-			e.getBlockPlaced().setData((byte) 14);
-		}
-		
-		else if(blockType == Material.LOG
-				&& e.getItemInHand().getDurability() == 3
-				&& name.equals(p.getSmoothJungleName())) {
-			
-			e.getBlockPlaced().setType(Material.LOG);
-			e.getBlockPlaced().setData((byte) 15);
-		}
-		
-		else if(blockType == Material.LOG_2
-				&& e.getItemInHand().getDurability() == 0
-				&& name.equals(p.getSmoothAcaciaName())) {
-			
-			e.getBlockPlaced().setType(Material.LOG_2);
-			e.getBlockPlaced().setData((byte) 12);
-		}
-		
-		else if(blockType == Material.LOG_2
-				&& e.getItemInHand().getDurability() == 1
-				&& name.equals(p.getSmoothDarkOakName())) {
-			
-			e.getBlockPlaced().setType(Material.LOG_2);
-			e.getBlockPlaced().setData((byte) 13);
-		}
+
 	}
 	
 	/**

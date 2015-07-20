@@ -153,7 +153,7 @@ public abstract class BelovedBlock
 	 *
 	 * @param placedBlock The placed block. Use this to change the placed block.
 	 */
-	protected abstract void onBlockPlace(Block placedBlock);
+	public abstract void onBlockPlace(Block placedBlock);
 
 
 	/* **  Item constructors  ** */

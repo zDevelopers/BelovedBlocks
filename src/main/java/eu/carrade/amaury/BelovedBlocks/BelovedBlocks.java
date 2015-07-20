@@ -107,6 +107,16 @@ public final class BelovedBlocks extends JavaPlugin {
 	}
 
 	/**
+	 * Returns the blocks manager.
+	 *
+	 * @return
+	 */
+	public BelovedBlocksManager getBelovedBlocksManager()
+	{
+		return belovedBlocksManager;
+	}
+
+	/**
 	 * Returns the internationalization manager.
 	 *
 	 * @return
