@@ -19,9 +19,9 @@
 package eu.carrade.amaury.BelovedBlocks.blocks.logs;
 
 import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
+import eu.carrade.amaury.BelovedBlocks.blocks.SimpleBlock;
 import eu.carrade.amaury.BelovedBlocks.utils.RecipesUtils;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 
@@ -100,9 +100,8 @@ public abstract class CompleteLog extends BelovedBlock
 	}
 
 	@Override
-	public void onBlockPlace(Block placedBlock)
+	public SimpleBlock getPlacedBlock()
 	{
-		placedBlock.setType(logMaterial);
-		placedBlock.setData(placedBlockDurability);
+		return new SimpleBlock(logMaterial, placedBlockDurability);
 	}
 }

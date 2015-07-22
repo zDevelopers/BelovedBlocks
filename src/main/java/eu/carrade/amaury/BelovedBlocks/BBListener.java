@@ -20,6 +20,7 @@ package eu.carrade.amaury.BelovedBlocks;
 
 import de.diddiz.LogBlock.Actor;
 import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -43,10 +44,11 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+
 public class BBListener implements Listener {
 	
 	private BelovedBlocks p = null;
-	
+
 	public BBListener(BelovedBlocks plugin) {
 		p = plugin;
 	}
@@ -178,39 +180,43 @@ public class BBListener implements Listener {
 	 * @param ev
 	 */
 	@EventHandler
-	public void onBlockBreaks(BlockBreakEvent ev) {
-		Material itemInHandType = ev.getPlayer().getItemInHand().getType();
-		Block block = ev.getBlock();
-		
+	public void onBlockBreaks(final BlockBreakEvent ev)
+	{
 		// This event only concerns players in survival game mode.
-		if(ev.getPlayer().getGameMode() != GameMode.CREATIVE) {
-			if(p.isValidStonecutterTool(ev.getPlayer().getItemInHand())) {
+		if(ev.getPlayer().getGameMode() != GameMode.CREATIVE)
+		{
+			if(p.isValidStonecutterTool(ev.getPlayer().getItemInHand()))
+			{
 				// Those blocks don't drop as items.
 				if(ev.getBlock().getType() == Material.DEAD_BUSH
 						|| ev.getBlock().getType() == Material.DOUBLE_PLANT
 						|| ev.getBlock().getType() == Material.LONG_GRASS
-						|| ev.getBlock().getType() == Material.VINE) {
-					
+						|| ev.getBlock().getType() == Material.VINE)
+				{
 					// The tool doesn't loose any durability though.
 					ev.setCancelled(true);
 					ev.getBlock().setType(Material.AIR);
 				}
+
 				else if(ev.getBlock().getType() == Material.LEAVES
 						|| ev.getBlock().getType() == Material.LEAVES_2
 						|| ev.getBlock().getType() == Material.WOOL
 						|| ev.getBlock().getType() == Material.WEB
-						|| ev.getBlock().getType() == Material.STRING) {
-					
+						|| ev.getBlock().getType() == Material.STRING)
+				{
+
 					// The tool loses 2 durability points.
 					short newDurability = (short) (ev.getPlayer().getItemInHand().getDurability()
 							+ p.increaseDurability(ev.getPlayer().getItemInHand().getEnchantmentLevel(Enchantment.DURABILITY))
 							+ p.increaseDurability(ev.getPlayer().getItemInHand().getEnchantmentLevel(Enchantment.DURABILITY)));
 					
-					if(newDurability > ev.getPlayer().getItemInHand().getType().getMaxDurability()) {
+					if(newDurability > ev.getPlayer().getItemInHand().getType().getMaxDurability())
+					{
 						ev.getPlayer().getInventory().setItemInHand(new ItemStack(Material.AIR));
 						ev.getPlayer().playSound(ev.getPlayer().getLocation(), Sound.ITEM_BREAK, 0.8f, 1);
 					}
-					else {
+					else
+					{
 						ev.getPlayer().getItemInHand().setDurability(newDurability);
 					}
 					
@@ -219,75 +225,61 @@ public class BBListener implements Listener {
 					ev.getBlock().setType(Material.AIR);
 				}
 			}
-			
-			// When you break a smooth double slab, our item is dropped.
-			else if(itemInHandType == Material.WOOD_PICKAXE
-						|| itemInHandType == Material.STONE_PICKAXE
-						|| itemInHandType == Material.IRON_PICKAXE
-						|| itemInHandType == Material.GOLD_PICKAXE
-						|| itemInHandType == Material.DIAMOND_PICKAXE) {
-				
-				if(block.getType() == Material.DOUBLE_STEP) {
-					if(block.getData() == 7) {
-						ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothQuartzItem(1));
-						ev.getBlock().setType(Material.AIR);
-					}
-					else if(block.getData() == 8) {
-						ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothStoneItem(1));
-						ev.getBlock().setType(Material.AIR);
-					}
-					else if(block.getData() == 9) {
-						ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothSandstoneItem(1));
-						ev.getBlock().setType(Material.AIR);
-					}
-				}
-				else if(block.getType() == Material.DOUBLE_STONE_SLAB2 && block.getData() == 8) {
-					ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothRedSandstoneItem(1));
-					ev.getBlock().setType(Material.AIR);
-				}
 
+			else
+			{
+				if(handleBlockBreak(ev.getBlock(), ev.getPlayer()))
+					ev.setCancelled(true);
 			}
-			
-			if(block.getType() == Material.LOG) {
-				if(block.getData() == 12) {
-					ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothOakItem(1));
-					ev.getBlock().setType(Material.AIR);
-				}
-				else if(block.getData() == 13) {
-					ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothSpruceItem(1));
-					ev.getBlock().setType(Material.AIR);
-				}
-				else if(block.getData() == 14) {
-					ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothBirchItem(1));
-					ev.getBlock().setType(Material.AIR);
-				}
-				else if(block.getData() == 15) {
-					ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothJungleItem(1));
-					ev.getBlock().setType(Material.AIR);
-				}
-			}
-			
-			else if(block.getType() == Material.LOG_2){
-				if(block.getData() == 12) {
-					ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothAcaciaItem(1));
-					ev.getBlock().setType(Material.AIR);
-				}
-				else if(block.getData() == 13) {
-					ev.getPlayer().getWorld().dropItemNaturally(block.getLocation(), p.getSmoothDarkOakItem(1));
-					ev.getBlock().setType(Material.AIR);
-				}
-			}
-			if(p.isValidSawTool(ev.getPlayer().getItemInHand())){
+
+
+			if(p.isValidSawTool(ev.getPlayer().getItemInHand()))
+			{
 				// Chance the saw to break.
 				float percent = (float) (p.getConfig().getInt("tool.saw.percentageToBreak") * 0.01);
 				if((float) Math.random() <= percent){
 					ev.getPlayer().getInventory().setItemInHand(new ItemStack(Material.AIR));
 					ev.getPlayer().playSound(ev.getPlayer().getLocation(), Sound.ITEM_BREAK, 0.8f, 1);
 				}
-				
 			}
 		}
 	}
+
+	/**
+	 * Breaks a block.
+	 *
+	 * @param block The block.
+	 * @param player The breaker.
+	 *
+	 * @return {@code true} if the underlining event have to be cancelled.
+	 */
+	private boolean handleBlockBreak(final Block block, Player player)
+	{
+		final BelovedBlock belovedBlock = BelovedBlocks.get().getBelovedBlocksManager().getBlockFromBlock(block);
+
+		if(belovedBlock != null)
+		{
+			// The block drops actually something
+			if(!block.getDrops(player.getItemInHand()).isEmpty())
+			{
+				block.setType(Material.AIR);
+
+				Bukkit.getScheduler().runTaskLater(BelovedBlocks.get(), new Runnable()
+				{
+					@Override
+					public void run()
+					{
+						block.getWorld().dropItemNaturally(block.getLocation(), belovedBlock.constructItem(1));
+					}
+				}, 3l);
+
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	
 	
 	/**

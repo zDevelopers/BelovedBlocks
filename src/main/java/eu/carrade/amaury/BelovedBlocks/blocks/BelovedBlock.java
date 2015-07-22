@@ -84,10 +84,10 @@ public abstract class BelovedBlock
 			@Override
 			public void run()
 			{
-				if(isCraftable)
+				if (isCraftable)
 					registerRecipes(getCraftingRecipes());
 
-				if(isUncraftable)
+				if (isUncraftable)
 					registerRecipes(getReversedCraftingRecipes());
 			}
 		}, 1l);
@@ -149,11 +149,27 @@ public abstract class BelovedBlock
 	protected abstract Set<Recipe> getReversedCraftingRecipes();
 
 	/**
+	 * Returns the block to place in the world.
+	 *
+	 * @return The block.
+	 */
+	protected abstract SimpleBlock getPlacedBlock();
+
+	/**
 	 * Executed when this block is placed, if the placement is allowed.
+	 *
+	 * Override this if needed. Default behavior: change the block to the one returned
+	 * by {@link #getPlacedBlock()}.
 	 *
 	 * @param placedBlock The placed block. Use this to change the placed block.
 	 */
-	public abstract void onBlockPlace(Block placedBlock);
+	public void onBlockPlace(Block placedBlock)
+	{
+		SimpleBlock blockToPlace = getPlacedBlock();
+
+		placedBlock.setType(blockToPlace.getType());
+		placedBlock.setData(blockToPlace.getDataValue());
+	}
 
 
 	/* **  Item constructors  ** */

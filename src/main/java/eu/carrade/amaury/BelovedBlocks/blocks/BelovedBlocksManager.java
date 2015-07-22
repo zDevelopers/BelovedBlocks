@@ -23,6 +23,7 @@ import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothQuartzBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothRedSandstoneBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothSandstoneBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothStoneBlock;
+import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Collections;
@@ -111,6 +112,25 @@ public class BelovedBlocksManager
 		{
 			if(block.getInternalName().equals(internalName))
 				return block;
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the beloved block corresponding to the given block.
+	 *
+	 * @param block The block.
+	 *
+	 * @return The {@link BelovedBlock}; {@code null} if there isn't any
+	 *         beloved block corresponding to this block.
+	 */
+	public BelovedBlock getBlockFromBlock(Block block)
+	{
+		for(BelovedBlock belovedBlock : blocks)
+		{
+			if(belovedBlock.getPlacedBlock().sameBlockAs(block))
+				return belovedBlock;
 		}
 
 		return null;

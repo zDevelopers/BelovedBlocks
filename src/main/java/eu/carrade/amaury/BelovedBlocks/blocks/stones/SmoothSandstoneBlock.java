@@ -20,10 +20,10 @@
 package eu.carrade.amaury.BelovedBlocks.blocks.stones;
 
 import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
+import eu.carrade.amaury.BelovedBlocks.blocks.SimpleBlock;
 import eu.carrade.amaury.BelovedBlocks.utils.RecipesUtils;
 import eu.carrade.amaury.BelovedBlocks.utils.Utils;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 
@@ -61,9 +61,8 @@ public class SmoothSandstoneBlock extends BelovedBlock
 	}
 
 	@Override
-	public void onBlockPlace(Block placedBlock)
+	public SimpleBlock getPlacedBlock()
 	{
-		placedBlock.setType(Material.DOUBLE_STEP);
-		placedBlock.setData((byte) 9);
+		return new SimpleBlock(Material.DOUBLE_STEP, 9);
 	}
 }
