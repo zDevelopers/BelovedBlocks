@@ -1,36 +1,30 @@
 /**
- *  Plugin BelovedBlocks
- *  Copyright (C) 2014-2015 Amaury Carrade & Florian Cassayre
+ * Plugin BelovedBlocks Copyright (C) 2014-2015 Amaury Carrade & Florian Cassayre
  *
- *  This program is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * GNU General Public License as published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+ * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program.  If not, see [http://www.gnu.org/licenses/].
+ * You should have received a copy of the GNU General Public License along with this program.  If
+ * not, see [http://www.gnu.org/licenses/].
  */
 
 package eu.carrade.amaury.BelovedBlocks.blocks;
 
-import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
-import eu.carrade.amaury.BelovedBlocks.utils.GlowEffect;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.block.Block;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.Recipe;
-import org.bukkit.inventory.meta.ItemMeta;
+import eu.carrade.amaury.BelovedBlocks.*;
+import eu.carrade.amaury.BelovedBlocks.utils.*;
+import org.bukkit.*;
+import org.bukkit.block.*;
+import org.bukkit.configuration.*;
+import org.bukkit.entity.*;
+import org.bukkit.inventory.*;
+import org.bukkit.inventory.meta.*;
 
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 
 public abstract class BelovedBlock
@@ -176,7 +170,7 @@ public abstract class BelovedBlock
 
 	public ItemStack constructItem(int amount)
 	{
-		if(constructedItemStack != null)
+		if (constructedItemStack != null)
 			return getConstructedItemStack(amount);
 
 
@@ -186,7 +180,7 @@ public abstract class BelovedBlock
 		meta.setDisplayName(getDisplayName());
 		constructedItemStack.setItemMeta(meta);
 
-		if(getGlowOnItem())
+		if (getGlowOnItem())
 			GlowEffect.addGlow(constructedItemStack);
 
 
@@ -195,7 +189,7 @@ public abstract class BelovedBlock
 
 	private ItemStack getConstructedItemStack(int amount)
 	{
-		if(constructedItemStack == null)
+		if (constructedItemStack == null)
 			return constructItem(amount);
 
 		constructedItemStack.setAmount(amount);
@@ -279,9 +273,21 @@ public abstract class BelovedBlock
 		return displayName;
 	}
 
+	protected BelovedBlock setDisplayName(String displayName)
+	{
+		this.displayName = displayName;
+		return this;
+	}
+
 	public String getInternalName()
 	{
 		return internalName;
+	}
+
+	protected BelovedBlock setInternalName(String internalName)
+	{
+		this.internalName = internalName;
+		return this;
 	}
 
 	public Boolean getIsCraftable()
@@ -299,16 +305,9 @@ public abstract class BelovedBlock
 		return glowOnItem;
 	}
 
-
-	protected BelovedBlock setDisplayName(String displayName)
+	protected BelovedBlock setGlowOnItem(Boolean glowOnItem)
 	{
-		this.displayName = displayName;
-		return this;
-	}
-
-	protected BelovedBlock setInternalName(String internalName)
-	{
-		this.internalName = internalName;
+		this.glowOnItem = glowOnItem;
 		return this;
 	}
 
@@ -324,12 +323,6 @@ public abstract class BelovedBlock
 		return this;
 	}
 
-	protected BelovedBlock setGlowOnItem(Boolean glowOnItem)
-	{
-		this.glowOnItem = glowOnItem;
-		return this;
-	}
-
 
 	/* **  Utilities  ** */
 
@@ -342,11 +335,11 @@ public abstract class BelovedBlock
 	 */
 	private void registerRecipes(Set<Recipe> recipes)
 	{
-		if(recipes == null) return;
+		if (recipes == null) return;
 
-		for(Recipe recipe : recipes)
+		for (Recipe recipe : recipes)
 		{
-			if(recipe != null)
+			if (recipe != null)
 				BelovedBlocks.get().getServer().addRecipe(recipe);
 		}
 	}
