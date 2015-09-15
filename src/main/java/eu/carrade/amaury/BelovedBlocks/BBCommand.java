@@ -18,22 +18,15 @@
 
 package eu.carrade.amaury.BelovedBlocks;
 
-import java.text.Collator;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import eu.carrade.amaury.BelovedBlocks.i18n.*;
+import org.bukkit.*;
+import org.bukkit.command.*;
+import org.bukkit.entity.*;
+import org.bukkit.inventory.*;
+import org.bukkit.permissions.*;
 
-import org.bukkit.ChatColor;
-import org.bukkit.Sound;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabExecutor;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.permissions.Permissible;
-
-import eu.carrade.amaury.BelovedBlocks.i18n.I18n;
+import java.text.*;
+import java.util.*;
 
 public class BBCommand implements TabExecutor {
 	
@@ -254,7 +247,7 @@ public class BBCommand implements TabExecutor {
 		}
 		
 		else if(args.length == 4 && args[1].equalsIgnoreCase("block")) { // /bb give <> <> <?>
-			return new ArrayList<String>(); // No autocomplete for item count
+			return new ArrayList<>(); // No autocomplete for item count
 		}
 		
 		return null;
@@ -267,12 +260,11 @@ public class BBCommand implements TabExecutor {
 	 * 
 	 * @param typed What the user typed. This string needs to include <em>all</em> the words typed.
 	 * @param suggestionsList The list of the suggestions.
-	 * @param numberOfWordsToIgnore If non-zero, this number of words will be ignored at the beginning of the string. This is used to handle multiple-words autocompletion.
-	 * 
+	 *
 	 * @return The list of matching suggestions.
 	 */
 	private List<String> getAutocompleteSuggestions(String typed, List<String> suggestionsList) {
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 		
 		for(String suggestion : suggestionsList) {			
 			if(suggestion.toLowerCase().startsWith(typed.toLowerCase())) {
