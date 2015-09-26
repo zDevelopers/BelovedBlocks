@@ -340,17 +340,17 @@ public class BBListener implements Listener
 
 			if (item != null)
 			{
-
 				// Items cannot be renamed
 				if (item.hasItemMeta()
-						&& item.getItemMeta().getDisplayName() != null
-						&& (item.getItemMeta().getDisplayName().equals(p.getSmoothStoneName())
-						|| item.getItemMeta().getDisplayName().equals(p.getSmoothSandstoneName())
-						|| item.getItemMeta().getDisplayName().equals(p.getSmoothRedSandstoneName())
-						|| item.getItemMeta().getDisplayName().equals(p.getSmoothQuartzName())))
+						&& item.getItemMeta().getDisplayName() != null)
 				{
-					// Avoid players to rename the slab items.
-					ev.getInventory().setItem(2, new ItemStack(Material.AIR, 0));
+					BelovedBlock block = BelovedBlocks.get().getBelovedBlocksManager().getBlockFromDisplayName(item.getItemMeta().getDisplayName());
+
+					if(block != null)
+					{
+						// Avoid players to rename the slab items.
+						ev.getInventory().setItem(2, new ItemStack(Material.AIR, 0));
+					}
 				}
 
 				// Saw
