@@ -15,12 +15,22 @@
 
 package eu.carrade.amaury.BelovedBlocks.blocks;
 
-import eu.carrade.amaury.BelovedBlocks.blocks.logs.*;
-import eu.carrade.amaury.BelovedBlocks.blocks.stones.*;
-import org.bukkit.block.*;
-import org.bukkit.inventory.*;
+import eu.carrade.amaury.BelovedBlocks.blocks.logs.CompleteAcaciaLog;
+import eu.carrade.amaury.BelovedBlocks.blocks.logs.CompleteBirchLog;
+import eu.carrade.amaury.BelovedBlocks.blocks.logs.CompleteDarkOakLog;
+import eu.carrade.amaury.BelovedBlocks.blocks.logs.CompleteJungleLog;
+import eu.carrade.amaury.BelovedBlocks.blocks.logs.CompleteOakLog;
+import eu.carrade.amaury.BelovedBlocks.blocks.logs.CompleteSpruceLog;
+import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothQuartzBlock;
+import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothRedSandstoneBlock;
+import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothSandstoneBlock;
+import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothStoneBlock;
+import org.bukkit.block.Block;
+import org.bukkit.inventory.ItemStack;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class BelovedBlocksManager

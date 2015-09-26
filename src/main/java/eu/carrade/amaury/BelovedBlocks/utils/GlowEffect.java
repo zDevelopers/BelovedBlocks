@@ -15,10 +15,12 @@
 
 package eu.carrade.amaury.BelovedBlocks.utils;
 
-import org.bukkit.enchantments.*;
-import org.bukkit.inventory.*;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.enchantments.EnchantmentTarget;
+import org.bukkit.enchantments.EnchantmentWrapper;
+import org.bukkit.inventory.ItemStack;
 
-import java.lang.reflect.*;
+import java.lang.reflect.Field;
 
 
 /**

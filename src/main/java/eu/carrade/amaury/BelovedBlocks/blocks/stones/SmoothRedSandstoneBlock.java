@@ -12,12 +12,14 @@
 
 package eu.carrade.amaury.BelovedBlocks.blocks.stones;
 
-import eu.carrade.amaury.BelovedBlocks.blocks.*;
-import eu.carrade.amaury.BelovedBlocks.utils.*;
-import org.bukkit.*;
-import org.bukkit.inventory.*;
+import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
+import eu.carrade.amaury.BelovedBlocks.blocks.SimpleBlock;
+import eu.carrade.amaury.BelovedBlocks.utils.RecipesUtils;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Recipe;
 
-import java.util.*;
+import java.util.Set;
 
 
 public class SmoothRedSandstoneBlock extends BelovedBlock

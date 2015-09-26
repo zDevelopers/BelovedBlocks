@@ -15,10 +15,13 @@
 
 package eu.carrade.amaury.BelovedBlocks.utils;
 
-import org.bukkit.*;
-import org.bukkit.inventory.*;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Recipe;
+import org.bukkit.inventory.ShapedRecipe;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class RecipesUtils

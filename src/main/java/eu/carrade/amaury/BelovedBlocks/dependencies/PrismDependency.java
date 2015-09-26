@@ -1,14 +1,15 @@
 package eu.carrade.amaury.BelovedBlocks.dependencies;
 
-import eu.carrade.amaury.BelovedBlocks.*;
-import me.botsko.prism.*;
-import me.botsko.prism.actionlibs.*;
-import me.botsko.prism.actions.*;
-import me.botsko.prism.exceptions.*;
-import org.bukkit.*;
-import org.bukkit.block.*;
-import org.bukkit.entity.*;
-import org.bukkit.plugin.*;
+import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
+import me.botsko.prism.Prism;
+import me.botsko.prism.actionlibs.ActionType;
+import me.botsko.prism.actionlibs.RecordingQueue;
+import me.botsko.prism.actions.BlockChangeAction;
+import me.botsko.prism.exceptions.InvalidActionException;
+import org.bukkit.Bukkit;
+import org.bukkit.block.BlockState;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 
 
 public class PrismDependency

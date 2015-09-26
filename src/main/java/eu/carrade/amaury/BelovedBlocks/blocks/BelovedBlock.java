@@ -15,16 +15,21 @@
 
 package eu.carrade.amaury.BelovedBlocks.blocks;
 
-import eu.carrade.amaury.BelovedBlocks.*;
-import eu.carrade.amaury.BelovedBlocks.utils.*;
-import org.bukkit.*;
-import org.bukkit.block.*;
-import org.bukkit.configuration.*;
-import org.bukkit.entity.*;
-import org.bukkit.inventory.*;
-import org.bukkit.inventory.meta.*;
+import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
+import eu.carrade.amaury.BelovedBlocks.utils.GlowEffect;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Recipe;
+import org.bukkit.inventory.ShapelessRecipe;
+import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.*;
+import java.util.Set;
+import java.util.UUID;
 
 
 public abstract class BelovedBlock

@@ -11,7 +11,7 @@
 
 package eu.carrade.amaury.BelovedBlocks.blocks.logs;
 
-import org.bukkit.*;
+import org.bukkit.Material;
 
 
 public class CompleteOakLog extends CompleteLog

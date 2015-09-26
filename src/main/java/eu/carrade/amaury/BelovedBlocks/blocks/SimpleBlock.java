@@ -11,8 +11,8 @@
 
 package eu.carrade.amaury.BelovedBlocks.blocks;
 
-import org.bukkit.*;
-import org.bukkit.block.*;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
 
 
 public class SimpleBlock

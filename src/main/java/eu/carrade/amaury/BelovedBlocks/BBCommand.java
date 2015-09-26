@@ -15,15 +15,21 @@
 
 package eu.carrade.amaury.BelovedBlocks;
 
-import eu.carrade.amaury.BelovedBlocks.i18n.*;
-import org.bukkit.*;
-import org.bukkit.command.*;
-import org.bukkit.entity.*;
-import org.bukkit.inventory.*;
-import org.bukkit.permissions.*;
+import eu.carrade.amaury.BelovedBlocks.i18n.I18n;
+import org.bukkit.ChatColor;
+import org.bukkit.Sound;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.permissions.Permissible;
 
-import java.text.*;
-import java.util.*;
+import java.text.Collator;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 
 public class BBCommand implements TabExecutor

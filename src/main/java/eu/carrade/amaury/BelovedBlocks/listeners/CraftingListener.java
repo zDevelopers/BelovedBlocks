@@ -15,14 +15,22 @@
 
 package eu.carrade.amaury.BelovedBlocks.listeners;
 
-import eu.carrade.amaury.BelovedBlocks.*;
-import eu.carrade.amaury.BelovedBlocks.blocks.*;
-import org.bukkit.*;
-import org.bukkit.entity.*;
-import org.bukkit.event.*;
-import org.bukkit.event.inventory.*;
-import org.bukkit.inventory.*;
-import org.bukkit.inventory.meta.*;
+import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
+import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.entity.HumanEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.PrepareItemCraftEvent;
+import org.bukkit.inventory.AnvilInventory;
+import org.bukkit.inventory.CraftingInventory;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 
 public class CraftingListener implements Listener

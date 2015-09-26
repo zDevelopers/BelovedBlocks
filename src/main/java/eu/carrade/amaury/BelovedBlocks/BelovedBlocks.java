@@ -15,17 +15,21 @@
 
 package eu.carrade.amaury.BelovedBlocks;
 
-import eu.carrade.amaury.BelovedBlocks.blocks.*;
-import eu.carrade.amaury.BelovedBlocks.dependencies.*;
-import eu.carrade.amaury.BelovedBlocks.i18n.*;
-import eu.carrade.amaury.BelovedBlocks.listeners.*;
-import eu.carrade.amaury.BelovedBlocks.utils.*;
-import org.bukkit.*;
-import org.bukkit.inventory.*;
-import org.bukkit.inventory.meta.*;
-import org.bukkit.plugin.java.*;
+import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlocksManager;
+import eu.carrade.amaury.BelovedBlocks.dependencies.LogBlockDependency;
+import eu.carrade.amaury.BelovedBlocks.dependencies.PrismDependency;
+import eu.carrade.amaury.BelovedBlocks.i18n.I18n;
+import eu.carrade.amaury.BelovedBlocks.listeners.BlocksListener;
+import eu.carrade.amaury.BelovedBlocks.listeners.CraftingListener;
+import eu.carrade.amaury.BelovedBlocks.utils.GlowEffect;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Random;
 
 
 public final class BelovedBlocks extends JavaPlugin

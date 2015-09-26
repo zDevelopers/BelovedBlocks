@@ -15,8 +15,8 @@
 
 package eu.carrade.amaury.BelovedBlocks;
 
-import org.bukkit.*;
-import org.bukkit.inventory.*;
+import org.bukkit.Material;
+import org.bukkit.inventory.ShapedRecipe;
 
 
 public class BBRecipes

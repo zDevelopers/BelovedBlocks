@@ -15,18 +15,27 @@
 
 package eu.carrade.amaury.BelovedBlocks.listeners;
 
-import de.diddiz.LogBlock.*;
-import eu.carrade.amaury.BelovedBlocks.*;
-import eu.carrade.amaury.BelovedBlocks.blocks.*;
-import eu.carrade.amaury.BelovedBlocks.dependencies.PrismDependency.*;
-import org.bukkit.*;
-import org.bukkit.block.*;
-import org.bukkit.enchantments.*;
-import org.bukkit.entity.*;
-import org.bukkit.event.*;
-import org.bukkit.event.block.*;
-import org.bukkit.event.player.*;
-import org.bukkit.inventory.*;
+import de.diddiz.LogBlock.Actor;
+import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
+import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
+import eu.carrade.amaury.BelovedBlocks.dependencies.PrismDependency.PrismActionType;
+import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
+import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerShearEntityEvent;
+import org.bukkit.inventory.ItemStack;
 
 
 public class BlocksListener implements Listener
