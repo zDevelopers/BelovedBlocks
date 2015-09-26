@@ -83,7 +83,7 @@ public abstract class BelovedBlock
 				}
 
 
-				ItemStack ingredient     = getIngredient();
+				ItemStack ingredient = getIngredient();
 				ItemStack representation = getItem();
 
 				if (isUncraftable && getMatterRatio() != null && ingredient != null)
@@ -178,6 +178,18 @@ public abstract class BelovedBlock
 	public abstract SimpleBlock getPlacedBlock();
 
 	/**
+	 * In the default implementation of {@link #onBlockPlace(Block)}, controls wherever the
+	 * placed block is updated and the Minecraft's physics applied. Override this to disable
+	 * this update, if needed.
+	 *
+	 * @return {@code true} if the physics have to be applied.
+	 */
+	public boolean applyPhysics()
+	{
+		return true;
+	}
+
+	/**
 	 * Executed when this block is placed, if the placement is allowed.
 	 *
 	 * Override this if needed. Default behavior: change the block to the one returned
@@ -188,9 +200,12 @@ public abstract class BelovedBlock
 	public void onBlockPlace(Block placedBlock)
 	{
 		SimpleBlock blockToPlace = getPlacedBlock();
+		BlockState state = placedBlock.getState();
 
-		placedBlock.setType(blockToPlace.getType());
-		placedBlock.setData(blockToPlace.getDataValue());
+		state.setType(blockToPlace.getType());
+		state.setRawData(blockToPlace.getDataValue());
+
+		state.update(true, applyPhysics());
 	}
 
 
