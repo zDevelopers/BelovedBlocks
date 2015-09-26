@@ -31,21 +31,27 @@ public class SmoothQuartzBlock extends BelovedBlock
 	}
 
 	@Override
-	protected ItemStack getItem()
+	public ItemStack getItem()
 	{
 		return new ItemStack(Material.QUARTZ_BLOCK);
 	}
 
 	@Override
-	protected Set<Recipe> getCraftingRecipes()
+	public Set<Recipe> getCraftingRecipes()
 	{
-		return RecipesUtils.getSquaredRecipes(Material.STEP, 7, constructItem(2));
+		return RecipesUtils.getSquaredRecipes(getIngredient(), constructItem(2));
 	}
 
 	@Override
-	protected Set<Recipe> getReversedCraftingRecipes()
+	public Integer getMatterRatio()
 	{
-		return Utils.set(RecipesUtils.getReversedCraftingRecipe(Material.QUARTZ_BLOCK, 0, new ItemStack(Material.STEP, 2), 7));
+		return 2;
+	}
+
+	@Override
+	public ItemStack getIngredient()
+	{
+		return new ItemStack(Material.STEP, 1, (short) 7);
 	}
 
 	@Override

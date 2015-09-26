@@ -34,7 +34,7 @@ public class SmoothStoneBlock extends BelovedBlock
 	}
 
 	@Override
-	protected ItemStack getItem()
+	public ItemStack getItem()
 	{
 		ItemStack smoothStone = new ItemStack(Material.STONE);
 		smoothStone.setDurability((short) 6);
@@ -43,15 +43,21 @@ public class SmoothStoneBlock extends BelovedBlock
 	}
 
 	@Override
-	protected Set<Recipe> getCraftingRecipes()
+	public Set<Recipe> getCraftingRecipes()
 	{
-		return RecipesUtils.getSquaredRecipes(Material.STEP, 0, constructItem(2));
+		return RecipesUtils.getSquaredRecipes(getIngredient(), constructItem(2));
 	}
 
 	@Override
-	protected Set<Recipe> getReversedCraftingRecipes()
+	public ItemStack getIngredient()
 	{
-		return Utils.set(RecipesUtils.getReversedCraftingRecipe(Material.STONE, 6, new ItemStack(Material.STEP, 2), 0));
+		return new ItemStack(Material.STEP);
+	}
+
+	@Override
+	public Integer getMatterRatio()
+	{
+		return 2;
 	}
 
 	@Override

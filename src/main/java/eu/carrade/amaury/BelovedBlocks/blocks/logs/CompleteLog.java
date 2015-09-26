@@ -60,6 +60,7 @@ public abstract class CompleteLog extends BelovedBlock
 	 * Sets the durability of the block in the world.
 	 *
 	 * Call this only if the durability is not {@code representationDurability + 12}.
+	 * After {@link #setLogEssenceDurability(short)}.
 	 *
 	 * @param placedBlockDurability The durability.
 	 */
@@ -70,7 +71,7 @@ public abstract class CompleteLog extends BelovedBlock
 
 
 	@Override
-	protected ItemStack getItem()
+	public ItemStack getItem()
 	{
 		ItemStack completeLog = new ItemStack(logMaterial);
 		completeLog.setDurability(representationDurability);
@@ -79,15 +80,21 @@ public abstract class CompleteLog extends BelovedBlock
 	}
 
 	@Override
-	protected Set<Recipe> getCraftingRecipes()
+	public Set<Recipe> getCraftingRecipes()
 	{
-		return RecipesUtils.getSquaredRecipes(logMaterial, representationDurability, constructItem(4));
+		return RecipesUtils.getSquaredRecipes(getIngredient(), constructItem(4));
 	}
 
 	@Override
-	protected Set<Recipe> getReversedCraftingRecipes()
+	public Integer getMatterRatio()
 	{
-		return null;
+		return 1;
+	}
+
+	@Override
+	public ItemStack getIngredient()
+	{
+		return new ItemStack(logMaterial, 1, representationDurability);
 	}
 
 	@Override

@@ -23,6 +23,26 @@ import java.util.*;
 
 public class RecipesUtils
 {
+	/**
+	 * Construct the recipes needed to craft {@code result} from the given ingredient
+	 * placed in any 4*4 grid.
+	 *
+	 * @param ingredient The ingredient.
+	 * @param result The result.
+	 *
+	 * @return A set with the four recipes.
+	 */
+	public static Set<Recipe> getSquaredRecipes(final ItemStack ingredient, final ItemStack result)
+	{
+		Set<Recipe> recipes = new HashSet<>();
+
+		recipes.add(getShapedRecipe(result, ingredient, 'I', "II ", "II ", "   "));
+		recipes.add(getShapedRecipe(result, ingredient, 'I', " II", " II", "   "));
+		recipes.add(getShapedRecipe(result, ingredient, 'I', "   ", " II", " II"));
+		recipes.add(getShapedRecipe(result, ingredient, 'I', "   ", "II ", "II "));
+
+		return recipes;
+	}
 
 	/**
 	 * Construct the recipes needed to craft {@code result} from the given ingredient
@@ -36,56 +56,26 @@ public class RecipesUtils
 	 */
 	public static Set<Recipe> getSquaredRecipes(final Material ingredientMaterial, final int ingredientDataValue, final ItemStack result)
 	{
-		Set<Recipe> recipes = new HashSet<>();
-
-		recipes.add(getShapedRecipe(result, ingredientMaterial, ingredientDataValue, 'I', "II ", "II ", "   "));
-		recipes.add(getShapedRecipe(result, ingredientMaterial, ingredientDataValue, 'I', " II", " II", "   "));
-		recipes.add(getShapedRecipe(result, ingredientMaterial, ingredientDataValue, 'I', "   ", " II", " II"));
-		recipes.add(getShapedRecipe(result, ingredientMaterial, ingredientDataValue, 'I', "   ", "II ", "II "));
-
-		return recipes;
-	}
-
-	/**
-	 * Returns a recipe used to uncraft the given material.
-	 *
-	 * @param ingredientMaterial The crafted block's material.
-	 * @param ingredientDataValue The crafted block's data value.
-	 * @param result The uncrafted item stack.
-	 * @param resultData The uncrafted item data value (convenience argument).
-	 *
-	 * @return The recipe.
-	 */
-	public static Recipe getReversedCraftingRecipe(final Material ingredientMaterial, final int ingredientDataValue, final ItemStack result, final int resultData)
-	{
-		ItemStack recipeResult = result.clone();
-		recipeResult.setDurability((short) resultData);
-
-		ShapelessRecipe recipe = new ShapelessRecipe(result);
-		recipe.addIngredient(ingredientMaterial, ingredientDataValue);
-
-		return recipe;
+		return getSquaredRecipes(new ItemStack(ingredientMaterial, 1, (short) ingredientDataValue), result);
 	}
 
 	/**
 	 * Constructs a shaped recipe with a single ingredient.
 	 *
 	 * @param result The recipe's result.
-	 * @param ingredientMaterial The ingredient's material.
-	 * @param ingredientDataValue The ingredient's data value
+	 * @param ingredient The ingredient.
 	 * @param shapeChar The char used in the recipe shape (single-ingredient recipe).
 	 * @param shape The shape.
 	 *
 	 * @return The recipe.
 	 */
-	private static Recipe getShapedRecipe(final ItemStack result, final Material ingredientMaterial, final int ingredientDataValue, final Character shapeChar, final String... shape)
+	private static Recipe getShapedRecipe(final ItemStack result, final ItemStack ingredient, final Character shapeChar, final String... shape)
 	{
 		ShapedRecipe recipe = new ShapedRecipe(result);
 
 		recipe.shape(shape);
-		recipe.setIngredient(shapeChar, ingredientMaterial, ingredientDataValue);
+		recipe.setIngredient(shapeChar, ingredient.getData());
 
 		return recipe;
 	}
-
 }

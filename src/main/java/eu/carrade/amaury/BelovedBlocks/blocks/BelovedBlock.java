@@ -29,7 +29,6 @@ import java.util.*;
 
 public abstract class BelovedBlock
 {
-
 	/**
 	 * Used to identify the block when used. Display name of the item visible to
 	 * any player.
@@ -63,14 +62,14 @@ public abstract class BelovedBlock
 	private ItemStack constructedItemStack = null;
 
 
-	public BelovedBlock(final String displayName, final String internalName, final Boolean isCraftable, final Boolean isUncraftable, final Boolean glowOnItem)
+	public BelovedBlock(final String displayName, final String internalName, final boolean isCraftable, final boolean isUncraftable, final boolean glowOnItem)
 	{
 		this.displayName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', displayName);
 
-		this.internalName = internalName;
-		this.isCraftable = isCraftable;
+		this.internalName  = internalName;
+		this.isCraftable   = isCraftable;
 		this.isUncraftable = isUncraftable;
-		this.glowOnItem = glowOnItem;
+		this.glowOnItem    = glowOnItem;
 
 		// Crafting recipes registration
 		Bukkit.getScheduler().runTaskLater(BelovedBlocks.get(), new Runnable()
@@ -79,10 +78,24 @@ public abstract class BelovedBlock
 			public void run()
 			{
 				if (isCraftable)
+				{
 					registerRecipes(getCraftingRecipes());
+				}
 
-				if (isUncraftable)
-					registerRecipes(getReversedCraftingRecipes());
+
+				ItemStack ingredient     = getIngredient();
+				ItemStack representation = getItem();
+
+				if (isUncraftable && getMatterRatio() != null && ingredient != null)
+				{
+					ingredient = ingredient.clone();
+					ingredient.setAmount(getMatterRatio());
+
+					ShapelessRecipe recipe = new ShapelessRecipe(ingredient);
+					recipe.addIngredient(representation.getData());
+
+					BelovedBlocks.get().getServer().addRecipe(recipe);
+				}
 			}
 		}, 1l);
 	}
@@ -122,7 +135,7 @@ public abstract class BelovedBlock
 	 *
 	 * @return The item.
 	 */
-	protected abstract ItemStack getItem();
+	public abstract ItemStack getItem();
 
 	/**
 	 * The recipes used to craft this block.
@@ -131,23 +144,38 @@ public abstract class BelovedBlock
 	 *
 	 * @return The recipes.
 	 */
-	protected abstract Set<Recipe> getCraftingRecipes();
+	public abstract Set<Recipe> getCraftingRecipes();
 
 	/**
-	 * The recipes used to uncraft this block.
+	 * Returns the ratio between the amount of matter of the ingredient and of the result
+	 * of the crafting recipe.
+	 *
+	 * As example, a smooth double-stone-slab is crafted with four slabs in a square and this
+	 * gives two double-slabs, so the ratio is 2.
+	 *
+	 * This is used to determine the reversed craft balance, and it will be used as the amount
+	 * of matter of the original block given against one transformed block. So, this needs to
+	 * be an integer.
 	 *
 	 * Returning {@code null} disables the reversed craft.
 	 *
 	 * @return The recipes.
 	 */
-	protected abstract Set<Recipe> getReversedCraftingRecipes();
+	public abstract Integer getMatterRatio();
+
+	/**
+	 * Returns this block's main ingredient, given back in the reversed crafting recipe.
+	 *
+	 * @return The ingredient.
+	 */
+	public abstract ItemStack getIngredient();
 
 	/**
 	 * Returns the block to place in the world.
 	 *
 	 * @return The block.
 	 */
-	protected abstract SimpleBlock getPlacedBlock();
+	public abstract SimpleBlock getPlacedBlock();
 
 	/**
 	 * Executed when this block is placed, if the placement is allowed.
@@ -290,17 +318,17 @@ public abstract class BelovedBlock
 		return this;
 	}
 
-	public Boolean getIsCraftable()
+	public boolean isCraftable()
 	{
 		return isCraftable;
 	}
 
-	public Boolean getIsUncraftable()
+	public boolean isUncraftable()
 	{
 		return isUncraftable;
 	}
 
-	public Boolean getGlowOnItem()
+	public boolean getGlowOnItem()
 	{
 		return glowOnItem;
 	}

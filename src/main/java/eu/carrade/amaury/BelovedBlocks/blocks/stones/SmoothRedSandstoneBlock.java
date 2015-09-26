@@ -31,7 +31,7 @@ public class SmoothRedSandstoneBlock extends BelovedBlock
 	}
 
 	@Override
-	protected ItemStack getItem()
+	public ItemStack getItem()
 	{
 		ItemStack smoothRedSandstone = new ItemStack(Material.RED_SANDSTONE);
 		smoothRedSandstone.setDurability((short) 2);
@@ -40,15 +40,21 @@ public class SmoothRedSandstoneBlock extends BelovedBlock
 	}
 
 	@Override
-	protected Set<Recipe> getCraftingRecipes()
+	public Set<Recipe> getCraftingRecipes()
 	{
-		return RecipesUtils.getSquaredRecipes(Material.STONE_SLAB2, 0, constructItem(2));
+		return RecipesUtils.getSquaredRecipes(getIngredient(), constructItem(2));
 	}
 
 	@Override
-	protected Set<Recipe> getReversedCraftingRecipes()
+	public Integer getMatterRatio()
 	{
-		return Utils.set(RecipesUtils.getReversedCraftingRecipe(Material.RED_SANDSTONE, 2, new ItemStack(Material.STONE_SLAB2, 2), 0));
+		return 2;
+	}
+
+	@Override
+	public ItemStack getIngredient()
+	{
+		return new ItemStack(Material.STONE_SLAB2);
 	}
 
 	@Override

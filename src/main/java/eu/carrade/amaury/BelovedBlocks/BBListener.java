@@ -425,52 +425,38 @@ public class BBListener implements Listener
 	/**
 	 * Used to filter reversed crafts.
 	 *
-	 * @param e
+	 * @param ev
 	 */
 	@EventHandler
-	public void onPreCraftEvent(PrepareItemCraftEvent e)
+	public void onPreCraftEvent(PrepareItemCraftEvent ev)
 	{
-		ItemStack item = getItemStack(e.getInventory());
+		ItemStack item = getItemStack(ev.getInventory());
 
-		if (getCount(e.getInventory()) == 1 && item != null && item.getType() != Material.AIR)
+		if (getCount(ev.getInventory()) == 1 && item != null && item.getType() != Material.AIR)
 		{
-			// Handles the smooth stone items.
-			if ((item.getType() == Material.STONE && item.getDurability() == 6)
-					|| item.getType() == Material.SANDSTONE
-					|| item.getType() == Material.RED_SANDSTONE
-					|| item.getType() == Material.QUARTZ_BLOCK)
+			boolean validReversedCraft = true;
+
+			if(!item.hasItemMeta())validReversedCraft = false;
+
+			BelovedBlock block = BelovedBlocks.get().getBelovedBlocksManager().getBlockFromDisplayName(item.getItemMeta().getDisplayName());
+			if(block == null || !block.isUncraftable()) validReversedCraft = false;
+
+
+			if(!validReversedCraft)
 			{
-				if (item.hasItemMeta()
-						&& (item.equals(p.getSmoothStoneItem(item.getAmount()))
-						|| item.equals(p.getSmoothSandstoneItem(item.getAmount()))
-						|| item.equals(p.getSmoothRedSandstoneItem(item.getAmount()))
-						|| item.equals(p.getSmoothQuartzItem(item.getAmount()))))
-				{
-					// ok
-				}
-				else
-				{
-					e.getInventory().setResult(new ItemStack(Material.AIR, 1));
-				}
+				ev.getInventory().getResult().setType(Material.AIR);
+				ev.getInventory().getResult().setAmount(1);
+
+				// One viewer only, because it's a crafting inventory.
+				((Player) ev.getViewers().get(0)).updateInventory();
 			}
-
-			// Handles the log items.
-			else if (item.getType() == Material.LOG || item.getType() == Material.LOG_2)
+			else
 			{
-				if (item.hasItemMeta() && (item.equals(p.getSmoothOakItem(item.getAmount()))
-						|| item.equals(p.getSmoothSpruceItem(item.getAmount()))
-						|| item.equals(p.getSmoothBirchItem(item.getAmount()))
-						|| item.equals(p.getSmoothJungleItem(item.getAmount()))
-						|| item.equals(p.getSmoothAcaciaItem(item.getAmount()))
-						|| item.equals(p.getSmoothDarkOakItem(item.getAmount()))))
-				{
+				final ItemStack ingredient = block.getIngredient();
+				ingredient.setAmount(block.getMatterRatio());
 
-					ItemStack result = new ItemStack(item.getType(), 1);
-					result.setDurability(item.getDurability());
-					e.getInventory().setResult(result);
-				}
+				ev.getInventory().setResult(ingredient);
 			}
 		}
 	}
 }
-	
