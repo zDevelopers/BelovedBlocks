@@ -18,6 +18,7 @@ package eu.carrade.amaury.BelovedBlocks;
 import eu.carrade.amaury.BelovedBlocks.blocks.*;
 import eu.carrade.amaury.BelovedBlocks.dependencies.*;
 import eu.carrade.amaury.BelovedBlocks.i18n.*;
+import eu.carrade.amaury.BelovedBlocks.listeners.*;
 import eu.carrade.amaury.BelovedBlocks.utils.*;
 import org.bukkit.*;
 import org.bukkit.inventory.*;
@@ -81,7 +82,8 @@ public final class BelovedBlocks extends JavaPlugin
 
 		belovedBlocksManager = new BelovedBlocksManager();
 
-		getServer().getPluginManager().registerEvents(new BBListener(this), this);
+		getServer().getPluginManager().registerEvents(new BlocksListener(), this);
+		getServer().getPluginManager().registerEvents(new CraftingListener(), this);
 
 		BBCommand commandExecutor = new BBCommand(this);
 		getCommand("belovedblocks").setExecutor(commandExecutor);
