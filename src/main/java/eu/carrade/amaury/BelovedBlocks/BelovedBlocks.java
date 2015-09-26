@@ -38,7 +38,6 @@ public final class BelovedBlocks extends JavaPlugin
 	private static BelovedBlocks instance = null;
 
 	private I18n i = null;
-	private BBRecipes recipes;
 
 	private BelovedBlocksManager belovedBlocksManager;
 
@@ -47,16 +46,6 @@ public final class BelovedBlocks extends JavaPlugin
 
 	private String toolStonecutterName;
 	private String toolSawName;
-	private String smoothStoneName;
-	private String smoothSandstoneName;
-	private String smoothRedSandstoneName;
-	private String smoothQuartzName;
-	private String smoothOakName;
-	private String smoothSpruceName;
-	private String smoothBirchName;
-	private String smoothJungleName;
-	private String smoothAcaciaName;
-	private String smoothDarkOakName;
 
 	/**
 	 * Returns the main plugin instance.
@@ -96,19 +85,7 @@ public final class BelovedBlocks extends JavaPlugin
 		toolStonecutterName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("tool.stonecutter.name"));
 		toolSawName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("tool.saw.name"));
 
-		smoothStoneName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.slabs.stone.name"));
-		smoothSandstoneName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.slabs.sandstone.name"));
-		smoothRedSandstoneName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.slabs.red_sandstone.name"));
-		smoothQuartzName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.slabs.quartz.name"));
-
-		smoothOakName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.logs.oak.name"));
-		smoothSpruceName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.logs.spruce.name"));
-		smoothBirchName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.logs.birch.name"));
-		smoothJungleName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.logs.jungle.name"));
-		smoothAcaciaName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.logs.acacia.name"));
-		smoothDarkOakName = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', getConfig().getString("blocks.logs.dark_oak.name"));
-
-		recipes = new BBRecipes(this);
+		new BBRecipes(this);
 
 		lbDependency = new LogBlockDependency(this);
 
@@ -225,198 +202,7 @@ public final class BelovedBlocks extends JavaPlugin
 		return tool;
 	}
 
-	/**
-	 * Returns the item used as a replacement for the smooth stone double-slab.
-	 *
-	 * @param amount The amount of items in the stack.
-	 * @return the item.
-	 */
-	public ItemStack getSmoothStoneItem(int amount)
-	{
-		ItemStack smoothStone = new ItemStack(Material.STONE, amount);
-		smoothStone.setDurability((short) 6);
 
-		ItemMeta itemMeta = smoothStone.getItemMeta();
-		itemMeta.setDisplayName(smoothStoneName);
-		smoothStone.setItemMeta(itemMeta);
-
-		if (getConfig().getBoolean("blocks.slabs.stone.itemGlow"))
-		{
-			GlowEffect.addGlow(smoothStone);
-		}
-
-		return smoothStone;
-	}
-
-	/**
-	 * Returns the item used as a replacement for the smooth sandstone double-slab.
-	 *
-	 * @param amount The amount of items in the stack.
-	 * @return the item.
-	 */
-	public ItemStack getSmoothSandstoneItem(int amount)
-	{
-		ItemStack smoothSandstone = new ItemStack(Material.SANDSTONE, amount);
-		smoothSandstone.setDurability((short) 2);
-
-		ItemMeta itemMeta = smoothSandstone.getItemMeta();
-		itemMeta.setDisplayName(smoothSandstoneName);
-		smoothSandstone.setItemMeta(itemMeta);
-
-		if (getConfig().getBoolean("blocks.slabs.sandstone.itemGlow"))
-		{
-			GlowEffect.addGlow(smoothSandstone);
-		}
-
-		return smoothSandstone;
-	}
-
-	/**
-	 * Returns the item used as a replacement for the smooth red sandstone double-slab.
-	 *
-	 * @param amount The amount of items in the stack.
-	 * @return the item.
-	 */
-	public ItemStack getSmoothRedSandstoneItem(int amount)
-	{
-		ItemStack smoothRedSandstone = new ItemStack(Material.RED_SANDSTONE, amount);
-		smoothRedSandstone.setDurability((short) 2);
-
-		ItemMeta itemMeta = smoothRedSandstone.getItemMeta();
-		itemMeta.setDisplayName(smoothRedSandstoneName);
-		smoothRedSandstone.setItemMeta(itemMeta);
-
-		if (getConfig().getBoolean("blocks.slabs.red_sandstone.itemGlow"))
-		{
-			GlowEffect.addGlow(smoothRedSandstone);
-		}
-
-		return smoothRedSandstone;
-	}
-
-	/**
-	 * Returns the item used as a replacement for the smooth quartz double-slab.
-	 *
-	 * @param amount The amount of items in the stack.
-	 * @return the item.
-	 */
-	public ItemStack getSmoothQuartzItem(int amount)
-	{
-		ItemStack smoothQuartz = new ItemStack(Material.QUARTZ_BLOCK, amount);
-
-		ItemMeta itemMeta = smoothQuartz.getItemMeta();
-		itemMeta.setDisplayName(smoothQuartzName);
-		smoothQuartz.setItemMeta(itemMeta);
-
-		if (getConfig().getBoolean("blocks.slabs.quartz.itemGlow"))
-		{
-			GlowEffect.addGlow(smoothQuartz);
-		}
-
-		return smoothQuartz;
-	}
-
-	public ItemStack getSmoothOakItem(int amount)
-	{
-		ItemStack smoothOak = new ItemStack(Material.LOG, amount);
-		smoothOak.setDurability((short) 0);
-
-		ItemMeta itemMeta = smoothOak.getItemMeta();
-		itemMeta.setDisplayName(smoothOakName);
-		smoothOak.setItemMeta(itemMeta);
-
-		if (getConfig().getBoolean("blocks.logs.oak.itemGlow"))
-		{
-			GlowEffect.addGlow(smoothOak);
-		}
-
-		return smoothOak;
-	}
-
-	public ItemStack getSmoothSpruceItem(int amount)
-	{
-		ItemStack smoothSpruce = new ItemStack(Material.LOG, amount);
-		smoothSpruce.setDurability((short) 1);
-
-		ItemMeta itemMeta = smoothSpruce.getItemMeta();
-		itemMeta.setDisplayName(smoothSpruceName);
-		smoothSpruce.setItemMeta(itemMeta);
-
-		if (getConfig().getBoolean("blocks.logs.spruce.itemGlow"))
-		{
-			GlowEffect.addGlow(smoothSpruce);
-		}
-
-		return smoothSpruce;
-	}
-
-	public ItemStack getSmoothBirchItem(int amount)
-	{
-		ItemStack smoothBirch = new ItemStack(Material.LOG, amount);
-		smoothBirch.setDurability((short) 2);
-
-		ItemMeta itemMeta = smoothBirch.getItemMeta();
-		itemMeta.setDisplayName(smoothBirchName);
-		smoothBirch.setItemMeta(itemMeta);
-
-		if (getConfig().getBoolean("blocks.logs.birch.itemGlow"))
-		{
-			GlowEffect.addGlow(smoothBirch);
-		}
-
-		return smoothBirch;
-	}
-
-	public ItemStack getSmoothJungleItem(int amount)
-	{
-		ItemStack smoothJungle = new ItemStack(Material.LOG, amount);
-		smoothJungle.setDurability((short) 3);
-
-		ItemMeta itemMeta = smoothJungle.getItemMeta();
-		itemMeta.setDisplayName(smoothJungleName);
-		smoothJungle.setItemMeta(itemMeta);
-
-		if (getConfig().getBoolean("blocks.logs.jungle.itemGlow"))
-		{
-			GlowEffect.addGlow(smoothJungle);
-		}
-
-		return smoothJungle;
-	}
-
-	public ItemStack getSmoothAcaciaItem(int amount)
-	{
-		ItemStack smoothAcacia = new ItemStack(Material.LOG_2, amount);
-		smoothAcacia.setDurability((short) 0);
-
-		ItemMeta itemMeta = smoothAcacia.getItemMeta();
-		itemMeta.setDisplayName(smoothAcaciaName);
-		smoothAcacia.setItemMeta(itemMeta);
-
-		if (getConfig().getBoolean("blocks.logs.acacia.itemGlow"))
-		{
-			GlowEffect.addGlow(smoothAcacia);
-		}
-
-		return smoothAcacia;
-	}
-
-	public ItemStack getSmoothDarkOakItem(int amount)
-	{
-		ItemStack smoothDarkOak = new ItemStack(Material.LOG_2, amount);
-		smoothDarkOak.setDurability((short) 1);
-
-		ItemMeta itemMeta = smoothDarkOak.getItemMeta();
-		itemMeta.setDisplayName(smoothDarkOakName);
-		smoothDarkOak.setItemMeta(itemMeta);
-
-		if (getConfig().getBoolean("blocks.logs.dark_oak.itemGlow"))
-		{
-			GlowEffect.addGlow(smoothDarkOak);
-		}
-
-		return smoothDarkOak;
-	}
 
 	/**
 	 * Checks if the given tool is a valid stonecutter.
@@ -470,55 +256,5 @@ public final class BelovedBlocks extends JavaPlugin
 	public String getToolSawName()
 	{
 		return toolSawName;
-	}
-
-	public String getSmoothStoneName()
-	{
-		return smoothStoneName;
-	}
-
-	public String getSmoothSandstoneName()
-	{
-		return smoothSandstoneName;
-	}
-
-	public String getSmoothRedSandstoneName()
-	{
-		return smoothRedSandstoneName;
-	}
-
-	public String getSmoothQuartzName()
-	{
-		return smoothQuartzName;
-	}
-
-	public String getSmoothOakName()
-	{
-		return smoothOakName;
-	}
-
-	public String getSmoothSpruceName()
-	{
-		return smoothSpruceName;
-	}
-
-	public String getSmoothBirchName()
-	{
-		return smoothBirchName;
-	}
-
-	public String getSmoothJungleName()
-	{
-		return smoothJungleName;
-	}
-
-	public String getSmoothAcaciaName()
-	{
-		return smoothAcaciaName;
-	}
-
-	public String getSmoothDarkOakName()
-	{
-		return smoothDarkOakName;
 	}
 }

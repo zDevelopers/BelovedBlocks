@@ -15,6 +15,7 @@
 
 package eu.carrade.amaury.BelovedBlocks;
 
+import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
 import eu.carrade.amaury.BelovedBlocks.i18n.I18n;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
@@ -66,26 +67,31 @@ public class BBCommand implements TabExecutor
 		sender.sendMessage(i.t("cmd.disallowed"));
 	}
 
+	private void help(CommandSender sender)
+	{
+		sender.sendMessage(i.t("cmd.version", p.getDescription().getName(), p.getDescription().getVersion()));
+		sender.sendMessage(i.t("cmd.help.giveTool"));
+		sender.sendMessage(i.t("cmd.help.giveBlock"));
+	}
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String alias, String[] args)
 	{
 
 		if (args.length == 0 || (args.length == 1 && args[0].equalsIgnoreCase("give")))
 		{
-			sender.sendMessage(i.t("cmd.version", p.getDescription().getName(), p.getDescription().getVersion()));
-			sender.sendMessage(i.t("cmd.help.giveTool"));
-			sender.sendMessage(i.t("cmd.help.giveBlock"));
-
+			help(sender);
 			return true;
 		}
 
+		// /bb give ...
 		if (args.length > 1 && args[0].equalsIgnoreCase("give"))
-		{ // /bb give ...
+		{
 
 			ItemStack toGive = null;
 			Player target = null;
 
-			String itemName = null;
+			String itemName;
 			Boolean targetGiven = false;
 
 			if (sender instanceof Player)
@@ -123,11 +129,30 @@ public class BBCommand implements TabExecutor
 						target = p.getServer().getPlayer(args[4]);
 						targetGiven = true;
 					}
+
+
+					String permission = "give." + itemName;
+
+					if (sender.equals(target))
+					{
+						permission += ".self";
+					}
+					else
+					{
+						permission += ".other";
+					}
+
+					if (!checkPermission(sender, permission))
+					{
+						disallowed(sender);
+						return true;
+					}
 				}
 			}
 
+			// /bb give block <block name> [amount] [target]
 			else if (args[1].equalsIgnoreCase("block"))
-			{ // /bb give block <stone|sandstone|red-sandstone|quartz|oak|spruce|birch|jungle|acacia|dark-oak> [amount] [target]
+			{
 				if (args.length < 3)
 				{
 					sender.sendMessage(i.t("cmd.help.giveBlock"));
@@ -135,7 +160,9 @@ public class BBCommand implements TabExecutor
 				}
 				else
 				{
+					BelovedBlock block;
 					int amount = 1;
+
 					if (args.length >= 4)
 					{
 						try
@@ -149,53 +176,12 @@ public class BBCommand implements TabExecutor
 						}
 					}
 
-					switch (args[2])
+					block = p.getBelovedBlocksManager().getBlockFromInternalName(args[2].toLowerCase());
+
+					if(block == null)
 					{
-						case "stone":
-							toGive = p.getSmoothStoneItem(amount);
-							itemName = "blocks.stone";
-							break;
-						case "sandstone":
-							toGive = p.getSmoothSandstoneItem(amount);
-							itemName = "blocks.sandstone";
-							break;
-						case "red-sandstone":
-							toGive = p.getSmoothRedSandstoneItem(amount);
-							itemName = "blocks.red-sandstone";
-							break;
-						case "quartz":
-							toGive = p.getSmoothQuartzItem(amount);
-							itemName = "blocks.quartz";
-							break;
-
-						case "oak":
-							toGive = p.getSmoothOakItem(amount);
-							itemName = "blocks.oak";
-							break;
-						case "spruce":
-							toGive = p.getSmoothSpruceItem(amount);
-							itemName = "blocks.spruce";
-							break;
-						case "birch":
-							toGive = p.getSmoothBirchItem(amount);
-							itemName = "blocks.birch";
-							break;
-						case "jungle":
-							toGive = p.getSmoothJungleItem(amount);
-							itemName = "blocks.jungle";
-							break;
-						case "acacia":
-							toGive = p.getSmoothAcaciaItem(amount);
-							itemName = "blocks.acacia";
-							break;
-						case "dark-oak":
-							toGive = p.getSmoothDarkOakItem(amount);
-							itemName = "blocks.dark-oak";
-							break;
-
-						default:
-							sender.sendMessage(i.t("cmd.give.invalidBlock"));
-							return true;
+						sender.sendMessage(i.t("cmd.give.invalidBlock"));
+						return true;
 					}
 
 					if (args.length >= 5)
@@ -203,7 +189,20 @@ public class BBCommand implements TabExecutor
 						target = p.getServer().getPlayer(args[4]);
 						targetGiven = true;
 					}
+
+					if(sender instanceof Player && !block.canGive(((Player) sender).getUniqueId(), target.getUniqueId()))
+					{
+						disallowed(sender);
+						return true;
+					}
+
+					toGive = block.constructItem(amount);
 				}
+			}
+			else
+			{
+				help(sender);
+				return true;
 			}
 
 			if (target == null)
@@ -217,23 +216,6 @@ public class BBCommand implements TabExecutor
 					sender.sendMessage(i.t("cmd.give.playerRequiredFromConsole"));
 				}
 
-				return true;
-			}
-
-			String permission = "give." + itemName;
-
-			if (sender.equals(target))
-			{
-				permission += ".self";
-			}
-			else
-			{
-				permission += ".other";
-			}
-
-			if (!checkPermission(sender, permission))
-			{
-				disallowed(sender);
 				return true;
 			}
 
@@ -262,18 +244,18 @@ public class BBCommand implements TabExecutor
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args)
 	{
 
-		if (args.length == 1)
-		{ // /bb <?>
-			return getAutocompleteSuggestions(args[0], Arrays.asList("give"));
+		if (args.length == 1) // /bb <?>
+		{
+			return getAutocompleteSuggestions(args[0], Collections.singletonList("give"));
 		}
 
-		else if (args.length == 2)
-		{ // /bb give <?>
+		else if (args.length == 2) // /bb give <?>
+		{
 			return getAutocompleteSuggestions(args[1], Arrays.asList("tool", "block"));
 		}
 
-		else if (args.length == 3)
-		{ // /bb give <> <?>
+		else if (args.length == 3) // /bb give <> <?>
+		{
 			if (args[1].equalsIgnoreCase("block"))
 			{
 				return getAutocompleteSuggestions(args[2], Arrays.asList("stone", "sandstone", "red-sandstone",
@@ -286,9 +268,9 @@ public class BBCommand implements TabExecutor
 			}
 		}
 
-		else if (args.length == 4 && args[1].equalsIgnoreCase("block"))
-		{ // /bb give <> <> <?>
-			return new ArrayList<>(); // No autocomplete for item count
+		else if (args.length == 4 && args[1].equalsIgnoreCase("block")) // /bb give <> <> <?>
+		{
+			return Collections.emptyList(); // No autocomplete for item count
 		}
 
 		return null;
