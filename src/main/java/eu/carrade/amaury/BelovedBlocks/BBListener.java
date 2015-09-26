@@ -45,7 +45,7 @@ public class BBListener implements Listener
 	 *
 	 * @param ev
 	 */
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
 	public void onPlayerInteract(PlayerInteractEvent ev)
 	{
 		if (!ev.hasBlock() || !ev.hasItem()) return;
@@ -160,7 +160,7 @@ public class BBListener implements Listener
 	 *
 	 * @param ev The event.
 	 */
-	@EventHandler (ignoreCancelled = true)
+	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
 	public void onBlockPlace(BlockPlaceEvent ev)
 	{
 		BelovedBlock belovedBlock = BelovedBlocks.get().getBelovedBlocksManager().stackToBelovedBlock(ev.getItemInHand());
@@ -181,7 +181,7 @@ public class BBListener implements Listener
 	 *
 	 * @param ev
 	 */
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
 	public void onBlockBreaks(final BlockBreakEvent ev)
 	{
 		// This event only concerns players in survival game mode.
@@ -291,7 +291,7 @@ public class BBListener implements Listener
 	 *
 	 * @param ev
 	 */
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
 	public void onPlayerShearEntity(PlayerShearEntityEvent ev)
 	{
 		if (p.isValidStonecutterTool(ev.getPlayer().getItemInHand()))
@@ -310,7 +310,7 @@ public class BBListener implements Listener
 	 *
 	 * @param ev
 	 */
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
 	public void onInventoryClick(final InventoryClickEvent ev)
 	{
 		if (ev.getInventory() instanceof CraftingInventory && ev.getSlot() == 0)
@@ -427,7 +427,7 @@ public class BBListener implements Listener
 	 *
 	 * @param ev
 	 */
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
 	public void onPreCraftEvent(PrepareItemCraftEvent ev)
 	{
 		ItemStack item = getItemStack(ev.getInventory());
