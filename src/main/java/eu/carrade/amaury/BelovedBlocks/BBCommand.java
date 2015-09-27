@@ -243,7 +243,6 @@ public class BBCommand implements TabExecutor
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args)
 	{
-
 		if (args.length == 1) // /bb <?>
 		{
 			return getAutocompleteSuggestions(args[0], Collections.singletonList("give"));
@@ -258,9 +257,14 @@ public class BBCommand implements TabExecutor
 		{
 			if (args[1].equalsIgnoreCase("block"))
 			{
-				return getAutocompleteSuggestions(args[2], Arrays.asList("stone", "sandstone", "red-sandstone",
-						"quartz", "oak", "spruce", "birch",
-						"jungle", "acacia", "dark-oak"));
+				List<String> suggestions = new ArrayList<>();
+
+				for(BelovedBlock block : p.getBelovedBlocksManager().getBelovedBlocks())
+				{
+					suggestions.add(block.getInternalName());
+				}
+
+				return getAutocompleteSuggestions(args[2], suggestions);
 			}
 			else if (args[1].equalsIgnoreCase("tool"))
 			{
