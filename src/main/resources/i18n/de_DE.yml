@@ -7,7 +7,7 @@ keys:
         
         help:
             giveTool: "{cc}/bb give tool <stonecutter|saw> [Empfänger] {ci}: gibt der BelovedBlocks Werkzeug zu ihnen oder zu der Empfänger."
-            giveBlock: "{cc}/bb give block <stone|sandstone|red-sandstone|oak|spruce|birch|jungle|acacia|dark-oak> [Menge] [Empfänger] {ci}: gibt die BelovedBlocks Blocks zu ihnen oder zu der Empfänger."
+            giveBlock: "{cc}/bb give block <{0}> [Menge] [Empfänger] {ci}: gibt die BelovedBlocks Blocks zu ihnen oder zu der Empfänger."
         
         give:
             invalidBlock: "{ce}Diesen Block ist nicht ein gültiges BelovedBlocks Block."
@@ -31,4 +31,3 @@ keys:
                 line2: "{gray}um die Rinde zu drehen"
                 line3: "{red}Achtung, die Säge kann sich brechen"
                 line4: "{red}wenn Sie Blöcke vernichten"
-

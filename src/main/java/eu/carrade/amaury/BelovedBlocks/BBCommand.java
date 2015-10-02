@@ -35,14 +35,33 @@ import java.util.List;
 
 public class BBCommand implements TabExecutor
 {
-
 	private BelovedBlocks p;
 	private I18n i;
+
+	private final String HELP_BLOCKS_LIST;
 
 	public BBCommand(BelovedBlocks plugin)
 	{
 		p = plugin;
 		i = p.getI18n();
+
+
+		// Generates blocks list help string
+		List<String> blockNames = new ArrayList<>();
+		for(BelovedBlock block : p.getBelovedBlocksManager().getBelovedBlocks())
+		{
+			blockNames.add(block.getInternalName());
+		}
+
+		Collections.sort(blockNames);
+
+		String names = "";
+		for(String blockName : blockNames)
+		{
+			names += blockName + "|";
+		}
+
+		HELP_BLOCKS_LIST = names.substring(0, names.length() - 1); // Removes the trailing |
 	}
 
 	/**
@@ -71,7 +90,7 @@ public class BBCommand implements TabExecutor
 	{
 		sender.sendMessage(i.t("cmd.version", p.getDescription().getName(), p.getDescription().getVersion()));
 		sender.sendMessage(i.t("cmd.help.giveTool"));
-		sender.sendMessage(i.t("cmd.help.giveBlock"));
+		sender.sendMessage(i.t("cmd.help.giveBlock", HELP_BLOCKS_LIST));
 	}
 
 	@Override
@@ -155,7 +174,7 @@ public class BBCommand implements TabExecutor
 			{
 				if (args.length < 3)
 				{
-					sender.sendMessage(i.t("cmd.help.giveBlock"));
+					sender.sendMessage(i.t("cmd.help.giveBlock", HELP_BLOCKS_LIST));
 					return true;
 				}
 				else
