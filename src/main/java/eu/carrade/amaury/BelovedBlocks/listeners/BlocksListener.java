@@ -62,7 +62,7 @@ public class BlocksListener implements Listener
 		Material type = block.getType();
 		Player player = ev.getPlayer();
 
-		if (p.isValidStonecutterTool(item))
+		if (p.getToolsManager().isValidStonecutterTool(item))
 		{
 
 			if ((type == Material.DOUBLE_STEP || type == Material.DOUBLE_STONE_SLAB2)
@@ -93,7 +93,7 @@ public class BlocksListener implements Listener
 				if (player.getGameMode() != GameMode.CREATIVE)
 				{
 					short newDurability = (short) (item.getDurability()
-							+ p.increaseDurability(item.getEnchantmentLevel(Enchantment.DURABILITY)));
+							+ p.getToolsManager().increaseDurability(item.getEnchantmentLevel(Enchantment.DURABILITY)));
 
 					if (newDurability > item.getType().getMaxDurability())
 					{
@@ -113,7 +113,7 @@ public class BlocksListener implements Listener
 			}
 		}
 
-		else if (p.isValidSawTool(item))
+		else if (p.getToolsManager().isValidSawTool(item))
 		{
 
 			if ((type == Material.LOG || type == Material.LOG_2)
@@ -140,7 +140,7 @@ public class BlocksListener implements Listener
 				if (player.getGameMode() != GameMode.CREATIVE)
 				{
 					short newDurability = (short) (item.getDurability()
-							+ p.increaseDurability(item.getEnchantmentLevel(Enchantment.DURABILITY)));
+							+ p.getToolsManager().increaseDurability(item.getEnchantmentLevel(Enchantment.DURABILITY)));
 
 					if (newDurability > item.getType().getMaxDurability())
 					{
@@ -194,7 +194,7 @@ public class BlocksListener implements Listener
 		// This event only concerns players in survival game mode.
 		if (ev.getPlayer().getGameMode() != GameMode.CREATIVE)
 		{
-			if (p.isValidStonecutterTool(ev.getPlayer().getItemInHand()))
+			if (p.getToolsManager().isValidStonecutterTool(ev.getPlayer().getItemInHand()))
 			{
 				// Those blocks don't drop as items.
 				if (ev.getBlock().getType() == Material.DEAD_BUSH
@@ -216,8 +216,8 @@ public class BlocksListener implements Listener
 
 					// The tool loses 2 durability points.
 					short newDurability = (short) (ev.getPlayer().getItemInHand().getDurability()
-							+ p.increaseDurability(ev.getPlayer().getItemInHand().getEnchantmentLevel(Enchantment.DURABILITY))
-							+ p.increaseDurability(ev.getPlayer().getItemInHand().getEnchantmentLevel(Enchantment.DURABILITY)));
+							+ p.getToolsManager().increaseDurability(ev.getPlayer().getItemInHand().getEnchantmentLevel(Enchantment.DURABILITY))
+							+ p.getToolsManager().increaseDurability(ev.getPlayer().getItemInHand().getEnchantmentLevel(Enchantment.DURABILITY)));
 
 					if (newDurability > ev.getPlayer().getItemInHand().getType().getMaxDurability())
 					{
@@ -242,7 +242,7 @@ public class BlocksListener implements Listener
 			}
 
 
-			if (p.isValidSawTool(ev.getPlayer().getItemInHand()))
+			if (p.getToolsManager().isValidSawTool(ev.getPlayer().getItemInHand()))
 			{
 				// Chance the saw to break.
 				float percent = (float) (p.getConfig().getInt("tool.saw.percentageToBreak") * 0.01);
@@ -295,13 +295,11 @@ public class BlocksListener implements Listener
 	 * Used to prevent our tool from shearing sheeps or mushroom cows.
 	 * <p>
 	 * The cow seems to disappear, a relog fix that. Cannot be fixed on our side (Minecraft or CBukkit bug).
-	 *
-	 * @param ev
 	 */
 	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
 	public void onPlayerShearEntity(PlayerShearEntityEvent ev)
 	{
-		if (p.isValidStonecutterTool(ev.getPlayer().getItemInHand()))
+		if (p.getToolsManager().isValidStonecutterTool(ev.getPlayer().getItemInHand()))
 		{
 			ev.setCancelled(true);
 		}

@@ -130,11 +130,11 @@ public class BBCommand implements TabExecutor
 					switch (args[2])
 					{
 						case "stonecutter":
-							toGive = p.getToolStonecutterItem();
+							toGive = p.getToolsManager().getToolStonecutterItem();
 							itemName = "tools.stonecutter";
 							break;
 						case "saw":
-							toGive = p.getToolSawItem();
+							toGive = p.getToolsManager().getToolSawItem();
 							itemName = "tools.saw";
 							break;
 

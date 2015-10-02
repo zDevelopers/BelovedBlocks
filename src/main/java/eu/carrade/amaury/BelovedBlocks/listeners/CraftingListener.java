@@ -99,24 +99,24 @@ public class CraftingListener implements Listener
 				// Saw
 				else if (item.hasItemMeta()
 						&& item.getItemMeta().getDisplayName() != null
-						&& item.getItemMeta().getDisplayName().equals(p.getToolSawName()))
+						&& item.getItemMeta().getDisplayName().equals(p.getToolsManager().getToolSawName()))
 				{
 					// Players can add enchantments to the saw.
 					ev.getInventory().getItem(2).setDurability(item.getDurability());
 					ItemMeta itemMeta = result.getItemMeta();
-					itemMeta.setDisplayName(p.getToolSawName());
+					itemMeta.setDisplayName(p.getToolsManager().getToolSawName());
 					ev.getInventory().getItem(2).setItemMeta(itemMeta);
 				}
 
 				// Stonecutter
 				else if (item.hasItemMeta()
 						&& item.getItemMeta().getDisplayName() != null
-						&& item.getItemMeta().getDisplayName().equals(p.getToolStonecutterName()))
+						&& item.getItemMeta().getDisplayName().equals(p.getToolsManager().getToolStonecutterName()))
 				{
 					// Same for the stonecutter
 					ev.getInventory().getItem(2).setDurability(item.getDurability());
 					ItemMeta itemMeta = result.getItemMeta();
-					itemMeta.setDisplayName(p.getToolStonecutterName());
+					itemMeta.setDisplayName(p.getToolsManager().getToolStonecutterName());
 					ev.getInventory().getItem(2).setItemMeta(itemMeta);
 				}
 			}
