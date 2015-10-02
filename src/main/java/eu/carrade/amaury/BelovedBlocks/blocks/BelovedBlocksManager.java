@@ -21,6 +21,7 @@ import eu.carrade.amaury.BelovedBlocks.blocks.logs.CompleteDarkOakLog;
 import eu.carrade.amaury.BelovedBlocks.blocks.logs.CompleteJungleLog;
 import eu.carrade.amaury.BelovedBlocks.blocks.logs.CompleteOakLog;
 import eu.carrade.amaury.BelovedBlocks.blocks.logs.CompleteSpruceLog;
+import eu.carrade.amaury.BelovedBlocks.blocks.portals.NetherPortalBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothQuartzBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothRedSandstoneBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothSandstoneBlock;
@@ -50,6 +51,8 @@ public class BelovedBlocksManager
 		registerBelovedBlock(new CompleteJungleLog());
 		registerBelovedBlock(new CompleteAcaciaLog());
 		registerBelovedBlock(new CompleteDarkOakLog());
+
+		registerBelovedBlock(new NetherPortalBlock());
 	}
 
 	/**

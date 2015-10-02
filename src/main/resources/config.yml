@@ -80,10 +80,19 @@ blocks:
             craftable: true   # Crafted with four logs in a square.
             itemGlow: true
 
+    portals:
+        nether:
+            name: "Nether Portal"
+            craftable: true
+            amountPerCraft: 16
+            itemGlow: true
+
+            # If set to true, illegal portal placements will be allowed (typically, two
+            # portals next to each other).
+            allowPortalsAnywhere: true
+
 
 # Enables or disables the block changes of our tool being saved with LogBlock or Prism (if installed)
 logs:
     logBlock: true
     prism: true
-
-
