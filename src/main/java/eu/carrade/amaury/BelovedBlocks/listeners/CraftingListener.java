@@ -17,6 +17,7 @@ package eu.carrade.amaury.BelovedBlocks.listeners;
 
 import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
 import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
+import fr.zcraft.zlib.core.ZLibComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
@@ -33,7 +34,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 
-public class CraftingListener implements Listener
+public class CraftingListener extends ZLibComponent implements Listener
 {
 	private BelovedBlocks p = null;
 

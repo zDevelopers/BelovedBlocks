@@ -12,6 +12,7 @@
 
 package eu.carrade.amaury.BelovedBlocks.blocks.stones;
 
+import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.SimpleBlock;
 import eu.carrade.amaury.BelovedBlocks.utils.RecipesUtils;
@@ -27,7 +28,7 @@ public class SmoothQuartzBlock extends BelovedBlock
 
 	public SmoothQuartzBlock()
 	{
-		super("blocks.slabs.quartz");
+		super(BBConfig.BLOCKS.SLABS.QUARTZ);
 
 		setInternalName("quartz");
 	}

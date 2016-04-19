@@ -31,23 +31,21 @@
  */
 package eu.carrade.amaury.BelovedBlocks.tools;
 
+import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
-import eu.carrade.amaury.BelovedBlocks.i18n.I18n;
-import eu.carrade.amaury.BelovedBlocks.utils.GlowEffect;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.meta.ItemMeta;
+import fr.zcraft.zlib.tools.items.ItemStackBuilder;
 
-import java.util.Arrays;
 import java.util.Random;
+import static fr.zcraft.zlib.components.i18n.I.t;
 
 
 public class ToolsManager
 {
 	private final BelovedBlocks p;
-	private final I18n i;
 
 	private final String STONECUTTER_NAME;
 	private final String SAW_NAME;
@@ -56,7 +54,6 @@ public class ToolsManager
 	public ToolsManager()
 	{
 		p = BelovedBlocks.get();
-		i = p.getI18n();
 
 		STONECUTTER_NAME = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', p.getConfig().getString("tool.stonecutter.name"));
 		SAW_NAME = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', p.getConfig().getString("tool.saw.name"));
@@ -133,24 +130,7 @@ public class ToolsManager
 	 */
 	public ItemStack getToolStonecutterItem()
 	{
-		ItemStack tool = new ItemStack(Material.SHEARS);
-
-		ItemMeta meta = tool.getItemMeta();
-		meta.setDisplayName(STONECUTTER_NAME);
-
-		if (p.getConfig().getBoolean("tool.stonecutter.usageInLore"))
-		{
-			meta.setLore(Arrays.asList(i.t("tool.stonecutter.howto.line1"), i.t("tool.stonecutter.howto.line2")));
-		}
-
-		tool.setItemMeta(meta);
-
-		if (p.getConfig().getBoolean("tool.stonecutter.itemGlow"))
-		{
-			GlowEffect.addGlow(tool);
-		}
-
-		return tool;
+            return getToolItem(Material.SHEARS, BBConfig.TOOLS.STONECUTTER, "stonecutter");
 	}
 
 	/**
@@ -160,32 +140,29 @@ public class ToolsManager
 	 */
 	public ItemStack getToolSawItem()
 	{
-		ItemStack tool = new ItemStack(Material.IRON_AXE);
-
-		ItemMeta meta = tool.getItemMeta();
-		meta.setDisplayName(SAW_NAME);
-
-		if (p.getConfig().getBoolean("tool.saw.usageInLore"))
-		{
-			if (p.getConfig().getInt("tool.saw.percentageToBreak") != 0)
-			{
-				meta.setLore(Arrays.asList(i.t("tool.saw.howto.line1"), i.t("tool.saw.howto.line2"), " ", i.t("tool.saw.howto.line3"), i.t("tool.saw.howto.line4")));
-			}
-			else
-			{
-				meta.setLore(Arrays.asList(i.t("tool.saw.howto.line1"), i.t("tool.saw.howto.line2")));
-			}
-		}
-
-		tool.setItemMeta(meta);
-
-		if (p.getConfig().getBoolean("tool.saw.itemGlow"))
-		{
-			GlowEffect.addGlow(tool);
-		}
-
-		return tool;
+            return getToolItem(Material.IRON_AXE, BBConfig.TOOLS.SAW, "saw");
 	}
+        
+        protected ItemStack getToolItem(Material material, BBConfig.ToolSection toolConfig, String i18nName)
+        {
+            ItemStackBuilder tool = new ItemStackBuilder(material)
+                    .title(toolConfig.NAME.get());
+            
+            if(toolConfig.USAGE_IN_LORE.get())
+            {
+                tool.lore(t("tool."+i18nName+".howto.line1"), t("tool."+i18nName+".howto.line2"));
+                
+                if(toolConfig.PERCENTAGE_BREAKING.get() > 0)
+                {
+                    tool.lore(" ", t("tool."+i18nName+".howto.line3"), t("tool."+i18nName+".howto.line4"));
+                }
+            }
+            
+            if(toolConfig.GLOW.get())
+                tool.glow();
+            
+            return tool.item();
+        }
 
 	/**
 	 * Checks if the given tool is a valid stonecutter.
@@ -221,7 +198,7 @@ public class ToolsManager
 	 * @param unbreakingLevel The Unbreaking level (0 if not enchanted with that).
 	 * @return The durability to add.
 	 */
-	public short increaseDurability(int unbreakingLevel)
+	static public short increaseDurability(int unbreakingLevel)
 	{
 		if (new Random().nextInt(100) <= (100 / (unbreakingLevel + 1)))
 		{

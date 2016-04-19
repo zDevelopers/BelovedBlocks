@@ -32,6 +32,7 @@
 package eu.carrade.amaury.BelovedBlocks.listeners;
 
 import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
+import fr.zcraft.zlib.core.ZLibComponent;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -47,7 +48,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-public class PortalsBlocksListener implements Listener
+public class PortalsBlocksListener extends ZLibComponent implements Listener
 {
 	/**
 	 * Called when block physics occurs.

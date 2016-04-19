@@ -15,13 +15,13 @@
 
 package eu.carrade.amaury.BelovedBlocks.blocks;
 
+import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
 import eu.carrade.amaury.BelovedBlocks.utils.GlowEffect;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
@@ -109,28 +109,12 @@ public abstract class BelovedBlock
 	{
 		this(displayName, displayName.replace(" ", ""), isCraftable, isCraftable, glowOnItem);
 	}
-
-	/**
-	 * Constructs the block from a configuration section.
-	 *
-	 * @param config The configuration section.
-	 */
-	public BelovedBlock(ConfigurationSection config)
-	{
-		this(config.getString("name"), config.getBoolean("craftable"), config.getBoolean("itemGlow"));
-	}
-
-	/**
-	 * Constructs the block from the configuration section located at the given configuration key.
-	 *
-	 * @param configurationKey The key.
-	 */
-	public BelovedBlock(String configurationKey)
-	{
-		this(BelovedBlocks.get().getConfig().getConfigurationSection(configurationKey));
-	}
-
-
+        
+        public BelovedBlock(BBConfig.ItemSection config)
+        {
+            this(config.NAME.get(), config.CRAFTABLE.get(), config.GLOW.get());
+        }
+        
 	/* **  Abstract methods to override  ** */
 
 	/**

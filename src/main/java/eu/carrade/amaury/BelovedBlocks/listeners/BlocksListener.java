@@ -19,6 +19,7 @@ import de.diddiz.LogBlock.Actor;
 import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
 import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
 import eu.carrade.amaury.BelovedBlocks.dependencies.PrismDependency.PrismActionType;
+import fr.zcraft.zlib.core.ZLibComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -38,7 +39,7 @@ import org.bukkit.event.player.PlayerShearEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
 
-public class BlocksListener implements Listener
+public class BlocksListener extends ZLibComponent implements Listener
 {
 	private BelovedBlocks p = null;
 

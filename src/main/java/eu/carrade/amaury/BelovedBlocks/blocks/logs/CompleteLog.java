@@ -11,6 +11,7 @@
 
 package eu.carrade.amaury.BelovedBlocks.blocks.logs;
 
+import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.SimpleBlock;
 import eu.carrade.amaury.BelovedBlocks.utils.RecipesUtils;
@@ -30,9 +31,9 @@ public abstract class CompleteLog extends BelovedBlock
 	private byte placedBlockDurability = (byte) 0;
 
 
-	public CompleteLog(String configurationKey)
+	public CompleteLog(BBConfig.ItemSection config)
 	{
-		super(configurationKey);
+		super(config);
 	}
 
 

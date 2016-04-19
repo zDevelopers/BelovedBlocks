@@ -11,6 +11,7 @@
 
 package eu.carrade.amaury.BelovedBlocks.blocks.logs;
 
+import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import org.bukkit.Material;
 
 
@@ -19,7 +20,7 @@ public class CompleteAcaciaLog extends CompleteLog
 
 	public CompleteAcaciaLog()
 	{
-		super("blocks.logs.acacia");
+		super(BBConfig.BLOCKS.LOGS.ACACIA);
 
 		setInternalName("acacia");
 

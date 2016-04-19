@@ -16,22 +16,23 @@
 package eu.carrade.amaury.BelovedBlocks;
 
 import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlocksManager;
+import eu.carrade.amaury.BelovedBlocks.commands.GiveCommand;
 import eu.carrade.amaury.BelovedBlocks.dependencies.LogBlockDependency;
 import eu.carrade.amaury.BelovedBlocks.dependencies.PrismDependency;
-import eu.carrade.amaury.BelovedBlocks.i18n.I18n;
 import eu.carrade.amaury.BelovedBlocks.listeners.BlocksListener;
 import eu.carrade.amaury.BelovedBlocks.listeners.CraftingListener;
 import eu.carrade.amaury.BelovedBlocks.listeners.PortalsBlocksListener;
 import eu.carrade.amaury.BelovedBlocks.tools.ToolsManager;
-import org.bukkit.plugin.java.JavaPlugin;
+import fr.zcraft.zlib.components.commands.Commands;
+import fr.zcraft.zlib.components.i18n.I18n;
+import fr.zcraft.zlib.core.ZPlugin;
+import java.util.Locale;
 
 
-public final class BelovedBlocks extends JavaPlugin
+public final class BelovedBlocks extends ZPlugin
 {
 
 	private static BelovedBlocks instance = null;
-
-	private I18n i = null;
 
 	private BelovedBlocksManager belovedBlocksManager;
 	private ToolsManager toolsManager;
@@ -53,26 +54,23 @@ public final class BelovedBlocks extends JavaPlugin
 		instance = this;
 
 		this.saveDefaultConfig();
-
-		if (getConfig().getString("lang") == null)
-		{
-			i = new I18n(this);
-		}
-		else
-		{
-			i = new I18n(this, getConfig().getString("lang"));
-		}
-
+                
+                loadComponents(BBConfig.class, I18n.class, 
+                        BlocksListener.class, CraftingListener.class, PortalsBlocksListener.class);
+                
+                if(BBConfig.LANGUAGE.get() != null)
+                {
+                    I18n.setPrimaryLocale(new Locale(BBConfig.LANGUAGE.get()));
+                }
+                else
+                {
+                    I18n.useDefaultPrimaryLocale();
+                }
+                
 		belovedBlocksManager = new BelovedBlocksManager();
 		toolsManager = new ToolsManager();
-
-		getServer().getPluginManager().registerEvents(new BlocksListener(), this);
-		getServer().getPluginManager().registerEvents(new CraftingListener(), this);
-		getServer().getPluginManager().registerEvents(new PortalsBlocksListener(), this);
-
-		BBCommand commandExecutor = new BBCommand(this);
-		getCommand("belovedblocks").setExecutor(commandExecutor);
-		getCommand("belovedblocks").setTabCompleter(commandExecutor);
+                
+                Commands.register("bb", GiveCommand.class);
 
 		toolsManager.registerToolsRecipes();
 
@@ -104,14 +102,6 @@ public final class BelovedBlocks extends JavaPlugin
 	public ToolsManager getToolsManager()
 	{
 		return toolsManager;
-	}
-
-	/**
-	 * Returns the internationalization manager.
-	 */
-	public I18n getI18n()
-	{
-		return i;
 	}
 
 	/**

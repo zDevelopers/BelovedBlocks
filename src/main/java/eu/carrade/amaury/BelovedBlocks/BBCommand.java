@@ -43,7 +43,7 @@ public class BBCommand implements TabExecutor
 	public BBCommand(BelovedBlocks plugin)
 	{
 		p = plugin;
-		i = p.getI18n();
+		i = null;
 
 
 		// Generates blocks list help string
@@ -238,7 +238,7 @@ public class BBCommand implements TabExecutor
 				return true;
 			}
 
-			if (target.getInventory().addItem(toGive).size() != 0)
+			if (!target.getInventory().addItem(toGive).isEmpty())
 			{
 				// Inventory was full
 				target.getWorld().dropItem(target.getLocation(), toGive);

@@ -15,6 +15,7 @@
 
 package eu.carrade.amaury.BelovedBlocks.blocks.portals;
 
+import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
 import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.SimpleBlock;
@@ -35,7 +36,7 @@ public class NetherPortalBlock extends BelovedBlock
 
 	public NetherPortalBlock()
 	{
-		super("blocks.portals.nether");
+		super(BBConfig.BLOCKS.PORTALS.NETHER);
 
 		setInternalName("portal-nether");
 

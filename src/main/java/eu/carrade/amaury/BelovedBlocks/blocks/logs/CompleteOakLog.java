@@ -11,6 +11,7 @@
 
 package eu.carrade.amaury.BelovedBlocks.blocks.logs;
 
+import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import org.bukkit.Material;
 
 
@@ -19,7 +20,7 @@ public class CompleteOakLog extends CompleteLog
 
 	public CompleteOakLog()
 	{
-		super("blocks.logs.oak");
+		super(BBConfig.BLOCKS.LOGS.OAK);
 
 		setInternalName("oak");
 

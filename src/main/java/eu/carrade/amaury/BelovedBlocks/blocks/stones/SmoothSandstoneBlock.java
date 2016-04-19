@@ -12,6 +12,7 @@
 
 package eu.carrade.amaury.BelovedBlocks.blocks.stones;
 
+import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.SimpleBlock;
 import eu.carrade.amaury.BelovedBlocks.utils.RecipesUtils;
@@ -26,7 +27,7 @@ public class SmoothSandstoneBlock extends BelovedBlock
 {
 	public SmoothSandstoneBlock()
 	{
-		super("blocks.slabs.sandstone");
+		super(BBConfig.BLOCKS.SLABS.SANDSTONE);
 
 		setInternalName("sandstone");
 	}

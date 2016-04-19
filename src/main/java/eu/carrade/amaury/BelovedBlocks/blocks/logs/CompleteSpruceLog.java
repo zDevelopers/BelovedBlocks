@@ -11,6 +11,7 @@
 
 package eu.carrade.amaury.BelovedBlocks.blocks.logs;
 
+import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import org.bukkit.Material;
 
 
@@ -19,7 +20,7 @@ public class CompleteSpruceLog extends CompleteLog
 
 	public CompleteSpruceLog()
 	{
-		super("blocks.logs.spruce");
+		super(BBConfig.BLOCKS.LOGS.SPRUCE);
 
 		setInternalName("spruce");
 

@@ -11,6 +11,7 @@
 
 package eu.carrade.amaury.BelovedBlocks.blocks.logs;
 
+import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import org.bukkit.Material;
 
 
@@ -19,7 +20,7 @@ public class CompleteJungleLog extends CompleteLog
 
 	public CompleteJungleLog()
 	{
-		super("blocks.logs.jungle");
+		super(BBConfig.BLOCKS.LOGS.JUNGLE);
 
 		setInternalName("jungle");
 
