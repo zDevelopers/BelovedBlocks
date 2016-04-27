@@ -25,7 +25,7 @@ public class BBConfig extends Configuration
 {
     static public final ConfigurationItem<String> LANGUAGE = item("lang", "");
     
-    static public final ToolsSection TOOLS = section("tools", ToolsSection.class);
+    static public final ToolsSection TOOLS = section("tools", ToolsSection.class, "tool");
     static public class ToolsSection extends ConfigurationSection
     {
         public final ToolSection STONECUTTER = section("stonecutter", ToolSection.class);
@@ -38,28 +38,28 @@ public class BBConfig extends Configuration
         public final SlabsSection SLABS = section("slabs", SlabsSection.class);
         static public class SlabsSection extends ConfigurationSection
         {
-            public final ItemSection STONE = section("stone", ItemSection.class);
-            public final ItemSection SANDSTONE = section("sandstone", ItemSection.class);
-            public final ItemSection RED_SANDSTONE = section("red_sandstone", ItemSection.class);
-            public final ItemSection QUARTZ = section("quartz", ItemSection.class);
+            public final BlockSection STONE = section("stone", BlockSection.class);
+            public final BlockSection SANDSTONE = section("sandstone", BlockSection.class);
+            public final BlockSection RED_SANDSTONE = section("red_sandstone", BlockSection.class);
+            public final BlockSection QUARTZ = section("quartz", BlockSection.class);
         }
         
         public final LogsSection LOGS = section("logs", LogsSection.class);
         static public class LogsSection extends ConfigurationSection
         {
-            public final ItemSection OAK = section("oak", ItemSection.class);
-            public final ItemSection SPRUCE = section("spruce", ItemSection.class);
-            public final ItemSection BIRCH = section("birch", ItemSection.class);
-            public final ItemSection JUNGLE = section("jungle", ItemSection.class);
-            public final ItemSection ACACIA = section("acacia", ItemSection.class);
-            public final ItemSection DARK_OAK = section("dark_oak", ItemSection.class);
+            public final BlockSection OAK = section("oak", BlockSection.class);
+            public final BlockSection SPRUCE = section("spruce", BlockSection.class);
+            public final BlockSection BIRCH = section("birch", BlockSection.class);
+            public final BlockSection JUNGLE = section("jungle", BlockSection.class);
+            public final BlockSection ACACIA = section("acacia", BlockSection.class);
+            public final BlockSection DARK_OAK = section("dark_oak", BlockSection.class);
         }
         
         public final PortalsSection PORTALS = section("portals", PortalsSection.class);
         static public class PortalsSection extends ConfigurationSection
         {
-            public final ItemSection NETHER = section("nether", PortalSection.class);
-            static public class PortalSection extends ItemSection
+            public final PortalSection NETHER = section("nether", PortalSection.class);
+            static public class PortalSection extends BlockSection
             {
                 public final ConfigurationItem<Boolean> ALLOW_ANYWHERE = item("allowPortalsAnywhere", true);
             }
@@ -80,12 +80,17 @@ public class BBConfig extends Configuration
         public final ConfigurationItem<String> NAME = item("name");
         public final ConfigurationItem<Boolean> CRAFTABLE = item("craftable", true);
         public final ConfigurationItem<Boolean> GLOW = item("itemGlow", true);
-        public final ConfigurationItem<Integer> AMOUNT_PER_CRAFT = item("amountPerCraft", 1);
     }
     
     static public class ToolSection extends ItemSection
     {
         public final ConfigurationItem<Boolean> USAGE_IN_LORE = item("usageInLore", true);
         public final ConfigurationItem<Integer> PERCENTAGE_BREAKING = item("percentageToBreak", 0);
+    }
+    
+    static public class BlockSection extends ItemSection
+    {
+        public final ConfigurationItem<Integer> AMOUNT_PER_CRAFT = item("amountPerCraft", 1);
+        public final ConfigurationItem<Boolean> UNCRAFTABLE = item("uncraftable", true);
     }
 }

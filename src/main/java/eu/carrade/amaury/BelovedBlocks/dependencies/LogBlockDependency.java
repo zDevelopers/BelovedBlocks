@@ -1,49 +1,38 @@
 package eu.carrade.amaury.BelovedBlocks.dependencies;
 
+import de.diddiz.LogBlock.Actor;
 import de.diddiz.LogBlock.Consumer;
 import de.diddiz.LogBlock.LogBlock;
-import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
+import fr.zcraft.zlib.external.ExternalPluginComponent;
+import fr.zcraft.zlib.tools.PluginLogger;
+import org.bukkit.block.BlockState;
+import org.bukkit.entity.Player;
 
-
-public class LogBlockDependency
+public class LogBlockDependency extends ExternalPluginComponent<LogBlock>
 {
+    public LogBlockDependency()
+    {
+        super("LogBlock");
+    }
+    
+    @Override
+    protected void onLoad()
+    {
+        if(get().getConsumer() == null)
+        {
+            PluginLogger.error("Unable to access LogBlock consumer. Logging to LogBlock will be disabled.");
+            this.setEnabled(false);
+        }
+    }
 
-	private boolean enabled;
-	private Consumer lbconsumer = null;
-
-	public LogBlockDependency(BelovedBlocks p)
-	{
-
-		// We try to load the plugin
-		Plugin lb = Bukkit.getServer().getPluginManager().getPlugin("LogBlock");
-		if (lb == null || !lb.isEnabled())
-		{
-			return; // cannot load
-		}
-
-		try
-		{
-			lbconsumer = ((LogBlock) lb).getConsumer();
-		}
-		catch (Exception e)
-		{
-			// cannot load (too old?)
-			Bukkit.getLogger().info("[BelovedBlocks] LogBlock is installed but cannot be loaded. Consider upgrading it.");
-			return;
-		}
-
-		enabled = p.getConfig().getBoolean("logs.logBlock");
-	}
-
-	public boolean isEnabled()
-	{
-		return enabled && lbconsumer != null;
-	}
-
-	public Consumer getConsumer()
-	{
-		return lbconsumer;
-	}
+    private Consumer getConsumer()
+    {
+        return get().getConsumer();
+    }
+    
+    public void logReplace(Player player, BlockState before, BlockState after)
+    {
+        if(!isEnabled()) return;
+        getConsumer().queueBlockReplace(new Actor(player.getName(), player.getUniqueId()), before, after);
+    }
 }

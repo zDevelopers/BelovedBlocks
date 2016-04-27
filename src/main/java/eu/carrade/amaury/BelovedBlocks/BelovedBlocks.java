@@ -12,13 +12,11 @@
  * You should have received a copy of the GNU General Public License along with this program.  If
  * not, see [http://www.gnu.org/licenses/].
  */
-
 package eu.carrade.amaury.BelovedBlocks;
 
 import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlocksManager;
 import eu.carrade.amaury.BelovedBlocks.commands.GiveCommand;
-import eu.carrade.amaury.BelovedBlocks.dependencies.LogBlockDependency;
-import eu.carrade.amaury.BelovedBlocks.dependencies.PrismDependency;
+import eu.carrade.amaury.BelovedBlocks.dependencies.BelovedBlockLogger;
 import eu.carrade.amaury.BelovedBlocks.listeners.BlocksListener;
 import eu.carrade.amaury.BelovedBlocks.listeners.CraftingListener;
 import eu.carrade.amaury.BelovedBlocks.listeners.PortalsBlocksListener;
@@ -28,95 +26,61 @@ import fr.zcraft.zlib.components.i18n.I18n;
 import fr.zcraft.zlib.core.ZPlugin;
 import java.util.Locale;
 
-
 public final class BelovedBlocks extends ZPlugin
 {
 
-	private static BelovedBlocks instance = null;
+    private static BelovedBlocks instance = null;
 
-	private BelovedBlocksManager belovedBlocksManager;
-	private ToolsManager toolsManager;
+    private static BelovedBlocksManager belovedBlocksManager;
+    private static ToolsManager toolsManager;
 
-	private LogBlockDependency lbDependency;
-	private PrismDependency prismDependency;
+    /**
+     * Returns the main plugin instance.
+     */
+    public static BelovedBlocks get()
+    {
+        return instance;
+    }
 
-	/**
-	 * Returns the main plugin instance.
-	 */
-	public static BelovedBlocks get()
-	{
-		return instance;
-	}
+    @Override
+    public void onEnable()
+    {
+        instance = this;
 
-	@Override
-	public void onEnable()
-	{
-		instance = this;
+        this.saveDefaultConfig();
 
-		this.saveDefaultConfig();
-                
-                loadComponents(BBConfig.class, I18n.class, 
-                        BlocksListener.class, CraftingListener.class, PortalsBlocksListener.class);
-                
-                if(BBConfig.LANGUAGE.get() != null)
-                {
-                    I18n.setPrimaryLocale(new Locale(BBConfig.LANGUAGE.get()));
-                }
-                else
-                {
-                    I18n.useDefaultPrimaryLocale();
-                }
-                
-		belovedBlocksManager = new BelovedBlocksManager();
-		toolsManager = new ToolsManager();
-                
-                Commands.register("bb", GiveCommand.class);
+        loadComponents(BBConfig.class, I18n.class,
+                BlocksListener.class, CraftingListener.class, PortalsBlocksListener.class, BelovedBlockLogger.class);
 
-		toolsManager.registerToolsRecipes();
+        if (BBConfig.LANGUAGE.get() != null)
+        {
+            I18n.setPrimaryLocale(new Locale(BBConfig.LANGUAGE.get()));
+        }
+        else
+        {
+            I18n.useDefaultPrimaryLocale();
+        }
 
-		lbDependency = new LogBlockDependency(this);
+        belovedBlocksManager = loadComponent(BelovedBlocksManager.class);
+        toolsManager = loadComponent(ToolsManager.class);
 
-		// If Prism is not present a NoClassDefFoundError is thrown, and the plugin
-		// cannot be loaded.
-		try
-		{
-			prismDependency = new PrismDependency(this);
-		}
-		catch (NoClassDefFoundError ignored)
-		{
-			// Prism cannot be loaded.
-		}
-	}
+        Commands.register("bb", GiveCommand.class);
+    }
 
-	/**
-	 * Returns the blocks manager.
-	 */
-	public BelovedBlocksManager getBelovedBlocksManager()
-	{
-		return belovedBlocksManager;
-	}
+    /**
+     * Returns the blocks manager.
+     */
+    static public BelovedBlocksManager getBelovedBlocksManager()
+    {
+        return belovedBlocksManager;
+    }
 
-	/**
-	 * Returns the tools manager.
-	 */
-	public ToolsManager getToolsManager()
-	{
-		return toolsManager;
-	}
+    /**
+     * Returns the tools manager.
+     */
+    static public ToolsManager getToolsManager()
+    {
+        return toolsManager;
+    }
 
-	/**
-	 * Returns the interface between our plugin and LogBlock.
-	 */
-	public LogBlockDependency getLogBlock()
-	{
-		return lbDependency;
-	}
-
-	/**
-	 * Returns the interface between our plugin and Prism.
-	 */
-	public PrismDependency getPrism()
-	{
-		return prismDependency;
-	}
 }

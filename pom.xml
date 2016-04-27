@@ -32,6 +32,7 @@
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>2.3</version>
                 <configuration>
+                    <minimizeJar>true</minimizeJar>
                     <artifactSet>
                         <includes>
                             <include>fr.zcraft:zlib</include>
@@ -40,7 +41,7 @@
                     <relocations>
                         <relocation>
                             <pattern>fr.zcraft.zlib</pattern>
-                            <shadedPattern>eu.carrade.amaury.BelovedBlocks</shadedPattern>
+                            <shadedPattern>eu.carrade.amaury.BelovedBlocks.zlib</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>

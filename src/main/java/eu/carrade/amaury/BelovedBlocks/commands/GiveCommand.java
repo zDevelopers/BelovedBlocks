@@ -7,20 +7,22 @@
 package eu.carrade.amaury.BelovedBlocks.commands;
 
 import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
-import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
+import eu.carrade.amaury.BelovedBlocks.BelovedItem;
 import fr.zcraft.zlib.components.commands.Command;
 import fr.zcraft.zlib.components.commands.CommandException;
 import fr.zcraft.zlib.components.commands.CommandInfo;
 import fr.zcraft.zlib.tools.items.ItemUtils;
+import java.util.ArrayList;
+import java.util.List;
 import org.bukkit.entity.Player;
 
-@CommandInfo(name = "give", usageParameters = "<block name> [amount] [playerName]")
+@CommandInfo(name = "give", usageParameters = "<item name> [amount] [playerName]")
 public class GiveCommand extends Command
 {
     @Override
     protected void run() throws CommandException
     {
-        BelovedBlock block = getBelovedBlockParameter(0);
+        BelovedItem block = getBelovedItemParameter(0);
         int amount;
         Player player;
         
@@ -33,19 +35,50 @@ public class GiveCommand extends Command
                 throwNotAuthorized();
         }
         
-        ItemUtils.give(player, block.constructItem(amount));
+        ItemUtils.give(player, block.makeItem(amount));
     }
     
-    protected BelovedBlock getBelovedBlockParameter(int index) throws CommandException
+    @Override
+    protected List<String> complete()
     {
+        if(args.length == 0) return getMatchingItemNames("");
+        if(args.length == 1) return getMatchingItemNames(args[0]);
+        if(args.length >= 3) return getMatchingPlayerNames(args[2]);
+        
+        return null;
+    }
+    
+    protected BelovedItem getBelovedItemParameter(int index) throws CommandException
+    {
+        BelovedItem item;
         if(args.length <= index)
-            throwInvalidArgument("You need to provide a block name");
+            throwInvalidArgument("You need to provide an item name");
         
-        BelovedBlock block = BelovedBlocks.get().getBelovedBlocksManager().getBlockFromInternalName(args[index]);
+        item = BelovedBlocks.getBelovedBlocksManager().getFromInternalName(args[index]);
         
-        if(block == null)
-            throwInvalidArgument("Unknown block name.");
+        if(item == null)
+            item = BelovedBlocks.getToolsManager().getFromInternalName(args[index]);
         
-        return block;
+        if(item == null)
+            throwInvalidArgument("Unknown item name.");
+        
+        return item;
+    }
+    
+    protected List<String> getMatchingItemNames(String prefix)
+    {
+        List<String> matches = new ArrayList<String>();
+        
+        for(BelovedItem item : BelovedBlocks.getBelovedBlocksManager().getItems())
+        {
+            if(item.getInternalName().startsWith(prefix)) matches.add(item.getInternalName());
+        }
+        
+        for(BelovedItem item : BelovedBlocks.getToolsManager().getItems())
+        {
+            if(item.getInternalName().startsWith(prefix)) matches.add(item.getInternalName());
+        }
+        
+        return matches;
     }
 }
