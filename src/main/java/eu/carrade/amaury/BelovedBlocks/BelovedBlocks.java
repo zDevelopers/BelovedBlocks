@@ -24,7 +24,6 @@ import eu.carrade.amaury.BelovedBlocks.tools.ToolsManager;
 import fr.zcraft.zlib.components.commands.Commands;
 import fr.zcraft.zlib.components.i18n.I18n;
 import fr.zcraft.zlib.core.ZPlugin;
-import java.util.Locale;
 
 public final class BelovedBlocks extends ZPlugin
 {
@@ -52,14 +51,7 @@ public final class BelovedBlocks extends ZPlugin
         loadComponents(BBConfig.class, I18n.class,
                 BlocksListener.class, CraftingListener.class, PortalsBlocksListener.class, BelovedBlockLogger.class);
 
-        if (BBConfig.LANGUAGE.get() != null)
-        {
-            I18n.setPrimaryLocale(new Locale(BBConfig.LANGUAGE.get()));
-        }
-        else
-        {
-            I18n.useDefaultPrimaryLocale();
-        }
+        I18n.setPrimaryLocale(BBConfig.LANGUAGE.get());
 
         belovedBlocksManager = loadComponent(BelovedBlocksManager.class);
         toolsManager = loadComponent(ToolsManager.class);

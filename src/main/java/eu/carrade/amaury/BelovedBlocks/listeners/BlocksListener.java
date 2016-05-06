@@ -21,6 +21,7 @@ import fr.zcraft.zlib.core.ZLibComponent;
 import fr.zcraft.zlib.tools.items.ItemUtils;
 import java.util.Collection;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -124,8 +125,8 @@ public class BlocksListener extends ZLibComponent implements Listener
             Collection<ItemStack> drops = ev.getBlock().getDrops(item);
             if (!drops.isEmpty())
             {
-                drops.clear();
-                drops.add(belovedDrop);
+                ev.getBlock().setType(Material.AIR);
+                ItemUtils.dropNaturallyLater(ev.getBlock().getLocation(), belovedDrop);
             }
         }
     }

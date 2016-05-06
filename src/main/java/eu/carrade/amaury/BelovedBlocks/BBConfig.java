@@ -20,10 +20,11 @@ import fr.zcraft.zlib.components.configuration.ConfigurationItem;
 import static fr.zcraft.zlib.components.configuration.ConfigurationItem.item;
 import static fr.zcraft.zlib.components.configuration.ConfigurationItem.section;
 import fr.zcraft.zlib.components.configuration.ConfigurationSection;
+import java.util.Locale;
 
 public class BBConfig extends Configuration
 {
-    static public final ConfigurationItem<String> LANGUAGE = item("lang", "");
+    static public final ConfigurationItem<Locale> LANGUAGE = item("lang", Locale.class);
     
     static public final ToolsSection TOOLS = section("tools", ToolsSection.class, "tool");
     static public class ToolsSection extends ConfigurationSection
@@ -77,7 +78,7 @@ public class BBConfig extends Configuration
     
     static public class ItemSection extends ConfigurationSection
     {
-        public final ConfigurationItem<String> NAME = item("name");
+        public final ConfigurationItem<String> NAME = item("name", String.class);
         public final ConfigurationItem<Boolean> CRAFTABLE = item("craftable", true);
         public final ConfigurationItem<Boolean> GLOW = item("itemGlow", true);
     }
