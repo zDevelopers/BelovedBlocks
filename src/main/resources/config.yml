@@ -2,6 +2,7 @@
 # Available languages: en_US, fr_FR, de_DE.
 # If empty, system language.
 
+useItemNamesFallback: false
 # WARNING
 # If you change the names of the tools/blocks, all already-existing items/blocs will become unusable
 # as a smooth block!

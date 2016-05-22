@@ -19,6 +19,7 @@ package eu.carrade.amaury.BelovedBlocks.blocks.stones;
 import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import eu.carrade.amaury.BelovedBlocks.blocks.WorldBlock;
 import org.bukkit.Material;
+import org.bukkit.block.BlockFace;
 import org.bukkit.inventory.ItemStack;
 
 public class SmoothSandstoneBlock extends SmoothDoubleSlab
@@ -36,7 +37,7 @@ public class SmoothSandstoneBlock extends SmoothDoubleSlab
     }
 
     @Override
-    public WorldBlock getPlacedBlock()
+    public WorldBlock getPlacedBlock(BlockFace facing)
     {
         return new WorldBlock(Material.DOUBLE_STEP, 9);
     }

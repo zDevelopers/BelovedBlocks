@@ -25,6 +25,7 @@ import java.util.Locale;
 public class BBConfig extends Configuration
 {
     static public final ConfigurationItem<Locale> LANGUAGE = item("lang", Locale.class);
+    static public final ConfigurationItem<Boolean> USE_ITEM_NAMES_FALLBACK = item("useItemNamesFallback", false);
     
     static public final ToolsSection TOOLS = section("tools", ToolsSection.class, "tool");
     static public class ToolsSection extends ConfigurationSection

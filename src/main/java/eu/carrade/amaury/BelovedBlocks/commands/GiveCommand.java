@@ -8,6 +8,7 @@ package eu.carrade.amaury.BelovedBlocks.commands;
 
 import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
 import eu.carrade.amaury.BelovedBlocks.BelovedItem;
+import eu.carrade.amaury.BelovedBlocks.BelovedItemsManager;
 import fr.zcraft.zlib.components.commands.Command;
 import fr.zcraft.zlib.components.commands.CommandException;
 import fr.zcraft.zlib.components.commands.CommandInfo;
@@ -54,10 +55,7 @@ public class GiveCommand extends Command
         if(args.length <= index)
             throwInvalidArgument("You need to provide an item name");
         
-        item = BelovedBlocks.getBelovedBlocksManager().getFromInternalName(args[index]);
-        
-        if(item == null)
-            item = BelovedBlocks.getToolsManager().getFromInternalName(args[index]);
+        item = BelovedItemsManager.getItemFromInternalName(args[index]);
         
         if(item == null)
             throwInvalidArgument("Unknown item name.");

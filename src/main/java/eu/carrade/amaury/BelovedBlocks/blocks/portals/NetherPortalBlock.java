@@ -15,13 +15,13 @@
 package eu.carrade.amaury.BelovedBlocks.blocks.portals;
 
 import eu.carrade.amaury.BelovedBlocks.BBConfig;
-import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
 import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.WorldBlock;
 import fr.zcraft.zlib.tools.items.ItemStackBuilder;
 import java.util.Arrays;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
+import org.bukkit.block.BlockFace;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
@@ -65,9 +65,20 @@ public class NetherPortalBlock extends BelovedBlock
     }
 
     @Override
-    public WorldBlock getPlacedBlock()
+    public WorldBlock getPlacedBlock(BlockFace facing)
     {
-        return new WorldBlock(Material.PORTAL, 0);
+        byte dataValue;
+        
+        switch(facing)
+        {
+            case EAST:
+            case WEST:
+                dataValue = 2; break;
+            default:
+                dataValue = 1;
+        }
+        
+        return new WorldBlock(Material.PORTAL, dataValue);
     }
 
     @Override

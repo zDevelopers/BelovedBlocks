@@ -17,6 +17,7 @@ package eu.carrade.amaury.BelovedBlocks.blocks;
 
 import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import eu.carrade.amaury.BelovedBlocks.BelovedItem;
+import fr.zcraft.zlib.tools.world.WorldUtils;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.inventory.ItemStack;
@@ -24,6 +25,8 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapelessRecipe;
 
 import org.bukkit.Material;
+import org.bukkit.block.BlockFace;
+import org.bukkit.entity.Player;
 
 
 public abstract class BelovedBlock extends BelovedItem
@@ -85,9 +88,10 @@ public abstract class BelovedBlock extends BelovedItem
     /**
      * Returns the block to place in the world.
      *
+     * @param blockOrientation The orientation of the block to place
      * @return The block.
      */
-    public abstract WorldBlock getPlacedBlock();
+    public abstract WorldBlock getPlacedBlock(BlockFace blockOrientation);
 
     /**
      * In the default implementation of {@link #onBlockPlace(Block)}, controls wherever the
@@ -108,10 +112,11 @@ public abstract class BelovedBlock extends BelovedItem
      * by {@link #getPlacedBlock()}.
      *
      * @param placedBlock The placed block. Use this to change the placed block.
+     * @param player The player that placed the block.
      */
-    public void onBlockPlace(Block placedBlock)
+    public void onBlockPlace(Block placedBlock, Player player)
     {
-        WorldBlock blockToPlace = getPlacedBlock();
+        WorldBlock blockToPlace = getPlacedBlock(WorldUtils.get4thOrientation(player.getLocation()));
         BlockState state = placedBlock.getState();
 
         state.setType(blockToPlace.getType());

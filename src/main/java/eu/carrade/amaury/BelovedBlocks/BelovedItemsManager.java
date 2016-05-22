@@ -9,7 +9,9 @@ package eu.carrade.amaury.BelovedBlocks;
 import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
 import fr.zcraft.zlib.core.ZLibComponent;
 import fr.zcraft.zlib.tools.items.CraftingRecipes;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 import org.bukkit.ChatColor;
@@ -18,6 +20,11 @@ import org.bukkit.inventory.ItemStack;
 abstract public class BelovedItemsManager<T extends BelovedItem> extends ZLibComponent
 {
     private final Set<T> registeredItems = new CopyOnWriteArraySet<>();
+    
+    public BelovedItemsManager()
+    {
+        MANAGERS.add(this);
+    }
     
     /**
      * Registers a new item.
@@ -96,6 +103,16 @@ abstract public class BelovedItemsManager<T extends BelovedItem> extends ZLibCom
     {
         if(item == null) return null;
         
+        BelovedItem.Attribute attribute = BelovedItem.Attribute.fromItem(item);
+        if(attribute != null)
+        {
+            T belovedItem = getFromInternalName(attribute.getItemInternalName());
+            if(belovedItem != null) return belovedItem;
+        }
+        
+        //Do not use item names as fallback
+        if(!BBConfig.USE_ITEM_NAMES_FALLBACK.get()) return null;
+        
         for (T belovedItem : registeredItems)
         {
             if(belovedItem.is(item)) return belovedItem;
@@ -121,5 +138,18 @@ abstract public class BelovedItemsManager<T extends BelovedItem> extends ZLibCom
     public Iterable<T> getItems()
     {
         return Collections.unmodifiableSet(registeredItems);
+    }
+    
+    static private final List<BelovedItemsManager> MANAGERS = new ArrayList<>();
+    
+    static public BelovedItem getItemFromInternalName(String internalName)
+    {
+        for(BelovedItemsManager manager : MANAGERS)
+        {
+            BelovedItem item = manager.getFromInternalName(internalName);
+            if(item != null) return item;
+        }
+        
+        return null;
     }
 }

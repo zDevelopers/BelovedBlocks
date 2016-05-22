@@ -5,8 +5,12 @@
  */
 package eu.carrade.amaury.BelovedBlocks;
 
+import fr.zcraft.zlib.components.attributes.Attributes;
+import fr.zcraft.zlib.components.nbt.NBTException;
 import fr.zcraft.zlib.core.ZLib;
+import fr.zcraft.zlib.tools.PluginLogger;
 import fr.zcraft.zlib.tools.items.ItemStackBuilder;
+import fr.zcraft.zlib.tools.reflection.NMSException;
 import java.util.UUID;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -16,6 +20,56 @@ import org.bukkit.inventory.Recipe;
 
 abstract public class BelovedItem
 {
+    static public class Attribute extends fr.zcraft.zlib.components.attributes.Attribute
+    {
+        static public final UUID BELOVEDBLOCKS_UUID = UUID.fromString("a1279a29-0036-4bf8-bd0e-270f69da117b");
+        
+        public Attribute()
+        {
+            this(null);
+        }
+        
+        public Attribute(BelovedItem item)
+        {
+            setUUID(BELOVEDBLOCKS_UUID);
+            setItem(item);
+        }
+        
+        public final BelovedItem getItem()
+        {
+            return BelovedItemsManager.getItemFromInternalName(getItemInternalName());
+        }
+        
+        public final void setItem(BelovedItem item)
+        {
+            if(item == null) return;
+            setItemInternalName(item.getInternalName());
+        }
+        
+        public final String getItemInternalName()
+        {
+            return getCustomData();
+        }
+        
+        public final void setItemInternalName(String internalName)
+        {
+            setCustomData(internalName);
+        }
+        
+        static public Attribute fromItem(ItemStack item)
+        {
+            try
+            {
+                return Attributes.get(item, BELOVEDBLOCKS_UUID, Attribute.class);
+            }
+            catch (NMSException | NBTException ex)
+            {
+                PluginLogger.warning("Error while retrieving BelovedBlocks Attribute data", ex);
+                return null;
+            }
+        }
+    }
+    
     /**
      * Used to identify the block when used. Display name of the item visible to
      * any player.
@@ -92,7 +146,17 @@ abstract public class BelovedItem
     
     public ItemStack makeItem(int amount)
     {
-        return this.getItemBuilder().amount(amount).item();
+        ItemStack item = this.getItemBuilder().amount(amount).hideAttributes("HIDE_ATTRIBUTES").craftItem();
+        try
+        {
+            Attributes.set(item, new Attribute(this));
+        }
+        catch(NBTException | NMSException ex)
+        {
+            PluginLogger.error("Unable to set BlovedBlocks attributes for item", ex);
+        }
+        
+        return item;
     }
     
     public boolean is(ItemStack item)

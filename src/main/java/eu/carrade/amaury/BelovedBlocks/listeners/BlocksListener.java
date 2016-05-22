@@ -57,7 +57,7 @@ public class BlocksListener extends ZLibComponent implements Listener
         ItemStack item = event.getItem();
         Block block = event.getClickedBlock();
         Player player = event.getPlayer();
-
+        
         if (BelovedBlocks.getToolsManager().use(player, item, block))
         {
             event.setCancelled(true);
@@ -81,7 +81,7 @@ public class BlocksListener extends ZLibComponent implements Listener
 
         if (belovedBlock.canUse(ev.getPlayer().getUniqueId()))
         {
-            belovedBlock.onBlockPlace(ev.getBlockPlaced());
+            belovedBlock.onBlockPlace(ev.getBlockPlaced(), ev.getPlayer());
         }
         else
         {

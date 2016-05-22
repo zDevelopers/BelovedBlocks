@@ -14,6 +14,7 @@
  */
 package eu.carrade.amaury.BelovedBlocks.listeners;
 
+import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
 import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
 import eu.carrade.amaury.BelovedBlocks.tools.BelovedTool;
@@ -48,8 +49,8 @@ public class CraftingListener extends ZLibComponent implements Listener
         {
             InventoryUtils.updateInventoryLater(ev.getInventory());
         }
-        
-        else if (ev.getInventory() instanceof AnvilInventory)
+        //Disable Anvil overrides if not using item names.
+        else if (ev.getInventory() instanceof AnvilInventory && !BBConfig.USE_ITEM_NAMES_FALLBACK.get());
         {
             ItemStack item = ev.getInventory().getItem(0);
             ItemStack result = ev.getInventory().getItem(2);

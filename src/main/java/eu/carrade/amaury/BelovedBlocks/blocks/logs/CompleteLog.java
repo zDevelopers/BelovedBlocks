@@ -25,6 +25,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 
 import org.bukkit.Material;
+import org.bukkit.block.BlockFace;
 
 public class CompleteLog extends BelovedBlock
 {
@@ -64,7 +65,7 @@ public class CompleteLog extends BelovedBlock
     }
 
     @Override
-    public WorldBlock getPlacedBlock()
+    public WorldBlock getPlacedBlock(BlockFace facing)
     {
         return new WorldBlock(getItemMaterial(), blockData);
     }

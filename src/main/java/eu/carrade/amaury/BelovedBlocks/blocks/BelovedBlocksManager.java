@@ -67,7 +67,7 @@ public class BelovedBlocksManager extends BelovedItemsManager<BelovedBlock>
     {
         for (BelovedBlock belovedBlock : getItems())
         {
-            if (belovedBlock.getPlacedBlock().sameBlockAs(block))
+            if (belovedBlock.getPlacedBlock(null).sameBlockAs(block))
                 return belovedBlock;
         }
 
