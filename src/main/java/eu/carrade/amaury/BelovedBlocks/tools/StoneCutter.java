@@ -8,6 +8,7 @@ package eu.carrade.amaury.BelovedBlocks.tools;
 
 import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import eu.carrade.amaury.BelovedBlocks.dependencies.BelovedBlockLogger;
+import fr.zcraft.zlib.components.i18n.I;
 import fr.zcraft.zlib.tools.items.CraftingRecipes;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -15,6 +16,10 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Recipe;
+
+import java.util.Collections;
+import java.util.List;
+
 
 public class StoneCutter extends BelovedTool
 {
@@ -58,4 +63,11 @@ public class StoneCutter extends BelovedTool
         return true;
     }
 
+    @Override
+    protected List<String> getUsage()
+    {
+        return Collections.singletonList(
+                I.t("{gray}Right-click on a double slab to smooth or carve the block.")
+        );
+    }
 }

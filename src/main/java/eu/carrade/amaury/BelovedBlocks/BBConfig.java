@@ -17,10 +17,12 @@ package eu.carrade.amaury.BelovedBlocks;
 
 import fr.zcraft.zlib.components.configuration.Configuration;
 import fr.zcraft.zlib.components.configuration.ConfigurationItem;
+import fr.zcraft.zlib.components.configuration.ConfigurationSection;
+
+import java.util.Locale;
+
 import static fr.zcraft.zlib.components.configuration.ConfigurationItem.item;
 import static fr.zcraft.zlib.components.configuration.ConfigurationItem.section;
-import fr.zcraft.zlib.components.configuration.ConfigurationSection;
-import java.util.Locale;
 
 public class BBConfig extends Configuration
 {
@@ -73,7 +75,7 @@ public class BBConfig extends Configuration
     {
         public final ConfigurationItem<Boolean> PRISM = item("prism", true);
         public final ConfigurationItem<Boolean> LOGBLOCK = item("logBlock", true);
-    };
+    }
     
     //Helper sub-sections
     

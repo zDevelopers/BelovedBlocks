@@ -50,8 +50,7 @@ public class PortalsBlocksListener extends ZLibComponent implements Listener
        if (ev.getBlock().getType() != Material.PORTAL) return;
 
        // Only cancelled when a block is placed (changedType = air), or a block is destroyed, which is not portal or obsidian
-       if(ev.getChangedType() != Material.PORTAL && ev.getChangedType() != Material.OBSIDIAN)
+       if (ev.getChangedType() != Material.PORTAL && ev.getChangedType() != Material.OBSIDIAN)
             ev.setCancelled(true);
     }
-
 }

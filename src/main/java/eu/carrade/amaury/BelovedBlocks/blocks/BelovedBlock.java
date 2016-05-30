@@ -94,7 +94,7 @@ public abstract class BelovedBlock extends BelovedItem
     public abstract WorldBlock getPlacedBlock(BlockFace blockOrientation);
 
     /**
-     * In the default implementation of {@link #onBlockPlace(Block)}, controls wherever the
+     * In the default implementation of {@link #onBlockPlace(Block, Player)}, controls wherever the
      * placed block is updated and the Minecraft's physics applied. Override this to disable
      * this update, if needed.
      *
@@ -109,7 +109,7 @@ public abstract class BelovedBlock extends BelovedItem
      * Executed when this block is placed, if the placement is allowed.
      *
      * Override this if needed. Default behavior: change the block to the one returned
-     * by {@link #getPlacedBlock()}.
+     * by {@link #getPlacedBlock(BlockFace)}.
      *
      * @param placedBlock The placed block. Use this to change the placed block.
      * @param player The player that placed the block.
@@ -125,7 +125,7 @@ public abstract class BelovedBlock extends BelovedItem
         state.update(true, applyPhysics());
     }
 
-        
+
     public boolean isUncraftable()
     {
         return isUncraftable;

@@ -8,14 +8,18 @@ package eu.carrade.amaury.BelovedBlocks.tools;
 
 import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import eu.carrade.amaury.BelovedBlocks.dependencies.BelovedBlockLogger;
+import fr.zcraft.zlib.components.i18n.I;
 import fr.zcraft.zlib.tools.items.CraftingRecipes;
-import java.util.ArrayList;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Saw extends BelovedTool
 {
@@ -59,4 +63,11 @@ public class Saw extends BelovedTool
         return true;
     }
 
+    @Override
+    protected List<String> getUsage()
+    {
+        return Collections.singletonList(
+                I.t("{gray}Right-click a log to move the bark around the block.")
+        );
+    }
 }

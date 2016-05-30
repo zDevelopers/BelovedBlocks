@@ -17,9 +17,9 @@ package eu.carrade.amaury.BelovedBlocks.listeners;
 import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
 import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
 import eu.carrade.amaury.BelovedBlocks.tools.BelovedTool;
+import eu.carrade.amaury.BelovedBlocks.tools.StoneCutter;
 import fr.zcraft.zlib.core.ZLibComponent;
 import fr.zcraft.zlib.tools.items.ItemUtils;
-import java.util.Collection;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -34,13 +34,13 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerShearEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Collection;
+
 public class BlocksListener extends ZLibComponent implements Listener
 {
 
     /**
      * Used to convert the blocks from/to the seamless state with our tool.
-     *
-     * @param event
      */
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onPlayerInteract(PlayerInteractEvent event)
@@ -67,8 +67,6 @@ public class BlocksListener extends ZLibComponent implements Listener
     /**
      * Used to place a real smooth block when our "smooth slabs" used as items
      * are placed.
-     *
-     * @param ev The event.
      */
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onBlockPlace(BlockPlaceEvent ev)
@@ -92,8 +90,6 @@ public class BlocksListener extends ZLibComponent implements Listener
     /**
      * Used to prevent our tool (shears) to get leaves like a normal shear, and
      * to make the smooth double slabs to drop our smooth blocks.
-     *
-     * @param ev
      */
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onBlockBreaks(final BlockBreakEvent ev)
@@ -111,14 +107,14 @@ public class BlocksListener extends ZLibComponent implements Listener
             //Tools are fragile, loose extra durability
             ItemUtils.damageItemInHand(ev.getPlayer(), item, 1);
 
-            //If they have a chance to break
+            // If they have a chance to break
             if ((float) Math.random() <= tool.getChanceToBreak())
             {
                 ItemUtils.breakItemInHand(ev.getPlayer(), item);
             }
         }
 
-        //When breaking a BelovedBlock.
+        // When breaking a BelovedBlock.
         ItemStack belovedDrop = BelovedBlocks.getBelovedBlocksManager().getDropForBlock(ev.getBlock());
         if (belovedDrop != null)
         {
@@ -136,13 +132,11 @@ public class BlocksListener extends ZLibComponent implements Listener
      * <p>
      * The cow seems to disappear, a relog fix that. Cannot be fixed on our side
      * (Minecraft or CBukkit bug).
-     *
-     * @param ev
      */
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onPlayerShearEntity(PlayerShearEntityEvent ev)
     {
-        if (BelovedBlocks.getToolsManager().getStoneCutter().is(ev.getPlayer().getItemInHand()))
+        if (BelovedBlocks.getToolsManager().getFromItem(ev.getPlayer().getItemInHand()) instanceof StoneCutter)
         {
             ev.setCancelled(true);
         }

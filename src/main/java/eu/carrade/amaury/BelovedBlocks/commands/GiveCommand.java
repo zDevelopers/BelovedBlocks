@@ -12,10 +12,15 @@ import eu.carrade.amaury.BelovedBlocks.BelovedItemsManager;
 import fr.zcraft.zlib.components.commands.Command;
 import fr.zcraft.zlib.components.commands.CommandException;
 import fr.zcraft.zlib.components.commands.CommandInfo;
+import fr.zcraft.zlib.components.i18n.I;
+import fr.zcraft.zlib.components.rawtext.RawText;
 import fr.zcraft.zlib.tools.items.ItemUtils;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.bukkit.entity.Player;
 
 @CommandInfo(name = "give", usageParameters = "<item name> [amount] [playerName]")
 public class GiveCommand extends Command
@@ -23,20 +28,30 @@ public class GiveCommand extends Command
     @Override
     protected void run() throws CommandException
     {
-        BelovedItem block = getBelovedItemParameter(0);
-        int amount;
-        Player player;
-        
-        amount = args.length > 1 ? getIntegerParameter(1) : 1;
-        player = args.length > 2 ? getPlayerParameter(2) : playerSender();
-        
-        if(sender instanceof Player)
-        {
-            if(!block.canGive(playerSender().getUniqueId(), player.getUniqueId()))
-                throwNotAuthorized();
-        }
-        
-        ItemUtils.give(player, block.makeItem(amount));
+        final BelovedItem belovedItem = getBelovedItemParameter(0);
+
+        final int    amount = args.length > 1 ? getIntegerParameter(1) : 1;
+        final Player player = args.length > 2 ? getPlayerParameter(2)  : playerSender();
+
+        if (sender instanceof Player && !belovedItem.canGive(playerSender().getUniqueId(), player.getUniqueId()))
+            throwNotAuthorized();
+
+
+        final ItemStack item = belovedItem.makeItem(amount);
+
+        ItemUtils.give(player, item);
+
+        send(new RawText(I.t("Given "))
+                        .color(ChatColor.GRAY)
+                    .then("[").color(ChatColor.GRAY)
+                    .then(belovedItem.getDisplayName())
+                        .hover(item)
+                        .color(ChatColor.GRAY)
+                    .then("]").color(ChatColor.GRAY)
+                    .then(I.t(" × {0} to {1}", amount, player.getDisplayName()))
+                        .color(ChatColor.GRAY)
+                .build()
+        );
     }
     
     @Override
@@ -53,12 +68,12 @@ public class GiveCommand extends Command
     {
         BelovedItem item;
         if(args.length <= index)
-            throwInvalidArgument("You need to provide an item name");
+            throwInvalidArgument(I.t("You need to provide an item name"));
         
         item = BelovedItemsManager.getItemFromInternalName(args[index]);
         
         if(item == null)
-            throwInvalidArgument("Unknown item name.");
+            throwInvalidArgument(I.t("Unknown item name."));
         
         return item;
     }

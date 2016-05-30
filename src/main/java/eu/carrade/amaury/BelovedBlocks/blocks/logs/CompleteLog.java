@@ -29,7 +29,6 @@ import org.bukkit.block.BlockFace;
 
 public class CompleteLog extends BelovedBlock
 {
-
     private final short itemData;
     private final short blockData;
 
