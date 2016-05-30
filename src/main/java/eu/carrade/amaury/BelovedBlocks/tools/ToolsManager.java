@@ -31,213 +31,38 @@
  */
 package eu.carrade.amaury.BelovedBlocks.tools;
 
-import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
-import eu.carrade.amaury.BelovedBlocks.i18n.I18n;
-import eu.carrade.amaury.BelovedBlocks.utils.GlowEffect;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
+import eu.carrade.amaury.BelovedBlocks.BelovedItemsManager;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.Arrays;
-import java.util.Random;
-
-
-public class ToolsManager
+public class ToolsManager extends BelovedItemsManager<BelovedTool>
 {
-	private final BelovedBlocks p;
-	private final I18n i;
+    private StoneCutter stoneCutter = null;
+    private Saw saw = null;
 
-	private final String STONECUTTER_NAME;
-	private final String SAW_NAME;
+    @Override
+    protected void onEnable()
+    {
+        stoneCutter = register(new StoneCutter());
+        saw = register(new Saw());
+    }
 
-
-	public ToolsManager()
-	{
-		p = BelovedBlocks.get();
-		i = p.getI18n();
-
-		STONECUTTER_NAME = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', p.getConfig().getString("tool.stonecutter.name"));
-		SAW_NAME = ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', p.getConfig().getString("tool.saw.name"));
-	}
-
-
-	/**
-	 * Registers the recipes for the tool.
-	 */
-	public void registerToolsRecipes()
-	{
-		if (p.getConfig().getBoolean("tool.stonecutter.craftable"))
-		{
-			ShapedRecipe toolRecipe = new ShapedRecipe(p.getToolsManager().getToolStonecutterItem());
-
-			toolRecipe.shape("D  ", " D ", "   ");
-			toolRecipe.setIngredient('D', Material.DIAMOND);
-			p.getServer().addRecipe(toolRecipe);
-
-			toolRecipe.shape(" D ", "  D", "   ");
-			p.getServer().addRecipe(toolRecipe);
-
-			toolRecipe.shape(" D ", "D  ", "   ");
-			p.getServer().addRecipe(toolRecipe);
-
-			toolRecipe.shape("  D", " D ", "   ");
-			p.getServer().addRecipe(toolRecipe);
-
-			toolRecipe.shape("   ", "D  ", " D ");
-			p.getServer().addRecipe(toolRecipe);
-
-			toolRecipe.shape("   ", " D ", "  D");
-			p.getServer().addRecipe(toolRecipe);
-
-			toolRecipe.shape("   ", " D ", "D  ");
-			p.getServer().addRecipe(toolRecipe);
-
-			toolRecipe.shape("   ", "  D", " D ");
-			p.getServer().addRecipe(toolRecipe);
-		}
-
-		if (p.getConfig().getBoolean("tool.saw.craftable"))
-		{
-			ShapedRecipe toolRecipe = new ShapedRecipe(p.getToolsManager().getToolSawItem());
-
-			toolRecipe.shape("IIS", "   ", "   ");
-			toolRecipe.setIngredient('I', Material.IRON_INGOT);
-			toolRecipe.setIngredient('S', Material.STICK);
-
-			p.getServer().addRecipe(toolRecipe);
-
-			toolRecipe.shape("   ", "IIS", "   ");
-			p.getServer().addRecipe(toolRecipe);
-
-			toolRecipe.shape("   ", "   ", "IIS");
-			p.getServer().addRecipe(toolRecipe);
-
-			toolRecipe.shape("SII", "   ", "   ");
-			p.getServer().addRecipe(toolRecipe);
-
-			toolRecipe.shape("   ", "SII", "   ");
-			p.getServer().addRecipe(toolRecipe);
-
-			toolRecipe.shape("   ", "   ", "SII");
-			p.getServer().addRecipe(toolRecipe);
-		}
-	}
-
-
-	/**
-	 * Returns the item used as the stonecutter.
-	 *
-	 * @return the item.
-	 */
-	public ItemStack getToolStonecutterItem()
-	{
-		ItemStack tool = new ItemStack(Material.SHEARS);
-
-		ItemMeta meta = tool.getItemMeta();
-		meta.setDisplayName(STONECUTTER_NAME);
-
-		if (p.getConfig().getBoolean("tool.stonecutter.usageInLore"))
-		{
-			meta.setLore(Arrays.asList(i.t("tool.stonecutter.howto.line1"), i.t("tool.stonecutter.howto.line2")));
-		}
-
-		tool.setItemMeta(meta);
-
-		if (p.getConfig().getBoolean("tool.stonecutter.itemGlow"))
-		{
-			GlowEffect.addGlow(tool);
-		}
-
-		return tool;
-	}
-
-	/**
-	 * Returns the item used as the saw.
-	 *
-	 * @return the item.
-	 */
-	public ItemStack getToolSawItem()
-	{
-		ItemStack tool = new ItemStack(Material.IRON_AXE);
-
-		ItemMeta meta = tool.getItemMeta();
-		meta.setDisplayName(SAW_NAME);
-
-		if (p.getConfig().getBoolean("tool.saw.usageInLore"))
-		{
-			if (p.getConfig().getInt("tool.saw.percentageToBreak") != 0)
-			{
-				meta.setLore(Arrays.asList(i.t("tool.saw.howto.line1"), i.t("tool.saw.howto.line2"), " ", i.t("tool.saw.howto.line3"), i.t("tool.saw.howto.line4")));
-			}
-			else
-			{
-				meta.setLore(Arrays.asList(i.t("tool.saw.howto.line1"), i.t("tool.saw.howto.line2")));
-			}
-		}
-
-		tool.setItemMeta(meta);
-
-		if (p.getConfig().getBoolean("tool.saw.itemGlow"))
-		{
-			GlowEffect.addGlow(tool);
-		}
-
-		return tool;
-	}
-
-	/**
-	 * Checks if the given tool is a valid stonecutter.
-	 *
-	 * @param tool The tool to check.
-	 * @return The result.
-	 */
-	public boolean isValidStonecutterTool(ItemStack tool)
-	{
-		return (tool != null
-				&& tool.getType() == Material.SHEARS
-				&& tool.getItemMeta().getDisplayName() != null
-				&& tool.getItemMeta().getDisplayName().equals(STONECUTTER_NAME));
-	}
-
-	/**
-	 * Checks if the given tool is a valid saw.
-	 *
-	 * @param tool The tool to check.
-	 * @return The result.
-	 */
-	public boolean isValidSawTool(ItemStack tool)
-	{
-		return (tool != null
-				&& tool.getType() == Material.IRON_AXE
-				&& tool.getItemMeta().getDisplayName() != null
-				&& tool.getItemMeta().getDisplayName().equals(SAW_NAME));
-	}
-
-	/**
-	 * Calculates the new durability, taking into account the unbreaking enchantment.
-	 *
-	 * @param unbreakingLevel The Unbreaking level (0 if not enchanted with that).
-	 * @return The durability to add.
-	 */
-	public short increaseDurability(int unbreakingLevel)
-	{
-		if (new Random().nextInt(100) <= (100 / (unbreakingLevel + 1)))
-		{
-			return 1;
-		}
-
-		return 0;
-	}
-
-	public String getToolStonecutterName()
-	{
-		return STONECUTTER_NAME;
-	}
-
-	public String getToolSawName()
-	{
-		return SAW_NAME;
-	}
+    public StoneCutter getStoneCutter()
+    {
+        return stoneCutter;
+    }
+    
+    public Saw getSaw()
+    {
+        return saw;
+    }
+    
+    public boolean use(Player player, ItemStack item, Block block)
+    {
+        BelovedTool tool = getFromItem(item);
+        if(tool == null) return false;
+        
+        return tool.use(player, item, block);
+    }
 }

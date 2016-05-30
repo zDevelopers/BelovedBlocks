@@ -31,94 +31,26 @@
  */
 package eu.carrade.amaury.BelovedBlocks.listeners;
 
-import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
+import fr.zcraft.zlib.core.ZLibComponent;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPhysicsEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.HashSet;
-import java.util.Set;
-
-
-public class PortalsBlocksListener implements Listener
+public class PortalsBlocksListener extends ZLibComponent implements Listener
 {
-	/**
-	 * Called when block physics occurs.
-	 */
-	@EventHandler (priority = EventPriority.HIGHEST, ignoreCancelled = true)
-	public void onBlockPhysics(BlockPhysicsEvent ev) {
-		if (ev.getBlock().getType() != Material.PORTAL || !BelovedBlocks.get().getConfig().getBoolean("blocks.portals.nether.allowPortalsAnywhere"))
-			return;
+    /**
+     * Called when block physics occurs.
+     * @param ev The event.
+     */
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    public void onBlockPhysics(BlockPhysicsEvent ev) 
+    {
+       if (ev.getBlock().getType() != Material.PORTAL) return;
 
-		ev.setCancelled(true);
-	}
-
-	/**
-	 * Called when a block is placed; used to detect portals blocks broken by water and
-	 * to delete the whole portals area, just like in vanilla.
-	 */
-	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-	public void onWaterPlaced(PlayerInteractEvent ev)
-	{
-		// Only when a water block replaces a portal one
-		final Block possiblePortalBlock = ev.getClickedBlock().getRelative(ev.getBlockFace());
-		if (ev.getAction() != Action.RIGHT_CLICK_BLOCK || ev.getItem().getType() != Material.WATER_BUCKET || possiblePortalBlock.getType() != Material.PORTAL)
-			return;
-
-		// Only if portals updates are cancelled. Useless else, as it's the standard behavior if
-		// the blocks updates are not cancelled.
-		if (!BelovedBlocks.get().getConfig().getBoolean("blocks.portals.nether.allowPortalsAnywhere"))
-			return;
-
-		destroyPortalsBlocksRegion(possiblePortalBlock, Material.PORTAL, true);
-	}
-
-	/**
-	 * Destroy an area of blocks of the same kind, starting at the given block.
-	 *
-	 * @param startingBlock The search' starting point.
-	 * @param blockMaterial The searched block.
-	 * @param keepStartingBlock If {@code true}, the starting block will not be destroyed.
-	 */
-	private void destroyPortalsBlocksRegion(final Block startingBlock, final Material blockMaterial, final boolean keepStartingBlock)
-	{
-		final Set<Block> blocksToDestroy = new HashSet<>();
-		blocksToDestroy.add(startingBlock);
-
-		new BukkitRunnable()
-		{
-			@Override
-			public void run()
-			{
-				for(Block blockToDestroy : blocksToDestroy)
-				{
-					for(BlockFace face : BlockFace.values())
-					{
-						Block relative = blockToDestroy.getRelative(face);
-						if(relative.getType() == blockMaterial)
-						{
-							blocksToDestroy.add(relative);
-						}
-					}
-
-					if(!keepStartingBlock || !blockToDestroy.equals(startingBlock))
-						blockToDestroy.setType(Material.AIR);
-
-					blocksToDestroy.remove(blockToDestroy);
-				}
-
-				if(blocksToDestroy.isEmpty())
-				{
-					cancel();
-				}
-			}
-		}.runTaskTimer(BelovedBlocks.get(), 1l, 1l);
-	}
+       // Only cancelled when a block is placed (changedType = air), or a block is destroyed, which is not portal or obsidian
+       if (ev.getChangedType() != Material.PORTAL && ev.getChangedType() != Material.OBSIDIAN)
+            ev.setCancelled(true);
+    }
 }

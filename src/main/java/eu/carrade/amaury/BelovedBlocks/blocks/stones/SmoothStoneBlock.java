@@ -12,59 +12,31 @@
  * You should have received a copy of the GNU General Public License along with this program.  If
  * not, see [http://www.gnu.org/licenses/].
  */
-
 package eu.carrade.amaury.BelovedBlocks.blocks.stones;
 
-import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
-import eu.carrade.amaury.BelovedBlocks.blocks.SimpleBlock;
-import eu.carrade.amaury.BelovedBlocks.utils.RecipesUtils;
+import eu.carrade.amaury.BelovedBlocks.BBConfig;
+import eu.carrade.amaury.BelovedBlocks.blocks.WorldBlock;
 import org.bukkit.Material;
+import org.bukkit.block.BlockFace;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.Recipe;
 
-import java.util.Set;
-
-
-public class SmoothStoneBlock extends BelovedBlock
+public class SmoothStoneBlock extends SmoothDoubleSlab
 {
 
-	public SmoothStoneBlock()
-	{
-		super("blocks.slabs.stone");
+    public SmoothStoneBlock()
+    {
+        super("stone", Material.STONE, 6, BBConfig.BLOCKS.SLABS.STONE);
+    }
 
-		setInternalName("stone");
-	}
+    @Override
+    public ItemStack getIngredient()
+    {
+        return new ItemStack(Material.STEP);
+    }
 
-	@Override
-	public ItemStack getItem()
-	{
-		ItemStack smoothStone = new ItemStack(Material.STONE);
-		smoothStone.setDurability((short) 6);
-
-		return smoothStone;
-	}
-
-	@Override
-	public Set<Recipe> getCraftingRecipes()
-	{
-		return RecipesUtils.getSquaredRecipes(getIngredient(), constructItem(2));
-	}
-
-	@Override
-	public ItemStack getIngredient()
-	{
-		return new ItemStack(Material.STEP);
-	}
-
-	@Override
-	public Integer getMatterRatio()
-	{
-		return 2;
-	}
-
-	@Override
-	public SimpleBlock getPlacedBlock()
-	{
-		return new SimpleBlock(Material.DOUBLE_STEP, 8);
-	}
+    @Override
+    public WorldBlock getPlacedBlock(BlockFace facing)
+    {
+        return new WorldBlock(Material.DOUBLE_STEP, 8);
+    }
 }

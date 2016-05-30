@@ -12,85 +12,89 @@
  * You should have received a copy of the GNU General Public License along with this program.  If
  * not, see [http://www.gnu.org/licenses/].
  */
-
 package eu.carrade.amaury.BelovedBlocks.blocks.portals;
 
-import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
+import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
-import eu.carrade.amaury.BelovedBlocks.blocks.SimpleBlock;
+import eu.carrade.amaury.BelovedBlocks.blocks.WorldBlock;
+import fr.zcraft.zlib.tools.items.ItemStackBuilder;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
+import org.bukkit.block.BlockFace;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.material.Dye;
 
-import java.util.HashSet;
-import java.util.Set;
-
+import java.util.Arrays;
 
 public class NetherPortalBlock extends BelovedBlock
 {
-	private final Integer PORTAL_AMOUNT_PER_CRAFT;
+    public NetherPortalBlock()
+    {
+        super("portal-nether", Material.STAINED_GLASS_PANE, BBConfig.BLOCKS.PORTALS.NETHER);
+    }
 
-	public NetherPortalBlock()
-	{
-		super("blocks.portals.nether");
+    @Override
+    public ItemStackBuilder getItemBuilder()
+    {
+        return super.getItemBuilder().data(DyeColor.PURPLE.getData());
+    }
 
-		setInternalName("portal-nether");
+    @Override
+    public Iterable<Recipe> getCraftingRecipes()
+    {
+        ShapedRecipe portalRecipe = new ShapedRecipe(makeItem(getAmountPerCraft()));
 
-		PORTAL_AMOUNT_PER_CRAFT = BelovedBlocks.get().getConfig().getInt("blocks.portals.nether.amountPerCraft", 16);
-	}
+        portalRecipe.shape("BOB", "PCP", "OPO");
 
-	@Override
-	public ItemStack getItem()
-	{
-		ItemStack portal = new ItemStack(Material.STAINED_GLASS_PANE, 1);
-		portal.setDurability(DyeColor.PURPLE.getData());
-		return portal;
-	}
+        Dye purpleDye = new Dye(Material.INK_SACK);
+        purpleDye.setColor(DyeColor.PURPLE);
 
-	@Override
-	public Set<Recipe> getCraftingRecipes()
-	{
-		ShapedRecipe portalRecipe = new ShapedRecipe(constructItem(PORTAL_AMOUNT_PER_CRAFT));
+        portalRecipe.setIngredient('B', Material.BLAZE_POWDER);
+        portalRecipe.setIngredient('O', Material.OBSIDIAN);
+        portalRecipe.setIngredient('P', Material.ENDER_PEARL);
+        portalRecipe.setIngredient('C', purpleDye.toItemStack(1).getData());
 
-		portalRecipe.shape("BOB", "PCP", "OPO");
+        return Arrays.asList((Recipe) portalRecipe);
+    }
 
-		Dye purpleDye = new Dye(Material.INK_SACK);
-		purpleDye.setColor(DyeColor.PURPLE);
+    @Override
+    public ItemStack getIngredient()
+    {
+        return null;
+    }
 
-		portalRecipe.setIngredient('B', Material.BLAZE_POWDER);
-		portalRecipe.setIngredient('O', Material.OBSIDIAN);
-		portalRecipe.setIngredient('P', Material.ENDER_PEARL);
-		portalRecipe.setIngredient('C', purpleDye.toItemStack(1).getData());
+    @Override
+    public WorldBlock getPlacedBlock(BlockFace facing)
+    {
+        byte dataValue = 1;
 
-		Set<Recipe> recipes = new HashSet<>();
-		recipes.add(portalRecipe);
-		return recipes;
-	}
+        if (facing != null)
+        {
+            switch (facing)
+            {
+                case EAST:
+                case WEST:
+                    dataValue = 2; break;
 
-	@Override
-	public Integer getMatterRatio()
-	{
-		return null;
-	}
+                default:
+                    dataValue = 1;
+            }
+        }
 
-	@Override
-	public ItemStack getIngredient()
-	{
-		return null;
-	}
+        return new WorldBlock(Material.PORTAL, dataValue);
+    }
 
-	@Override
-	public SimpleBlock getPlacedBlock()
-	{
-		return new SimpleBlock(Material.PORTAL, 0);
-	}
+    @Override
+    public boolean applyPhysics()
+    {
+        return false;
+    }
 
-	@Override
-	public boolean applyPhysics()
-	{
-		return false;
-	}
+    @Override
+    public boolean isUncraftable()
+    {
+        return false;
+    }
 }

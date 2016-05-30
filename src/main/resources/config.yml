@@ -1,15 +1,22 @@
-﻿lang: 
-# Available languages: en_US, fr_FR, de_DE.
+﻿### BelovedBlocks configuration file ###
+
+# Available languages: en-US, fr-FR, de-DE.
 # If empty, system language.
-
-# WARNING
-# If you change the names of the tools/blocks, all already-existing items/blocs will become unusable
-# as a smooth block!
-
-# The "itemGlow" key enables or disables the enchantment effect on the item.
+lang:
 
 
-# Configuration for the stonecutter.
+# By default, internal items data are used to store the fact a block or tool is indeed a BelovedBlock
+# item and not an old Minecraft one. The name of the item is not used for that.
+# You can enable this option to use also the name as fallback. It could be useful if you are migrating
+# from an older version of BelovedBlocks since the names are only used from BelovedBlocks 1.2.
+# Enabling this option will prevent Beloved Blocks tools and blocks from being renamed.
+useItemNamesFallback: false
+
+
+# The "itemGlow" keys below enables or disables the enchantment effect on the item.
+
+
+# Configuration for the tools (stonecutter and saw).
 tool:
     stonecutter:
         name: "Stonecutter"
@@ -23,6 +30,7 @@ tool:
         itemGlow: true
         usageInLore: true     # Display infos on how to use in the tooltip of the tool. Warning, they will stay on already crafted items.
         percentageToBreak: 1  # Configures the probability the item will break to prevent players abusing it. Setting it to 0 will disable the effect.
+                              # Note that the item will be likely to break following this probability only if it is used  like a vanilla saw.
                               # Number between 0 and 100.
 
 
