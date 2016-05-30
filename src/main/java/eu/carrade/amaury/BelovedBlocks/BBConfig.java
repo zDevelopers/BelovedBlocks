@@ -63,10 +63,7 @@ public class BBConfig extends Configuration
         static public class PortalsSection extends ConfigurationSection
         {
             public final PortalSection NETHER = section("nether", PortalSection.class);
-            static public class PortalSection extends BlockSection
-            {
-                public final ConfigurationItem<Boolean> ALLOW_ANYWHERE = item("allowPortalsAnywhere", true);
-            }
+            public final PortalSection END = section("end", PortalSection.class);
         }
     }
     
@@ -96,5 +93,10 @@ public class BBConfig extends Configuration
     {
         public final ConfigurationItem<Integer> AMOUNT_PER_CRAFT = item("amountPerCraft", 1);
         public final ConfigurationItem<Boolean> UNCRAFTABLE = item("uncraftable", true);
+    }
+
+    static public class PortalSection extends BlockSection
+    {
+        public final ConfigurationItem<Boolean> ALLOW_ANYWHERE = item("allowPortalsAnywhere", true);
     }
 }

@@ -17,6 +17,7 @@ package eu.carrade.amaury.BelovedBlocks.blocks;
 import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import eu.carrade.amaury.BelovedBlocks.BelovedItemsManager;
 import eu.carrade.amaury.BelovedBlocks.blocks.logs.CompleteLog;
+import eu.carrade.amaury.BelovedBlocks.blocks.portals.EndPortalBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.portals.NetherPortalBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothQuartzBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothRedSandstoneBlock;
@@ -37,7 +38,6 @@ public class BelovedBlocksManager extends BelovedItemsManager<BelovedBlock>
         register(new SmoothRedSandstoneBlock());
         register(new SmoothQuartzBlock());
 
-        
         register(new CompleteLog("oak",    Material.LOG, 0, BBConfig.BLOCKS.LOGS.OAK));
         register(new CompleteLog("spruce", Material.LOG, 1, BBConfig.BLOCKS.LOGS.SPRUCE));
         register(new CompleteLog("birch",  Material.LOG, 2, BBConfig.BLOCKS.LOGS.BIRCH));
@@ -46,6 +46,7 @@ public class BelovedBlocksManager extends BelovedItemsManager<BelovedBlock>
         register(new CompleteLog("dark-oak", Material.LOG_2, 1, BBConfig.BLOCKS.LOGS.DARK_OAK));
 
         register(new NetherPortalBlock());
+        register(new EndPortalBlock());
     }
     
     @Override

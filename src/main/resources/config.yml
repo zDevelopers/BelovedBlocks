@@ -8,7 +8,7 @@ lang:
 # By default, internal items data are used to store the fact a block or tool is indeed a BelovedBlock
 # item and not an old Minecraft one. The name of the item is not used for that.
 # You can enable this option to use also the name as fallback. It could be useful if you are migrating
-# from an older version of BelovedBlocks since the names are only used from BelovedBlocks 1.2.
+# from an older version of BelovedBlocks since the internal data are only used from BelovedBlocks 1.2.
 # Enabling this option will prevent Beloved Blocks tools and blocks from being renamed.
 useItemNamesFallback: false
 
@@ -91,6 +91,15 @@ blocks:
     portals:
         nether:
             name: "Nether Portal"
+            craftable: true
+            amountPerCraft: 16
+            itemGlow: true
+
+            # If set to true, illegal portal placements will be allowed (typically, two
+            # portals next to each other).
+            allowPortalsAnywhere: true
+        end:
+            name: "End Portal"
             craftable: true
             amountPerCraft: 16
             itemGlow: true

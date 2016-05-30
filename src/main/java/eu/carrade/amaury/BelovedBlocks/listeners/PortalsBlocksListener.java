@@ -37,12 +37,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPhysicsEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+
 
 public class PortalsBlocksListener extends ZLibComponent implements Listener
 {
     /**
      * Called when block physics occurs.
-     * @param ev The event.
      */
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onBlockPhysics(BlockPhysicsEvent ev) 
@@ -52,5 +53,19 @@ public class PortalsBlocksListener extends ZLibComponent implements Listener
        // Only cancelled when a block is placed (changedType = air), or a block is destroyed, which is not portal or obsidian
        if (ev.getChangedType() != Material.PORTAL && ev.getChangedType() != Material.OBSIDIAN)
             ev.setCancelled(true);
+    }
+
+    /**
+     * Called when a bucket of water is placed on an End portal. Mimics the Nether portals behavior with
+     * water to allows players to destroy the End portals.
+     */
+    @EventHandler (priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    public void onWaterPlacedOnEndPortal(PlayerInteractEvent ev)
+    {
+        if (ev.getItem().getType() == Material.WATER_BUCKET && ev.getClickedBlock().getType() == Material.ENDER_PORTAL)
+        {
+            ev.setCancelled(true);
+            ev.getClickedBlock().setType(Material.WATER);
+        }
     }
 }

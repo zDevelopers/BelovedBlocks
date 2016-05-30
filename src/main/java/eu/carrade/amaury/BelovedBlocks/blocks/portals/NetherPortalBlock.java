@@ -26,7 +26,8 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.material.Dye;
 
-import java.util.Arrays;
+import java.util.Collections;
+
 
 public class NetherPortalBlock extends BelovedBlock
 {
@@ -56,7 +57,7 @@ public class NetherPortalBlock extends BelovedBlock
         portalRecipe.setIngredient('P', Material.ENDER_PEARL);
         portalRecipe.setIngredient('C', purpleDye.toItemStack(1).getData());
 
-        return Arrays.asList((Recipe) portalRecipe);
+        return Collections.singletonList((Recipe) portalRecipe);
     }
 
     @Override
