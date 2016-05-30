@@ -39,8 +39,6 @@ public class CraftingListener extends ZLibComponent implements Listener
      * - Used to prevent our blocks to be renamed using an anvil.
      * <p>
      * - Used to allow our tools to be enchanted (ensure the name is kept).
-     *
-     * @param ev
      */
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onInventoryClick(final InventoryClickEvent ev)
@@ -49,8 +47,9 @@ public class CraftingListener extends ZLibComponent implements Listener
         {
             InventoryUtils.updateInventoryLater(ev.getInventory());
         }
+
         //Disable Anvil overrides if not using item names.
-        else if (ev.getInventory() instanceof AnvilInventory && !BBConfig.USE_ITEM_NAMES_FALLBACK.get());
+        else if (ev.getInventory() instanceof AnvilInventory && BBConfig.USE_ITEM_NAMES_FALLBACK.get())
         {
             ItemStack item = ev.getInventory().getItem(0);
             ItemStack result = ev.getInventory().getItem(2);

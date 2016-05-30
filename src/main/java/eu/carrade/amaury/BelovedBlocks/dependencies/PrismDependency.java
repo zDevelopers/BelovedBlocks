@@ -1,5 +1,6 @@
 package eu.carrade.amaury.BelovedBlocks.dependencies;
 
+import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import fr.zcraft.zlib.external.ExternalPluginComponent;
 import fr.zcraft.zlib.tools.PluginLogger;
 import me.botsko.prism.Prism;
@@ -20,6 +21,13 @@ public class PrismDependency extends ExternalPluginComponent<Prism>
     @Override
     protected void onLoad()
     {
+        if (!BBConfig.LOGS.PRISM.get())
+        {
+            PluginLogger.info("Prism is available, but you disabled its usage for BelovedBlock in the configuration file. Nothing will be logged.");
+            setEnabled(false);
+            return;
+        }
+
         // Our actions are registered
         try
         {

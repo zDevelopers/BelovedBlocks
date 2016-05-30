@@ -25,8 +25,11 @@ public class BelovedBlockLogger extends ZLibComponent
     
     static private void logEvent(Player player, BlockState before, BlockState after, String type)
     {
-        if(logBlockLogger != null) logBlockLogger.logReplace(player, before, after);
-        if(prismLogger != null) prismLogger.registerBlockChange(player, before, after, PrismDependency.PrismActionType.valueOf(type));
+        if (logBlockLogger != null)
+            logBlockLogger.logReplace(player, before, after);
+
+        if (prismLogger != null)
+            prismLogger.registerBlockChange(player, before, after, PrismDependency.PrismActionType.valueOf(type));
     }
     
     static public void logCarve(Player player, BlockState before, BlockState after)
@@ -43,5 +46,4 @@ public class BelovedBlockLogger extends ZLibComponent
     {
         logEvent(player, before, after, "MOVED_BARK");
     }
-    
 }
