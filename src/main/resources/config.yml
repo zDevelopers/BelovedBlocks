@@ -108,6 +108,12 @@ blocks:
             # portals next to each other).
             allowPortalsAnywhere: true
 
+    others:
+        burning_furnace:
+            name: "Indefinitely Burning Furnace"
+            craftable: true   # Crafted with a furnace and a blaze powder (shapeless recipe)
+            itemGlow: true
+
 
 # Enables or disables the block changes of our tool being saved with LogBlock or Prism (if installed)
 logs:

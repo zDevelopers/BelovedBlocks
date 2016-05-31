@@ -19,7 +19,7 @@ msgstr ""
 
 #: src/main/java/eu/carrade/amaury/BelovedBlocks/commands/GiveCommand.java:44
 msgid "Given "
-msgstr "Il a été donné "
+msgstr "Don de "
 
 #: src/main/java/eu/carrade/amaury/BelovedBlocks/commands/GiveCommand.java:51
 #, java-format

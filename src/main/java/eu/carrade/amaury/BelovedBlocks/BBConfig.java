@@ -65,6 +65,12 @@ public class BBConfig extends Configuration
             public final PortalSection NETHER = section("nether", PortalSection.class);
             public final PortalSection END = section("end", PortalSection.class);
         }
+
+        public final OthersSection OTHERS = section("others", OthersSection.class);
+        static public class OthersSection extends ConfigurationSection
+        {
+            public final BlockSection BURNING_FURNACE = section("burning_furnace", BlockSection.class);
+        }
     }
     
     static public final LogsSection LOGS = section("logs", LogsSection.class);
@@ -74,7 +80,7 @@ public class BBConfig extends Configuration
         public final ConfigurationItem<Boolean> LOGBLOCK = item("logBlock", true);
     }
     
-    //Helper sub-sections
+    // Helper sub-sections
     
     static public class ItemSection extends ConfigurationSection
     {

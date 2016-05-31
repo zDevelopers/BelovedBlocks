@@ -48,7 +48,7 @@ public class CraftingListener extends ZLibComponent implements Listener
             InventoryUtils.updateInventoryLater(ev.getInventory());
         }
 
-        //Disable Anvil overrides if not using item names.
+        // Disable Anvil overrides if not using item names.
         else if (ev.getInventory() instanceof AnvilInventory && BBConfig.USE_ITEM_NAMES_FALLBACK.get())
         {
             ItemStack item = ev.getInventory().getItem(0);

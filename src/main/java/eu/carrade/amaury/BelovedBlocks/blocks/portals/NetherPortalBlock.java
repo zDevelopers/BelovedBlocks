@@ -78,9 +78,6 @@ public class NetherPortalBlock extends BelovedBlock
                 case EAST:
                 case WEST:
                     dataValue = 2; break;
-
-                default:
-                    dataValue = 1;
             }
         }
 

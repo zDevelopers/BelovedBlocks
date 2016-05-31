@@ -18,6 +18,7 @@ import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlocksManager;
 import eu.carrade.amaury.BelovedBlocks.commands.GiveCommand;
 import eu.carrade.amaury.BelovedBlocks.dependencies.BelovedBlockLogger;
 import eu.carrade.amaury.BelovedBlocks.listeners.BlocksListener;
+import eu.carrade.amaury.BelovedBlocks.listeners.BurningFurnacesListener;
 import eu.carrade.amaury.BelovedBlocks.listeners.CraftingListener;
 import eu.carrade.amaury.BelovedBlocks.listeners.PortalsBlocksListener;
 import eu.carrade.amaury.BelovedBlocks.tools.ToolsManager;
@@ -49,7 +50,8 @@ public final class BelovedBlocks extends ZPlugin
         this.saveDefaultConfig();
 
         loadComponents(BBConfig.class, I18n.class,
-                BlocksListener.class, CraftingListener.class, PortalsBlocksListener.class, BelovedBlockLogger.class);
+                BlocksListener.class, CraftingListener.class, PortalsBlocksListener.class, BurningFurnacesListener.class,
+                BelovedBlockLogger.class);
 
         I18n.setPrimaryLocale(BBConfig.LANGUAGE.get());
 

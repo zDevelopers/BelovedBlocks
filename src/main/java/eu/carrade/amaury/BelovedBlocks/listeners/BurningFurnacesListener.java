@@ -32,42 +32,68 @@
 package eu.carrade.amaury.BelovedBlocks.listeners;
 
 import fr.zcraft.zlib.core.ZLibComponent;
+import fr.zcraft.zlib.tools.runners.RunTask;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
+import org.bukkit.block.Furnace;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.FurnaceInventory;
+import org.bukkit.inventory.ItemStack;
 
 
-public class PortalsBlocksListener extends ZLibComponent implements Listener
+public class BurningFurnacesListener extends ZLibComponent implements Listener
 {
     /**
-     * Called when block physics occurs.
-     */
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
-    public void onBlockPhysics(BlockPhysicsEvent ev) 
-    {
-       if (ev.getBlock().getType() != Material.PORTAL) return;
-
-       // Only cancelled when a block is placed (changedType = air), or a block is destroyed, which is not portal or obsidian
-       if (ev.getChangedType() != Material.PORTAL && ev.getChangedType() != Material.OBSIDIAN)
-            ev.setCancelled(true);
-    }
-
-    /**
-     * Called when a bucket of water is placed on an End portal. Mimics the Nether portals behavior with
-     * water to allows players to destroy the End portals.
+     * If indefinitely burning furnaces are opened, they are updated and loses their burning state.
+     *
+     * To avoid that, we re-set the burning state when these furnaces are opened. This is only
+     * executed for empty furnaces, avoiding ones used as a real furnace to be always burning.
      */
     @EventHandler (priority = EventPriority.HIGHEST, ignoreCancelled = true)
-    public void onWaterPlacedOnEndPortal(PlayerInteractEvent ev)
+    public void onBurningFurnaceOpened(PlayerInteractEvent ev)
     {
-        if (!ev.hasBlock() || !ev.hasItem()) return;
+        if (!ev.hasBlock() || ev.getClickedBlock().getType() != Material.BURNING_FURNACE)
+            return;
 
-        if (ev.getItem().getType() == Material.WATER_BUCKET && ev.getClickedBlock().getType() == Material.ENDER_PORTAL)
+        final Block block = ev.getClickedBlock();
+        final BlockState state = block.getState();
+
+        if (isEmptyBurningFurnace(state))
         {
-            ev.setCancelled(true);
-            ev.getClickedBlock().setType(Material.WATER);
+            RunTask.nextTick(new Runnable() {
+                @Override
+                public void run()
+                {
+                    // Only if it's still a furnace—e.g. not broken
+                    if (block.getType() == Material.FURNACE)
+                    {
+                        final BlockState newState = block.getState();
+
+                        newState.setType(Material.BURNING_FURNACE);
+                        newState.setRawData(state.getRawData());
+
+                        newState.update(true, false);
+                    }
+                }
+            });
         }
+    }
+
+
+    private boolean isEmptyBurningFurnace(BlockState block)
+    {
+        if (!(block instanceof Furnace)) return false;
+
+        final FurnaceInventory inventory = ((Furnace) block).getInventory();
+        return isEmpty(inventory.getFuel()) && isEmpty(inventory.getSmelting()) && isEmpty(inventory.getResult());
+    }
+
+    private boolean isEmpty(ItemStack stack)
+    {
+        return stack == null || stack.getType() == Material.AIR;
     }
 }
