@@ -67,16 +67,10 @@ public class NetherPortalBlock extends BelovedBlock
     @Override
     public WorldBlock getPlacedBlock(BlockFace facing)
     {
-        byte dataValue;
+        byte dataValue = 1;
         
-        switch(facing)
-        {
-            case EAST:
-            case WEST:
-                dataValue = 2; break;
-            default:
-                dataValue = 1;
-        }
+        if(facing == BlockFace.EAST || facing == BlockFace.WEST)
+            dataValue = 2;
         
         return new WorldBlock(Material.PORTAL, dataValue);
     }
