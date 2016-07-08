@@ -90,9 +90,9 @@ public class BurningFurnaceBlock extends BelovedBlock
                     dataValue = 2; break;
                 case NORTH:
                     dataValue = 3; break;
-                case WEST:
-                    dataValue = 4; break;
                 case EAST:
+                    dataValue = 4; break;
+                case WEST:
                     dataValue = 5; break;
             }
         }
