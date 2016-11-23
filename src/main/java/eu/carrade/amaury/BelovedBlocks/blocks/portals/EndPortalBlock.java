@@ -55,7 +55,7 @@ public class EndPortalBlock extends BelovedBlock
     @Override
     public ItemStackBuilder getItemBuilder()
     {
-        return super.getItemBuilder().data(DyeColor.BLACK.getData());
+        return super.getItemBuilder().data(DyeColor.BLACK.getDyeData());
     }
 
     @Override
@@ -68,7 +68,7 @@ public class EndPortalBlock extends BelovedBlock
         portalRecipe.setIngredient('E', Material.EYE_OF_ENDER);
         portalRecipe.setIngredient('N', Material.NETHER_STAR);
         portalRecipe.setIngredient('S', Material.ENDER_STONE);
-        portalRecipe.setIngredient('C', new ItemStackBuilder(Material.CARPET).data(DyeColor.BLACK.getData()).item().getData());
+        portalRecipe.setIngredient('C', new ItemStackBuilder(Material.CARPET).data(DyeColor.BLACK.getDyeData()).item().getData());
 
         return Collections.singletonList((Recipe) portalRecipe);
     }

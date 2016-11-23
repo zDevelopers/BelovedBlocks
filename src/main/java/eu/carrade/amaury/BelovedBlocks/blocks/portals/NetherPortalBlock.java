@@ -39,7 +39,7 @@ public class NetherPortalBlock extends BelovedBlock
     @Override
     public ItemStackBuilder getItemBuilder()
     {
-        return super.getItemBuilder().data(DyeColor.PURPLE.getData());
+        return super.getItemBuilder().data(DyeColor.PURPLE.getDyeData());
     }
 
     @Override
