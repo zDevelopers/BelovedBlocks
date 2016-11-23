@@ -38,6 +38,6 @@ public class SmoothQuartzBlock extends SmoothDoubleSlab
     @Override
     public WorldBlock getPlacedBlock(BlockFace facing)
     {
-        return new WorldBlock(Material.DOUBLE_STEP, 7);
+        return new WorldBlock(Material.DOUBLE_STEP, 15);
     }
 }
