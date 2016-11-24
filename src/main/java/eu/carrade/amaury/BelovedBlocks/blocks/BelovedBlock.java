@@ -135,4 +135,10 @@ public abstract class BelovedBlock extends BelovedItem
     {
         return amountPerCraft;
     }
+    
+    @Override
+    public String getItemTypeString()
+    {
+        return "blocks";
+    }
 }

@@ -18,8 +18,11 @@ import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
 import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
 import eu.carrade.amaury.BelovedBlocks.tools.BelovedTool;
 import eu.carrade.amaury.BelovedBlocks.tools.StoneCutter;
+import fr.zcraft.zlib.components.i18n.I;
+import fr.zcraft.zlib.components.i18n.I18n;
 import fr.zcraft.zlib.core.ZLibComponent;
 import fr.zcraft.zlib.tools.items.ItemUtils;
+import fr.zcraft.zlib.tools.text.MessageSender;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -83,6 +86,8 @@ public class BlocksListener extends ZLibComponent implements Listener
         }
         else
         {
+            MessageSender.sendActionBarMessage(ev.getPlayer().getUniqueId(), 
+                    I.t(I18n.getPlayerLocale(ev.getPlayer()), "{ce}You are not allowed to use the {0}.", belovedBlock.getDisplayName()));
             ev.setCancelled(true);
         }
     }

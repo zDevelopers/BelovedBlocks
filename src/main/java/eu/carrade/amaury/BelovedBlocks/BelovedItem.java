@@ -207,7 +207,7 @@ abstract public class BelovedItem
      */
     public Boolean canGive(UUID playerUUID, boolean self)
     {
-        return isAllowed(playerUUID, "give." + (self ? "self" : "others"));
+        return isAllowed(playerUUID, "give", (self ? "self" : "others"));
     }
 
     /**
@@ -229,13 +229,37 @@ abstract public class BelovedItem
      *
      * @param playerUUID The player to check.
      * @param subPermissionNode The sub permission node.
+     * @param extra An extra permission string that will be appended to the final
+     *              permission string. It may be null.
+     *
+     * @return {@code True} if the permission is granted.
+     */
+    private Boolean isAllowed(UUID playerUUID, String subPermissionNode, String extra)
+    {
+        Player player = ZLib.getPlugin().getServer().getPlayer(playerUUID);
+        if(player == null) return false;
+        
+        String permissionString = "belovedblocks." + subPermissionNode + "." + getItemTypeString() + "." + getInternalName();
+        if(extra != null) 
+            permissionString += "." + extra;
+        
+        System.out.println("Has permission ? " + permissionString + " : " + player.hasPermission(permissionString));
+        return player.hasPermission(permissionString);
+    }
+    
+    /**
+     * Checks if the given player is granted the permission
+     * {@code subPermissionNode} associated with this block, i.e. the permission
+     * {@code belovedblocks.blocks.internalName.subPermissionNode}.
+     *
+     * @param playerUUID The player to check.
+     * @param subPermissionNode The sub permission node.
      *
      * @return {@code True} if the permission is granted.
      */
     private Boolean isAllowed(UUID playerUUID, String subPermissionNode)
     {
-        Player player = ZLib.getPlugin().getServer().getPlayer(playerUUID);
-        return player != null && player.hasPermission("belovedblocks.blocks." + getInternalName() + "." + subPermissionNode);
+        return isAllowed(playerUUID, subPermissionNode, null);
     }
 
     /* **  Accessors  ** */
@@ -263,6 +287,12 @@ abstract public class BelovedItem
     {
         return itemMaterial;
     }
+    
+    /**
+     * Returns the string identifier for the type (block, tool, …) of this item.
+     * @return the string identifier for the type (block, tool, …) of this item.
+     */
+    public abstract String getItemTypeString();
 
     /* **  Comparison methods  ** */
 

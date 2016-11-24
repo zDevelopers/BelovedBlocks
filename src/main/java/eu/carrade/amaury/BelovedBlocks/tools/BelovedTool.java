@@ -96,4 +96,10 @@ abstract public class BelovedTool extends BelovedItem
     {
         return chanceToBreak;
     }
+    
+    @Override
+    public String getItemTypeString()
+    {
+        return "tools";
+    }
 }

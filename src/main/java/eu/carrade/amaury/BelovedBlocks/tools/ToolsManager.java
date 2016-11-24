@@ -32,6 +32,9 @@
 package eu.carrade.amaury.BelovedBlocks.tools;
 
 import eu.carrade.amaury.BelovedBlocks.BelovedItemsManager;
+import fr.zcraft.zlib.components.i18n.I;
+import fr.zcraft.zlib.components.i18n.I18n;
+import fr.zcraft.zlib.tools.text.MessageSender;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -62,6 +65,10 @@ public class ToolsManager extends BelovedItemsManager<BelovedTool>
     {
         BelovedTool tool = getFromItem(item);
         if(tool == null) return false;
+        if(!tool.canUse(player.getUniqueId())) {
+            MessageSender.sendActionBarMessage(player.getUniqueId(), I.t(I18n.getPlayerLocale(player), "{ce}You are not allowed to use the {0}.", tool.getDisplayName()));
+            return false;
+        }
         
         return tool.use(player, item, block);
     }
