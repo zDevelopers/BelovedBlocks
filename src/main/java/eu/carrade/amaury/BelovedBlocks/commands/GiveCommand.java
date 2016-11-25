@@ -16,6 +16,7 @@ import fr.zcraft.zlib.components.i18n.I;
 import fr.zcraft.zlib.components.rawtext.RawText;
 import fr.zcraft.zlib.tools.items.ItemUtils;
 import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -33,7 +34,7 @@ public class GiveCommand extends Command
         final int    amount = args.length > 1 ? getIntegerParameter(1) : 1;
         final Player player = args.length > 2 ? getPlayerParameter(2)  : playerSender();
 
-        if (sender instanceof Player && !belovedItem.canGive(playerSender().getUniqueId(), player.getUniqueId()))
+        if (sender instanceof Player && !belovedItem.canGive(sender, player))
             throwNotAuthorized();
 
 
@@ -64,6 +65,22 @@ public class GiveCommand extends Command
         return null;
     }
     
+    @Override
+    public boolean canExecute(CommandSender sender)
+    {
+        for(BelovedItem item : BelovedBlocks.getBelovedBlocksManager().getItems())
+        {
+            if(item.canGive(sender)) return true;
+        }
+        
+        for(BelovedItem item : BelovedBlocks.getToolsManager().getItems())
+        {
+            if(item.canGive(sender)) return true;
+        }
+        
+        return false;
+    }
+    
     protected BelovedItem getBelovedItemParameter(int index) throws CommandException
     {
         BelovedItem item;
@@ -84,11 +101,13 @@ public class GiveCommand extends Command
         
         for(BelovedItem item : BelovedBlocks.getBelovedBlocksManager().getItems())
         {
+            if(!item.canGive(sender)) continue;
             if(item.getInternalName().startsWith(prefix)) matches.add(item.getInternalName());
         }
         
         for(BelovedItem item : BelovedBlocks.getToolsManager().getItems())
         {
+            if(!item.canGive(sender)) continue;
             if(item.getInternalName().startsWith(prefix)) matches.add(item.getInternalName());
         }
         

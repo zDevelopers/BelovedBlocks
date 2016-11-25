@@ -7,14 +7,13 @@ package eu.carrade.amaury.BelovedBlocks;
 
 import fr.zcraft.zlib.components.attributes.Attributes;
 import fr.zcraft.zlib.components.nbt.NBTException;
-import fr.zcraft.zlib.core.ZLib;
 import fr.zcraft.zlib.tools.PluginLogger;
 import fr.zcraft.zlib.tools.items.ItemStackBuilder;
 import fr.zcraft.zlib.tools.reflection.NMSException;
 import java.util.UUID;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
+import org.bukkit.command.CommandSender;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 
@@ -173,53 +172,66 @@ abstract public class BelovedItem
     /**
      * Checks if the given player can use this block (place or break it).
      *
-     * @param playerUUID The player.
+     * @param user The player.
      *
      * @return {@code true} if allowed.
      */
-    public Boolean canUse(UUID playerUUID)
+    public Boolean canUse(CommandSender user)
     {
-        return isAllowed(playerUUID, "use");
+        return isAllowed(user, "use");
     }
 
     /**
      * Checks if the given player can give this block using the {@code /bb give}
      * command to the {@code givenTo} player.
      *
-     * @param playerUUID The player.
+     * @param user The player.
      * @param givenTo The receiver of the block.
      *
      * @return {@code true} if allowed.
      */
-    public Boolean canGive(UUID playerUUID, UUID givenTo)
+    public Boolean canGive(CommandSender user, CommandSender givenTo)
     {
-        return canGive(playerUUID, playerUUID.equals(givenTo));
+        return canGive(user, user.equals(givenTo));
     }
 
     /**
      * Checks if the given player can give this block using the
      * {@code /bb give}.
      *
-     * @param playerUUID The player.
+     * @param user The player.
      * @param self {@code true} if the receiver is the same player as the giver.
      *
      * @return {@code true} if allowed.
      */
-    public Boolean canGive(UUID playerUUID, boolean self)
+    public Boolean canGive(CommandSender user, boolean self)
     {
-        return isAllowed(playerUUID, "give", (self ? "self" : "others"));
+        return isAllowed(user, "give", (self ? "self" : "others"));
+    }
+    
+    /**
+     * Checks if the given player can give this block using the
+     * {@code /bb give}, whether it is to itself or to other players.
+     *
+     * @param user The player.
+     *
+     * @return {@code true} if allowed.
+     */
+    public Boolean canGive(CommandSender user)
+    {
+        return canGive(user, true) || canGive(user, false);
     }
 
     /**
      * Checks if the given player can craft this block (or uncraft it).
      *
-     * @param playerUUID The player.
+     * @param user The player.
      *
      * @return {@code true} if allowed.
      */
-    public Boolean canCraft(UUID playerUUID)
+    public Boolean canCraft(CommandSender user)
     {
-        return isAllowed(playerUUID, "craft");
+        return isAllowed(user, "craft");
     }
 
     /**
@@ -227,24 +239,20 @@ abstract public class BelovedItem
      * {@code subPermissionNode} associated with this block, i.e. the permission
      * {@code belovedblocks.blocks.internalName.subPermissionNode}.
      *
-     * @param playerUUID The player to check.
+     * @param user The player to check.
      * @param subPermissionNode The sub permission node.
      * @param extra An extra permission string that will be appended to the final
      *              permission string. It may be null.
      *
      * @return {@code True} if the permission is granted.
      */
-    private Boolean isAllowed(UUID playerUUID, String subPermissionNode, String extra)
+    private Boolean isAllowed(CommandSender user, String subPermissionNode, String extra)
     {
-        Player player = ZLib.getPlugin().getServer().getPlayer(playerUUID);
-        if(player == null) return false;
-        
         String permissionString = "belovedblocks." + subPermissionNode + "." + getItemTypeString() + "." + getInternalName();
         if(extra != null) 
             permissionString += "." + extra;
         
-        System.out.println("Has permission ? " + permissionString + " : " + player.hasPermission(permissionString));
-        return player.hasPermission(permissionString);
+        return user.hasPermission(permissionString);
     }
     
     /**
@@ -252,14 +260,14 @@ abstract public class BelovedItem
      * {@code subPermissionNode} associated with this block, i.e. the permission
      * {@code belovedblocks.blocks.internalName.subPermissionNode}.
      *
-     * @param playerUUID The player to check.
+     * @param user The player to check.
      * @param subPermissionNode The sub permission node.
      *
      * @return {@code True} if the permission is granted.
      */
-    private Boolean isAllowed(UUID playerUUID, String subPermissionNode)
+    private Boolean isAllowed(CommandSender user, String subPermissionNode)
     {
-        return isAllowed(playerUUID, subPermissionNode, null);
+        return isAllowed(user, subPermissionNode, null);
     }
 
     /* **  Accessors  ** */

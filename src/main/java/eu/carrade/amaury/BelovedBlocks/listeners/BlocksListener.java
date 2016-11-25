@@ -80,7 +80,7 @@ public class BlocksListener extends ZLibComponent implements Listener
             return;
         }
 
-        if (belovedBlock.canUse(ev.getPlayer().getUniqueId()))
+        if (belovedBlock.canUse(ev.getPlayer()))
         {
             belovedBlock.onBlockPlace(ev.getBlockPlaced(), ev.getPlayer());
         }

@@ -65,7 +65,7 @@ public class ToolsManager extends BelovedItemsManager<BelovedTool>
     {
         BelovedTool tool = getFromItem(item);
         if(tool == null) return false;
-        if(!tool.canUse(player.getUniqueId())) {
+        if(!tool.canUse(player)) {
             MessageSender.sendActionBarMessage(player.getUniqueId(), I.t(I18n.getPlayerLocale(player), "{ce}You are not allowed to use the {0}.", tool.getDisplayName()));
             return false;
         }
