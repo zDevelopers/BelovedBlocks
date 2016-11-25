@@ -16,16 +16,20 @@ package eu.carrade.amaury.BelovedBlocks.listeners;
 
 import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
+import eu.carrade.amaury.BelovedBlocks.BelovedItem;
 import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
 import eu.carrade.amaury.BelovedBlocks.tools.BelovedTool;
 import fr.zcraft.zlib.core.ZLibComponent;
 import fr.zcraft.zlib.tools.items.InventoryUtils;
 import fr.zcraft.zlib.tools.items.ItemUtils;
 import org.bukkit.Material;
+import org.bukkit.entity.HumanEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
@@ -70,6 +74,25 @@ public class CraftingListener extends ZLibComponent implements Listener
             {
                 ItemUtils.setDisplayName(result, tool.getDisplayName());
                 ev.getInventory().setItem(2, result);
+            }
+        }
+    }
+    
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    public void onPreCraft(final PrepareItemCraftEvent event) 
+    {
+        BelovedItem item = BelovedBlocks.getBelovedBlocksManager().getFromItem(event.getRecipe().getResult());
+        if(item == null)
+            item = BelovedBlocks.getToolsManager().getFromItem(event.getRecipe().getResult());
+        
+        if(item != null)
+        {
+            for(HumanEntity entity : event.getViewers())
+            {
+                if(!(entity instanceof Player && item.canCraft((Player)entity)))
+                {
+                    event.getInventory().setResult(new ItemStack(Material.AIR));
+                }
             }
         }
     }
