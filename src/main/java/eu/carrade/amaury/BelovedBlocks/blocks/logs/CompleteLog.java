@@ -26,6 +26,7 @@ import org.bukkit.inventory.Recipe;
 
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
+import org.bukkit.material.MaterialData;
 
 public class CompleteLog extends BelovedBlock
 {
@@ -39,7 +40,7 @@ public class CompleteLog extends BelovedBlock
     
     public CompleteLog(String internalName, Material logMaterial, short itemData, BBConfig.BlockSection config)
     {
-        super(internalName, logMaterial, config);
+        super(internalName, new MaterialData(logMaterial), config);
         
         this.itemData = itemData;
         this.blockData = (short) (itemData + 12);
@@ -54,18 +55,18 @@ public class CompleteLog extends BelovedBlock
     @Override
     public Iterable<Recipe> getCraftingRecipes()
     {
-        return CraftingRecipes.get2x2Recipes(getIngredient().getType(), makeItem(4));
+        return CraftingRecipes.get2x2Recipes(getIngredient().getData(), makeItem(4));
     }
 
     @Override
     public ItemStack getIngredient()
     {
-        return new ItemStack(getItemMaterial(), 1, itemData);
+        return new ItemStack(getItemMaterialData().getItemType(), 1, itemData);
     }
 
     @Override
     public WorldBlock getPlacedBlock(BlockFace facing)
     {
-        return new WorldBlock(getItemMaterial(), blockData);
+        return new WorldBlock(getItemMaterialData().getItemType(), blockData);
     }
 }

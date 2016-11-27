@@ -18,6 +18,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
+import org.bukkit.material.MaterialData;
 
 abstract public class BelovedTool extends BelovedItem
 {
@@ -26,7 +27,7 @@ abstract public class BelovedTool extends BelovedItem
     
     public BelovedTool(String internalName, Material itemMaterial, BBConfig.ToolSection toolConfig)
     {
-        super(internalName, itemMaterial, toolConfig);
+        super(internalName, new MaterialData(itemMaterial), toolConfig);
         
         this.usageInLore = toolConfig.USAGE_IN_LORE.get();
         this.chanceToBreak = toolConfig.PERCENTAGE_BREAKING.get() * 0.01f;

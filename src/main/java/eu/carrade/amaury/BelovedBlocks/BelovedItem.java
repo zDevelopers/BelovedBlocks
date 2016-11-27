@@ -12,10 +12,10 @@ import fr.zcraft.zlib.tools.items.ItemStackBuilder;
 import fr.zcraft.zlib.tools.reflection.NMSException;
 import java.util.UUID;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
+import org.bukkit.material.MaterialData;
 
 abstract public class BelovedItem
 {
@@ -99,9 +99,9 @@ abstract public class BelovedItem
      */
     private final boolean glowOnItem;
     
-    private final Material itemMaterial;
+    private final MaterialData itemMaterialData;
     
-    public BelovedItem(String internalName, Material itemMaterial, String displayName, boolean isCraftable, boolean glowOnItem)
+    public BelovedItem(String internalName, MaterialData itemMaterial, String displayName, boolean isCraftable, boolean glowOnItem)
     {
         if(displayName != null)
             displayName = ChatColor.translateAlternateColorCodes('&', displayName);
@@ -114,10 +114,10 @@ abstract public class BelovedItem
         this.internalName = internalName;
         this.isCraftable = isCraftable;
         this.glowOnItem = glowOnItem;
-        this.itemMaterial = itemMaterial;
+        this.itemMaterialData = itemMaterial;
     }
 
-    public BelovedItem(String internalName, Material itemMaterial, BBConfig.ItemSection config)
+    public BelovedItem(String internalName, MaterialData itemMaterial, BBConfig.ItemSection config)
     {
         this(internalName, itemMaterial, config.NAME.get(), config.CRAFTABLE.get(), config.GLOW.get());
     }
@@ -138,7 +138,8 @@ abstract public class BelovedItem
      */
     protected ItemStackBuilder getItemBuilder()
     {
-        return new ItemStackBuilder(itemMaterial)
+        return new ItemStackBuilder(itemMaterialData.getItemType())
+                .data(itemMaterialData.getData())
                 .title(displayName)
                 .glow(glowOnItem);
     }
@@ -161,7 +162,7 @@ abstract public class BelovedItem
     public boolean is(ItemStack item)
     {
         if(item == null) return false;
-        if(!item.getType().equals(itemMaterial)) return false;
+        if(!item.getType().equals(itemMaterialData)) return false;
         if(item.getItemMeta() == null) return false;
         
         return displayName.equals(ChatColor.stripColor(item.getItemMeta().getDisplayName()));
@@ -291,9 +292,9 @@ abstract public class BelovedItem
         return glowOnItem;
     }
     
-    protected Material getItemMaterial()
+    protected MaterialData getItemMaterialData()
     {
-        return itemMaterial;
+        return itemMaterialData;
     }
     
     /**

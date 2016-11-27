@@ -12,6 +12,7 @@ import fr.zcraft.zlib.tools.items.CraftingRecipes;
 import fr.zcraft.zlib.tools.items.ItemStackBuilder;
 import org.bukkit.Material;
 import org.bukkit.inventory.Recipe;
+import org.bukkit.material.MaterialData;
 
 abstract public class SmoothDoubleSlab extends BelovedBlock
 {
@@ -24,14 +25,14 @@ abstract public class SmoothDoubleSlab extends BelovedBlock
     
     public SmoothDoubleSlab(String internalName, Material itemMaterial, short itemData, BBConfig.BlockSection config)
     {
-        super(internalName, itemMaterial, config);
+        super(internalName, new MaterialData(itemMaterial), config);
         this.itemData = itemData;
     }
 
     @Override
     public Iterable<Recipe> getCraftingRecipes()
     {
-        return CraftingRecipes.get2x2Recipes(getIngredient().getType(), makeItem(2));
+        return CraftingRecipes.get2x2Recipes(getIngredient().getData(), makeItem(2));
     }
 
     @Override

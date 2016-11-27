@@ -43,19 +43,20 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 
 import java.util.Collections;
+import org.bukkit.material.MaterialData;
 
 
 public class EndPortalBlock extends BelovedBlock
 {
     public EndPortalBlock()
     {
-        super("end-portal", Material.CARPET, BBConfig.BLOCKS.PORTALS.END);
+        super("end-portal", new MaterialData(Material.CARPET), BBConfig.BLOCKS.PORTALS.END);
     }
 
     @Override
     public ItemStackBuilder getItemBuilder()
     {
-        return super.getItemBuilder().data(DyeColor.BLACK.getDyeData());
+        return super.getItemBuilder().data(DyeColor.BLACK.getWoolData());
     }
 
     @Override
@@ -68,7 +69,7 @@ public class EndPortalBlock extends BelovedBlock
         portalRecipe.setIngredient('E', Material.EYE_OF_ENDER);
         portalRecipe.setIngredient('N', Material.NETHER_STAR);
         portalRecipe.setIngredient('S', Material.ENDER_STONE);
-        portalRecipe.setIngredient('C', new ItemStackBuilder(Material.CARPET).data(DyeColor.BLACK.getDyeData()).item().getData());
+        portalRecipe.setIngredient('C', new ItemStackBuilder(Material.CARPET).data(DyeColor.BLACK.getWoolData()).item().getData());
 
         return Collections.singletonList((Recipe) portalRecipe);
     }

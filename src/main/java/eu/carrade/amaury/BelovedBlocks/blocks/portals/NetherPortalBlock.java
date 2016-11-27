@@ -27,19 +27,20 @@ import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.material.Dye;
 
 import java.util.Collections;
+import org.bukkit.material.MaterialData;
 
 
 public class NetherPortalBlock extends BelovedBlock
 {
     public NetherPortalBlock()
     {
-        super("portal-nether", Material.STAINED_GLASS_PANE, BBConfig.BLOCKS.PORTALS.NETHER);
+        super("portal-nether", new MaterialData(Material.STAINED_GLASS_PANE), BBConfig.BLOCKS.PORTALS.NETHER);
     }
 
     @Override
     public ItemStackBuilder getItemBuilder()
     {
-        return super.getItemBuilder().data(DyeColor.PURPLE.getDyeData());
+        return super.getItemBuilder().data(DyeColor.PURPLE.getWoolData());
     }
 
     @Override
