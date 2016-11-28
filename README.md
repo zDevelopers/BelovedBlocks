@@ -21,40 +21,48 @@ This plugin was made by Amaury Carrade and Florian Cassayre; it is currently tra
 
 ## Features
 
-The 1.8 version of minecraft has removed the items that corresponds to some unobtainables blocks in survival. Although their corresponding items doesn't exist anymore, the blocks still exist. You can place them by doing a  `/setblock` command with some metadata arguments.
+The 1.8 version of minecraft has removed the items that corresponds to some unobtainable blocks in survival. Although their corresponding items doesn't exist anymore, the blocks still exist. You can place them by doing a  `/setblock` command with some metadata arguments.
 
 This plugin instances new items that transforms themselves into the desired special block when placed by a player.
 
-![](http://amaury.carrade.eu/files/Minecraft/Plugins/BelovedBlocks/BB_Banner.png)
+![Banner](https://raw.carrade.eu/files/Minecraft/Plugins/BelovedBlocks/BB_Banner.png)
 
 *Some of the seamless blocks featured by the plugin*
 
 ### Items
 
-Each seamless block is represented by a similar item with a glowing enchantment effect (that can be disabled for each block in the [configuration](#configuration)). They also have a custom name (also configurable). The crafts are the same for the three blocks:
+Each seamless block is represented by a similar item with a glowing enchantment effect (that can be disabled for each block in the [configuration](#configuration)). They also have a custom name (also configurable). The crafts are the same for the four blocks:
 
-![](http://amaury.carrade.eu/files/Minecraft/Plugins/BelovedBlocks/BB_Crafts_Stones.gif)
+![Crafting recipes for smooth double-slab blocks](https://raw.carrade.eu/files/Minecraft/Plugins/BelovedBlocks/BB_Crafts_Stones.gif)
 
 The smooth log blocks can also be crafted using the same process, except with wooden logs:
 
-![](http://amaury.carrade.eu/files/Minecraft/Plugins/BelovedBlocks/BB_Crafts_Logs.gif)
+![Crafting recipes for full-bark log blocks](https://raw.carrade.eu/files/Minecraft/Plugins/BelovedBlocks/BB_Crafts_Logs.gif)
 
-Those crafts can be disabled.
+You are also able to craft nether portals...
 
-All those items can be salvaged to get the materials back ; simply place an item in a crafting grid.
+![Crafting recipe for nether portals](https://raw.carrade.eu/files/Minecraft/Plugins/BelovedBlocks/BB_Crafts_NetherPortal.png)
+
+...and End ones. (The amounts given for each crafting recipe can be changed in the configuration.)
+
+![Crafting recipe for end portals](https://raw.carrade.eu/files/Minecraft/Plugins/BelovedBlocks/BB_Crafts_EndPortal.png)
+
+Those crafts can be disabled, or given by permission.
+
+All those items can be salvaged to get the materials back (except portals) ; simply place an item in a crafting grid.
 
 ### Stonecutter
 
 The stonecutter is a tool that can smooth any of the three double slabs blocks. To use it, simply right click with this tool on the wished block and it will permute to a smooth block. Each use will decrease the item's durability by 1. The unbreaking enchantment does work when applied. The stonecutter can be crafted like shears in exceptions that the iron is replaced by diamonds:
 
-![](http://amaury.carrade.eu/files/Minecraft/Plugins/BelovedBlocks/BB_Crafts_Stonecutter.png)
+![Crafting recipe for stonecutter](https://raw.carrade.eu/files/Minecraft/Plugins/BelovedBlocks/BB_Crafts_Stonecutter.png)
 
 
 The craft can be disabled.
 
 The basic double slabs block → the seamless version of this block:
 
-![](http://amaury.carrade.eu/files/Minecraft/Plugins/BelovedBlocks/BB_Stones_DoubleSlabs_Transformations.png)
+![Transformations](https://raw.carrade.eu/files/Minecraft/Plugins/BelovedBlocks/BB_Stones_DoubleSlabs_Transformations.png)
 
 The process can be reverted (use the tool on a smooth block to turn it back into the original block).
 
@@ -62,7 +70,7 @@ The process can be reverted (use the tool on a smooth block to turn it back into
 
 The saw is a tool that can move the bark around any of the six log blocks. To use it, simply right click with this tool on the wished log block to move the bark. The bark can have 4 different positions (tree of them follows, the tree axes and one has bark all around the texture). Each use will decrease the item's durability by 1. The unbreaking enchantment does work when applied. The saw can be crafted like this (the symmetric craft also works):
 
-![](http://amaury.carrade.eu/files/Minecraft/Plugins/BelovedBlocks/BB_Crafts_Saw.png)
+![Crafting recipe for saw](https://raw.carrade.eu/files/Minecraft/Plugins/BelovedBlocks/BB_Crafts_Saw.png)
 
 The craft can be disabled.
 
@@ -83,58 +91,21 @@ The main command is `/belovedblocks`, or `/bb` (an alias).
  * `/bb give tool <stonecutter|saw> [receiver]`: gives the needed tool to you, or to the receiver.
  * `/bb give block <name> [amount] [receiver]`: gives the blocks of BelovedBlocks to you (or to the receiver), where `name` is one of the following:
    * `stone`, `sandstone`, `red-sandstone`, `quartz`;
-   * `oak`, `spruce`, `birch`, `jungle`, `acacia`, `dark-oak`.
+   * `oak`, `spruce`, `birch`, `jungle`, `acacia`, `dark-oak`;
+   * `portal-nether`, `end-portal`.
 
 Tip: use autocompletion.
 
 
 ### Permissions
 
-The permissions tree is the following one:
-
- * `belovedblocks.give`
-    * `tools`
-       * `stonecutter`
-          * `self`
-          * `other`
-       * `saw`
-          * `self`
-          * `other`
-    * `blocks`
-       * `stone`
-          * `self`
-          * `other`
-       * `sandstone`
-          * `self`
-          * `other`
-       * `red-sandstone`
-          * `self`
-          * `other`
-       * `quartz`
-          * `self`
-          * `other`
-       * `oak`
-          * `self`
-          * `other`
-       * `spruce`
-          * `self`
-          * `other`
-       * `birch`
-          * `self`
-          * `other`
-       * `jungle`
-          * `self`
-          * `other`
-       * `acacia`
-          * `self`
-          * `other`
-       * `dark-oak`
-          * `self`
-          * `other`
+The permissions follows this logic: `belovedblocks.<give/use/craft>.<blocks/tools>.<item>[.<self/other>]`
 
 As example:
  * to allow someone to give to himself only some smooth red sandstone, use the permission `belovedblocks.give.blocks.red-sandstone.self`;
- * to allow someone to give any block to anyone, use `belovedblocks.give.blocks`.
+ * to allow someone to give any block to anyone, use `belovedblocks.give.blocks`;
+ * to allow someone to use (place) double-stone-slabs, use `belovedblocks.use.blocks.stone`;
+ * to allow someone to craft end portals,use `belovedblocks.craft.blocks.end-portal`.
 
 
 ## Installation & configuration
