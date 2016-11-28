@@ -27,7 +27,6 @@ import fr.zcraft.zlib.core.ZPlugin;
 
 public final class BelovedBlocks extends ZPlugin
 {
-
     private static BelovedBlocks instance = null;
 
     private static BelovedBlocksManager belovedBlocksManager;
@@ -75,5 +74,4 @@ public final class BelovedBlocks extends ZPlugin
     {
         return toolsManager;
     }
-
 }
