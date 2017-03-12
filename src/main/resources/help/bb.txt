@@ -1,0 +1,3 @@
+Use this command to obtain blocks and tools.
+give: Gives blocks and tools.
+help: Displays this help, or a detailed help with a sub-command.

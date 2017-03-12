@@ -1,0 +1,8 @@
+Gives blocks and tools.
+
+This command can give both BelovedBlock's blocks
+and tools, as they don't have the same name anyway.
+
+Use autocompletion to discover blocks and tools
+names. From the console, both amount and player
+name are required.
