@@ -66,13 +66,26 @@
             <id>md_5-snapshots</id>
             <url>http://repo.md-5.net/content/repositories/snapshots/</url>
         </repository>
-        <repository>
+        <!-- Repository down, replacement below... -->
+        <!--<repository>
             <id>dhmc-repo</id>
             <url>http://dhmc.us:8081/nexus/content/repositories/public/</url>
+        </repository>-->
+        <repository>
+            <id>addstar-repo-snapshot</id>
+            <url>http://maven.addstar.com.au/artifactory/ext-snapshot-local</url>
+        </repository>
+        <repository>
+            <id>addstar-repo-release</id>
+            <url>http://maven.addstar.com.au/artifactory/ext-release-local</url>
         </repository>
         <repository>
             <id>zDevelopers</id>
             <url>http://maven.carrade.eu/artifactory/snapshots</url>
+        </repository>
+        <repository>
+            <id>carrade</id>
+            <url>http://raw.carrade.eu/maven2</url>
         </repository>
     </repositories>
   
