@@ -33,6 +33,8 @@ import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Recipe;
+
 
 public class CraftingListener extends ZLibComponent implements Listener
 {
@@ -81,9 +83,15 @@ public class CraftingListener extends ZLibComponent implements Listener
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onPreCraft(final PrepareItemCraftEvent event) 
     {
-        BelovedItem item = BelovedBlocks.getBelovedBlocksManager().getFromItem(event.getRecipe().getResult());
+        final Recipe recipe = event.getRecipe();
+
+        // Invalid or incomplete recipe entered
+        if (recipe == null)
+            return;
+
+        BelovedItem item = BelovedBlocks.getBelovedBlocksManager().getFromItem(recipe.getResult());
         if(item == null)
-            item = BelovedBlocks.getToolsManager().getFromItem(event.getRecipe().getResult());
+            item = BelovedBlocks.getToolsManager().getFromItem(recipe.getResult());
         
         if(item != null)
         {
