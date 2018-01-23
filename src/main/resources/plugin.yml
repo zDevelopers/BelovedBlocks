@@ -1,7 +1,7 @@
 name: BelovedBlocks
 description: All the secrets blocks, not only in your dreams!
 main: eu.carrade.amaury.BelovedBlocks.BelovedBlocks
-version: 1.2.1
+version: 1.2.2
 authors: ["Amaury Carrade", "Florian Cassayre", "Adrien Prokopowicz"]
 
 awareness:
