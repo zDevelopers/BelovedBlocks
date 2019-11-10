@@ -48,10 +48,10 @@ public class PortalsBlocksListener extends ZLibComponent implements Listener
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onBlockPhysics(BlockPhysicsEvent ev) 
     {
-       if (ev.getBlock().getType() != Material.PORTAL) return;
+       if (ev.getBlock().getType() != Material.NETHER_PORTAL) return;
 
        // Only cancelled when a block is placed (changedType = air), or a block is destroyed, which is not portal or obsidian
-       if (ev.getChangedType() != Material.PORTAL && ev.getChangedType() != Material.OBSIDIAN)
+       if (ev.getChangedType() != Material.NETHER_PORTAL && ev.getChangedType() != Material.OBSIDIAN)
             ev.setCancelled(true);
     }
 
@@ -64,7 +64,7 @@ public class PortalsBlocksListener extends ZLibComponent implements Listener
     {
         if (!ev.hasBlock() || !ev.hasItem()) return;
 
-        if (ev.getItem().getType() == Material.WATER_BUCKET && ev.getClickedBlock().getType() == Material.ENDER_PORTAL)
+        if (ev.getItem().getType() == Material.WATER_BUCKET && ev.getClickedBlock().getType() == Material.END_PORTAL)
         {
             ev.setCancelled(true);
             ev.getClickedBlock().setType(Material.WATER);

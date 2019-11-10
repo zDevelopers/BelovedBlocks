@@ -31,12 +31,12 @@ public class SmoothStoneBlock extends SmoothDoubleSlab
     @Override
     public ItemStack getIngredient()
     {
-        return new ItemStack(Material.STEP);
+        return new ItemStack(Material.STONE_SLAB);
     }
 
     @Override
     public WorldBlock getPlacedBlock(BlockFace facing)
     {
-        return new WorldBlock(Material.DOUBLE_STEP, 8);
+        return new WorldBlock(Material.SMOOTH_STONE);
     }
 }

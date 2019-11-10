@@ -16,13 +16,13 @@ package eu.carrade.amaury.BelovedBlocks.blocks;
 
 import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import eu.carrade.amaury.BelovedBlocks.BelovedItemsManager;
-import eu.carrade.amaury.BelovedBlocks.blocks.logs.CompleteLog;
 import eu.carrade.amaury.BelovedBlocks.blocks.portals.EndPortalBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.portals.NetherPortalBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothQuartzBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothRedSandstoneBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothSandstoneBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothStoneBlock;
+import fr.zcraft.zlib.tools.PluginLogger;
 import fr.zcraft.zlib.tools.items.CraftingRecipes;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -37,13 +37,6 @@ public class BelovedBlocksManager extends BelovedItemsManager<BelovedBlock>
         register(new SmoothSandstoneBlock());
         register(new SmoothRedSandstoneBlock());
         register(new SmoothQuartzBlock());
-
-        register(new CompleteLog("oak",    Material.LOG, 0, BBConfig.BLOCKS.LOGS.OAK));
-        register(new CompleteLog("spruce", Material.LOG, 1, BBConfig.BLOCKS.LOGS.SPRUCE));
-        register(new CompleteLog("birch",  Material.LOG, 2, BBConfig.BLOCKS.LOGS.BIRCH));
-        register(new CompleteLog("jungle", Material.LOG, 3, BBConfig.BLOCKS.LOGS.JUNGLE));
-        register(new CompleteLog("acacia",   Material.LOG_2, 0, BBConfig.BLOCKS.LOGS.ACACIA));
-        register(new CompleteLog("dark-oak", Material.LOG_2, 1, BBConfig.BLOCKS.LOGS.DARK_OAK));
 
         register(new NetherPortalBlock());
         register(new EndPortalBlock());
@@ -68,8 +61,9 @@ public class BelovedBlocksManager extends BelovedItemsManager<BelovedBlock>
     {
         for (BelovedBlock belovedBlock : getItems())
         {
-            if (belovedBlock.getPlacedBlock(null).sameBlockAs(block))
+            if (belovedBlock.getPlacedBlock(null).sameBlockAs(block)){
                 return belovedBlock;
+            }
         }
 
         return null;

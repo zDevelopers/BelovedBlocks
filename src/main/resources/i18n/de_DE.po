@@ -24,11 +24,11 @@ msgstr "Gegeben "
 #: src/main/java/eu/carrade/amaury/BelovedBlocks/commands/GiveCommand.java:51
 #, java-format
 msgid " Ã— {0} to {1}"
-msgstr " Ã— {0} fÃ¼r {1}"
+msgstr " Ã— {0} für {1}"
 
 #: src/main/java/eu/carrade/amaury/BelovedBlocks/commands/GiveCommand.java:71
 msgid "You need to provide an item name"
-msgstr "Sie mÃ¼ssen einen Name fÃ¼r den Gegenstand geben"
+msgstr "Sie müssen einen Name für den Gegenstand geben"
 
 #: src/main/java/eu/carrade/amaury/BelovedBlocks/commands/GiveCommand.java:76
 msgid "Unknown item name."
@@ -36,12 +36,12 @@ msgstr "Unbekannten Gegenstand Name."
 
 #: src/main/java/eu/carrade/amaury/BelovedBlocks/tools/BelovedTool.java:50
 msgid "Warning: this tool may break if used like its regular counterpart."
-msgstr "Achtung: im schlechten Kontext benutzt wird, kÃ¶nnte diesen Werkzeug brechen."
+msgstr "Achtung: im schlechten Kontext benutzt wird, könnte diesen Werkzeug brechen."
 
 #: src/main/java/eu/carrade/amaury/BelovedBlocks/tools/Saw.java:70
 msgid "{gray}Right-click a log to move the bark around the block."
 msgstr "{gray}Klicken Sie auf eine Holzblock um die Rinde zu drehen."
 
-#: src/main/java/eu/carrade/amaury/BelovedBlocks/tools/StoneCutter.java:70
+#: src/main/java/eu/carrade/amaury/BelovedBlocks/tools/StoneCutter.java:50
 msgid "{gray}Right-click on a double slab to smooth or carve the block."
 msgstr "{gray}Klicken Sie auf eine Doppelte Stufe um es zu schnitten."

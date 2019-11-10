@@ -1,3 +1,4 @@
+api-version: 1.13
 name: BelovedBlocks
 description: All the secrets blocks, not only in your dreams!
 main: eu.carrade.amaury.BelovedBlocks.BelovedBlocks
@@ -34,60 +35,31 @@ permissions:
     belovedblocks.give.blocks.*:
         default: op
         children:
-            belovedblocks.give.blocks.acacia: true
-            belovedblocks.give.blocks.birch: true
-            belovedblocks.give.blocks.dark-oak: true
             belovedblocks.give.blocks.end-portal: true
-            belovedblocks.give.blocks.jungle: true
-            belovedblocks.give.blocks.oak: true
             belovedblocks.give.blocks.portal-nether: true
+            belovedblocks.give.blocks.end-gateway: true
             belovedblocks.give.blocks.quartz: true
             belovedblocks.give.blocks.red-sandstone: true
             belovedblocks.give.blocks.sandstone: true
-            belovedblocks.give.blocks.spruce: true
             belovedblocks.give.blocks.stone: true
- 
-    belovedblocks.give.blocks.acacia.*:
-        default: op
-        children:
-            belovedblocks.give.blocks.acacia.self: true
-            belovedblocks.give.blocks.acacia.other: true
- 
-    belovedblocks.give.blocks.birch.*:
-        default: op
-        children:
-            belovedblocks.give.blocks.birch.self: true
-            belovedblocks.give.blocks.birch.other: true
- 
-    belovedblocks.give.blocks.dark-oak.*:
-        default: op
-        children:
-            belovedblocks.give.blocks.dark-oak.self: true
-            belovedblocks.give.blocks.dark-oak.other: true
- 
+  
     belovedblocks.give.blocks.end-portal.*:
         default: op
         children:
             belovedblocks.give.blocks.end-portal.self: true
             belovedblocks.give.blocks.end-portal.other: true
- 
-    belovedblocks.give.blocks.jungle.*:
-        default: op
-        children:
-            belovedblocks.give.blocks.jungle.self: true
-            belovedblocks.give.blocks.jungle.other: true
- 
-    belovedblocks.give.blocks.oak.*:
-        default: op
-        children:
-            belovedblocks.give.blocks.oak.self: true
-            belovedblocks.give.blocks.oak.other: true
- 
+  
     belovedblocks.give.blocks.portal-nether.*:
         default: op
         children:
             belovedblocks.give.blocks.portal-nether.self: true
             belovedblocks.give.blocks.portal-nether.other: true
+            
+    belovedblocks.give.blocks.end-gateway.*:
+        default: op
+        children:
+            belovedblocks.give.blocks.end-gateway.self: true
+            belovedblocks.give.blocks.end-gateway.other: true
  
     belovedblocks.give.blocks.quartz.*:
         default: op
@@ -106,13 +78,7 @@ permissions:
         children:
             belovedblocks.give.blocks.sandstone.self: true
             belovedblocks.give.blocks.sandstone.other: true
- 
-    belovedblocks.give.blocks.spruce.*:
-        default: op
-        children:
-            belovedblocks.give.blocks.spruce.self: true
-            belovedblocks.give.blocks.spruce.other: true
- 
+  
     belovedblocks.give.blocks.stone.*:
         default: op
         children:
@@ -146,17 +112,12 @@ permissions:
     belovedblocks.use.blocks.*:
         default: true
         children:
-            belovedblocks.use.blocks.acacia: true
-            belovedblocks.use.blocks.birch: true
-            belovedblocks.use.blocks.dark-oak: true
             belovedblocks.use.blocks.end-portal: true
-            belovedblocks.use.blocks.jungle: true
-            belovedblocks.use.blocks.oak: true
             belovedblocks.use.blocks.portal-nether: true
+            belovedblocks.use.blocks.end-gateway: true
             belovedblocks.use.blocks.quartz: true
             belovedblocks.use.blocks.red-sandstone: true
             belovedblocks.use.blocks.sandstone: true
-            belovedblocks.use.blocks.spruce: true
             belovedblocks.use.blocks.stone: true
  
     belovedblocks.use.tools.*:
@@ -174,17 +135,12 @@ permissions:
     belovedblocks.craft.blocks.*:
         default: true
         children:
-            belovedblocks.craft.blocks.acacia: true
-            belovedblocks.craft.blocks.birch: true
-            belovedblocks.craft.blocks.dark-oak: true
             belovedblocks.craft.blocks.end-portal: true
-            belovedblocks.craft.blocks.jungle: true
-            belovedblocks.craft.blocks.oak: true
-            belovedblocks.craft.blocks.portal-nether: true
+            belovedblocks.craft.blocks.portal-nether: true 
+            belovedblocks.craft.blocks.end-gateway: true
             belovedblocks.craft.blocks.quartz: true
             belovedblocks.craft.blocks.red-sandstone: true
             belovedblocks.craft.blocks.sandstone: true
-            belovedblocks.craft.blocks.spruce: true
             belovedblocks.craft.blocks.stone: true
  
     belovedblocks.craft.tools.*:
@@ -194,30 +150,7 @@ permissions:
             belovedblocks.craft.tools.stonecutter: true
  
  
-    belovedblocks.give.blocks.acacia.self:
-        description: "Allows the player to give the acacia of BelovedBlocks to itself."
-        default: op
- 
-    belovedblocks.give.blocks.acacia.other:
-        description: "Allows the player to give the acacia of BelovedBlocks to others."
-        default: op
- 
-    belovedblocks.give.blocks.birch.self:
-        description: "Allows the player to give the birch of BelovedBlocks to itself."
-        default: op
- 
-    belovedblocks.give.blocks.birch.other:
-        description: "Allows the player to give the birch of BelovedBlocks to others."
-        default: op
- 
-    belovedblocks.give.blocks.dark-oak.self:
-        description: "Allows the player to give the dark oak of BelovedBlocks to itself."
-        default: op
- 
-    belovedblocks.give.blocks.dark-oak.other:
-        description: "Allows the player to give the dark oak of BelovedBlocks to others."
-        default: op
- 
+
     belovedblocks.give.blocks.end-portal.self:
         description: "Allows the player to give the end portal of BelovedBlocks to itself."
         default: op
@@ -225,23 +158,7 @@ permissions:
     belovedblocks.give.blocks.end-portal.other:
         description: "Allows the player to give the end portal of BelovedBlocks to others."
         default: op
- 
-    belovedblocks.give.blocks.jungle.self:
-        description: "Allows the player to give the jungle of BelovedBlocks to itself."
-        default: op
- 
-    belovedblocks.give.blocks.jungle.other:
-        description: "Allows the player to give the jungle of BelovedBlocks to others."
-        default: op
- 
-    belovedblocks.give.blocks.oak.self:
-        description: "Allows the player to give the oak of BelovedBlocks to itself."
-        default: op
- 
-    belovedblocks.give.blocks.oak.other:
-        description: "Allows the player to give the oak of BelovedBlocks to others."
-        default: op
- 
+
     belovedblocks.give.blocks.portal-nether.self:
         description: "Allows the player to give the nether portal of BelovedBlocks to itself."
         default: op
@@ -250,6 +167,13 @@ permissions:
         description: "Allows the player to give the nether portal of BelovedBlocks to others."
         default: op
  
+    belovedblocks.give.blocks.end-gateway.self:
+        description: "Allows the player to give the end gateway of BelovedBlocks to itself."
+        default: op
+ 
+    belovedblocks.give.blocks.portal-nether.other:
+        description: "Allows the player to give the end gateway of BelovedBlocks to others."
+        default: op
     belovedblocks.give.blocks.quartz.self:
         description: "Allows the player to give the quartz of BelovedBlocks to itself."
         default: op
@@ -273,15 +197,7 @@ permissions:
     belovedblocks.give.blocks.sandstone.other:
         description: "Allows the player to give the sandstone of BelovedBlocks to others."
         default: op
- 
-    belovedblocks.give.blocks.spruce.self:
-        description: "Allows the player to give the spruce of BelovedBlocks to itself."
-        default: op
- 
-    belovedblocks.give.blocks.spruce.other:
-        description: "Allows the player to give the spruce of BelovedBlocks to others."
-        default: op
- 
+  
     belovedblocks.give.blocks.stone.self:
         description: "Allows the player to give the stone of BelovedBlocks to itself."
         default: op
@@ -306,34 +222,18 @@ permissions:
         description: "Allows the player to give the stonecutter of BelovedBlocks to others."
         default: op
  
-    belovedblocks.use.blocks.acacia:
-        description: "Allows the player to use the acacia of BelovedBlocks."
-        default: true
- 
-    belovedblocks.use.blocks.birch:
-        description: "Allows the player to use the birch of BelovedBlocks."
-        default: true
- 
-    belovedblocks.use.blocks.dark-oak:
-        description: "Allows the player to use the dark oak of BelovedBlocks."
-        default: true
- 
     belovedblocks.use.blocks.end-portal:
         description: "Allows the player to use the end portal of BelovedBlocks."
         default: true
- 
-    belovedblocks.use.blocks.jungle:
-        description: "Allows the player to use the jungle of BelovedBlocks."
-        default: true
- 
-    belovedblocks.use.blocks.oak:
-        description: "Allows the player to use the oak of BelovedBlocks."
-        default: true
- 
+
     belovedblocks.use.blocks.portal-nether:
         description: "Allows the player to use the nether portal of BelovedBlocks."
         default: true
  
+     belovedblocks.use.blocks.end-gateway:
+        description: "Allows the player to use the end gateway of BelovedBlocks."
+        default: true
+        
     belovedblocks.use.blocks.quartz:
         description: "Allows the player to use the quartz of BelovedBlocks."
         default: true
@@ -344,10 +244,6 @@ permissions:
  
     belovedblocks.use.blocks.sandstone:
         description: "Allows the player to use the sandstone of BelovedBlocks."
-        default: true
- 
-    belovedblocks.use.blocks.spruce:
-        description: "Allows the player to use the spruce of BelovedBlocks."
         default: true
  
     belovedblocks.use.blocks.stone:
@@ -362,32 +258,16 @@ permissions:
         description: "Allows the player to use the stonecutter of BelovedBlocks."
         default: true
  
-    belovedblocks.craft.blocks.acacia:
-        description: "Allows the player to craft the acacia of BelovedBlocks."
-        default: true
- 
-    belovedblocks.craft.blocks.birch:
-        description: "Allows the player to craft the birch of BelovedBlocks."
-        default: true
- 
-    belovedblocks.craft.blocks.dark-oak:
-        description: "Allows the player to craft the dark oak of BelovedBlocks."
-        default: true
- 
     belovedblocks.craft.blocks.end-portal:
         description: "Allows the player to craft the end portal of BelovedBlocks."
         default: true
- 
-    belovedblocks.craft.blocks.jungle:
-        description: "Allows the player to craft the jungle of BelovedBlocks."
-        default: true
- 
-    belovedblocks.craft.blocks.oak:
-        description: "Allows the player to craft the oak of BelovedBlocks."
-        default: true
- 
+
     belovedblocks.craft.blocks.portal-nether:
         description: "Allows the player to craft the nether portal of BelovedBlocks."
+        default: true
+        
+     belovedblocks.craft.blocks.end-gateway:
+        description: "Allows the player to craft the end gateway of BelovedBlocks."
         default: true
  
     belovedblocks.craft.blocks.quartz:
@@ -400,10 +280,6 @@ permissions:
  
     belovedblocks.craft.blocks.sandstone:
         description: "Allows the player to craft the sandstone of BelovedBlocks."
-        default: true
- 
-    belovedblocks.craft.blocks.spruce:
-        description: "Allows the player to craft the spruce of BelovedBlocks."
         default: true
  
     belovedblocks.craft.blocks.stone:

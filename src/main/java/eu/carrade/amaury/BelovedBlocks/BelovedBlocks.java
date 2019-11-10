@@ -40,7 +40,9 @@ public final class BelovedBlocks extends ZPlugin
         return instance;
     }
 
-    @Override
+   
+	@SuppressWarnings("unchecked")
+	@Override
     public void onEnable()
     {
         instance = this;

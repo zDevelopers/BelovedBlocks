@@ -25,15 +25,15 @@ msgstr "Don de "
 #: src/main/java/eu/carrade/amaury/BelovedBlocks/commands/GiveCommand.java:51
 #, java-format
 msgid " Ã— {0} to {1}"
-msgstr " Ã— {0} Ã  {1}"
+msgstr " Ã— {0} à  {1}"
 
 #: src/main/java/eu/carrade/amaury/BelovedBlocks/commands/GiveCommand.java:71
 msgid "You need to provide an item name"
-msgstr "Vous devez spÃ©cifier un nom d'Ã©lement"
+msgstr "Vous devez spécifier un nom d'élément"
 
 #: src/main/java/eu/carrade/amaury/BelovedBlocks/commands/GiveCommand.java:76
 msgid "Unknown item name."
-msgstr "Ã‰lÃ©ment inconnu."
+msgstr "Élément inconnu."
 
 #: src/main/java/eu/carrade/amaury/BelovedBlocks/listeners/BlocksListener.java:90
 #: src/main/java/eu/carrade/amaury/BelovedBlocks/tools/ToolsManager.java:69
@@ -42,12 +42,12 @@ msgstr "{ce}Vous n'avez pas la permission d'utiliser {0}."
 
 #: src/main/java/eu/carrade/amaury/BelovedBlocks/tools/BelovedTool.java:50
 msgid "Warning: this tool may break if used like its regular counterpart."
-msgstr "Attention : cet outil pourrait casser s'il est utilisÃ© comme son homologue classique."
+msgstr "Attention : cet outil pourrait casser s'il est utilisé comme son homologue classique."
 
 #: src/main/java/eu/carrade/amaury/BelovedBlocks/tools/Saw.java:70
 msgid "{gray}Right-click a log to move the bark around the block."
-msgstr "{gray}Cliquez droit sur un tronc pour dÃ©placer l'Ã©corce autour du bloc."
+msgstr "{gray}Cliquez droit sur un tronc pour déplacer l'écorce autour du bloc."
 
-#: src/main/java/eu/carrade/amaury/BelovedBlocks/tools/StoneCutter.java:70
+#: src/main/java/eu/carrade/amaury/BelovedBlocks/tools/StoneCutter.java:50
 msgid "{gray}Right-click on a double slab to smooth or carve the block."
 msgstr "{gray}Cliquez droit sur une double dalle pour la lisser ou la tailler."

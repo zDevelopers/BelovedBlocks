@@ -28,8 +28,8 @@ public class BelovedBlockLogger extends ZLibComponent
         if (logBlockLogger != null)
             logBlockLogger.logReplace(player, before, after);
 
-        if (prismLogger != null)
-            prismLogger.registerBlockChange(player, before, after, PrismDependency.PrismActionType.valueOf(type));
+      //  if (prismLogger != null)
+       //     prismLogger.registerBlockChange(player, before, after, PrismDependency.PrismActionType.valueOf(type));
     }
     
     static public void logCarve(Player player, BlockState before, BlockState after)

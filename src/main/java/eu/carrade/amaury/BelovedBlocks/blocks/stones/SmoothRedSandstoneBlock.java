@@ -33,12 +33,12 @@ public class SmoothRedSandstoneBlock extends SmoothDoubleSlab
     @Override
     public ItemStack getIngredient()
     {
-        return new ItemStack(Material.STONE_SLAB2);
+        return new ItemStack(Material.RED_SANDSTONE_SLAB);
     }
 
     @Override
     public WorldBlock getPlacedBlock(BlockFace facing)
     {
-        return new WorldBlock(Material.DOUBLE_STONE_SLAB2, 8);
+        return new WorldBlock(Material.SMOOTH_RED_SANDSTONE);
     }
 }

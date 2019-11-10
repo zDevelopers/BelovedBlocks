@@ -18,23 +18,27 @@ package eu.carrade.amaury.BelovedBlocks.blocks;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.metadata.MetadataValue;
+import org.bukkit.metadata.MetadataValueAdapter;
 
 public class WorldBlock
 {
     private final Material type;
-    private final byte dataValue;
+    private final BlockData dataValue;
 
-    public WorldBlock(Material type, byte dataValue)
+    public WorldBlock(Material type, BlockData dataValue)
     {
         this.type = type;
         this.dataValue = dataValue;
     }
-
-    public WorldBlock(Material type, int dataValue)
+    public WorldBlock(Material type)
     {
-        this(type, (byte) dataValue);
+        this.type = type;
+        dataValue=getType().createBlockData();
     }
 
+  
     /**
      * Updates the given block to be the same one as this block.
      *
@@ -43,7 +47,8 @@ public class WorldBlock
     public void updateBlock(Block block)
     {
         block.setType(getType());
-        block.setData(getDataValue());
+        
+        block.setBlockData(getDataValue());
     }
 
     /**
@@ -55,7 +60,7 @@ public class WorldBlock
      */
     public boolean sameBlockAs(Block block)
     {
-        return block.getType() == getType() && block.getData() == getDataValue();
+        return block.getType() == getType();// && block.getBlockData().equals(getDataValue());
     }
 
     public Material getType()
@@ -63,7 +68,7 @@ public class WorldBlock
         return type;
     }
 
-    public byte getDataValue()
+    public BlockData getDataValue()
     {
         return dataValue;
     }

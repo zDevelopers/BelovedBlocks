@@ -26,18 +26,18 @@ public class SmoothQuartzBlock extends SmoothDoubleSlab
 {
     public SmoothQuartzBlock()
     {
-        super("quartz", Material.QUARTZ_BLOCK, 0, BBConfig.BLOCKS.SLABS.QUARTZ);
+        super("quartz", Material.QUARTZ_BLOCK, 2, BBConfig.BLOCKS.SLABS.QUARTZ);
     }
 
     @Override
     public ItemStack getIngredient()
     {
-        return new ItemStack(Material.STEP, 1, (short) 7);
+        return new ItemStack(Material.QUARTZ_SLAB);
     }
 
     @Override
     public WorldBlock getPlacedBlock(BlockFace facing)
     {
-        return new WorldBlock(Material.DOUBLE_STEP, 15);
+        return new WorldBlock(Material.SMOOTH_QUARTZ);
     }
 }

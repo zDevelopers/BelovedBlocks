@@ -120,7 +120,7 @@ public abstract class BelovedBlock extends BelovedItem
         BlockState state = placedBlock.getState();
 
         state.setType(blockToPlace.getType());
-        state.setRawData(blockToPlace.getDataValue());
+        state.setBlockData(blockToPlace.getDataValue());
 
         state.update(true, applyPhysics());
     }

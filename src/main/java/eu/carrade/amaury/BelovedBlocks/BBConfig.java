@@ -48,22 +48,14 @@ public class BBConfig extends Configuration
             public final BlockSection QUARTZ = section("quartz", BlockSection.class);
         }
         
-        public final LogsSection LOGS = section("logs", LogsSection.class);
-        static public class LogsSection extends ConfigurationSection
-        {
-            public final BlockSection OAK = section("oak", BlockSection.class);
-            public final BlockSection SPRUCE = section("spruce", BlockSection.class);
-            public final BlockSection BIRCH = section("birch", BlockSection.class);
-            public final BlockSection JUNGLE = section("jungle", BlockSection.class);
-            public final BlockSection ACACIA = section("acacia", BlockSection.class);
-            public final BlockSection DARK_OAK = section("dark_oak", BlockSection.class);
-        }
+       
         
         public final PortalsSection PORTALS = section("portals", PortalsSection.class);
         static public class PortalsSection extends ConfigurationSection
         {
             public final PortalSection NETHER = section("nether", PortalSection.class);
             public final PortalSection END = section("end", PortalSection.class);
+            public final PortalSection GATEWAY = section("gateway_end", PortalSection.class);
         }
 
         public final OthersSection OTHERS = section("others", OthersSection.class);

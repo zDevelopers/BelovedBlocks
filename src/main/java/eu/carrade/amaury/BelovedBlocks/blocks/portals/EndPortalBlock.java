@@ -1,5 +1,5 @@
 /*
- * Copyright or © or Copr. AmauryCarrade (2015)
+ * Copyright or Â© or Copr. AmauryCarrade (2015)
  * 
  * http://amaury.carrade.eu
  * 
@@ -32,11 +32,14 @@
 package eu.carrade.amaury.BelovedBlocks.blocks.portals;
 
 import eu.carrade.amaury.BelovedBlocks.BBConfig;
+import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
 import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.WorldBlock;
+import fr.zcraft.zlib.tools.items.CraftingRecipes;
 import fr.zcraft.zlib.tools.items.ItemStackBuilder;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.block.BlockFace;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
@@ -44,13 +47,14 @@ import org.bukkit.inventory.ShapedRecipe;
 
 import java.util.Collections;
 import org.bukkit.material.MaterialData;
+import org.bukkit.plugin.Plugin;
 
 
 public class EndPortalBlock extends BelovedBlock
 {
     public EndPortalBlock()
     {
-        super("end-portal", new MaterialData(Material.CARPET), BBConfig.BLOCKS.PORTALS.END);
+        super("end-portal", new MaterialData(Material.BLACK_CARPET), BBConfig.BLOCKS.PORTALS.END);
     }
 
     @Override
@@ -62,15 +66,13 @@ public class EndPortalBlock extends BelovedBlock
     @Override
     public Iterable<Recipe> getCraftingRecipes()
     {
-        ShapedRecipe portalRecipe = new ShapedRecipe(makeItem(getAmountPerCraft()));
-
+    	ShapedRecipe portalRecipe = new ShapedRecipe(new NamespacedKey(BelovedBlocks.get(),"end-portal"),makeItem(getAmountPerCraft()));
         portalRecipe.shape("CCC", "ENE", "SSS");
 
-        portalRecipe.setIngredient('E', Material.EYE_OF_ENDER);
+        portalRecipe.setIngredient('E', Material.ENDER_EYE);
         portalRecipe.setIngredient('N', Material.NETHER_STAR);
-        portalRecipe.setIngredient('S', Material.ENDER_STONE);
-        portalRecipe.setIngredient('C', new ItemStackBuilder(Material.CARPET).data(DyeColor.BLACK.getWoolData()).item().getData());
-
+        portalRecipe.setIngredient('S', Material.END_STONE);
+        portalRecipe.setIngredient('C',Material.BLACK_CARPET);
         return Collections.singletonList((Recipe) portalRecipe);
     }
 
@@ -83,7 +85,7 @@ public class EndPortalBlock extends BelovedBlock
     @Override
     public WorldBlock getPlacedBlock(BlockFace blockOrientation)
     {
-        return new WorldBlock(Material.ENDER_PORTAL, 0);
+        return new WorldBlock(Material.END_PORTAL);
     }
 
     @Override

@@ -17,10 +17,12 @@ package eu.carrade.amaury.BelovedBlocks.listeners;
 import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
 import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
 import eu.carrade.amaury.BelovedBlocks.tools.BelovedTool;
+import eu.carrade.amaury.BelovedBlocks.tools.Saw;
 import eu.carrade.amaury.BelovedBlocks.tools.StoneCutter;
 import fr.zcraft.zlib.components.i18n.I;
 import fr.zcraft.zlib.components.i18n.I18n;
 import fr.zcraft.zlib.core.ZLibComponent;
+import fr.zcraft.zlib.tools.PluginLogger;
 import fr.zcraft.zlib.tools.items.ItemUtils;
 import fr.zcraft.zlib.tools.text.MessageSender;
 import org.bukkit.GameMode;
@@ -77,6 +79,7 @@ public class BlocksListener extends ZLibComponent implements Listener
         BelovedBlock belovedBlock = BelovedBlocks.getBelovedBlocksManager().getFromItem(ev.getItemInHand());
         if (belovedBlock == null)
         {
+        	PluginLogger.info("belovedBlock == null ");
             return;
         }
 
@@ -146,4 +149,20 @@ public class BlocksListener extends ZLibComponent implements Listener
             ev.setCancelled(true);
         }
     }
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    private void onInteract(PlayerInteractEvent ev) {
+    	
+    	if(!(BelovedBlocks.getToolsManager().getFromItem(ev.getPlayer().getItemInHand()) instanceof Saw))
+    		return;
+    	// If Action is NOT A Right Click, Stop
+        if (ev.getAction() != Action.RIGHT_CLICK_BLOCK)
+            return;
+        Material type = ev.getClickedBlock().getType();
+        // If The Block Is NOT A Log, Stop
+        if (Material.OAK_LOG.equals(type)||Material.DARK_OAK_LOG.equals(type)||Material.SPRUCE_LOG.equals(type)||Material.JUNGLE_LOG.equals(type)||Material.ACACIA_LOG.equals(type)||Material.BIRCH_LOG.equals(type))
+            return;
+        ev.setCancelled(true);
+        
+    }
+
 }

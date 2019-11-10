@@ -18,7 +18,7 @@ public class PrismDependency extends ExternalPluginComponent<Prism>
         super("Prism");
     }
 
-    @Override
+   /* @Override
     protected void onLoad()
     {
         if (!BBConfig.LOGS.PRISM.get())
@@ -45,7 +45,7 @@ public class PrismDependency extends ExternalPluginComponent<Prism>
             this.setEnabled(false);
         }
     }
-
+*/
     /**
      * Registers a block change in Prism.
      *
@@ -54,26 +54,26 @@ public class PrismDependency extends ExternalPluginComponent<Prism>
      * @param after The BlockState after the change.
      * @param actionType The action.
      */
-    public void registerBlockChange(Player player, BlockState before, BlockState after, PrismActionType actionType)
+    /*public void registerBlockChange(Player player, BlockState before, BlockState after, PrismActionType actionType)
     {
         if (!isEnabled()) return;
 
         BlockChangeAction action = new BlockChangeAction();
         action.setActionType(actionType.getAction().getName());
-        action.setPlayerName(player);
+       // action.setPlayerName(player);
         action.setBlock(after);
-        action.setBlockId(after.getTypeId());
-        action.setBlockSubId(after.getRawData());
-        action.setOldBlockId(before.getTypeId());
-        action.setOldBlockSubId(before.getRawData());
+       // action.setBlockId(after.getType().getId());
+       // action.setBlockSubId(after.getRawData());
+       // action.setOldBlockId(before.getType());
+      //  action.setOldBlockSubId(before.getRawData());
 
         RecordingQueue.addToQueue(action);
     }
-
+*/
     /**
      * Our registered Prism actions.
      */
-    public enum PrismActionType
+  /*  public enum PrismActionType
     {
         SMOOTH_BLOCK(new ActionType("bb-smooth-block", false, true, true, "BBHandler", "smoothed")),
         CARVE_BLOCK(new ActionType("bb-carve-block", false, true, true, "BBHandler", "carved")),
@@ -90,5 +90,5 @@ public class PrismDependency extends ExternalPluginComponent<Prism>
         {
             return action;
         }
-    }
+    }*/
 }

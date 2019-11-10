@@ -12,10 +12,12 @@ import fr.zcraft.zlib.tools.items.ItemStackBuilder;
 import fr.zcraft.zlib.tools.reflection.NMSException;
 import java.util.UUID;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.material.MaterialData;
+
 
 abstract public class BelovedItem
 {
@@ -138,11 +140,13 @@ abstract public class BelovedItem
      */
     protected ItemStackBuilder getItemBuilder()
     {
+    	// new ItemStackBuilder(Material.getMaterial(internalName));
         return new ItemStackBuilder(itemMaterialData.getItemType())
                 .data(itemMaterialData.getData())
                 .title(displayName)
                 .glow(glowOnItem);
     }
+    
     
     public ItemStack makeItem(int amount)
     {

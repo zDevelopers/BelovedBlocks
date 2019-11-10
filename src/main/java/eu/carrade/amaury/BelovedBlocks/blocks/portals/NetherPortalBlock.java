@@ -15,16 +15,19 @@
 package eu.carrade.amaury.BelovedBlocks.blocks.portals;
 
 import eu.carrade.amaury.BelovedBlocks.BBConfig;
+import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
 import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.WorldBlock;
 import fr.zcraft.zlib.tools.items.ItemStackBuilder;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.block.BlockFace;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
+import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.material.Dye;
+
 
 import java.util.Collections;
 import org.bukkit.material.MaterialData;
@@ -34,7 +37,7 @@ public class NetherPortalBlock extends BelovedBlock
 {
     public NetherPortalBlock()
     {
-        super("portal-nether", new MaterialData(Material.STAINED_GLASS_PANE), BBConfig.BLOCKS.PORTALS.NETHER);
+        super("portal-nether", new MaterialData(Material.PURPLE_STAINED_GLASS_PANE), BBConfig.BLOCKS.PORTALS.NETHER);
     }
 
     @Override
@@ -46,18 +49,18 @@ public class NetherPortalBlock extends BelovedBlock
     @Override
     public Iterable<Recipe> getCraftingRecipes()
     {
-        ShapedRecipe portalRecipe = new ShapedRecipe(makeItem(getAmountPerCraft()));
+       
+    	ShapedRecipe portalRecipe = new ShapedRecipe(new NamespacedKey(BelovedBlocks.get(),"nether-portal"),makeItem(getAmountPerCraft()));
 
+     
         portalRecipe.shape("BOB", "PCP", "OPO");
-
-        Dye purpleDye = new Dye(Material.INK_SACK);
-        purpleDye.setColor(DyeColor.PURPLE);
-
+       
+        
         portalRecipe.setIngredient('B', Material.BLAZE_POWDER);
         portalRecipe.setIngredient('O', Material.OBSIDIAN);
         portalRecipe.setIngredient('P', Material.ENDER_PEARL);
-        portalRecipe.setIngredient('C', purpleDye.toItemStack(1).getData());
-
+        portalRecipe.setIngredient('C', Material.PURPLE_DYE); 
+       
         return Collections.singletonList((Recipe) portalRecipe);
     }
 
@@ -70,11 +73,11 @@ public class NetherPortalBlock extends BelovedBlock
     @Override
     public WorldBlock getPlacedBlock(BlockFace facing)
     {
-        byte dataValue = 1;
+       /* byte dataValue = 1;
         if(facing == BlockFace.EAST || facing == BlockFace.WEST)
-            dataValue = 2;
+            dataValue = 2;*/
         
-        return new WorldBlock(Material.PORTAL, dataValue);
+        return new WorldBlock(Material.NETHER_PORTAL);
     }
 
     @Override

@@ -9,10 +9,12 @@ package eu.carrade.amaury.BelovedBlocks.tools;
 import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import eu.carrade.amaury.BelovedBlocks.dependencies.BelovedBlockLogger;
 import fr.zcraft.zlib.components.i18n.I;
+import fr.zcraft.zlib.tools.PluginLogger;
 import fr.zcraft.zlib.tools.items.CraftingRecipes;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
@@ -49,14 +51,16 @@ public class Saw extends BelovedTool
     public boolean useableOn(Block block)
     {
         Material type = block.getType();
-        return type == Material.LOG || type == Material.LOG_2;
+        PluginLogger.info("Type block {0}", type);
+        return type == Material.ACACIA_LOG || type == Material.BIRCH_LOG|| type == Material.DARK_OAK_LOG|| type == Material.JUNGLE_LOG|| type == Material.SPRUCE_LOG|| type == Material.OAK_LOG;
     }
 
     @Override
     protected boolean onUse(Player player, Block block)
     {
         BlockState before = block.getState();
-        block.setData((byte) (block.getData() + 4));
+        //block.setMetadata(arg0, arg1);Data((byte) (block.getData() + 4)); //TODO
+        PluginLogger.info("Retourne moi avec ta hache : {0} ", block.getData());
         BlockState after = block.getState();
         BelovedBlockLogger.logMoveBark(player, before, after);
         
