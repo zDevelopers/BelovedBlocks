@@ -34,6 +34,7 @@ public class BBConfig extends Configuration
     {
         public final ToolSection STONECUTTER = section("stonecutter", ToolSection.class);
         public final ToolSection SAW = section("saw", ToolSection.class);
+        public final ToolSection WRENCH = section("wrench", ToolSection.class);
     }
     
     static public final BlocksSection BLOCKS = section("blocks", BlocksSection.class);
@@ -48,14 +49,13 @@ public class BBConfig extends Configuration
             public final BlockSection QUARTZ = section("quartz", BlockSection.class);
         }
         
-       
-        
+
         public final PortalsSection PORTALS = section("portals", PortalsSection.class);
         static public class PortalsSection extends ConfigurationSection
         {
             public final PortalSection NETHER = section("nether", PortalSection.class);
             public final PortalSection END = section("end", PortalSection.class);
-            public final PortalSection GATEWAY = section("gateway_end", PortalSection.class);
+            public final PortalSection GATEWAY = section("gateway", PortalSection.class);
         }
 
         public final OthersSection OTHERS = section("others", OthersSection.class);

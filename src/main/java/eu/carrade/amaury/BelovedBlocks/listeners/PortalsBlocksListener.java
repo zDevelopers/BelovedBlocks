@@ -64,7 +64,7 @@ public class PortalsBlocksListener extends ZLibComponent implements Listener
     {
         if (!ev.hasBlock() || !ev.hasItem()) return;
 
-        if (ev.getItem().getType() == Material.WATER_BUCKET && ev.getClickedBlock().getType() == Material.END_PORTAL)
+        if (ev.getItem().getType() == Material.WATER_BUCKET && (ev.getClickedBlock().getType() == Material.END_PORTAL||ev.getClickedBlock().getType() == Material.END_GATEWAY))
         {
             ev.setCancelled(true);
             ev.getClickedBlock().setType(Material.WATER);

@@ -54,7 +54,7 @@ public class EndPortalBlock extends BelovedBlock
 {
     public EndPortalBlock()
     {
-        super("end-portal", new MaterialData(Material.BLACK_CARPET), BBConfig.BLOCKS.PORTALS.END);
+        super("end-portal", Material.BLACK_CARPET, BBConfig.BLOCKS.PORTALS.END);
     }
 
     @Override

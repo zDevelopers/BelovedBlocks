@@ -14,6 +14,7 @@
  */
 package eu.carrade.amaury.BelovedBlocks;
 
+
 import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlocksManager;
 import eu.carrade.amaury.BelovedBlocks.commands.GiveCommand;
 import eu.carrade.amaury.BelovedBlocks.dependencies.BelovedBlockLogger;
@@ -24,9 +25,11 @@ import eu.carrade.amaury.BelovedBlocks.tools.ToolsManager;
 import fr.zcraft.zlib.components.commands.Commands;
 import fr.zcraft.zlib.components.i18n.I18n;
 import fr.zcraft.zlib.core.ZPlugin;
+import fr.zcraft.zlib.tools.UpdateChecker;
 
 public final class BelovedBlocks extends ZPlugin
 {
+	
     private static BelovedBlocks instance = null;
 
     private static BelovedBlocksManager belovedBlocksManager;
@@ -59,6 +62,7 @@ public final class BelovedBlocks extends ZPlugin
         toolsManager = loadComponent(ToolsManager.class);
 
         Commands.register("bb", GiveCommand.class);
+        UpdateChecker.boot("belovedblocks.32429");
     }
 
     /**

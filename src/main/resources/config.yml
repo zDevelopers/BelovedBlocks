@@ -24,15 +24,11 @@ tool:
         itemGlow: true
         usageInLore: true     # Display infos on how to use in the tooltip of the tool. Warning, they will stay on already crafted items.
 
-    saw:
-        name: "Saw"
-        craftable: true
+    wrench:
+        name: "Wrench"
+        craftable: true       
         itemGlow: true
-        usageInLore: true     # Display infos on how to use in the tooltip of the tool. Warning, they will stay on already crafted items.
-        percentageToBreak: 1  # Configures the probability the item will break to prevent players abusing it. Setting it to 0 will disable the effect.
-                              # Note that the item will be likely to break following this probability only if it is used  like a vanilla saw.
-                              # Number between 0 and 100.
-
+        usageInLore: true
 
 # Configuration for the blocks
 blocks:

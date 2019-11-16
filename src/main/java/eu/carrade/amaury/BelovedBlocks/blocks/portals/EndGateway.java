@@ -55,7 +55,7 @@ public class EndGateway extends BelovedBlock
 {
     public EndGateway()
     {
-        super("end-portal", new MaterialData(Material.BLACK_CARPET), BBConfig.BLOCKS.PORTALS.GATEWAY);
+        super("end-gateway", Material.BLACK_WOOL, BBConfig.BLOCKS.PORTALS.GATEWAY);
     }
 
     @Override
@@ -68,9 +68,12 @@ public class EndGateway extends BelovedBlock
     public Iterable<Recipe> getCraftingRecipes()
     {
     	ShapedRecipe portalRecipe = new ShapedRecipe(new NamespacedKey(BelovedBlocks.get(),"end-gateway"),makeItem(getAmountPerCraft()));
-        portalRecipe.shape("A  ", "A  ", "   ");
+        portalRecipe.shape("BAB", "ACA", "BAB");
 
-        portalRecipe.setIngredient('A', Material.ENDER_PEARL);
+        portalRecipe.setIngredient('A', Material.ENDER_EYE);
+        portalRecipe.setIngredient('B', Material.END_STONE);
+        portalRecipe.setIngredient('C', Material.PURPUR_BLOCK);
+        
         
         return Collections.singletonList((Recipe) portalRecipe);
     }

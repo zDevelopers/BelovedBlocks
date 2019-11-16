@@ -103,15 +103,15 @@ abstract public class BelovedItemsManager<T extends BelovedItem> extends ZLibCom
     public T getFromItem(ItemStack item)
     {
         if(item == null) return null;
-        PluginLogger.info("item != null ");
+       // PluginLogger.info("item != null ");
         BelovedItem.Attribute attribute = BelovedItem.Attribute.fromItem(item);
         if(attribute != null)
         {
-        	PluginLogger.info("attribute != null ");
+        	//PluginLogger.info("attribute != null ");
             T belovedItem = getFromInternalName(attribute.getItemInternalName());
             if(belovedItem != null) return belovedItem;
         }
-        PluginLogger.info("belovedItem == null ");
+      //  PluginLogger.info("belovedItem == null ");
         
         //Do not use item names as fallback
         if(!BBConfig.USE_ITEM_NAMES_FALLBACK.get()) return null;

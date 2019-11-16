@@ -19,8 +19,9 @@ package eu.carrade.amaury.BelovedBlocks.blocks;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
-import org.bukkit.metadata.MetadataValue;
-import org.bukkit.metadata.MetadataValueAdapter;
+
+import fr.zcraft.zlib.tools.PluginLogger;
+
 
 public class WorldBlock
 {
@@ -47,7 +48,7 @@ public class WorldBlock
     public void updateBlock(Block block)
     {
         block.setType(getType());
-        
+        PluginLogger.info("update type {0}  {1}", getType().name(),block.getType().name());
         block.setBlockData(getDataValue());
     }
 
@@ -60,7 +61,7 @@ public class WorldBlock
      */
     public boolean sameBlockAs(Block block)
     {
-        return block.getType() == getType();// && block.getBlockData().equals(getDataValue());
+        return block.getType().equals(getType());// && block.getBlockData().equals(getDataValue());
     }
 
     public Material getType()

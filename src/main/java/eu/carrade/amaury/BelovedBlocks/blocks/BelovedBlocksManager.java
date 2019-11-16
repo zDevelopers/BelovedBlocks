@@ -16,6 +16,7 @@ package eu.carrade.amaury.BelovedBlocks.blocks;
 
 import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import eu.carrade.amaury.BelovedBlocks.BelovedItemsManager;
+import eu.carrade.amaury.BelovedBlocks.blocks.portals.EndGateway;
 import eu.carrade.amaury.BelovedBlocks.blocks.portals.EndPortalBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.portals.NetherPortalBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothQuartzBlock;
@@ -40,6 +41,7 @@ public class BelovedBlocksManager extends BelovedItemsManager<BelovedBlock>
 
         register(new NetherPortalBlock());
         register(new EndPortalBlock());
+        register(new EndGateway());
     }
     
     @Override

@@ -9,6 +9,7 @@ package eu.carrade.amaury.BelovedBlocks.tools;
 import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import eu.carrade.amaury.BelovedBlocks.BelovedItem;
 import fr.zcraft.zlib.components.i18n.I;
+import fr.zcraft.zlib.tools.PluginLogger;
 import fr.zcraft.zlib.tools.items.ItemStackBuilder;
 import fr.zcraft.zlib.tools.items.ItemUtils;
 import org.bukkit.ChatColor;
@@ -18,7 +19,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
-import org.bukkit.material.MaterialData;
+
 
 abstract public class BelovedTool extends BelovedItem
 {
@@ -27,7 +28,7 @@ abstract public class BelovedTool extends BelovedItem
     
     public BelovedTool(String internalName, Material itemMaterial, BBConfig.ToolSection toolConfig)
     {
-        super(internalName, new MaterialData(itemMaterial), toolConfig);
+        super(internalName, itemMaterial, toolConfig);
         
         this.usageInLore = toolConfig.USAGE_IN_LORE.get();
         this.chanceToBreak = toolConfig.PERCENTAGE_BREAKING.get() * 0.01f;
@@ -64,6 +65,7 @@ abstract public class BelovedTool extends BelovedItem
     
     public boolean use(Player player, ItemStack item, Block block)
     {
+    	PluginLogger.info("type of block{0} item {1}", block.getType(),item.getType());
         if(!useableOn(block)) return false;
         if(!onUse(player, block)) return false;
         
@@ -86,7 +88,7 @@ abstract public class BelovedTool extends BelovedItem
     //abstract protected boolean onBlockBreak(Player player, Block block);
 
     /**
-     * @return The usage displayed in the tool's lore (if enabled). A “paragraph” per list item.
+     * @return The usage displayed in the tool's lore (if enabled). A â€œparagraphâ€�Â per list item.
      */
     abstract protected List<String> getUsage();
 

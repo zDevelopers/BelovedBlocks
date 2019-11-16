@@ -18,6 +18,8 @@ package eu.carrade.amaury.BelovedBlocks.blocks;
 import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import eu.carrade.amaury.BelovedBlocks.BelovedItem;
 import fr.zcraft.zlib.tools.world.WorldUtils;
+
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.inventory.ItemStack;
@@ -26,7 +28,7 @@ import org.bukkit.inventory.ShapelessRecipe;
 
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
-import org.bukkit.material.MaterialData;
+
 
 
 public abstract class BelovedBlock extends BelovedItem
@@ -34,17 +36,17 @@ public abstract class BelovedBlock extends BelovedItem
     private final int amountPerCraft;
     private final boolean isUncraftable;
     
-    public BelovedBlock(String internalName, MaterialData itemMaterial,  BBConfig.BlockSection itemConfig)
+    public BelovedBlock(String internalName, Material itemMaterial,  BBConfig.BlockSection itemConfig)
     {
         super(internalName, itemMaterial, itemConfig);
         this.isUncraftable = itemConfig.UNCRAFTABLE.get();
         this.amountPerCraft = itemConfig.AMOUNT_PER_CRAFT.get();
     }
-    
-    public BelovedBlock(String internalName, BBConfig.BlockSection itemConfig)
+   
+  /*  public BelovedBlock(String internalName, BBConfig.BlockSection itemConfig)
     {
-        this(internalName, null, itemConfig);
-    }
+        this(internalName,(Material) null, itemConfig);//Peut etre un bug ici a check
+    }*/
     
     protected Recipe getUncraftingRecipe()
     {

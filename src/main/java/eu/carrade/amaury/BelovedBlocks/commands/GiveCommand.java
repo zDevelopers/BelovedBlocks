@@ -41,19 +41,21 @@ public class GiveCommand extends Command
         final ItemStack item = belovedItem.makeItem(amount);
 
         ItemUtils.give(player, item);
-
+        
         send(new RawText(I.t("Given "))
                         .color(ChatColor.GRAY)
                     .then("[").color(ChatColor.GRAY)
                     .then(belovedItem.getDisplayName())
-                        .hover(item)
                         .color(ChatColor.GRAY)
                     .then("]").color(ChatColor.GRAY)
                     .then(I.t(" × {0} to {1}", amount, player.getDisplayName()))
                         .color(ChatColor.GRAY)
                 .build()
+                
         );
+        //.hover(item) //bug ici retire pour test
     }
+    
     
     @Override
     protected List<String> complete()

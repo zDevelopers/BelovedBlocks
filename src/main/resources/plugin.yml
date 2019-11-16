@@ -88,14 +88,14 @@ permissions:
     belovedblocks.give.tools.*:
         default: op
         children:
-            belovedblocks.give.tools.saw: true
+            belovedblocks.give.tools.wrench: true
             belovedblocks.give.tools.stonecutter: true
  
-    belovedblocks.give.tools.saw.*:
+    belovedblocks.give.tools.wrench.*:
         default: op
         children:
-            belovedblocks.give.tools.saw.self: true
-            belovedblocks.give.tools.saw.other: true
+            belovedblocks.give.tools.wrench.self: true
+            belovedblocks.give.tools.wrench.other: true
  
     belovedblocks.give.tools.stonecutter.*:
         default: op
@@ -123,7 +123,7 @@ permissions:
     belovedblocks.use.tools.*:
         default: true
         children:
-            belovedblocks.use.tools.saw: true
+            belovedblocks.use.tools.wrench: true
             belovedblocks.use.tools.stonecutter: true
  
     belovedblocks.craft.*:
@@ -146,7 +146,7 @@ permissions:
     belovedblocks.craft.tools.*:
         default: true
         children:
-            belovedblocks.craft.tools.saw: true
+            belovedblocks.craft.tools.wrench: true
             belovedblocks.craft.tools.stonecutter: true
  
  
@@ -206,12 +206,12 @@ permissions:
         description: "Allows the player to give the stone of BelovedBlocks to others."
         default: op
  
-    belovedblocks.give.tools.saw.self:
-        description: "Allows the player to give the saw of BelovedBlocks to itself."
+    belovedblocks.give.tools.wrench.self:
+        description: "Allows the player to give the wrench of BelovedBlocks to itself."
         default: op
  
-    belovedblocks.give.tools.saw.other:
-        description: "Allows the player to give the saw of BelovedBlocks to others."
+    belovedblocks.give.tools.wrench.other:
+        description: "Allows the player to give the wrench of BelovedBlocks to others."
         default: op
  
     belovedblocks.give.tools.stonecutter.self:
@@ -230,7 +230,7 @@ permissions:
         description: "Allows the player to use the nether portal of BelovedBlocks."
         default: true
  
-     belovedblocks.use.blocks.end-gateway:
+    belovedblocks.use.blocks.end-gateway:
         description: "Allows the player to use the end gateway of BelovedBlocks."
         default: true
         
@@ -250,8 +250,8 @@ permissions:
         description: "Allows the player to use the stone of BelovedBlocks."
         default: true
  
-    belovedblocks.use.tools.saw:
-        description: "Allows the player to use the saw of BelovedBlocks."
+    belovedblocks.use.tools.wrench:
+        description: "Allows the player to use the wrench of BelovedBlocks."
         default: true
  
     belovedblocks.use.tools.stonecutter:
@@ -266,7 +266,7 @@ permissions:
         description: "Allows the player to craft the nether portal of BelovedBlocks."
         default: true
         
-     belovedblocks.craft.blocks.end-gateway:
+    belovedblocks.craft.blocks.end-gateway:
         description: "Allows the player to craft the end gateway of BelovedBlocks."
         default: true
  
@@ -286,8 +286,8 @@ permissions:
         description: "Allows the player to craft the stone of BelovedBlocks."
         default: true
  
-    belovedblocks.craft.tools.saw:
-        description: "Allows the player to craft the saw of BelovedBlocks."
+    belovedblocks.craft.tools.wrench:
+        description: "Allows the player to craft the wrench of BelovedBlocks."
         default: true
  
     belovedblocks.craft.tools.stonecutter:

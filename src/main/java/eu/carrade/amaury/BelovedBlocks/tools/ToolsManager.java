@@ -42,13 +42,13 @@ import org.bukkit.inventory.ItemStack;
 public class ToolsManager extends BelovedItemsManager<BelovedTool>
 {
     private StoneCutter stoneCutter = null;
-    private Saw saw = null;
+    private Wrench wrench = null;
 
     @Override
     protected void onEnable()
     {
         stoneCutter = register(new StoneCutter());
-        saw = register(new Saw());
+        wrench = register(new Wrench());
     }
 
     public StoneCutter getStoneCutter()
@@ -56,9 +56,10 @@ public class ToolsManager extends BelovedItemsManager<BelovedTool>
         return stoneCutter;
     }
     
-    public Saw getSaw()
+    
+    public Wrench getWrench()
     {
-        return saw;
+        return wrench;
     }
     
     public boolean use(Player player, ItemStack item, Block block)

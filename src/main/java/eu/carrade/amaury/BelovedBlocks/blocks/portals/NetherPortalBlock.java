@@ -37,7 +37,7 @@ public class NetherPortalBlock extends BelovedBlock
 {
     public NetherPortalBlock()
     {
-        super("portal-nether", new MaterialData(Material.PURPLE_STAINED_GLASS_PANE), BBConfig.BLOCKS.PORTALS.NETHER);
+        super("portal-nether", Material.PURPLE_STAINED_GLASS_PANE, BBConfig.BLOCKS.PORTALS.NETHER);
     }
 
     @Override

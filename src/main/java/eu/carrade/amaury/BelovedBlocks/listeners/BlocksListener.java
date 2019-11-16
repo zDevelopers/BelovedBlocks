@@ -17,12 +17,11 @@ package eu.carrade.amaury.BelovedBlocks.listeners;
 import eu.carrade.amaury.BelovedBlocks.BelovedBlocks;
 import eu.carrade.amaury.BelovedBlocks.blocks.BelovedBlock;
 import eu.carrade.amaury.BelovedBlocks.tools.BelovedTool;
-import eu.carrade.amaury.BelovedBlocks.tools.Saw;
 import eu.carrade.amaury.BelovedBlocks.tools.StoneCutter;
+import eu.carrade.amaury.BelovedBlocks.tools.Wrench;
 import fr.zcraft.zlib.components.i18n.I;
 import fr.zcraft.zlib.components.i18n.I18n;
 import fr.zcraft.zlib.core.ZLibComponent;
-import fr.zcraft.zlib.tools.PluginLogger;
 import fr.zcraft.zlib.tools.items.ItemUtils;
 import fr.zcraft.zlib.tools.text.MessageSender;
 import org.bukkit.GameMode;
@@ -41,128 +40,109 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Collection;
 
-public class BlocksListener extends ZLibComponent implements Listener
-{
+public class BlocksListener extends ZLibComponent implements Listener {
 
-    /**
-     * Used to convert the blocks from/to the seamless state with our tool.
-     */
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
-    public void onPlayerInteract(PlayerInteractEvent event)
-    {
-        if (!event.hasBlock() || !event.hasItem())
-        {
-            return;
-        }
-        if (!event.getAction().equals(Action.RIGHT_CLICK_BLOCK))
-        {
-            return;
-        }
+	/**
+	 * Used to convert the blocks from/to the seamless state with our tool.
+	 */
+	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+	public void onPlayerInteract(PlayerInteractEvent event) {
+		if (!event.hasBlock() || !event.hasItem()) {
+			return;
+		}
+		if (!event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+			return;
+		}
 
-        ItemStack item = event.getItem();
-        Block block = event.getClickedBlock();
-        Player player = event.getPlayer();
-        
-        if (BelovedBlocks.getToolsManager().use(player, item, block))
-        {
-            event.setCancelled(true);
-        }
-    }
+		ItemStack item = event.getItem();
+		Block block = event.getClickedBlock();
+		Player player = event.getPlayer();
 
-    /**
-     * Used to place a real smooth block when our "smooth slabs" used as items
-     * are placed.
-     */
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
-    public void onBlockPlace(BlockPlaceEvent ev)
-    {
-        BelovedBlock belovedBlock = BelovedBlocks.getBelovedBlocksManager().getFromItem(ev.getItemInHand());
-        if (belovedBlock == null)
-        {
-        	PluginLogger.info("belovedBlock == null ");
-            return;
-        }
+		if (BelovedBlocks.getToolsManager().use(player, item, block)) {
+			event.setCancelled(true);
+		}
+	}
 
-        if (belovedBlock.canUse(ev.getPlayer()))
-        {
-            belovedBlock.onBlockPlace(ev.getBlockPlaced(), ev.getPlayer());
-        }
-        else
-        {
-            MessageSender.sendActionBarMessage(ev.getPlayer().getUniqueId(), 
-                    I.t(I18n.getPlayerLocale(ev.getPlayer()), "{ce}You are not allowed to use the {0}.", belovedBlock.getDisplayName()));
-            ev.setCancelled(true);
-        }
-    }
+	/**
+	 * Used to place a real smooth block when our "smooth slabs" used as items
+	 * are placed.
+	 */
+	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+	public void onBlockPlace(BlockPlaceEvent ev) {
+		BelovedBlock belovedBlock = BelovedBlocks.getBelovedBlocksManager().getFromItem(ev.getItemInHand());
+		if (belovedBlock == null) {
+			return;
+		}
 
-    /**
-     * Used to prevent our tool (shears) to get leaves like a normal shear, and
-     * to make the smooth double slabs to drop our smooth blocks.
-     */
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
-    public void onBlockBreaks(final BlockBreakEvent ev)
-    {
-        // This event only concerns players in survival/adventure game mode.
-        if (ev.getPlayer().getGameMode() == GameMode.CREATIVE)
-        {
-            return;
-        }
-        ItemStack item = ev.getPlayer().getItemInHand();
+		if (belovedBlock.canUse(ev.getPlayer())) {
+			belovedBlock.onBlockPlace(ev.getBlockPlaced(), ev.getPlayer());
+		} else {
+			MessageSender.sendActionBarMessage(ev.getPlayer().getUniqueId(), I.t(I18n.getPlayerLocale(ev.getPlayer()),
+					"{ce}You are not allowed to use the {0}.", belovedBlock.getDisplayName()));
+			ev.setCancelled(true);
+		}
+	}
 
-        BelovedTool tool = BelovedBlocks.getToolsManager().getFromItem(item);
-        if (tool != null)
-        {
-            //Tools are fragile, loose extra durability
-            ItemUtils.damageItemInHand(ev.getPlayer(), item, 1);
+	/**
+	 * Used to prevent our tool (shears) to get leaves like a normal shear, and
+	 * to make the smooth double slabs to drop our smooth blocks.
+	 */
+	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+	public void onBlockBreaks(final BlockBreakEvent ev) {
+		// This event only concerns players in survival/adventure game mode.
+		if (ev.getPlayer().getGameMode() == GameMode.CREATIVE) {
+			return;
+		}
+		ItemStack item = ev.getPlayer().getItemInHand();
 
-            // If they have a chance to break
-            if ((float) Math.random() <= tool.getChanceToBreak())
-            {
-                ItemUtils.breakItemInHand(ev.getPlayer(), item);
-            }
-        }
+		BelovedTool tool = BelovedBlocks.getToolsManager().getFromItem(item);
+		if (tool != null) {
+			// Tools are fragile, loose extra durability
+			ItemUtils.damageItemInHand(ev.getPlayer(), item, 1);
 
-        // When breaking a BelovedBlock.
-        ItemStack belovedDrop = BelovedBlocks.getBelovedBlocksManager().getDropForBlock(ev.getBlock());
-        if (belovedDrop != null)
-        {
-            Collection<ItemStack> drops = ev.getBlock().getDrops(item);
-            if (!drops.isEmpty())
-            {
-                ev.getBlock().setType(Material.AIR);
-                ItemUtils.dropNaturallyLater(ev.getBlock().getLocation(), belovedDrop);
-            }
-        }
-    }
+			// If they have a chance to break
+			if ((float) Math.random() <= tool.getChanceToBreak()) {
+				ItemUtils.breakItemInHand(ev.getPlayer(), item);
+			}
+		}
 
-    /**
-     * Used to prevent our tool from shearing sheeps or mushroom cows.
-     * <p>
-     * The cow seems to disappear, a relog fix that. Cannot be fixed on our side
-     * (Minecraft or CBukkit bug).
-     */
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
-    public void onPlayerShearEntity(PlayerShearEntityEvent ev)
-    {
-        if (BelovedBlocks.getToolsManager().getFromItem(ev.getPlayer().getItemInHand()) instanceof StoneCutter)
-        {
-            ev.setCancelled(true);
-        }
-    }
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
-    private void onInteract(PlayerInteractEvent ev) {
-    	
-    	if(!(BelovedBlocks.getToolsManager().getFromItem(ev.getPlayer().getItemInHand()) instanceof Saw))
-    		return;
-    	// If Action is NOT A Right Click, Stop
-        if (ev.getAction() != Action.RIGHT_CLICK_BLOCK)
-            return;
-        Material type = ev.getClickedBlock().getType();
-        // If The Block Is NOT A Log, Stop
-        if (Material.OAK_LOG.equals(type)||Material.DARK_OAK_LOG.equals(type)||Material.SPRUCE_LOG.equals(type)||Material.JUNGLE_LOG.equals(type)||Material.ACACIA_LOG.equals(type)||Material.BIRCH_LOG.equals(type))
-            return;
-        ev.setCancelled(true);
-        
-    }
+		// When breaking a BelovedBlock.
+		ItemStack belovedDrop = BelovedBlocks.getBelovedBlocksManager().getDropForBlock(ev.getBlock());
+		if (belovedDrop != null) {
+			Collection<ItemStack> drops = ev.getBlock().getDrops(item);
+			if (!drops.isEmpty()) {
+				ev.getBlock().setType(Material.AIR);
+				ItemUtils.dropNaturallyLater(ev.getBlock().getLocation(), belovedDrop);
+			}
+		}
+	}
+
+	/**
+	 * Used to prevent our tool from shearing sheeps or mushroom cows.
+	 * <p>
+	 * The cow seems to disappear, a relog fix that. Cannot be fixed on our side
+	 * (Minecraft or CBukkit bug).
+	 */
+	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+	public void onPlayerShearEntity(PlayerShearEntityEvent ev) {
+		if (BelovedBlocks.getToolsManager().getFromItem(ev.getPlayer().getItemInHand()) instanceof StoneCutter) {
+			ev.setCancelled(true);
+		}
+	}
+
+
+	
+/**
+ * Used to forbid wrench to be placed 
+ * 
+ * 
+ *
+ */
+	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+	private void onBlockPlace(PlayerInteractEvent ev) {
+		if (!(BelovedBlocks.getToolsManager().getFromItem(ev.getPlayer().getItemInHand()) instanceof Wrench))
+			return;
+		ev.setCancelled(true);
+	}
 
 }
