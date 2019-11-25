@@ -17,6 +17,7 @@ package eu.carrade.amaury.BelovedBlocks.blocks;
 
 import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import eu.carrade.amaury.BelovedBlocks.BelovedItem;
+import fr.zcraft.zlib.tools.PluginLogger;
 import fr.zcraft.zlib.tools.world.WorldUtils;
 
 import org.bukkit.Material;
@@ -118,6 +119,7 @@ public abstract class BelovedBlock extends BelovedItem
      */
     public void onBlockPlace(Block placedBlock, Player player)
     {
+    	PluginLogger.info("direction du regard du joueur {0}",WorldUtils.get4thOrientation(player.getLocation()) );
         WorldBlock blockToPlace = getPlacedBlock(WorldUtils.get4thOrientation(player.getLocation()));
         BlockState state = placedBlock.getState();
 

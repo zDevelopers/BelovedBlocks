@@ -38,10 +38,9 @@ permissions:
             belovedblocks.give.blocks.end-portal: true
             belovedblocks.give.blocks.portal-nether: true
             belovedblocks.give.blocks.end-gateway: true
-            belovedblocks.give.blocks.quartz: true
-            belovedblocks.give.blocks.red-sandstone: true
-            belovedblocks.give.blocks.sandstone: true
-            belovedblocks.give.blocks.stone: true
+            belovedblocks.give.blocks.burning_furnace: true
+            belovedblocks.give.blocks.burning_smoker: true
+            belovedblocks.give.blocks.burning_bast_furnace: true
   
     belovedblocks.give.blocks.end-portal.*:
         default: op
@@ -61,30 +60,7 @@ permissions:
             belovedblocks.give.blocks.end-gateway.self: true
             belovedblocks.give.blocks.end-gateway.other: true
  
-    belovedblocks.give.blocks.quartz.*:
-        default: op
-        children:
-            belovedblocks.give.blocks.quartz.self: true
-            belovedblocks.give.blocks.quartz.other: true
- 
-    belovedblocks.give.blocks.red-sandstone.*:
-        default: op
-        children:
-            belovedblocks.give.blocks.red-sandstone.self: true
-            belovedblocks.give.blocks.red-sandstone.other: true
- 
-    belovedblocks.give.blocks.sandstone.*:
-        default: op
-        children:
-            belovedblocks.give.blocks.sandstone.self: true
-            belovedblocks.give.blocks.sandstone.other: true
-  
-    belovedblocks.give.blocks.stone.*:
-        default: op
-        children:
-            belovedblocks.give.blocks.stone.self: true
-            belovedblocks.give.blocks.stone.other: true
- 
+
     belovedblocks.give.tools.*:
         default: op
         children:
@@ -115,10 +91,10 @@ permissions:
             belovedblocks.use.blocks.end-portal: true
             belovedblocks.use.blocks.portal-nether: true
             belovedblocks.use.blocks.end-gateway: true
-            belovedblocks.use.blocks.quartz: true
-            belovedblocks.use.blocks.red-sandstone: true
-            belovedblocks.use.blocks.sandstone: true
-            belovedblocks.use.blocks.stone: true
+            belovedblocks.use.blocks.burning_furnace: true
+            belovedblocks.use.blocks.burning_smoker: true
+            belovedblocks.use.blocks.burning_bast_furnace: true
+
  
     belovedblocks.use.tools.*:
         default: true
@@ -138,10 +114,9 @@ permissions:
             belovedblocks.craft.blocks.end-portal: true
             belovedblocks.craft.blocks.portal-nether: true 
             belovedblocks.craft.blocks.end-gateway: true
-            belovedblocks.craft.blocks.quartz: true
-            belovedblocks.craft.blocks.red-sandstone: true
-            belovedblocks.craft.blocks.sandstone: true
-            belovedblocks.craft.blocks.stone: true
+            belovedblocks.craft.blocks.burning_furnace: true
+            belovedblocks.craft.blocks.burning_smoker: true
+            belovedblocks.craft.blocks.burning_bast_furnace: true
  
     belovedblocks.craft.tools.*:
         default: true
@@ -174,38 +149,31 @@ permissions:
     belovedblocks.give.blocks.portal-nether.other:
         description: "Allows the player to give the end gateway of BelovedBlocks to others."
         default: op
-    belovedblocks.give.blocks.quartz.self:
-        description: "Allows the player to give the quartz of BelovedBlocks to itself."
+                
+    belovedblocks.give.blocks.burning_furnace.self:
+        description: "Allows the player to give the burning_furnace of BelovedBlocks to itself."
         default: op
  
-    belovedblocks.give.blocks.quartz.other:
-        description: "Allows the player to give the quartz of BelovedBlocks to others."
+    belovedblocks.give.blocks.burning_furnace.other:
+        description: "Allows the player to give the burning_furnace of BelovedBlocks to others."
         default: op
  
-    belovedblocks.give.blocks.red-sandstone.self:
-        description: "Allows the player to give the red sandstone of BelovedBlocks to itself."
+    belovedblocks.give.blocks.burning_smoker.self:
+        description: "Allows the player to give the burning_smoker of BelovedBlocks to itself."
         default: op
  
-    belovedblocks.give.blocks.red-sandstone.other:
-        description: "Allows the player to give the red sandstone of BelovedBlocks to others."
+    belovedblocks.give.blocks.burning_smoker.other:
+        description: "Allows the player to give the burning_smoker of BelovedBlocks to others."
         default: op
  
-    belovedblocks.give.blocks.sandstone.self:
-        description: "Allows the player to give the sandstone of BelovedBlocks to itself."
+    belovedblocks.give.blocks.burning_bast_furnace.self:
+        description: "Allows the player to give the burning_bast_furnace of BelovedBlocks to itself."
         default: op
  
-    belovedblocks.give.blocks.sandstone.other:
-        description: "Allows the player to give the sandstone of BelovedBlocks to others."
+    belovedblocks.give.blocks.burning_bast_furnace.other:
+        description: "Allows the player to give the burning_bast_furnace of BelovedBlocks to others."
         default: op
-  
-    belovedblocks.give.blocks.stone.self:
-        description: "Allows the player to give the stone of BelovedBlocks to itself."
-        default: op
- 
-    belovedblocks.give.blocks.stone.other:
-        description: "Allows the player to give the stone of BelovedBlocks to others."
-        default: op
- 
+   
     belovedblocks.give.tools.wrench.self:
         description: "Allows the player to give the wrench of BelovedBlocks to itself."
         default: op
@@ -233,21 +201,17 @@ permissions:
     belovedblocks.use.blocks.end-gateway:
         description: "Allows the player to use the end gateway of BelovedBlocks."
         default: true
-        
-    belovedblocks.use.blocks.quartz:
-        description: "Allows the player to use the quartz of BelovedBlocks."
+                
+    belovedblocks.use.blocks.burning_furnace:
+        description: "Allows the player to use the burning_furnace of BelovedBlocks."
         default: true
  
-    belovedblocks.use.blocks.red-sandstone:
-        description: "Allows the player to use the red sandstone of BelovedBlocks."
+    belovedblocks.use.blocks.burning_smoker:
+        description: "Allows the player to use the burning_smoker of BelovedBlocks."
         default: true
  
-    belovedblocks.use.blocks.sandstone:
-        description: "Allows the player to use the sandstone of BelovedBlocks."
-        default: true
- 
-    belovedblocks.use.blocks.stone:
-        description: "Allows the player to use the stone of BelovedBlocks."
+    belovedblocks.use.blocks.burning_bast_furnace:
+        description: "Allows the player to use the burning_bast_furnace of BelovedBlocks."
         default: true
  
     belovedblocks.use.tools.wrench:
@@ -269,21 +233,17 @@ permissions:
     belovedblocks.craft.blocks.end-gateway:
         description: "Allows the player to craft the end gateway of BelovedBlocks."
         default: true
- 
-    belovedblocks.craft.blocks.quartz:
-        description: "Allows the player to craft the quartz of BelovedBlocks."
+         
+    belovedblocks.craft.blocks.burning_furnace:
+        description: "Allows the player to craft the burning_furnace of BelovedBlocks."
         default: true
  
-    belovedblocks.craft.blocks.red-sandstone:
-        description: "Allows the player to craft the red sandstone of BelovedBlocks."
+    belovedblocks.craft.blocks.burning_smoker:
+        description: "Allows the player to craft the burning_smoker of BelovedBlocks."
         default: true
  
-    belovedblocks.craft.blocks.sandstone:
-        description: "Allows the player to craft the sandstone of BelovedBlocks."
-        default: true
- 
-    belovedblocks.craft.blocks.stone:
-        description: "Allows the player to craft the stone of BelovedBlocks."
+    belovedblocks.craft.blocks.burning_bast_furnace:
+        description: "Allows the player to craft the burning_bast_furnace of BelovedBlocks."
         default: true
  
     belovedblocks.craft.tools.wrench:

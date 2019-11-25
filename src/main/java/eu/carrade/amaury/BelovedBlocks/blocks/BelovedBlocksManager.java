@@ -16,13 +16,12 @@ package eu.carrade.amaury.BelovedBlocks.blocks;
 
 import eu.carrade.amaury.BelovedBlocks.BBConfig;
 import eu.carrade.amaury.BelovedBlocks.BelovedItemsManager;
+import eu.carrade.amaury.BelovedBlocks.blocks.other.BurningBlastFurnace;
+import eu.carrade.amaury.BelovedBlocks.blocks.other.BurningFurnace;
+import eu.carrade.amaury.BelovedBlocks.blocks.other.BurningSmoker;
 import eu.carrade.amaury.BelovedBlocks.blocks.portals.EndGateway;
 import eu.carrade.amaury.BelovedBlocks.blocks.portals.EndPortalBlock;
 import eu.carrade.amaury.BelovedBlocks.blocks.portals.NetherPortalBlock;
-import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothQuartzBlock;
-import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothRedSandstoneBlock;
-import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothSandstoneBlock;
-import eu.carrade.amaury.BelovedBlocks.blocks.stones.SmoothStoneBlock;
 import fr.zcraft.zlib.tools.PluginLogger;
 import fr.zcraft.zlib.tools.items.CraftingRecipes;
 import org.bukkit.Material;
@@ -34,14 +33,14 @@ public class BelovedBlocksManager extends BelovedItemsManager<BelovedBlock>
     @Override
     protected void onEnable()
     {
-        register(new SmoothStoneBlock());
-        register(new SmoothSandstoneBlock());
-        register(new SmoothRedSandstoneBlock());
-        register(new SmoothQuartzBlock());
 
         register(new NetherPortalBlock());
         register(new EndPortalBlock());
         register(new EndGateway());
+        
+        register(new BurningFurnace());
+        register(new BurningSmoker());
+        register(new BurningBlastFurnace());
     }
     
     @Override

@@ -32,26 +32,6 @@ tool:
 
 # Configuration for the blocks
 blocks:
-    slabs:
-        stone:
-            name: "Smooth Stone Double Slab"
-            craftable: true   # Crafted with four slabs in a square.
-            itemGlow: true
-        
-        sandstone:
-            name: "Smooth Sandstone Double Slab"
-            craftable: true   # Crafted with four slabs in a square.
-            itemGlow: true
-        
-        red_sandstone:
-            name: "Smooth Red Sandstone Double Slab"
-            craftable: true   # Crafted with four slabs in a square.
-            itemGlow: true
-        
-        quartz:
-            name: "Smooth Quartz Double Slab"
-            craftable: true   # Crafted with four slabs in a square.
-            itemGlow: true
         
     portals:
         nether:
@@ -87,7 +67,16 @@ blocks:
             name: "Indefinitely Burning Furnace"
             craftable: true   # Crafted with a furnace and a blaze powder (shapeless recipe)
             itemGlow: true
-
+            
+        burning_smoker:
+            name: "Indefinitely Burning Smoker"
+            craftable: true   # Crafted with a smoker and a blaze powder (shapeless recipe)
+            itemGlow: true
+            
+        burning_bast_furnace:
+            name: "Indefinitely Burning Blast Furnace"
+            craftable: true   # Crafted with a blast furnace and a blaze powder (shapeless recipe)
+            itemGlow: true
 
 # Enables or disables the block changes of our tool being saved with LogBlock or Prism (if installed)
 logs:

@@ -33,22 +33,12 @@ public class BBConfig extends Configuration
     static public class ToolsSection extends ConfigurationSection
     {
         public final ToolSection STONECUTTER = section("stonecutter", ToolSection.class);
-        public final ToolSection SAW = section("saw", ToolSection.class);
         public final ToolSection WRENCH = section("wrench", ToolSection.class);
     }
     
     static public final BlocksSection BLOCKS = section("blocks", BlocksSection.class);
     static public class BlocksSection extends ConfigurationSection
     {
-        public final SlabsSection SLABS = section("slabs", SlabsSection.class);
-        static public class SlabsSection extends ConfigurationSection
-        {
-            public final BlockSection STONE = section("stone", BlockSection.class);
-            public final BlockSection SANDSTONE = section("sandstone", BlockSection.class);
-            public final BlockSection RED_SANDSTONE = section("red_sandstone", BlockSection.class);
-            public final BlockSection QUARTZ = section("quartz", BlockSection.class);
-        }
-        
 
         public final PortalsSection PORTALS = section("portals", PortalsSection.class);
         static public class PortalsSection extends ConfigurationSection
@@ -61,7 +51,9 @@ public class BBConfig extends Configuration
         public final OthersSection OTHERS = section("others", OthersSection.class);
         static public class OthersSection extends ConfigurationSection
         {
-            public final BlockSection BURNING_FURNACE = section("burning_furnace", BlockSection.class);
+        	public final BlockSection BURNING_FURNACE = section("burning_furnace", BlockSection.class);
+        	public final BlockSection BURNING_BLASTFURNACE = section("burning_blastfurnace", BlockSection.class);
+        	public final BlockSection BURNING_SMOKER = section("burning_smoker", BlockSection.class);
         }
     }
     

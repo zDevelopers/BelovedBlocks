@@ -26,7 +26,7 @@ import fr.zcraft.zlib.tools.PluginLogger;
 public class WorldBlock
 {
     private final Material type;
-    private final BlockData dataValue;
+    private BlockData dataValue;
 
     public WorldBlock(Material type, BlockData dataValue)
     {
@@ -39,7 +39,9 @@ public class WorldBlock
         dataValue=getType().createBlockData();
     }
 
-  
+    public void setData(BlockData dataValue){
+    	this.dataValue=dataValue;
+    }
     /**
      * Updates the given block to be the same one as this block.
      *
